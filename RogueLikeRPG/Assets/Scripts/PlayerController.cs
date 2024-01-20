@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     // Singleton
     public static PlayerController Instance { get; private set; }
 
-    public event Action<float> OnHorizontalMovement;
+    public event Action<float> OnPlayerMovement;
     
     [SerializeField] private float _speed;
     [SerializeField] Rigidbody2D _rb;
@@ -46,16 +46,11 @@ public class PlayerController : MonoBehaviour
         Vector2 inputVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
         _moveDirection = new Vector2(inputVector.x, inputVector.y).normalized;
         
-        if(_moveDirection.x != 0)
+        if(_moveDirection.x != 0 || _moveDirection.y != 0)
         {
-            OnHorizontalMovement?.Invoke(_moveDirection.x);
+            OnPlayerMovement?.Invoke(_moveDirection.x);
         }
-        if(_moveDirection.y != 0)
-        {
-            // Vertical Movement
-        }    
-
-        _rb.velocity = new Vector2(_moveDirection.x, _moveDirection.y) * _speed;
+        _rb.velocity = _moveDirection * _speed;
     }
 
     public Vector2 GetMoveDirection()

@@ -16,35 +16,17 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Start()
     {
-        PlayerController.Instance.OnHorizontalMovement += OnFlipSprite;
+        PlayerController.Instance.OnPlayerMovement += Player_OnPlayerMovement;
     }
 
-    private void OnFlipSprite(float horizontalMovement)
+    private void Player_OnPlayerMovement(float horizontalMovement)
     {
-        if (horizontalMovement < 0)
-        {
-            _spriteRenderer.flipX = true;
-        }
-        else
-        {
-            _spriteRenderer.flipX = false;
-        }
-    }
+        float xDir = PlayerController.Instance.GetMoveDirection().x;
+        float yDir = PlayerController.Instance.GetMoveDirection().y;
+        
+        Vector2 movement = new Vector2(xDir, yDir);
 
-    private void Update()
-    {
-        //MoveAnimate();
-    }
-
-    private void MoveAnimate()
-    {
-        if (PlayerController.Instance.GetMoveDirection().x != 0 || PlayerController.Instance.GetMoveDirection().y != 0)
-        {
-            _playerAnimator.SetBool("IsMoving", true);
-        }
-        else
-        {
-            _playerAnimator.SetBool("IsMoving", false);
-        }
+        _playerAnimator.SetFloat("Horizontal", movement.x);
+        _playerAnimator.SetFloat("Vertical", movement.y);
     }
 }
