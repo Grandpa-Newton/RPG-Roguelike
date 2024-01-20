@@ -33,7 +33,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Update()
     {
-        MoveAnimate();
+        //MoveAnimate();
     }
 
     private void MoveAnimate()
