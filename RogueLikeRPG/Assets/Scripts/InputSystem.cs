@@ -28,14 +28,14 @@ public class InputSystem : MonoBehaviour
 
     private void Awake()
     {
-        playerRigidbody = GetComponent<Rigidbody2D>();
+        /*playerRigidbody = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
 
         playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable();
+        playerInputActions.Player.Enable();*/
     }
 
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
         MoveDir = new Vector2(inputVector.x, inputVector.y).normalized;
@@ -50,5 +50,5 @@ public class InputSystem : MonoBehaviour
         }    
 
         playerRigidbody.velocity = new Vector2(MoveDir.x, MoveDir.y) * MoveSpeed;
-    }
+    }*/
 }

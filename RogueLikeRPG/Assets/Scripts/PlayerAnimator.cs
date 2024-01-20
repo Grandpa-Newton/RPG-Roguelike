@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,39 +6,45 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     private Animator playerAnimator;
-    private InputSystem inputSystem;
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         playerAnimator = GetComponent<Animator>();
-        inputSystem = GetComponent<InputSystem>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    private void Start()
     {
-        if(inputSystem.MoveDir.x != 0 || inputSystem.MoveDir.y != 0)
-        {
-            playerAnimator.SetBool("IsMoving", true);
-
-            CheckSpriteDirection();
-        }
-        else
-        {
-            playerAnimator.SetBool("IsMoving", false);
-        }
+        PlayerController.Instance.OnHorizontalMovement += OnFlipSprite;
     }
 
-    private void CheckSpriteDirection()
+    private void OnFlipSprite(float horizontalMovement)
     {
-        if(inputSystem.LastHorizontalVector < 0)
+        if (horizontalMovement < 0)
         {
             spriteRenderer.flipX = true;
         }
         else
         {
             spriteRenderer.flipX = false;
+        }
+    }
+
+    private void Update()
+    {
+        MoveAnimate();
+    }
+
+    private void MoveAnimate()
+    {
+        if (PlayerController.Instance.GetMoveDirection().x != 0 || PlayerController.Instance.GetMoveDirection().y != 0)
+        {
+            playerAnimator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("IsMoving", false);
         }
     }
 }
