@@ -13,11 +13,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] Rigidbody2D _rb;
 
-    private Vector2 moveDirection;
-    private PlayerInputActions playerInputActions;
+    private Vector2 _moveDirection;
+    private PlayerInputActions _playerInputActions;
     
-    private float LastHorizontalVector;
-    private float LastVerticalVector;
+
     private void Awake()
     {
         if (Instance != null)
@@ -32,8 +31,8 @@ public class PlayerController : MonoBehaviour
         
         
         // Player Input Actions
-        playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable();
+        _playerInputActions = new PlayerInputActions();
+        _playerInputActions.Player.Enable();
         
     }
 
@@ -44,24 +43,23 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
-        moveDirection = new Vector2(inputVector.x, inputVector.y).normalized;
+        Vector2 inputVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
+        _moveDirection = new Vector2(inputVector.x, inputVector.y).normalized;
         
-        if(moveDirection.x != 0)
+        if(_moveDirection.x != 0)
         {
-            LastHorizontalVector = moveDirection.x;
-            OnHorizontalMovement?.Invoke(moveDirection.x);
+            OnHorizontalMovement?.Invoke(_moveDirection.x);
         }
-        if(moveDirection.y != 0)
+        if(_moveDirection.y != 0)
         {
-            LastVerticalVector = moveDirection.y;
+            // Vertical Movement
         }    
 
-        _rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * _speed;
+        _rb.velocity = new Vector2(_moveDirection.x, _moveDirection.y) * _speed;
     }
 
     public Vector2 GetMoveDirection()
     {
-        return moveDirection;
+        return _moveDirection;
     }
 }

@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
-    private Animator playerAnimator;
-    private SpriteRenderer spriteRenderer;
+    private Animator _playerAnimator;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
-        playerAnimator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        _playerAnimator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -23,11 +23,11 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (horizontalMovement < 0)
         {
-            spriteRenderer.flipX = true;
+            _spriteRenderer.flipX = true;
         }
         else
         {
-            spriteRenderer.flipX = false;
+            _spriteRenderer.flipX = false;
         }
     }
 
@@ -40,11 +40,11 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (PlayerController.Instance.GetMoveDirection().x != 0 || PlayerController.Instance.GetMoveDirection().y != 0)
         {
-            playerAnimator.SetBool("IsMoving", true);
+            _playerAnimator.SetBool("IsMoving", true);
         }
         else
         {
-            playerAnimator.SetBool("IsMoving", false);
+            _playerAnimator.SetBool("IsMoving", false);
         }
     }
 }
