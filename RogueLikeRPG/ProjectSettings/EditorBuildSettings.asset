@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FirstLevelMap_01.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/FirstLevelDungeon_01.unity
+    guid: e7da1264cb91b4640bfe7b5b78724905
   m_configObjects: {}
