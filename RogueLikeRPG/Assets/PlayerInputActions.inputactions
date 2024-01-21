@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "MouseMovement",
+                    "type": "Button",
+                    "id": "40355038-5030-4c2c-98ae-d707082948bd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -79,6 +88,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "64c732ed-5d92-4f6a-8cf0-21ea924ac6bd",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseMovement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

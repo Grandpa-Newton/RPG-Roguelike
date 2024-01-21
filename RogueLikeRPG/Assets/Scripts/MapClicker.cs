@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MapClicker : MonoBehaviour
 {
-    private bool _isMoving = false;
-
-    private Vector2 clickedCellPosition;
-
-    private IBaseCell _interactingCell;
-
     [SerializeField] private float _speed;
     [SerializeField] Rigidbody2D _rb;
 
+    private IBaseCell _interactingCell;
+
+    private Vector2 clickedCellPosition;
+
+
+    private bool _isMoving = false;
     private Vector2 _moveDirection;
 
     private void Awake()
@@ -43,22 +43,22 @@ public class MapClicker : MonoBehaviour
                 }
             }
         }
-
+        
+        // If player can move
         if (_isMoving)
         {
-
-            if ((Vector2)transform.position != clickedCellPosition)
+            // If the player is not standing on the cell AND picked cell is Active
+            if ((Vector2)transform.position != clickedCellPosition && _interactingCell.IsActive )
             {
-                Debug.Log(transform.position);
-                var step = _speed * Time.deltaTime;
-                _moveDirection = Vector2.MoveTowards(transform.position, clickedCellPosition, step);
+                // Detecting Move Direction for Player
+                _moveDirection = Vector2.MoveTowards(transform.position, clickedCellPosition, _speed * Time.deltaTime);
                 transform.position = _moveDirection;
-                Debug.Log(_moveDirection);
                 if (_moveDirection.x != 0 || _moveDirection.y != 0)
                 {
                 }
                 //_rb.velocity = _moveDirection;
             }
+            // 
             else
             {
                 _interactingCell.Interact();
