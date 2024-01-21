@@ -40,7 +40,7 @@ public class MapClicker : MonoBehaviour
                 {
                     Debug.Log(raycastHit.transform.gameObject);
                     clickedCellPosition = (Vector2)raycastHit.transform.position;
-                    _interactingCell = raycastHit.transform.gameObject.GetComponent<IBaseCell>();
+                    _interactingCell = raycastHit.transform.gameObject.GetComponent<IBaseCell>(); // ГДЕ-ТО ТУТ ПРОВЕРКА НА ТО, ЧТО ЭТО BASECELL!
                     _isMoving = true;
                 }
             }
@@ -56,16 +56,12 @@ public class MapClicker : MonoBehaviour
             {
                 // Detecting Move Direction for Player
                 _moveDirection = Vector2.MoveTowards(transform.position, clickedCellPosition, _speed * Time.deltaTime);
+
                 transform.position = _moveDirection;
-                if (_moveDirection.x != 0 || _moveDirection.y != 0)
-                {
-                }
-                //_rb.velocity = _moveDirection;
             }
             // 
             else
             {
-                
                 // РАБОТАЕТ НЕ ПРАВИЛЬНО (ВЫВОД НАДПИСЕЙ ПОЛУЧИЛОСЬ ЛИ ДОЙТИ ИЛИ НЕТ)
                 _interactingCell.Interact();
                 _isMoving = false;
