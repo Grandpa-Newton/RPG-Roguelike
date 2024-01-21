@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapPlayerController : MonoBehaviour
+public class MapClicker : MonoBehaviour
 {
     
     [SerializeField] private float _speed;

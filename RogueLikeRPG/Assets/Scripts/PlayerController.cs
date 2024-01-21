@@ -19,7 +19,15 @@ public class PlayerController : MonoBehaviour
     private PlayerInputActions _playerInputActions;
 
     private NavMeshAgent _navMeshAgent;
-    
+
+    [Header("Mouse Movement")] [SerializeField]
+    private ParticleSystem _clickEffect;
+
+    [SerializeField] private LayerMask _clickableLayerMask;
+
+    private float lookRotationSpeed = 8f;
+
+
     private void Awake()
     {
         if (Instance != null)
@@ -31,8 +39,6 @@ public class PlayerController : MonoBehaviour
 
         // Rigidbpdy
         _rb = GetComponent<Rigidbody2D>();
-        
-        
         _navMeshAgent = GetComponent<NavMeshAgent>();
 
 
