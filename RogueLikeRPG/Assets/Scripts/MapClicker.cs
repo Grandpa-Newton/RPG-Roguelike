@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MapClicker : MonoBehaviour
 {
+    
     [SerializeField] private float _speed;
     [SerializeField] Rigidbody2D _rb;
 
@@ -47,6 +49,8 @@ public class MapClicker : MonoBehaviour
         // If player can move
         if (_isMoving)
         {
+            Debug.Log(transform.position + "\n" + clickedCellPosition + "\n====");
+            Debug.Log(_interactingCell.IsActive + "!!!");
             // If the player is not standing on the cell AND picked cell is Active
             if ((Vector2)transform.position != clickedCellPosition && _interactingCell.IsActive )
             {
@@ -61,6 +65,8 @@ public class MapClicker : MonoBehaviour
             // 
             else
             {
+                
+                // РАБОТАЕТ НЕ ПРАВИЛЬНО (ВЫВОД НАДПИСЕЙ ПОЛУЧИЛОСЬ ЛИ ДОЙТИ ИЛИ НЕТ)
                 _interactingCell.Interact();
                 _isMoving = false;
             }
