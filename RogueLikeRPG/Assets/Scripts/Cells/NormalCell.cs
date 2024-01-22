@@ -7,6 +7,8 @@ public class NormalCell : MonoBehaviour, IBaseCell
 {
     [SerializeField] private bool isActive = false;
     [SerializeField] private GameObject isActiveCircle;
+    
+    public List<GameObject> NeighborsCells = new(); // клетки, на которые можно попасть из этой клетки
 
     private Renderer _renderer;
 
