@@ -1219,6 +1219,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+<<<<<<< HEAD
       propertyPath: isActiveCircle
       value: 
       objectReference: {fileID: 15947029}
@@ -1230,6 +1231,11 @@ PrefabInstance:
       propertyPath: NeighborsCells.Array.data[0]
       value: 
       objectReference: {fileID: 1555256698}
+=======
+      propertyPath: isActive
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> 29dd9754929b84d6745df29f8fe2757c9c3ad7a3
     - target: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.1
@@ -1400,6 +1406,7 @@ MonoBehaviour:
   NeighborsCells:
   - {fileID: 1622703658}
   - {fileID: 15947029}
+  - {fileID: 1604491928}
   activeColor: {r: 0, g: 0, b: 1, a: 1}
   inactiveColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!58 &662200053
@@ -2551,6 +2558,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1555256699}
   m_SourcePrefab: {fileID: 100100000, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+<<<<<<< HEAD
 --- !u!1 &1555256698 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
@@ -2574,6 +2582,12 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
   m_PrefabInstance: {fileID: 1555256697}
+=======
+--- !u!1 &1604491928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+  m_PrefabInstance: {fileID: 1229167022}
+>>>>>>> 29dd9754929b84d6745df29f8fe2757c9c3ad7a3
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1622703658 stripped
 GameObject:
