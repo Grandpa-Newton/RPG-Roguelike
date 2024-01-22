@@ -7,7 +7,7 @@ public class NormalCell : MonoBehaviour, IBaseCell
 {
     [SerializeField] private bool isActive = false;
     [SerializeField] private GameObject isActiveCircle;
-    
+
     public List<GameObject> NeighborsCells = new(); // клетки, на которые можно попасть из этой клетки
 
     private Renderer _renderer;
@@ -30,25 +30,27 @@ public class NormalCell : MonoBehaviour, IBaseCell
     }
     private void NormalCell_OnActiveCell()
     {
-        if (isActive)
+        /*if (isActive)
         {
             isActiveCircle.SetActive(true);
         }
         else
         {
             isActiveCircle.SetActive(false);
-        }
+        }*/
     }
-   public void Interact()
+    public void Interact()
     {
-        if (!IsActive)
+        /*if (!IsActive)
         {
             Debug.Log("Cell is not active!");
         }
         else
         {
             Debug.Log("YES! VICTORY!");
-        }
+        }*/
+        Debug.Log("YES! VICTORY!");
+
     }
 
     private void IsCellActive()

@@ -10,7 +10,7 @@ public class StartNextLevel : MonoBehaviour
 {
     [SerializeField] private Transform _player;
     [SerializeField] private Transform _nextLevelCell; 
-    private const string NEXT_SCENE_TO_LOAD = "FirstLevelDungeon_01";
+    private const string NEXT_SCENE_TO_LOAD = "TestScene";
     private PlayerController _playerController;
     private CinemachineVirtualCamera virtualCamera;
 
@@ -30,6 +30,7 @@ public class StartNextLevel : MonoBehaviour
     {
         if (_playerInNextLevelCell && Input.GetKeyDown(KeyCode.E))
         {
+            // DontDestroyOnLoad(GameObject.Find("MapLoader")); // наверное, по-другому реализовать
             SceneManager.LoadScene(NEXT_SCENE_TO_LOAD);
             _playerController.enabled = true;
         }

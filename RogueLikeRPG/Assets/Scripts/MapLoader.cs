@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class MapLoader : MonoBehaviour
 {
-    [SerializeField] private Transform _currentCell;
-    [SerializeField] private Transform _player;
+    public Transform CurentCell;
+    public Transform Player;
+
+    public static MapLoader Instance = null;
 
     private void Awake()
     {
     }
     private void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+
         UpdateInfo();
     }
 
     public void UpdateInfo()
     {
-        NormalCell cell = _currentCell.GetComponent<NormalCell>(); // ПОМЕНЯТЬ НА IBASECELL
+        NormalCell cell = CurentCell.GetComponent<NormalCell>(); // ПОМЕНЯТЬ НА IBASECELL
 
-        _player.position = _currentCell.position; // Перемещаем игрока в центр клетки
+        Player.position = CurentCell.position; // Перемещаем игрока в центр клетки
 
         foreach (var neighborCell in cell.NeighborsCells)
         {

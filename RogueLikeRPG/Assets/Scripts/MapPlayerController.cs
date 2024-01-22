@@ -53,10 +53,30 @@ public class MapPlayerController : MonoBehaviour
                 if(raycastHit.transform != null)
                 {
                     Debug.Log(raycastHit.transform.gameObject);
-                    clickedCellPosition = (Vector2)raycastHit.transform.position;
-                    _interactingCell = raycastHit.transform.gameObject.GetComponent<IBaseCell>(); // ГДЕ-ТО ТУТ ПРОВЕРКА НА ТО, ЧТО ЭТО BASECELL!
-                    _isMoving = true;
-                    OnActiveCell?.Invoke();
+                    Transform interactingCellTransform = raycastHit.transform;
+                    _interactingCell = interactingCellTransform.gameObject.GetComponent<IBaseCell>(); // ГДЕ-ТО ТУТ ПРОВЕРКА НА ТО, ЧТО ЭТО BASECELL!
+                    if (_interactingCell.IsActive)
+                    {
+                        MapLoader mapLoader = GameObject.Find("MapLoader").GetComponent<MapLoader>();
+                        NormalCell currentCell = mapLoader.CurentCell.GetComponent<NormalCell>(); // слишком много getcomponent, но как без них - не знаю
+
+                        foreach (GameObject neighbor in currentCell.NeighborsCells) // ПОМЕНЯТЬ НА IBASECELL
+                        {
+                            neighbor.GetComponent<NormalCell>().IsActive = false; // ПОМЕНЯТЬ НА IBASECELL
+                        }
+
+                        mapLoader.CurentCell = interactingCellTransform;
+
+                        //foreach()
+                        clickedCellPosition = (Vector2)raycastHit.transform.position;
+
+                        _isMoving = true;
+                        OnActiveCell?.Invoke();
+                    }
+                    else
+                    {
+                        Debug.Log("The cell is not active");
+                    }
                 }
             }
         }
@@ -64,9 +84,8 @@ public class MapPlayerController : MonoBehaviour
         // If player can move
         if (_isMoving)
         {
-            
             // If the player is not standing on the cell AND picked cell is Active
-            if ((Vector2)transform.position != clickedCellPosition && _interactingCell.IsActive )
+            if ((Vector2)transform.position != clickedCellPosition)
             {
                 // Detecting Move Direction for Player
                 _moveDirection = Vector2.MoveTowards(transform.position, clickedCellPosition, _speed * Time.deltaTime);
