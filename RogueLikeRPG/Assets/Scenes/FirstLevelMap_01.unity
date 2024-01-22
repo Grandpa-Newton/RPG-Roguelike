@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &15947029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+  m_PrefabInstance: {fileID: 648257461}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &16985918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -628,6 +633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7ab30c96b15f241a3cc21e7db18590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentCell: {fileID: 662200050}
+  _player: {fileID: 2092108769}
 --- !u!4 &307014263
 Transform:
   m_ObjectHideFlags: 0
@@ -1278,6 +1285,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   isActiveCircle: {fileID: 181514379}
+  NeighborsCells:
+  - {fileID: 1622703658}
+  - {fileID: 15947029}
   activeColor: {r: 0, g: 0, b: 1, a: 1}
   inactiveColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!58 &662200053
@@ -1733,7 +1743,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: isActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1927,7 +1937,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: isActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2295,6 +2305,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+--- !u!1 &1622703658 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+  m_PrefabInstance: {fileID: 1377782239}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1678090172
 GameObject:
   m_ObjectHideFlags: 0
