@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     // Singleton
     public static PlayerController Instance { get; private set; }
 
-    public event Action<float> OnPlayerMovement;
+    public event Action OnPlayerMovement;
 
     [SerializeField] private float _speed;
     [SerializeField] Rigidbody2D _rb;
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
         if (_moveDirection.x != 0 || _moveDirection.y != 0)
         {
-            OnPlayerMovement?.Invoke(_moveDirection.x);
+            OnPlayerMovement?.Invoke();
         }
 
         _rb.velocity = _moveDirection * _speed;

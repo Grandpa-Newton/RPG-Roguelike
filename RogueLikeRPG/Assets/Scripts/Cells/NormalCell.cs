@@ -6,6 +6,7 @@ using UnityEngine;
 public class NormalCell : MonoBehaviour, IBaseCell
 {
     [SerializeField] private bool isActive = false;
+    [SerializeField] private GameObject isActiveCircle;
 
     private Renderer _renderer;
 
@@ -20,11 +21,22 @@ public class NormalCell : MonoBehaviour, IBaseCell
 
     private void Start()
     {
+        MapPlayerController.Instance.OnActiveCell += NormalCell_OnActiveCell;
         _renderer = GetComponent<Renderer>();
         // Сделать этот метод событием вызываемом при каждой загрузке карты
         IsCellActive();
     }
-
+    private void NormalCell_OnActiveCell()
+    {
+        if (isActive)
+        {
+            isActiveCircle.SetActive(true);
+        }
+        else
+        {
+            isActiveCircle.SetActive(false);
+        }
+    }
    public void Interact()
     {
         if (!IsActive)

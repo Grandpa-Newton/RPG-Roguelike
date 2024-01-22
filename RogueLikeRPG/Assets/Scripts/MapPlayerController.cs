@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MapPlayerController : MonoBehaviour
 {
+    public static MapPlayerController Instance;
+    public event Action OnActiveCell;
     
     [SerializeField] private float _speed;
     [SerializeField] Rigidbody2D _rb;
@@ -19,7 +21,19 @@ public class MapPlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Debug.LogError("There is no more than one MaoPlayerController instance");
+        }
+        Instance = this;
+
         _rb = GetComponent<Rigidbody2D>();
+        
+    }
+
+    private void Start()
+    {
+        OnActiveCell?.Invoke();
     }
 
     private void Update()
@@ -42,6 +56,7 @@ public class MapPlayerController : MonoBehaviour
                     clickedCellPosition = (Vector2)raycastHit.transform.position;
                     _interactingCell = raycastHit.transform.gameObject.GetComponent<IBaseCell>(); // ГДЕ-ТО ТУТ ПРОВЕРКА НА ТО, ЧТО ЭТО BASECELL!
                     _isMoving = true;
+                    OnActiveCell?.Invoke();
                 }
             }
         }
@@ -49,20 +64,17 @@ public class MapPlayerController : MonoBehaviour
         // If player can move
         if (_isMoving)
         {
-            Debug.Log(transform.position + "\n" + clickedCellPosition + "\n====");
-            Debug.Log(_interactingCell.IsActive + "!!!");
+            
             // If the player is not standing on the cell AND picked cell is Active
             if ((Vector2)transform.position != clickedCellPosition && _interactingCell.IsActive )
             {
                 // Detecting Move Direction for Player
                 _moveDirection = Vector2.MoveTowards(transform.position, clickedCellPosition, _speed * Time.deltaTime);
-
                 transform.position = _moveDirection;
             }
             // 
             else
             {
-                // РАБОТАЕТ НЕ ПРАВИЛЬНО (ВЫВОД НАДПИСЕЙ ПОЛУЧИЛОСЬ ЛИ ДОЙТИ ИЛИ НЕТ)
                 _interactingCell.Interact();
                 _isMoving = false;
             }

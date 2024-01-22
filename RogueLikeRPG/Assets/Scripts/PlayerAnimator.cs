@@ -19,7 +19,7 @@ public class PlayerAnimator : MonoBehaviour
         PlayerController.Instance.OnPlayerMovement += Player_OnPlayerMovement;
     }
 
-    private void Player_OnPlayerMovement(float horizontalMovement)
+    private void Player_OnPlayerMovement()
     {
         float xDir = PlayerController.Instance.GetMoveDirection().x;
         float yDir = PlayerController.Instance.GetMoveDirection().y;
