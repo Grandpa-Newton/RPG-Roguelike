@@ -532,6 +532,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+--- !u!1 &997583116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 997583117}
+  - component: {fileID: 997583118}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &997583117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997583116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &997583118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997583116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b321f071f5b654ea748813b5d89135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _exit: {fileID: 3295133536212083138, guid: 7ec892cd63670e847ba29a8d759c0549, type: 3}
 --- !u!4 &1291866433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1024461959818967223, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
@@ -569,15 +614,23 @@ MonoBehaviour:
   topRooms:
   - {fileID: 8508803425100361247, guid: f7aecb89899f57a4ca7a7d3cf31e69bb, type: 3}
   - {fileID: 8508803425100361247, guid: 01b4f00dd8785f242b15c574975b79de, type: 3}
+  - {fileID: 8508803425100361247, guid: 0df19b95249d5b1409ad90de03f17a7c, type: 3}
+  - {fileID: 8508803425100361247, guid: 03af6037852475a4ea73864a05ac7552, type: 3}
   bottomRooms:
   - {fileID: 8508803425100361247, guid: 71af0a17a6eec0a42907d2c237d0bc7b, type: 3}
   - {fileID: 8508803425100361247, guid: 01b4f00dd8785f242b15c574975b79de, type: 3}
+  - {fileID: 8508803425100361247, guid: bc84dd86b10a1d441b8c68f776057312, type: 3}
+  - {fileID: 8508803425100361247, guid: 89b287a98048abc4780cdeed27e62323, type: 3}
   rightRooms:
   - {fileID: 8508803425100361247, guid: a36cf42ff7e1961429016e20ce467d9b, type: 3}
   - {fileID: 8508803425100361247, guid: 9e8a8de18116e33428b23c9a560f5239, type: 3}
+  - {fileID: 8508803425100361247, guid: 03af6037852475a4ea73864a05ac7552, type: 3}
+  - {fileID: 8508803425100361247, guid: bc84dd86b10a1d441b8c68f776057312, type: 3}
   leftRooms:
   - {fileID: 8508803425100361247, guid: 828bbb771d92c5a4ab9582adecffe56b, type: 3}
   - {fileID: 8508803425100361247, guid: 9e8a8de18116e33428b23c9a560f5239, type: 3}
+  - {fileID: 8508803425100361247, guid: 89b287a98048abc4780cdeed27e62323, type: 3}
+  - {fileID: 8508803425100361247, guid: 0df19b95249d5b1409ad90de03f17a7c, type: 3}
 --- !u!4 &1589989524
 Transform:
   m_ObjectHideFlags: 0
@@ -602,3 +655,4 @@ SceneRoots:
   - {fileID: 774582281}
   - {fileID: 572214009}
   - {fileID: 1589989524}
+  - {fileID: 997583117}

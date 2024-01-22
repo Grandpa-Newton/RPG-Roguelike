@@ -4530,6 +4530,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 8327755303649957426, guid: a43b765a49f838841a74b1bbc63ea2fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9003763003487946959, guid: a43b765a49f838841a74b1bbc63ea2fb, type: 3}
       propertyPath: m_Name
       value: WallRight
