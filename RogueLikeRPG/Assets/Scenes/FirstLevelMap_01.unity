@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 662200052}
   - component: {fileID: 662200053}
   m_Layer: 0
-  m_Name: Circle (7)
+  m_Name: NEXT_LEVEL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1200,11 +1200,11 @@ Transform:
   m_GameObject: {fileID: 662200048}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.2, y: -19.3, z: 1.60101}
+  m_LocalPosition: {x: -9.456209, y: -40.89888, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1354694606}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &662200051
 MonoBehaviour:
@@ -1233,7 +1233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 1
-  isActiveCircle: {fileID: 0}
+  isActiveCircle: {fileID: 181514379}
   activeColor: {r: 0, g: 0, b: 1, a: 1}
   inactiveColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!58 &662200053
@@ -1871,7 +1871,6 @@ Transform:
   - {fileID: 1426893159}
   - {fileID: 928517318}
   - {fileID: 1477424821}
-  - {fileID: 662200050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1377782239
@@ -3030,6 +3029,7 @@ SceneRoots:
   - {fileID: 1555256697}
   - {fileID: 295492899}
   - {fileID: 16985918}
+  - {fileID: 662200050}
   - {fileID: 1354694606}
   - {fileID: 1446317677}
   - {fileID: 870395223}
