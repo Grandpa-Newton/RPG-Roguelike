@@ -67,6 +67,14 @@ public class MapPlayerController : MonoBehaviour
 
                         mapLoader.CurentCell = interactingCellTransform;
 
+
+                        // УБРАТЬ ЦИКЛ НИЖЕ, ЭТО ДЛЯ ТЕСТА!
+
+                        foreach (GameObject neighbor in interactingCellTransform.GetComponent<NormalCell>().NeighborsCells) 
+                        {
+                            neighbor.GetComponent<NormalCell>().IsActive = true; 
+                        }
+
                         //foreach()
                         clickedCellPosition = (Vector2)raycastHit.transform.position;
 
