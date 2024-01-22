@@ -633,8 +633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7ab30c96b15f241a3cc21e7db18590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentCell: {fileID: 662200050}
-  _player: {fileID: 2092108769}
+  CurentCell: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!4 &307014263
 Transform:
   m_ObjectHideFlags: 0
