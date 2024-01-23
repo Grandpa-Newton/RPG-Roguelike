@@ -611,7 +611,6 @@ MonoBehaviour:
   - {fileID: 8508803425100361247, guid: a36cf42ff7e1961429016e20ce467d9b, type: 3}
   - {fileID: 8508803425100361247, guid: 03af6037852475a4ea73864a05ac7552, type: 3}
   - {fileID: 8508803425100361247, guid: f7aecb89899f57a4ca7a7d3cf31e69bb, type: 3}
-  - {fileID: 8508803425100361247, guid: 83442daad3636bd4b9ff6d8ea2f51f64, type: 3}
   _roomPoint: {fileID: 365250421}
 --- !u!4 &1291866433 stripped
 Transform:
@@ -652,11 +651,13 @@ MonoBehaviour:
   - {fileID: 8508803425100361247, guid: 01b4f00dd8785f242b15c574975b79de, type: 3}
   - {fileID: 8508803425100361247, guid: 0df19b95249d5b1409ad90de03f17a7c, type: 3}
   - {fileID: 8508803425100361247, guid: 03af6037852475a4ea73864a05ac7552, type: 3}
+  - {fileID: 8508803425100361247, guid: c6c891a8a185b0043be2c7a2adc8e8be, type: 3}
   bottomRooms:
   - {fileID: 8508803425100361247, guid: 71af0a17a6eec0a42907d2c237d0bc7b, type: 3}
   - {fileID: 8508803425100361247, guid: 01b4f00dd8785f242b15c574975b79de, type: 3}
   - {fileID: 8508803425100361247, guid: bc84dd86b10a1d441b8c68f776057312, type: 3}
   - {fileID: 8508803425100361247, guid: 89b287a98048abc4780cdeed27e62323, type: 3}
+  - {fileID: 8508803425100361247, guid: c6c891a8a185b0043be2c7a2adc8e8be, type: 3}
   rightRooms:
   - {fileID: 8508803425100361247, guid: a36cf42ff7e1961429016e20ce467d9b, type: 3}
   - {fileID: 8508803425100361247, guid: 9e8a8de18116e33428b23c9a560f5239, type: 3}
