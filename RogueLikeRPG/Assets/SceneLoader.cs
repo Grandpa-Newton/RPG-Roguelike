@@ -11,8 +11,9 @@ public class SceneLoader : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            var player = GameObject.Find("Player"); // »«Ã≈Õ»“‹
+            Destroy(player);
             SceneManager.LoadScene(NEXT_SCENE_TO_LOAD);
-            GameObject.Find("MapLoader").GetComponent<MapLoader>().UpdateInfo();
         }
     }
 }

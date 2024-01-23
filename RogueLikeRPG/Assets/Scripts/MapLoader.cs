@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class MapLoader : MonoBehaviour
 {
-    public Transform CurentCell;
+    [HideInInspector]
+    public static string CurrentCellName = "Circle";
+
+    [SerializeField]
+    private Transform _spawnCell;
+
     public Transform Player;
 
     public static MapLoader Instance = null;
 
     private void Awake()
-    {
-    }
-    private void Start()
     {
         if (Instance == null)
         {
@@ -23,16 +25,38 @@ public class MapLoader : MonoBehaviour
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
+
+        /*if (_spawnCell != null)
+        {
+            CurrentCellName = _spawnCell.name;
+        }*/
+
 
         UpdateInfo();
+    }
+    private void Start()
+    {
     }
 
     public void UpdateInfo()
     {
-        NormalCell cell = CurentCell.GetComponent<NormalCell>(); // ПОМЕНЯТЬ НА IBASECELL
+        GameObject[] cells = GameObject.FindGameObjectsWithTag("Cell");
 
-        Player.position = CurentCell.position; // Перемещаем игрока в центр клетки
+        GameObject currentCell = new();
+
+        foreach(var spawn in cells)
+        {
+            if(spawn.name == CurrentCellName)
+            {
+                currentCell = GameObject.Find(CurrentCellName);
+                break;
+            }
+        }
+
+        NormalCell cell = currentCell.GetComponent<NormalCell>(); // ПОМЕНЯТЬ НА IBASECELL
+
+        Player.position = currentCell.transform.position; // Перемещаем игрока в центр клетки
 
         foreach (var neighborCell in cell.NeighborsCells)
         {

@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7172891866342440106}
   m_Layer: 0
   m_Name: NormalCell
-  m_TagString: Untagged
+  m_TagString: Cell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   isActiveCircle: {fileID: 516025205840297952}
+  NeighborsCells: []
   activeColor: {r: 0.6434172, g: 1, b: 0.514151, a: 1}
   inactiveColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
 --- !u!58 &7172891866342440106
