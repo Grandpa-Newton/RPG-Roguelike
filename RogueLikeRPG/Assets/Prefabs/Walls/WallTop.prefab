@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6698006260346963632}
   - component: {fileID: 5399735664113268839}
   - component: {fileID: 6438832618539969594}
+  - component: {fileID: 8747287729473117808}
   m_Layer: 0
   m_Name: WallTop
   m_TagString: Untagged
@@ -94,6 +95,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: {fileID: 6020248272766892334, guid: de08409f1a2f1b840a31b79b204cac5b, type: 3}
+--- !u!50 &8747287729473117808
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2907573184338705329}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &345238272590398573
 PrefabInstance:
   m_ObjectHideFlags: 0
