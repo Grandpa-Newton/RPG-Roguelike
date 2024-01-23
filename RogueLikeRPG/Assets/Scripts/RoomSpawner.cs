@@ -79,7 +79,7 @@ public class RoomSpawner : MonoBehaviour
     {
         if (other.CompareTag("RoomPoint") && other.GetComponent<RoomSpawner>().spawned)
         {
-            Destroy(gameObject);
+            direction = Direction.None;
         }
     }
 }
