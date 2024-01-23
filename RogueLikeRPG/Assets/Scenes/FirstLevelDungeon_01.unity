@@ -338,9 +338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &365250420 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7897401768998285826, guid: 11eee7735d5bc2b4eae9de7dce618c95, type: 3}
+--- !u!4 &365250421 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2434589451768923943, guid: 11eee7735d5bc2b4eae9de7dce618c95, type: 3}
   m_PrefabInstance: {fileID: 572214009}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &572214009
@@ -611,7 +611,8 @@ MonoBehaviour:
   - {fileID: 8508803425100361247, guid: a36cf42ff7e1961429016e20ce467d9b, type: 3}
   - {fileID: 8508803425100361247, guid: 03af6037852475a4ea73864a05ac7552, type: 3}
   - {fileID: 8508803425100361247, guid: f7aecb89899f57a4ca7a7d3cf31e69bb, type: 3}
-  _roomPoint: {fileID: 365250420}
+  - {fileID: 8508803425100361247, guid: 83442daad3636bd4b9ff6d8ea2f51f64, type: 3}
+  _roomPoint: {fileID: 365250421}
 --- !u!4 &1291866433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1024461959818967223, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
@@ -661,11 +662,13 @@ MonoBehaviour:
   - {fileID: 8508803425100361247, guid: 9e8a8de18116e33428b23c9a560f5239, type: 3}
   - {fileID: 8508803425100361247, guid: 03af6037852475a4ea73864a05ac7552, type: 3}
   - {fileID: 8508803425100361247, guid: bc84dd86b10a1d441b8c68f776057312, type: 3}
+  - {fileID: 8508803425100361247, guid: 83442daad3636bd4b9ff6d8ea2f51f64, type: 3}
   leftRooms:
   - {fileID: 8508803425100361247, guid: 828bbb771d92c5a4ab9582adecffe56b, type: 3}
   - {fileID: 8508803425100361247, guid: 9e8a8de18116e33428b23c9a560f5239, type: 3}
   - {fileID: 8508803425100361247, guid: 89b287a98048abc4780cdeed27e62323, type: 3}
   - {fileID: 8508803425100361247, guid: 0df19b95249d5b1409ad90de03f17a7c, type: 3}
+  - {fileID: 8508803425100361247, guid: 83442daad3636bd4b9ff6d8ea2f51f64, type: 3}
 --- !u!4 &1589989524
 Transform:
   m_ObjectHideFlags: 0
