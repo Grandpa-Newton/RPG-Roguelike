@@ -21,9 +21,10 @@ public class MapPlayerController : MonoBehaviour
 
     private void Awake()
     {
+
         if (Instance != null)
         {
-            Debug.LogError("There is no more than one MaoPlayerController instance");
+            Debug.LogError("There is no more than one Player instance");
         }
         Instance = this;
 
@@ -57,15 +58,15 @@ public class MapPlayerController : MonoBehaviour
                     _interactingCell = interactingCellTransform.gameObject.GetComponent<IBaseCell>(); // ГДЕ-ТО ТУТ ПРОВЕРКА НА ТО, ЧТО ЭТО BASECELL!
                     if (_interactingCell.IsActive)
                     {
-                        MapLoader mapLoader = GameObject.Find("MapLoader").GetComponent<MapLoader>();
-                        NormalCell currentCell = mapLoader.CurentCell.GetComponent<NormalCell>(); // слишком много getcomponent, но как без них - не знаю
+                        //MapLoader mapLoader = GameObject.Find("MapLoader").GetComponent<MapLoader>();
+                        NormalCell currentCell = GameObject.Find(MapLoader.CurrentCellName).GetComponent<NormalCell>(); // слишком много getcomponent, но как без них - не знаю
 
                         foreach (GameObject neighbor in currentCell.NeighborsCells) // ПОМЕНЯТЬ НА IBASECELL
                         {
                             neighbor.GetComponent<NormalCell>().IsActive = false; // ПОМЕНЯТЬ НА IBASECELL
                         }
 
-                        mapLoader.CurentCell = interactingCellTransform;
+                        MapLoader.CurrentCellName = interactingCellTransform.gameObject.name;
 
 
                         // УБРАТЬ ЦИКЛ НИЖЕ, ЭТО ДЛЯ ТЕСТА!

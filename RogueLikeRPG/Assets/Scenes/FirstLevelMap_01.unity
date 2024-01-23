@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5062f32c0fa8c354884782d5c6942223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2092108769}
+  Player: {fileID: 2092108769}
   _nextLevelCell: {fileID: 15947034}
 --- !u!4 &15947034 stripped
 Transform:
@@ -157,7 +157,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: isActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: isActiveCircle
@@ -206,6 +206,10 @@ PrefabInstance:
     - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Name
       value: NormalCell (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_TagString
+      value: Cell
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -506,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5062f32c0fa8c354884782d5c6942223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2092108769}
+  Player: {fileID: 2092108769}
   _nextLevelCell: {fileID: 175392498}
 --- !u!4 &175392498 stripped
 Transform:
@@ -653,6 +657,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalCell (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_TagString
+      value: Cell
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -690,7 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7ab30c96b15f241a3cc21e7db18590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurentCell: {fileID: 928517318}
+  _spawnCell: {fileID: 928517318}
   Player: {fileID: 2092108769}
 --- !u!4 &307014263
 Transform:
@@ -1187,7 +1195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5062f32c0fa8c354884782d5c6942223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2092108769}
+  Player: {fileID: 2092108769}
   _nextLevelCell: {fileID: 619457035}
 --- !u!4 &619457035 stripped
 Transform:
@@ -1204,7 +1212,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: isActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: isActiveCircle
@@ -1261,6 +1269,10 @@ PrefabInstance:
     - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Name
       value: NormalCell (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_TagString
+      value: Cell
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1369,7 +1381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5062f32c0fa8c354884782d5c6942223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2092108769}
+  Player: {fileID: 2092108769}
   _nextLevelCell: {fileID: 662200050}
 --- !u!114 &662200052
 MonoBehaviour:
@@ -1510,6 +1522,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1354694606}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &867624907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 867624909}
+  - component: {fileID: 867624908}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &867624908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867624907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212490c00a032dd4b92ed09797b050c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &867624909
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867624907}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -21.728508, y: -34.31368, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &870395221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,7 +1651,7 @@ GameObject:
   - component: {fileID: 928517319}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Cell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1923,6 +1979,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalCell (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_TagString
+      value: Cell
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2132,6 +2192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalCell (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_TagString
+      value: Cell
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2234,7 +2298,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: isActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: isActiveCircle
@@ -2284,6 +2348,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalCell
       objectReference: {fileID: 0}
+    - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_TagString
+      value: Cell
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2306,7 +2374,7 @@ GameObject:
   - component: {fileID: 1477424822}
   m_Layer: 0
   m_Name: Circle (6)
-  m_TagString: Untagged
+  m_TagString: Cell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2390,7 +2458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5062f32c0fa8c354884782d5c6942223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2092108769}
+  Player: {fileID: 2092108769}
   _nextLevelCell: {fileID: 1477424821}
 --- !u!114 &1477424823
 MonoBehaviour:
@@ -2504,6 +2572,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalCell (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_TagString
+      value: Cell
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2529,7 +2601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5062f32c0fa8c354884782d5c6942223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2092108769}
+  Player: {fileID: 2092108769}
   _nextLevelCell: {fileID: 1604491933}
 --- !u!4 &1604491933 stripped
 Transform:
@@ -2553,7 +2625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5062f32c0fa8c354884782d5c6942223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2092108769}
+  Player: {fileID: 2092108769}
   _nextLevelCell: {fileID: 1622703663}
 --- !u!4 &1622703663 stripped
 Transform:
@@ -2750,6 +2822,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1354694606}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1876912910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4306722505127858314, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+  m_PrefabInstance: {fileID: 1733834904139384574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1894603674
 GameObject:
   m_ObjectHideFlags: 0
@@ -2935,7 +3012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5062f32c0fa8c354884782d5c6942223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2092108769}
+  Player: {fileID: 2092108769}
   _nextLevelCell: {fileID: 1995940314}
 --- !u!4 &1995940314 stripped
 Transform:
@@ -3115,6 +3192,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1024461959818967223, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
   m_PrefabInstance: {fileID: 1733834904139384574}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2092108779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876912910}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18172285d20153c44bd7f7c79f59ff49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2102708008 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
@@ -3132,7 +3221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5062f32c0fa8c354884782d5c6942223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2092108769}
+  Player: {fileID: 2092108769}
   _nextLevelCell: {fileID: 2102708013}
 --- !u!4 &2102708013 stripped
 Transform:
@@ -3191,10 +3280,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4306722505127858314, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4306722505127858314, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2092108779}
   m_SourcePrefab: {fileID: 100100000, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -3216,3 +3312,4 @@ SceneRoots:
   - {fileID: 1446317677}
   - {fileID: 870395223}
   - {fileID: 307014263}
+  - {fileID: 867624909}
