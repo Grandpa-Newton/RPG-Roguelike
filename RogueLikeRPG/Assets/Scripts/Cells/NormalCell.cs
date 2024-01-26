@@ -8,23 +8,35 @@ public class NormalCell : MonoBehaviour, IBaseCell
     [SerializeField] private bool isActive = false;
     [SerializeField] private GameObject isActiveCircle;
 
+    [HideInInspector]
+    public string CellId;
+
     public List<GameObject> NeighborsCells = new(); // клетки, на которые можно попасть из этой клетки
 
     private Renderer _renderer;
 
-    public bool IsActive
+    public bool IsActive // сделать enum: неактивный, активный и текущий (игрок находится на нём)
     {
         get => isActive;
-        set => isActive = value;
+        set
+        {
+            isActive = value; 
+            IsCellActive(); // ЛУЧШЕ СОБЫТИЕМ
+        }
     }
 
     [SerializeField] private Color activeColor;
     [SerializeField] private Color inactiveColor;
 
+    private void Awake()
+    {
+        CellId = name + transform.position.ToString();
+        _renderer = GetComponent<Renderer>();
+    }
+
     private void Start()
     {
         MapPlayerController.Instance.OnActiveCell += NormalCell_OnActiveCell;
-        _renderer = GetComponent<Renderer>();
         // Сделать этот метод событием вызываемом при каждой загрузке карты
         IsCellActive();
     }
