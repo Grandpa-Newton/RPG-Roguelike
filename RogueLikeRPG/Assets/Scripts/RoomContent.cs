@@ -20,7 +20,7 @@ public class RoomContent : MonoBehaviour
    [SerializeField] private GameObject _health;
    [SerializeField] private GameObject _shield;
 
-   [HideInInspector] public List<GameObject> Enemies;
+   [SerializeField] public List<GameObject> Enemies;
 
    private RoomVariants _roomVariants;
    private bool _spawned;
@@ -33,7 +33,6 @@ public class RoomContent : MonoBehaviour
 
    private void OnTriggerEnter2D(Collider2D other)
    {
-      Debug.Log("Enter2d");
       if (other.CompareTag("Player") && !_spawned)
       {
          _spawned = true;
@@ -68,14 +67,9 @@ public class RoomContent : MonoBehaviour
       yield return new WaitUntil(() => Enemies.Count == 0);
          Debug.Log("Destroy walls started");
       DestroyWalls();
-      
+      PlayerController.Instance.OnKeyButtonDown();
    }
-
-   public void OnClearEnemies()
-   {
-      Debug.Log(Enemies.Count);
-      Enemies.Clear();
-   }
+   
    private void DestroyWalls()
    {
       foreach (GameObject wall in _walls)
@@ -84,6 +78,7 @@ public class RoomContent : MonoBehaviour
          {
             //Instantiate(wallEffect);
             Destroy(wall);
+            Debug.Log("I destroyer");
          }
       }
 

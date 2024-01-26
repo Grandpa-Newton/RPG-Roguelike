@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
 
     private NavMeshAgent _navMeshAgent;
 
-    [Header("Key")] [SerializeField] private GameObject keyIcon;
+    [Header("Key")] 
+    [SerializeField] private GameObject keyIcon;
     [SerializeField] private GameObject wallEffect;
 
     private bool keyButtonPushed = false;

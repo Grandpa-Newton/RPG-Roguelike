@@ -210,7 +210,7 @@ MonoBehaviour:
   _door: {fileID: 0}
   _enemyTypes:
   - {fileID: 8929243361590597935, guid: f71dd553f0cd0474990b07d033332877, type: 3}
-  - {fileID: 8929243361590597935, guid: f71dd553f0cd0474990b07d033332877, type: 3}
+  - {fileID: -2253911629886400664, guid: 663b5e3044d560242ac422cac3cb63c2, type: 3}
   _enemySpawners:
   - {fileID: 5165894351723295870}
   - {fileID: 2893014169780569283}
