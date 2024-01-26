@@ -9,6 +9,8 @@ TagManager:
   - RoomPoint
   - Rooms
   - Cell
+  - Door
+  - Key
   layers:
   - Default
   - TransparentFX

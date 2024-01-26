@@ -19,7 +19,12 @@ public class PlayerController : MonoBehaviour
     private PlayerInputActions _playerInputActions;
 
     private NavMeshAgent _navMeshAgent;
-    
+
+    [Header("Key")] [SerializeField] private GameObject keyIcon;
+    [SerializeField] private GameObject wallEffect;
+
+    private bool keyButtonPushed = false;
+
     private void Awake()
     {
         if (Instance != null)
@@ -31,8 +36,8 @@ public class PlayerController : MonoBehaviour
 
         // Rigidbpdy
         _rb = GetComponent<Rigidbody2D>();
-        
-        
+
+
         _navMeshAgent = GetComponent<NavMeshAgent>();
 
 
@@ -62,5 +67,30 @@ public class PlayerController : MonoBehaviour
     public Vector2 GetMoveDirection()
     {
         return _moveDirection;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Key"))
+        {
+            keyIcon.SetActive(true);
+            Destroy(other.gameObject);
+        }
+    }
+
+    public void OnKeyButtonDown()
+    {
+        keyButtonPushed = !keyButtonPushed;
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Door") && keyButtonPushed && keyIcon.activeInHierarchy)
+        {
+            //Instantiate(частицы);
+            keyIcon.SetActive(false);
+            other.gameObject.SetActive(false);
+            keyButtonPushed = false;
+        }
     }
 }

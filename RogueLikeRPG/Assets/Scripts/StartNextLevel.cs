@@ -13,6 +13,7 @@ public class StartNextLevel : MonoBehaviour
     [SerializeField] private Transform _nextLevelCell; 
     private const string NEXT_SCENE_TO_LOAD = "TestScene";
     private PlayerController _playerController;
+    private MapPlayerController _mapPlayerController;
     private CinemachineVirtualCamera virtualCamera;
 
     private bool _playerInNextLevelCell = false;
@@ -23,6 +24,7 @@ public class StartNextLevel : MonoBehaviour
     {
         DontDestroyOnLoad(Player.gameObject);  
         _playerController = Player.GetComponent<PlayerController>();
+        _mapPlayerController = Player.GetComponent<MapPlayerController>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class StartNextLevel : MonoBehaviour
             // DontDestroyOnLoad(GameObject.Find("MapLoader")); // наверное, по-другому реализовать
             SceneManager.LoadScene(NEXT_SCENE_TO_LOAD);
             _playerController.enabled = true;
+            _mapPlayerController.enabled = false;
         }
     }
 

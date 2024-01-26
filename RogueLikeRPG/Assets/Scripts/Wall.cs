@@ -5,26 +5,16 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    public GameObject block;
-
-    private IEnumerator DelayedAction()
-    {
-        yield return new WaitForSeconds(1f);
-        Debug.Log("Прошла 1 секунда!");
-        // здесь можно добавить код, который нужно выполнить после задержки
-    }
+    [SerializeField] private GameObject block;
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("НАЧАЛО");
         if (other.CompareTag("Block"))
         {
-            Debug.Log("123");
-            Instantiate(block, transform.GetChild(0).position, Quaternion.identity);
-            Instantiate(block, transform.GetChild(1).position, Quaternion.identity);
-            Instantiate(block, transform.GetChild(2).position, Quaternion.identity);
+            for (int i = 0; i < transform.childCount; i++)
+                Instantiate(block, transform.GetChild(i).position, Quaternion.identity);
+            
             Destroy(gameObject);
-            //StartCoroutine(DelayedAction());
         }
     }
 }
