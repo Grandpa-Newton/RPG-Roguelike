@@ -7,10 +7,9 @@ using Random = UnityEngine.Random;
 
 public class RoomSpawner : MonoBehaviour
 {
-    
-    
     [SerializeField] private GameObject _exitFromLevel;
     public Direction direction;
+
     public enum Direction
     {
         Top,
@@ -31,9 +30,8 @@ public class RoomSpawner : MonoBehaviour
     {
         _variants = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomVariants>();
         Destroy(gameObject, waitTime);
-        
-        Invoke("Spawn",.2f);
-            //OnExitSpawn?.Invoke();
+
+        Invoke("Spawn", .2f);
     }
 
     public void Spawn()
@@ -60,7 +58,6 @@ public class RoomSpawner : MonoBehaviour
                 _lastRoom = Instantiate(_variants.leftRooms[_random], transform.position,
                     _variants.leftRooms[_random].transform.rotation);
                 ExitSpawn.lastRoom = _lastRoom;
-                
             }
             else if (direction == Direction.Right)
             {
@@ -72,7 +69,6 @@ public class RoomSpawner : MonoBehaviour
 
             spawned = true;
         }
-        
     }
 
     private void OnTriggerStay2D(Collider2D other)
