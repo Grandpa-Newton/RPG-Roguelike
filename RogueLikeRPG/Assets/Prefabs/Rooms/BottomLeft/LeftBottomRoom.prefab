@@ -215,9 +215,21 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1799321693814175891, guid: 763365b954e5c64468498711b2a44fb3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3382186672823886063, guid: 763365b954e5c64468498711b2a44fb3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4235820292232749451, guid: 763365b954e5c64468498711b2a44fb3, type: 3}
       propertyPath: m_Name
       value: WallBot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570344353655078010, guid: 763365b954e5c64468498711b2a44fb3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9181259784959589520, guid: 763365b954e5c64468498711b2a44fb3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1612,6 +1624,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 2860293937610853998, guid: bd54b7a655006e042a04957ddd4d62fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3364613582073049236, guid: bd54b7a655006e042a04957ddd4d62fb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -26
@@ -1655,6 +1671,14 @@ PrefabInstance:
     - target: {fileID: 4962282932832564777, guid: bd54b7a655006e042a04957ddd4d62fb, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5129155823091998091, guid: bd54b7a655006e042a04957ddd4d62fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540278677509905398, guid: bd54b7a655006e042a04957ddd4d62fb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -4428,9 +4428,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8055532117318720697}
     m_Modifications:
+    - target: {fileID: 592419172587343220, guid: d507245b1ac5bfd4b8976fc5e91c8739, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783040016105271890, guid: d507245b1ac5bfd4b8976fc5e91c8739, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2907573184338705329, guid: d507245b1ac5bfd4b8976fc5e91c8739, type: 3}
       propertyPath: m_Name
       value: WallTop
+      objectReference: {fileID: 0}
+    - target: {fileID: 5581746665421844438, guid: d507245b1ac5bfd4b8976fc5e91c8739, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6698006260346963632, guid: d507245b1ac5bfd4b8976fc5e91c8739, type: 3}
       propertyPath: m_LocalPosition.x
