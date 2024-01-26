@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class MapLoader : MonoBehaviour
 {
-    [HideInInspector]
-    public static string CurrentCellName = "Circle";
+
+    /*[SerializeField]
+    private Transform _startCell;
+
+    public static Transform CurrentCell;*/
+
+    private const string TAG_NAME = "Cell";
+
+    public static string CurrentCellId;
 
     [SerializeField]
     private Transform _spawnCell;
@@ -16,6 +23,10 @@ public class MapLoader : MonoBehaviour
 
     private void Awake()
     {
+        
+    }
+    private void Start()
+    {
         if (Instance == null)
         {
             Instance = this;
@@ -25,31 +36,28 @@ public class MapLoader : MonoBehaviour
             Destroy(gameObject);
         }
 
+
         // DontDestroyOnLoad(gameObject);
 
-        /*if (_spawnCell != null)
+        if (string.IsNullOrEmpty(CurrentCellId))
         {
-            CurrentCellName = _spawnCell.name;
-        }*/
-
+            CurrentCellId = _spawnCell.GetComponent<NormalCell>().CellId;
+        }
 
         UpdateInfo();
-    }
-    private void Start()
-    {
     }
 
     public void UpdateInfo()
     {
-        GameObject[] cells = GameObject.FindGameObjectsWithTag("Cell");
+        NormalCell[] cells = Object.FindObjectsOfType<NormalCell>(); // IBASECELL
 
-        GameObject currentCell = new();
+        GameObject currentCell = new GameObject();
 
-        foreach(var spawn in cells)
+        foreach (var spawn in cells)
         {
-            if(spawn.name == CurrentCellName)
+            if (spawn.CellId == CurrentCellId)
             {
-                currentCell = GameObject.Find(CurrentCellName);
+                currentCell = spawn.gameObject;
                 break;
             }
         }

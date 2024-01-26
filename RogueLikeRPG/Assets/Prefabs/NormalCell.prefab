@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 1924240950571133862}
   - component: {fileID: 1152794364375760253}
   - component: {fileID: 7172891866342440106}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: NormalCell
   m_TagString: Cell
   m_Icon: {fileID: 0}

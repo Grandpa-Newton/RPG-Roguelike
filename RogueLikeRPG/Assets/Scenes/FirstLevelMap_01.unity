@@ -698,6 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7ab30c96b15f241a3cc21e7db18590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startCell: {fileID: 928517318}
   _spawnCell: {fileID: 928517318}
   Player: {fileID: 2092108769}
 --- !u!4 &307014263
@@ -3275,6 +3276,10 @@ PrefabInstance:
     - target: {fileID: 1024461959818967223, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040162995935628188, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4306722505127858314, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
       propertyPath: m_Name
