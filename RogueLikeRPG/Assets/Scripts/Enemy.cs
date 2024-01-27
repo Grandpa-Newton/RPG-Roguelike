@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -11,16 +12,13 @@ public class Enemy : MonoBehaviour
     {
         _room = GetComponentInParent<RoomContent>();
     }
-
-    // Update is called once per frame
-    void Update()
+  
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    private void OnMouseEnter()
-    {
-        Destroy(gameObject);
-        _room.Enemies.Remove(gameObject);
+        if (other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+            _room.Enemies.Remove(gameObject);
+        }
     }
 }
