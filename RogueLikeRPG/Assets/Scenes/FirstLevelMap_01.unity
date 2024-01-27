@@ -141,12 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2092108769}
-  _nextLevelCell: {fileID: 15947034}
---- !u!4 &15947034 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
-  m_PrefabInstance: {fileID: 648257461}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &16985918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511,12 +505,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2092108769}
-  _nextLevelCell: {fileID: 175392498}
---- !u!4 &175392498 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
-  m_PrefabInstance: {fileID: 295492899}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &181514379
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7ab30c96b15f241a3cc21e7db18590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startCell: {fileID: 928517318}
   _spawnCell: {fileID: 928517318}
   Player: {fileID: 2092108769}
 --- !u!4 &307014263
@@ -1197,12 +1184,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2092108769}
-  _nextLevelCell: {fileID: 619457035}
---- !u!4 &619457035 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
-  m_PrefabInstance: {fileID: 1555256697}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &648257461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1383,7 +1364,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2092108769}
-  _nextLevelCell: {fileID: 662200050}
 --- !u!114 &662200052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1396,14 +1376,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc9af9092e6d03449caa3b986a144f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActiveCircle: {fileID: 0}
   isActive: 1
-  isActiveCircle: {fileID: 181514379}
+  CellId: 
+  activeColor: {r: 0, g: 0, b: 1, a: 1}
+  inactiveColor: {r: 0, g: 0, b: 1, a: 1}
   NeighborsCells:
   - {fileID: 1622703658}
   - {fileID: 15947029}
   - {fileID: 1604491928}
-  activeColor: {r: 0, g: 0, b: 1, a: 1}
-  inactiveColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!58 &662200053
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1736,14 +1717,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc9af9092e6d03449caa3b986a144f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActiveCircle: {fileID: 0}
   isActive: 0
-  isActiveCircle: {fileID: 928517316}
+  CellId: 
+  activeColor: {r: 0, g: 0, b: 0, a: 0}
+  inactiveColor: {r: 0, g: 0, b: 0, a: 0}
   NeighborsCells:
   - {fileID: 1622703658}
   - {fileID: 15947029}
   - {fileID: 2102708008}
-  activeColor: {r: 0, g: 0, b: 0, a: 0}
-  inactiveColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1079889662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,6 +1905,18 @@ PrefabInstance:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: isActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: activeColor.b
+      value: 0.5137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: activeColor.r
+      value: 0.6431373
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: isActiveCircle
@@ -2460,7 +2454,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2092108769}
-  _nextLevelCell: {fileID: 1477424821}
 --- !u!114 &1477424823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2473,11 +2466,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc9af9092e6d03449caa3b986a144f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActiveCircle: {fileID: 0}
   isActive: 0
-  isActiveCircle: {fileID: 1477424819}
-  NeighborsCells: []
+  CellId: 
   activeColor: {r: 0, g: 0, b: 0, a: 0}
   inactiveColor: {r: 0, g: 0, b: 0, a: 0}
+  NeighborsCells: []
 --- !u!1 &1535836393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2603,12 +2597,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2092108769}
-  _nextLevelCell: {fileID: 1604491933}
---- !u!4 &1604491933 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
-  m_PrefabInstance: {fileID: 1229167022}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1622703658 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
@@ -2627,12 +2615,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2092108769}
-  _nextLevelCell: {fileID: 1622703663}
---- !u!4 &1622703663 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
-  m_PrefabInstance: {fileID: 1377782239}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1678090172
 GameObject:
   m_ObjectHideFlags: 0
@@ -3014,12 +2996,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2092108769}
-  _nextLevelCell: {fileID: 1995940314}
---- !u!4 &1995940314 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
-  m_PrefabInstance: {fileID: 16985918}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2073804103
 GameObject:
   m_ObjectHideFlags: 0
@@ -3223,12 +3199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2092108769}
-  _nextLevelCell: {fileID: 2102708013}
---- !u!4 &2102708013 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
-  m_PrefabInstance: {fileID: 1446317677}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1733834904139384574
 PrefabInstance:
   m_ObjectHideFlags: 0
