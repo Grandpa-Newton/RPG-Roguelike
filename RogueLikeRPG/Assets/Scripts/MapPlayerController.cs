@@ -7,6 +7,9 @@ public class MapPlayerController : MonoBehaviour
 {
     public static MapPlayerController Instance;
     public event Action OnActiveCell;
+    public event Action OnCurrentCell; // когда пользователь встал на новую клетку (может быть, поменять название)
+
+    public event Action OnInteractCell;
     
     [SerializeField] private float _speed;
     [SerializeField] Rigidbody2D _rb;
@@ -14,7 +17,7 @@ public class MapPlayerController : MonoBehaviour
 
     private IBaseCell _interactingCell;
 
-    private Vector2 clickedCellPosition;
+    private Transform _clickedCellTransform;
 
 
     private bool _isMoving = false;
@@ -97,7 +100,7 @@ public class MapPlayerController : MonoBehaviour
                             }*/
 
                             //foreach()
-                            clickedCellPosition = (Vector2)raycastHit.transform.position;
+                            _clickedCellTransform = raycastHit.transform;
 
                             _isMoving = true;
                             OnActiveCell?.Invoke();
@@ -117,19 +120,30 @@ public class MapPlayerController : MonoBehaviour
         if (_isMoving)
         {
             // If the player is not standing on the cell AND picked cell is Active
-            if ((Vector2)transform.position != clickedCellPosition)
+            if ((Vector2)transform.position != (Vector2)_clickedCellTransform.position)
             {
                 // Detecting Move Direction for Player
-                _moveDirection = Vector2.MoveTowards(transform.position, clickedCellPosition, _speed * Time.deltaTime);
+                _moveDirection = Vector2.MoveTowards(transform.position, (Vector2)_clickedCellTransform.position, _speed * Time.deltaTime);
                 transform.position = _moveDirection;
             }
             // 
             else
             {
+                _clickedCellTransform.GetComponent<StartNextLevel>().InCurrentCell();
                 _interactingCell.Interact();
                 _isMoving = false;
             }
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                OnInteractCell?.Invoke();
+            }
+        }
+
+
+
     }
 
     private NormalCell FindCurrentCell(NormalCell[] cells) // поменять на IBaseCell
