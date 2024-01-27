@@ -43,9 +43,10 @@ public class StartNextLevel : MonoBehaviour
 
     private void Instance_OnInteractCell()
     {
+        BaseCell cell = gameObject.GetComponent<BaseCell>();
         _isCurrentCell = false;
         _playerInNextLevelCell = false;
-        SceneManager.LoadScene(NEXT_SCENE_TO_LOAD);
+        SceneManager.LoadScene(cell.SCENE_TO_LOAD);
         _playerController.enabled = true;
         _mapPlayerController.enabled = false;
     }

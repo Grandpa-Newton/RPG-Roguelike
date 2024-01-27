@@ -15,7 +15,7 @@ public class MapPlayerController : MonoBehaviour
     [SerializeField] Rigidbody2D _rb;
     [SerializeField] LayerMask _layerMask;
 
-    private IBaseCell _interactingCell;
+    private BaseCell _interactingCell;
 
     private Transform _clickedCellTransform;
 
@@ -65,7 +65,7 @@ public class MapPlayerController : MonoBehaviour
                         {
                             //MapLoader mapLoader = GameObject.Find("MapLoader").GetComponent<MapLoader>();
 
-                            NormalCell[] cells = UnityEngine.Object.FindObjectsOfType<NormalCell>(); // мб как-то поменять / вынести в отдельный метод
+                            BaseCell[] cells = UnityEngine.Object.FindObjectsOfType<BaseCell>(); // мб как-то поменять / вынести в отдельный метод
 
                             /* NormalCell currentCell;
 
@@ -78,7 +78,7 @@ public class MapPlayerController : MonoBehaviour
                                  }
                              }*/
 
-                            NormalCell currentCell = FindCurrentCell(cells); // ПРОВЕРКА НА != NULL
+                            BaseCell currentCell = FindCurrentCell(cells); // ПРОВЕРКА НА != NULL
 
                             // currentCell = GameObject.Find(MapLoader.CurrentCellName).GetComponent<NormalCell>(); // слишком много getcomponent, но как без них - не знаю
 
@@ -86,10 +86,10 @@ public class MapPlayerController : MonoBehaviour
 
                             foreach (GameObject neighbor in currentCell.NeighborsCells) // ПОМЕНЯТЬ НА IBASECELL
                             {
-                                neighbor.GetComponent<NormalCell>().IsActive = false; // ПОМЕНЯТЬ НА IBASECELL
+                                neighbor.GetComponent<BaseCell>().IsActive = false; // ПОМЕНЯТЬ НА IBASECELL
                             }
 
-                            MapLoader.CurrentCellId = interactingCellTransform.GetComponent<NormalCell>().CellId;
+                            MapLoader.CurrentCellId = interactingCellTransform.GetComponent<BaseCell>().CellId;
 
 
                             // УБРАТЬ ЦИКЛ НИЖЕ, ЭТО ДЛЯ ТЕСТА!
@@ -146,7 +146,7 @@ public class MapPlayerController : MonoBehaviour
 
     }
 
-    private NormalCell FindCurrentCell(NormalCell[] cells) // поменять на IBaseCell
+    private BaseCell FindCurrentCell(BaseCell[] cells) // поменять на IBaseCell
     {
         foreach (var cell in cells)
         {

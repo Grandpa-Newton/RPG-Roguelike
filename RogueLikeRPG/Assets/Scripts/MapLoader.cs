@@ -41,7 +41,7 @@ public class MapLoader : MonoBehaviour
 
         if (string.IsNullOrEmpty(CurrentCellId))
         {
-            CurrentCellId = _spawnCell.GetComponent<NormalCell>().CellId;
+            CurrentCellId = _spawnCell.GetComponent<BaseCell>().CellId;
         }
 
         UpdateInfo();
@@ -49,7 +49,7 @@ public class MapLoader : MonoBehaviour
 
     public void UpdateInfo()
     {
-        NormalCell[] cells = Object.FindObjectsOfType<NormalCell>(); // IBASECELL
+        BaseCell[] cells = Object.FindObjectsOfType<BaseCell>(); // IBASECELL
 
         GameObject currentCell = new GameObject();
 
@@ -62,13 +62,13 @@ public class MapLoader : MonoBehaviour
             }
         }
 
-        NormalCell cell = currentCell.GetComponent<NormalCell>(); // ПОМЕНЯТЬ НА IBASECELL
+        BaseCell cell = currentCell.GetComponent<BaseCell>(); // ПОМЕНЯТЬ НА IBASECELL
 
         Player.position = currentCell.transform.position; // Перемещаем игрока в центр клетки
 
         foreach (var neighborCell in cell.NeighborsCells)
         {
-            neighborCell.GetComponent<NormalCell>().IsActive = true;
+            neighborCell.GetComponent<BaseCell>().IsActive = true;
         }
 
         cell.IsActive = false;

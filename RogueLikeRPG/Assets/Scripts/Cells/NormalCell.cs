@@ -3,42 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalCell : MonoBehaviour, IBaseCell
+public class NormalCell : BaseCell
 {
-    [SerializeField] private bool isActive = false;
-    [SerializeField] private GameObject isActiveCircle;
 
-    [HideInInspector]
-    public string CellId;
-
-    public List<GameObject> NeighborsCells = new(); // клетки, на которые можно попасть из этой клетки
-
-    private Renderer _renderer;
-
-    public bool IsActive // сделать enum: неактивный, активный и текущий (игрок находится на нём)
-    {
-        get => isActive;
-        set
-        {
-            isActive = value; 
-            IsCellActive(); // ЛУЧШЕ СОБЫТИЕМ
-        }
-    }
-
-    [SerializeField] private Color activeColor;
-    [SerializeField] private Color inactiveColor;
 
     private void Awake()
     {
-        CellId = name + transform.position.ToString();
-        _renderer = GetComponent<Renderer>();
+        SCENE_TO_LOAD = "TestScene";
+        ConfigureObject();
     }
 
     private void Start()
     {
-        MapPlayerController.Instance.OnActiveCell += NormalCell_OnActiveCell;
+        /* Instance.OnActiveCell += NormalCell_OnActiveCell;
         // Сделать этот метод событием вызываемом при каждой загрузке карты
-        IsCellActive();
+        IsCellActive(); */
     }
     private void NormalCell_OnActiveCell()
     {
@@ -51,7 +30,7 @@ public class NormalCell : MonoBehaviour, IBaseCell
             isActiveCircle.SetActive(false);
         }*/
     }
-    public void Interact()
+    public override void Interact()
     {
         /*if (!IsActive)
         {
@@ -63,17 +42,5 @@ public class NormalCell : MonoBehaviour, IBaseCell
         }*/
         Debug.Log("YES! VICTORY!");
 
-    }
-
-    private void IsCellActive()
-    {
-        if (isActive)
-        {
-            _renderer.material.color = activeColor;
-        }
-        else
-        {
-            _renderer.material.color = inactiveColor;
-        }
     }
 }
