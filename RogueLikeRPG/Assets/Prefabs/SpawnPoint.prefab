@@ -119,4 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitFromLevel: {fileID: 3295133536212083138, guid: 7ec892cd63670e847ba29a8d759c0549, type: 3}
-  direction: 0
+  direction: 3

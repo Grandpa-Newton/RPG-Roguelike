@@ -9,9 +9,9 @@ public class RoomContent : MonoBehaviour
 {
     [Header("Walls")] 
     [SerializeField] private GameObject[] _walls;
+    [SerializeField] private GameObject _wallEffect;
 
-    //[SerializeField] private GameObject _wallEffect;
-    [SerializeField] private GameObject _door;
+    [SerializeField] public GameObject _door;
 
     [Header("Enemies")] 
     [SerializeField] private GameObject[] _enemyTypes;
@@ -27,9 +27,14 @@ public class RoomContent : MonoBehaviour
     private bool _spawned;
     private bool _wallsDestroyed;
 
-    private void Start()
+    private void Awake()
     {
         _roomVariants = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomVariants>();
+    }
+
+    private void Start()
+    {
+        _roomVariants.rooms.Add(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -71,13 +76,13 @@ public class RoomContent : MonoBehaviour
         PlayerController.Instance.OnKeyButtonDown();
     }
 
-    private void DestroyWalls()
+    public void DestroyWalls()
     {
         foreach (GameObject wall in _walls)
         {
-            if (wall != null && wall.transform.childCount == 3)
+            if (wall != null && wall.transform.childCount != 0)
             {
-                //Instantiate(wallEffect);
+                Instantiate(_wallEffect, wall.transform.position, Quaternion.identity);
                 Destroy(wall);
                 Debug.Log("I destroyer");
             }

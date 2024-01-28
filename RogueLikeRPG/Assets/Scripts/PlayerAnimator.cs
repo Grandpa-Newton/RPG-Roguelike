@@ -10,12 +10,12 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Awake()
     {
-        _playerAnimator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
+        _playerAnimator = PlayerController.Instance.gfxObject.GetComponent<Animator>();
         PlayerController.Instance.OnPlayerMovement += Player_OnPlayerMovement;
     }
 

@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get; private set; }
 
     public event Action OnPlayerMovement;
-
+    
+    public GameObject gfxObject;
     [SerializeField] private float _speed;
     [SerializeField] Rigidbody2D _rb;
 
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Door") && keyButtonPushed && keyIcon.activeInHierarchy)
         {
-            //Instantiate(частицы);
+            Instantiate(wallEffect,other.transform.position, Quaternion.identity);
             keyIcon.SetActive(false);
             other.gameObject.SetActive(false);
             keyButtonPushed = false;
