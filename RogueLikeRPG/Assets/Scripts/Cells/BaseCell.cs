@@ -6,16 +6,15 @@ using UnityEngine;
 public abstract class BaseCell : MonoBehaviour
 {
     [SerializeField] private GameObject isActiveCircle;
-    [SerializeField] private bool isActive = false;
-    public string SCENE_TO_LOAD { get; set; }
+    public string SCENE_TO_LOAD { get; set; } // сделать так, чтобы не было у всех объектов
 
-    public virtual void Interact()
+    /* public virtual void Interact()
     {
         Debug.Log("YES! VICTORY!");
-    }
+    } */
 
     [HideInInspector]
-    public string CellId;
+    public string CellId; // уникальный идентификатор объекта
 
     [SerializeField] private Color activeColor;
     [SerializeField] private Color inactiveColor;
@@ -25,19 +24,8 @@ public abstract class BaseCell : MonoBehaviour
 
     protected Renderer _renderer;
 
-    /*public bool IsActive // сделать enum: неактивный, активный и текущий (игрок находится на нём)
-    {
-        get => isActive;
-        set
-        {
-            isActive = value;
-            IsCellActive(); // ЛУЧШЕ СОБЫТИЕМ
-        }
-    }*/
-
-
+    [SerializeField]
     private CellType _cellType = CellType.Inactive;
-
     public CellType CellType
     {
         get => _cellType;
@@ -48,18 +36,6 @@ public abstract class BaseCell : MonoBehaviour
             ChangeCellType();
         }
     }
-
-    /*protected void IsCellActive()
-    {
-        if (isActive)
-        {
-            _renderer.material.color = activeColor;
-        }
-        else
-        {
-            _renderer.material.color = inactiveColor;
-        }
-    }*/
 
     protected void ChangeCellType()
     {

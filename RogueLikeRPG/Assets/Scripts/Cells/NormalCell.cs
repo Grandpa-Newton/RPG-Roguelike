@@ -17,8 +17,8 @@ public class NormalCell : BaseCell
     {
 
     }
-    public override void Interact()
+    /* public override void Interact()
     {
         Debug.Log("YES! VICTORY!");
-    }
+    } */
 }

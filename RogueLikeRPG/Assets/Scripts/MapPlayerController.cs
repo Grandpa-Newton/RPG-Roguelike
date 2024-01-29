@@ -7,8 +7,8 @@ using UnityEngine;
 public class MapPlayerController : MonoBehaviour
 {
     public static MapPlayerController Instance;
-    public event Action OnActiveCell;
-    public event Action OnCurrentCell; // когда пользователь встал на новую клетку (может быть, поменять название)
+    /* public event Action OnActiveCell;
+    public event Action OnCurrentCell; // когда пользователь встал на новую клетку (может быть, поменять название) */
 
     public event Action OnInteractCell;
 
@@ -50,7 +50,7 @@ public class MapPlayerController : MonoBehaviour
 
     private void Start()
     {
-        OnActiveCell?.Invoke();
+        // OnActiveCell?.Invoke();
     }
 
     private void Update()
@@ -72,7 +72,7 @@ public class MapPlayerController : MonoBehaviour
                 {
                     BaseCell[] cells = UnityEngine.Object.FindObjectsOfType<BaseCell>(); // мб как-то поменять / вынести в отдельный метод
 
-                    BaseCell currentCell = FindCurrentCell(cells); // ПРОВЕРКА НА != NULL
+                    BaseCell currentCell = FindCurrentCell(cells);
 
                     if (currentCell != null)
                     {
@@ -83,7 +83,7 @@ public class MapPlayerController : MonoBehaviour
 
                         currentCell.CellType = CellType.Inactive;
 
-                        MapLoader.CurrentCellId = interactingCellTransform.GetComponent<BaseCell>().CellId;
+                        MapLoader.CurrentCellId = _interactingCell.CellId;
 
                         // ЦИКЛ НИЖЕ - ДЛЯ ТЕСТА!
 
@@ -101,7 +101,7 @@ public class MapPlayerController : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("BaseCell Component is not attached to object");
+                        Debug.LogError("BaseCell Component is not attached to object");
                     }
                 }
                 else
@@ -123,16 +123,9 @@ public class MapPlayerController : MonoBehaviour
             {
                 _clickedCellTransform.GetComponent<StartNextLevel>().InCurrentCell();
                 _interactingCell.CellType = CellType.Current;
-                _interactingCell.Interact();
+                // _interactingCell.Interact();
                 _isMoving = false;
             }
-        }
-        else
-        {
-            /*if (Input.GetKeyDown(KeyCode.E))
-            {
-                OnInteractCell?.Invoke();
-            }*/
         }
     }
 
