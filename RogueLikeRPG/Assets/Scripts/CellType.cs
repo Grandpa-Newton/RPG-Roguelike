@@ -1,7 +1,9 @@
 ﻿namespace DefaultNamespace
 {
-    public class CellType
+    public enum CellType
     {
-        //enum для типа клетки
+        Inactive = 1,
+        Active = 2,
+        Current = 3
     }
 }

@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +19,6 @@ public class MapPlayerController : MonoBehaviour
     private BaseCell _interactingCell;
 
     private Transform _clickedCellTransform;
-
 
     private bool _isMoving = false;
     private Vector2 _moveDirection;
@@ -47,7 +47,6 @@ public class MapPlayerController : MonoBehaviour
         {
             Debug.Log("In Input");
             RaycastHit2D raycastHit;
-            //RaycastHit raycastHit;
 
             float rayDistance = 100.0f;
 
@@ -61,49 +60,42 @@ public class MapPlayerController : MonoBehaviour
                     Transform interactingCellTransform = raycastHit.transform;
                     if (interactingCellTransform.gameObject.TryGetComponent(out _interactingCell))
                     {
-                        if (_interactingCell.IsActive)
+                        if (_interactingCell.CellType == CellType.Active)
                         {
-                            //MapLoader mapLoader = GameObject.Find("MapLoader").GetComponent<MapLoader>();
-
                             BaseCell[] cells = UnityEngine.Object.FindObjectsOfType<BaseCell>(); // мб как-то поменять / вынести в отдельный метод
-
-                            /* NormalCell currentCell;
-
-                             foreach (var cell in cells)
-                             {
-                                 if (cell.CellId == MapLoader.CurrentCellId)
-                                 {
-                                     currentCell = cell;
-                                     break;
-                                 }
-                             }*/
 
                             BaseCell currentCell = FindCurrentCell(cells); // ПРОВЕРКА НА != NULL
 
-                            // currentCell = GameObject.Find(MapLoader.CurrentCellName).GetComponent<NormalCell>(); // слишком много getcomponent, но как без них - не знаю
-
-                            //NormalCell currentCell = MapLoader.CurrentCell.GetComponent<NormalCell>();
-
-                            foreach (GameObject neighbor in currentCell.NeighborsCells) // ПОМЕНЯТЬ НА IBASECELL
+                            if(currentCell != null)
                             {
-                                neighbor.GetComponent<BaseCell>().IsActive = false; // ПОМЕНЯТЬ НА IBASECELL
+                                foreach (GameObject neighbor in currentCell.NeighborsCells)
+                                {
+                                    neighbor.GetComponent<BaseCell>().CellType = CellType.Inactive;
+                                }
+
+                                currentCell.CellType = CellType.Inactive;
+
+                                MapLoader.CurrentCellId = interactingCellTransform.GetComponent<BaseCell>().CellId;
+
+
+                                // УБРАТЬ ЦИКЛ НИЖЕ, ЭТО ДЛЯ ТЕСТА!
+
+                                /*foreach (GameObject neighbor in interactingCellTransform.GetComponent<NormalCell>().NeighborsCells)
+                                {
+                                    neighbor.GetComponent<NormalCell>().IsActive = true;
+                                }*/
+
+                                _clickedCellTransform = raycastHit.transform;
+
+                                _isMoving = true;
+
+                                _interactingCell.CellType = CellType.Active;
+
                             }
-
-                            MapLoader.CurrentCellId = interactingCellTransform.GetComponent<BaseCell>().CellId;
-
-
-                            // УБРАТЬ ЦИКЛ НИЖЕ, ЭТО ДЛЯ ТЕСТА!
-
-                            /*foreach (GameObject neighbor in interactingCellTransform.GetComponent<NormalCell>().NeighborsCells)
+                            else
                             {
-                                neighbor.GetComponent<NormalCell>().IsActive = true;
-                            }*/
-
-                            //foreach()
-                            _clickedCellTransform = raycastHit.transform;
-
-                            _isMoving = true;
-                            OnActiveCell?.Invoke();
+                                Debug.Log("BaseCell Component is not attached to object");
+                            }
                         }
                         else
                         {
@@ -111,25 +103,20 @@ public class MapPlayerController : MonoBehaviour
                         }
                     }
                 }
-                    // _interactingCell = interactingCellTransform.gameObject.GetComponent<IBaseCell>(); // ГДЕ-ТО ТУТ ПРОВЕРКА НА ТО, ЧТО ЭТО BASECELL!
-                   
             }
         }
         
-        // If player can move
         if (_isMoving)
         {
-            // If the player is not standing on the cell AND picked cell is Active
             if ((Vector2)transform.position != (Vector2)_clickedCellTransform.position)
             {
-                // Detecting Move Direction for Player
                 _moveDirection = Vector2.MoveTowards(transform.position, (Vector2)_clickedCellTransform.position, _speed * Time.deltaTime);
                 transform.position = _moveDirection;
             }
-            // 
             else
             {
                 _clickedCellTransform.GetComponent<StartNextLevel>().InCurrentCell();
+                _interactingCell.CellType = CellType.Current;
                 _interactingCell.Interact();
                 _isMoving = false;
             }
@@ -141,12 +128,9 @@ public class MapPlayerController : MonoBehaviour
                 OnInteractCell?.Invoke();
             }
         }
-
-
-
     }
 
-    private BaseCell FindCurrentCell(BaseCell[] cells) // поменять на IBaseCell
+    private BaseCell FindCurrentCell(BaseCell[] cells)
     {
         foreach (var cell in cells)
         {

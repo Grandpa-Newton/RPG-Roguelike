@@ -15,32 +15,10 @@ public class NormalCell : BaseCell
 
     private void Start()
     {
-        /* Instance.OnActiveCell += NormalCell_OnActiveCell;
-        // Сделать этот метод событием вызываемом при каждой загрузке карты
-        IsCellActive(); */
-    }
-    private void NormalCell_OnActiveCell()
-    {
-        /*if (isActive)
-        {
-            isActiveCircle.SetActive(true);
-        }
-        else
-        {
-            isActiveCircle.SetActive(false);
-        }*/
+
     }
     public override void Interact()
     {
-        /*if (!IsActive)
-        {
-            Debug.Log("Cell is not active!");
-        }
-        else
-        {
-            Debug.Log("YES! VICTORY!");
-        }*/
         Debug.Log("YES! VICTORY!");
-
     }
 }

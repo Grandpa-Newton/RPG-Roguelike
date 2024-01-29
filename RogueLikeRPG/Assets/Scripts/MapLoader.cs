@@ -1,16 +1,10 @@
+using DefaultNamespace;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MapLoader : MonoBehaviour
 {
-
-    /*[SerializeField]
-    private Transform _startCell;
-
-    public static Transform CurrentCell;*/
-
-    private const string TAG_NAME = "Cell";
 
     public static string CurrentCellId;
 
@@ -20,11 +14,6 @@ public class MapLoader : MonoBehaviour
     public Transform Player;
 
     public static MapLoader Instance = null;
-
-    private void Awake()
-    {
-        
-    }
     private void Start()
     {
         if (Instance == null)
@@ -36,9 +25,6 @@ public class MapLoader : MonoBehaviour
             Destroy(gameObject);
         }
 
-
-        // DontDestroyOnLoad(gameObject);
-
         if (string.IsNullOrEmpty(CurrentCellId))
         {
             CurrentCellId = _spawnCell.GetComponent<BaseCell>().CellId;
@@ -49,7 +35,7 @@ public class MapLoader : MonoBehaviour
 
     public void UpdateInfo()
     {
-        BaseCell[] cells = Object.FindObjectsOfType<BaseCell>(); // IBASECELL
+        BaseCell[] cells = Object.FindObjectsOfType<BaseCell>();
 
         GameObject currentCell = new GameObject();
 
@@ -62,15 +48,15 @@ public class MapLoader : MonoBehaviour
             }
         }
 
-        BaseCell cell = currentCell.GetComponent<BaseCell>(); // ПОМЕНЯТЬ НА IBASECELL
+        BaseCell cell = currentCell.GetComponent<BaseCell>();
 
-        Player.position = currentCell.transform.position; // Перемещаем игрока в центр клетки
+        Player.position = currentCell.transform.position;
 
         foreach (var neighborCell in cell.NeighborsCells)
         {
-            neighborCell.GetComponent<BaseCell>().IsActive = true;
+            neighborCell.GetComponent<BaseCell>().CellType = CellType.Active;
         }
 
-        cell.IsActive = false;
+        cell.CellType = CellType.Current;
     }
 }
