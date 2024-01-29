@@ -9,7 +9,7 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField] private int corridorLength = 14;
     [SerializeField] private int corridorCount = 5;
     [SerializeField] [Range(0.1f, 1f)] private float roomPercent = 0.8f;
-
+    [SerializeField] private GameObject enemyPrefab;
     protected override void RunProceduralGeneration()
     {
         CorridorFirstGenerator();
@@ -39,6 +39,30 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         _tilemapVisualizer.PaintFloorTiles(floorPositions);
         WallGenerator.CreateWalls(floorPositions, _tilemapVisualizer);
+        
+        SpawnEnemies(corridors, 10);
+    }
+
+    private void SpawnEnemies(List<List<Vector2Int>> corridors, int enemyCount)
+    {
+        System.Random random = new System.Random();
+        List<Vector2Int> allCorridorCells = corridors.SelectMany(x => x).ToList();
+
+        for (int i = 0; i < enemyCount; i++)
+        {
+            if (allCorridorCells.Count == 0)
+            {
+                Debug.Log("All corridor cells have enemies. Cannot place more enemies.");
+                return;
+            }
+
+            int randomIndex = random.Next(allCorridorCells.Count);
+            Vector2Int spawnPosition = allCorridorCells[randomIndex];
+            allCorridorCells.RemoveAt(randomIndex);
+
+            Instantiate(enemyPrefab, new Vector3(spawnPosition.x, spawnPosition.y, 0), Quaternion.identity);            // Instantiate your enemy prefab at the 'spawnPosition'. 
+            // Make sure your enemy prefab has a component that can accept a Vector2Int or Vector3 position.
+        }
     }
 
     private List<Vector2Int> IncreaseCorridorBrush3by3(List<Vector2Int> corridor)
