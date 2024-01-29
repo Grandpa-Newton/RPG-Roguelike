@@ -113,11 +113,22 @@
                 },
                 {
                     "name": "",
-                    "id": "496a23b9-2d83-4428-b1c9-140dfb22af01",
+                    "id": "94b9115f-debd-4e78-8487-c748d6dadbd9",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8cc1f09-4639-4a69-b46b-ac4b57b8349f",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false

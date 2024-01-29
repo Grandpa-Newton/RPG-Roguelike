@@ -20,6 +20,8 @@ public class MapPlayerController : MonoBehaviour
 
     private Transform _clickedCellTransform;
 
+    private PlayerInputActions _playerInputActions;
+
     private bool _isMoving = false;
     private Vector2 _moveDirection;
 
@@ -34,6 +36,16 @@ public class MapPlayerController : MonoBehaviour
 
         _rb = GetComponent<Rigidbody2D>();
 
+        _playerInputActions = new PlayerInputActions();
+
+        _playerInputActions.Player.Interact.Enable();
+
+        _playerInputActions.Player.Interact.performed += Interact_performed;
+    }
+
+    private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnInteractCell?.Invoke();
     }
 
     private void Start()
@@ -43,7 +55,7 @@ public class MapPlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !_isMoving)
+        if (Input.GetMouseButtonDown(0) && !_isMoving) // ПОМЕНЯТЬ
         {
             Debug.Log("In Input");
             RaycastHit2D raycastHit;
@@ -117,10 +129,10 @@ public class MapPlayerController : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            /*if (Input.GetKeyDown(KeyCode.E))
             {
                 OnInteractCell?.Invoke();
-            }
+            }*/
         }
     }
 
