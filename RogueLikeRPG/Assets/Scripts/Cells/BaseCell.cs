@@ -19,6 +19,7 @@ public abstract class BaseCell : MonoBehaviour
     [SerializeField] private Color activeColor;
     [SerializeField] private Color inactiveColor;
     [SerializeField] private Color currentColor;
+    [SerializeField] private Color selectingColor;
 
     public List<GameObject> NeighborsCells = new List<GameObject>(); // клетки, на которые можно попасть из этой клетки
 
@@ -49,6 +50,9 @@ public abstract class BaseCell : MonoBehaviour
                 break;
             case CellType.Current:
                 _renderer.material.color = currentColor;
+                break;
+            case CellType.Selecting:
+                _renderer.material.color = selectingColor;
                 break;
         }
     }

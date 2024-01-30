@@ -118,6 +118,8 @@ GameObject:
   - component: {fileID: 1924240950571133862}
   - component: {fileID: 1152794364375760253}
   - component: {fileID: 7172891866342440106}
+  - component: {fileID: 7001226470238607165}
+  - component: {fileID: 6378040046413034110}
   m_Layer: 3
   m_Name: NormalCell
   m_TagString: Cell
@@ -206,12 +208,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActiveCircle: {fileID: 516025205840297952}
-  isActive: 0
   CellId: 
   activeColor: {r: 0.6434172, g: 1, b: 0.514151, a: 1}
   inactiveColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   currentColor: {r: 1, g: 0.9622972, b: 0, a: 1}
+  selectingColor: {r: 1, g: 0, b: 0.90270615, a: 1}
   NeighborsCells: []
+  _cellType: 1
 --- !u!58 &7172891866342440106
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -247,3 +250,56 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
+--- !u!114 &7001226470238607165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987083260137727135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e596cbc04b17905468cb1fafc081617b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6378040046413034110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987083260137727135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a98125502f715b4b83cfb77b434e436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}

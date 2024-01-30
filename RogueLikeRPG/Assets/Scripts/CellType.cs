@@ -4,6 +4,7 @@
     {
         Inactive = 1,
         Active = 2,
-        Current = 3
+        Current = 3,
+        Selecting = 4
     }
 }

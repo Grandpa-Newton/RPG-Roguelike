@@ -156,6 +156,182 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Map"",
+            ""id"": ""5c80a354-f243-4486-8ab7-919fc8cea425"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd3f6ef6-7380-41c8-b313-35e94d33a53f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GetCells"",
+                    ""type"": ""Button"",
+                    ""id"": ""98f13208-acb4-435d-bc9c-0b9db3dd1928"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectCell"",
+                    ""type"": ""Value"",
+                    ""id"": ""09fdcbd4-1ddd-4423-877b-4ebeac1203f8"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ConfirmCell"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a956347-21bb-4ef1-9de9-307abfde8291"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""eba24080-f780-4786-a6b8-f2b33a525c11"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38fae0d3-67e6-4786-a8c9-1e3f859ace6a"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd55c565-47f1-427f-816f-8b4a73218672"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""GetCells"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50ba1ddf-3c68-4b83-841b-2579f14e6c93"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""GetCells"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""45d523c5-4561-41bf-9a95-97055f41a19d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectCell"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""00d3576c-6498-4650-8de0-7fe6ea53d9e4"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SelectCell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""624dd2c5-dc93-4773-91b0-7dfcf23b45ed"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SelectCell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7ca8f49d-bdb3-409e-8529-6aa70bf20a8a"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SelectCell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""421dc4b3-afba-409c-b3b6-4002ca2eef1d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SelectCell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e54709f-622c-4cea-8c9a-043ac7857329"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SelectCell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebbaefd8-21a8-4e5a-b96e-1b60ee3c9d84"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ConfirmCell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc5363c4-4256-421a-ae3f-2f754c91d692"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ConfirmCell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -188,6 +364,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_MouseMovement = m_Player.FindAction("MouseMovement", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        // Map
+        m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
+        m_Map_Interact = m_Map.FindAction("Interact", throwIfNotFound: true);
+        m_Map_GetCells = m_Map.FindAction("GetCells", throwIfNotFound: true);
+        m_Map_SelectCell = m_Map.FindAction("SelectCell", throwIfNotFound: true);
+        m_Map_ConfirmCell = m_Map.FindAction("ConfirmCell", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -307,6 +489,76 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Map
+    private readonly InputActionMap m_Map;
+    private List<IMapActions> m_MapActionsCallbackInterfaces = new List<IMapActions>();
+    private readonly InputAction m_Map_Interact;
+    private readonly InputAction m_Map_GetCells;
+    private readonly InputAction m_Map_SelectCell;
+    private readonly InputAction m_Map_ConfirmCell;
+    public struct MapActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public MapActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_Map_Interact;
+        public InputAction @GetCells => m_Wrapper.m_Map_GetCells;
+        public InputAction @SelectCell => m_Wrapper.m_Map_SelectCell;
+        public InputAction @ConfirmCell => m_Wrapper.m_Map_ConfirmCell;
+        public InputActionMap Get() { return m_Wrapper.m_Map; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MapActions set) { return set.Get(); }
+        public void AddCallbacks(IMapActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MapActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MapActionsCallbackInterfaces.Add(instance);
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @GetCells.started += instance.OnGetCells;
+            @GetCells.performed += instance.OnGetCells;
+            @GetCells.canceled += instance.OnGetCells;
+            @SelectCell.started += instance.OnSelectCell;
+            @SelectCell.performed += instance.OnSelectCell;
+            @SelectCell.canceled += instance.OnSelectCell;
+            @ConfirmCell.started += instance.OnConfirmCell;
+            @ConfirmCell.performed += instance.OnConfirmCell;
+            @ConfirmCell.canceled += instance.OnConfirmCell;
+        }
+
+        private void UnregisterCallbacks(IMapActions instance)
+        {
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @GetCells.started -= instance.OnGetCells;
+            @GetCells.performed -= instance.OnGetCells;
+            @GetCells.canceled -= instance.OnGetCells;
+            @SelectCell.started -= instance.OnSelectCell;
+            @SelectCell.performed -= instance.OnSelectCell;
+            @SelectCell.canceled -= instance.OnSelectCell;
+            @ConfirmCell.started -= instance.OnConfirmCell;
+            @ConfirmCell.performed -= instance.OnConfirmCell;
+            @ConfirmCell.canceled -= instance.OnConfirmCell;
+        }
+
+        public void RemoveCallbacks(IMapActions instance)
+        {
+            if (m_Wrapper.m_MapActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMapActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MapActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MapActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MapActions @Map => new MapActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -330,5 +582,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnMouseMovement(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+    }
+    public interface IMapActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
+        void OnGetCells(InputAction.CallbackContext context);
+        void OnSelectCell(InputAction.CallbackContext context);
+        void OnConfirmCell(InputAction.CallbackContext context);
     }
 }

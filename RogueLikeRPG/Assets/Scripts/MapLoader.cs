@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MapLoader : MonoBehaviour
 {
+    [HideInInspector]
+    public List<GameObject> ActiveCells = new List<GameObject>();
 
     public static string CurrentCellId;
 
@@ -54,6 +56,7 @@ public class MapLoader : MonoBehaviour
 
         foreach (var neighborCell in cell.NeighborsCells)
         {
+            ActiveCells.Add(neighborCell);
             neighborCell.GetComponent<BaseCell>().CellType = CellType.Active;
         }
 

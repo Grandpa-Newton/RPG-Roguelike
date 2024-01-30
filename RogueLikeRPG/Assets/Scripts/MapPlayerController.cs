@@ -2,6 +2,7 @@ using DefaultNamespace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MapPlayerController : MonoBehaviour
@@ -25,6 +26,12 @@ public class MapPlayerController : MonoBehaviour
     private bool _isMoving = false;
     private Vector2 _moveDirection;
 
+    private bool _isSelecting = false; // производит ли сейчас выбор клетки пользователь
+
+    private GameObject _selectingCell = null;
+
+    private List<GameObject> _activeCells = new List<GameObject>();
+
     private void Awake()
     {
 
@@ -32,15 +39,52 @@ public class MapPlayerController : MonoBehaviour
         {
             Debug.LogError("There is no more than one Player instance");
         }
+
         Instance = this;
 
         _rb = GetComponent<Rigidbody2D>();
 
         _playerInputActions = new PlayerInputActions();
 
-        _playerInputActions.Player.Interact.Enable();
+        _playerInputActions.Map.Enable();
 
-        _playerInputActions.Player.Interact.performed += Interact_performed;
+        _playerInputActions.Map.Interact.performed += Interact_performed;
+
+        _playerInputActions.Map.GetCells.performed += GetCells_performed;
+    }
+
+    private void GetCells_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if(!_isSelecting)
+        {
+            _isSelecting = true;
+            _playerInputActions.Map.Interact.performed -= Interact_performed;
+            GetCurrentCells();
+        }
+        else
+        {
+            // либо ничего (выход с менюшки через другую кнопку), либо тут выход с  меню: акцент на игрока, возвращение interact и т.п.
+        }
+    }
+
+    private void GetCurrentCells()
+    {
+        _activeCells = MapLoader.Instance.ActiveCells.OrderBy(c => c.transform.localPosition.x).ToList(); // гениальная разработка, но нужно менять!
+        _selectingCell = _activeCells[0];
+        if(_selectingCell != null)
+        {
+            _selectingCell.GetComponent<BaseCell>().CellType = CellType.Selecting;
+            _playerInputActions.Map.SelectCell.performed += SelectCell_performed;
+        }
+        else
+        {
+            Debug.LogError("There are no active cells");
+        }
+    }
+
+    private void SelectCell_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
