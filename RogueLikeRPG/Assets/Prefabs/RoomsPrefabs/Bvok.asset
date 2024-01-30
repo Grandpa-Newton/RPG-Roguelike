@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf818c7f8ef24b4f909fa0569f7bf2d, type: 3}
-  m_Name: SimpleRandomWalkParameters_Island
+  m_Script: {fileID: 11500000, guid: c25ee9aa28bb9a94c845f08b786731bc, type: 3}
+  m_Name: Bvok
   m_EditorClassIdentifier: 
-  iterations: 70
-  walkLength: 20
-  startRandomlyEachIteration: 0
+  sprite: {fileID: 21300000, guid: 33dccf83b7f7f294992c97ebe1990464, type: 3}
+  size: {x: 1, y: 1}
+  placementType: 1
+  addOffset: 0
+  health: 1
+  nonDestuctible: 0
