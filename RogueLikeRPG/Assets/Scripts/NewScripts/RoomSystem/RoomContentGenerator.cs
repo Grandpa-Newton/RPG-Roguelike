@@ -35,7 +35,14 @@ public class RoomContentGenerator : MonoBehaviour
             RegenerateDungeon?.Invoke();
         }
     }
-    
+
+    public void RoomContentClear()
+    {
+        foreach (var item in spawnedObjects)
+        {
+            Destroy(item);
+        }
+    }
     public void GenerateRoomContent(DungeonData dungeonData)
     {
         foreach (GameObject item in spawnedObjects)
