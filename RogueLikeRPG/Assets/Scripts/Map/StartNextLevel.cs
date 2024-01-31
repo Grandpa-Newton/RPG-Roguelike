@@ -25,7 +25,7 @@ public class StartNextLevel : MonoBehaviour
 
     private void Instance_OnInteractCell()
     {
-        DontDestroyOnLoad(Player.gameObject);
+        // DontDestroyOnLoad(Player.gameObject);
         BaseCell cell = gameObject.GetComponent<BaseCell>();
 
         MapPlayerController.Instance.OnInteractCell -= Instance_OnInteractCell; // ???

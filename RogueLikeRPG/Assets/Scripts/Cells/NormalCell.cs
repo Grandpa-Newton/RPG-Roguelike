@@ -9,7 +9,7 @@ public class NormalCell : BaseCell
 
     private void Awake()
     {
-        SCENE_TO_LOAD = "TestScene";
+        SCENE_TO_LOAD = "GenerationLevel";
         ConfigureObject();
     }
 
