@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class ItemPlacementHelper : MonoBehaviour
+public class ItemPlacementHelper
 {
     Dictionary<PlacementType, HashSet<Vector2Int>> 
         tileByType = new Dictionary<PlacementType, HashSet<Vector2Int>>();

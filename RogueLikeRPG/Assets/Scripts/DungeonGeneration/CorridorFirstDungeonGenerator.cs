@@ -11,7 +11,7 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField] private int corridorLength = 14;
     [SerializeField] private int corridorCount = 5;
     
-    
+     
     [SerializeField] [Range(0.1f, 1f)] private float roomPercent = 0.8f;
     
     // Список комнат 
@@ -27,8 +27,6 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     
     // Ивенты
     public UnityEvent<DungeonData> OnDungeonFloorReady;
-
-    [SerializeField]private RoomContentGenerator roomContentGenerator;
     
     protected override void RunProceduralGeneration()
     {
@@ -45,7 +43,7 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
     private void CorridorFirstGenerator()
     {
-        roomContentGenerator.RoomContentClear();
+       
         floorPositions = new HashSet<Vector2Int>();
         HashSet<Vector2Int> potentialRoomPositions = new HashSet<Vector2Int>();
         
