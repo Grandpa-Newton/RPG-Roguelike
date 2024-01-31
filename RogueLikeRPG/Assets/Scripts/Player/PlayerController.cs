@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
         {
             OnPlayerMovement?.Invoke();
         }
+        
 
         _rb.velocity = _moveDirection * _speed;
     }
