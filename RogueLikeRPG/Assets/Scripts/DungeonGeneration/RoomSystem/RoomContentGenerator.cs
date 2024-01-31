@@ -8,22 +8,19 @@ using System.Linq;
 
 public class RoomContentGenerator : MonoBehaviour
 {
-    
     [SerializeField] private RoomGenerator defaultRoom;
     [SerializeField] private RoomGenerator playerRoom;
-    
+
     List<GameObject> spawnedObjects = new List<GameObject>();
-    
-    [SerializeField]
-    private GraphTest graphTest;
-    
+
+    [SerializeField] private GraphTest graphTest;
+
     public Transform itemParent;
-    
-    [SerializeField]
-    private CinemachineVirtualCamera cinemachineCamera;
-    
+
+    [SerializeField] private CinemachineVirtualCamera cinemachineCamera;
+
     public UnityEvent RegenerateDungeon;
-    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -32,15 +29,37 @@ public class RoomContentGenerator : MonoBehaviour
             {
                 Destroy(item);
             }
+
             RegenerateDungeon?.Invoke();
         }
     }
+
+    IEnumerator Start()
+    {
+        yield return StartCoroutine(RoomsContentChildsDestroy());
+    }
+
+    IEnumerator RoomsContentChildsDestroy()
+    {
+        if (itemParent != null)
+        {
+            foreach (Transform item in itemParent)
+            {
+                Debug.Log(item.name + " was destroyed");
+                Destroy(item.gameObject);
+            }
+        }
+
+        yield return null;
+    }
+
     public void GenerateRoomContent(DungeonData dungeonData)
     {
         foreach (GameObject item in spawnedObjects)
         {
             DestroyImmediate(item);
         }
+
         spawnedObjects.Clear();
 
         SelectPlayerSpawnPoint(dungeonData);
@@ -48,11 +67,11 @@ public class RoomContentGenerator : MonoBehaviour
 
         foreach (GameObject item in spawnedObjects)
         {
-            if(item != null)
+            if (item != null)
                 item.transform.SetParent(itemParent, false);
         }
     }
-    
+
     private void SelectPlayerSpawnPoint(DungeonData dungeonData)
     {
         int randomRoomIndex = UnityEngine.Random.Range(0, dungeonData.roomsDictionary.Count);
@@ -74,27 +93,24 @@ public class RoomContentGenerator : MonoBehaviour
 
         dungeonData.roomsDictionary.Remove(playerSpawnPoint);
     }
-    
+
     private void FocusCameraOnThePlayer(Transform playerTransform)
     {
         cinemachineCamera.LookAt = playerTransform;
         cinemachineCamera.Follow = playerTransform;
     }
-    
+
     private void SelectEnemySpawnPoints(DungeonData dungeonData)
     {
-        foreach (KeyValuePair<Vector2Int,HashSet<Vector2Int>> roomData in dungeonData.roomsDictionary)
-        { 
+        foreach (KeyValuePair<Vector2Int, HashSet<Vector2Int>> roomData in dungeonData.roomsDictionary)
+        {
             spawnedObjects.AddRange(
                 defaultRoom.ProcessRoom(
                     roomData.Key,
-                    roomData.Value, 
+                    roomData.Value,
                     dungeonData.GetRoomFloorWithoutCorridors(roomData.Key)
                 )
             );
-
         }
     }
 }
-
-

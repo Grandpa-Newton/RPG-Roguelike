@@ -34,7 +34,6 @@ public class MapPlayerController : MonoBehaviour
 
     private void Awake()
     {
-
         if (Instance != null)
         {
             Debug.LogError("There is no more than one Player instance");

@@ -11,7 +11,9 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField] private int corridorLength = 14;
     [SerializeField] private int corridorCount = 5;
     
-     
+    [SerializeField] private int corridorWidth = 3;
+    [SerializeField] private int corridorHeight = 3; 
+    
     [SerializeField] [Range(0.1f, 1f)] private float roomPercent = 0.8f;
     
     // Список комнат 
@@ -27,7 +29,9 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     
     // Ивенты
     public UnityEvent<DungeonData> OnDungeonFloorReady;
+
     
+
     protected override void RunProceduralGeneration()
     {
         CorridorFirstGenerator();
@@ -52,7 +56,7 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             // перенести в generateRooms
         for (int i = 0; i < corridors.Count; i++)
         {
-            corridors[i] = IncreaseCorridorBrush3by3(corridors[i]);
+            corridors[i] = IncreaseCorridorBrush(corridors[i]);
             floorPositions.UnionWith(corridors[i]);
         }
 
@@ -91,7 +95,22 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         return newCorridor;
     }
+    private List<Vector2Int> IncreaseCorridorBrush(List<Vector2Int> corridor)
+    {
+        List<Vector2Int> newCorridor = new List<Vector2Int>();
+        for (int i = 1; i < corridor.Count; i++)
+        {
+            for (int x = -corridorWidth/2; x <= corridorWidth/2; x++)
+            {
+                for (int y = -corridorHeight/2; y <= corridorHeight/2; y++)
+                {
+                    newCorridor.Add(corridor[i - 1] + new Vector2Int(x, y));
+                }
+            }
+        }
 
+        return newCorridor;
+    }
     private void CreateRoomsAtDeadEnd(List<Vector2Int> deadEnds, HashSet<Vector2Int> roomFloors)
     {
         foreach (var position in deadEnds)
