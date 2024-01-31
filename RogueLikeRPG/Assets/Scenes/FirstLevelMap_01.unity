@@ -1338,7 +1338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6378040046413034110, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Name
@@ -1607,7 +1607,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867624909}
-  - component: {fileID: 867624908}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -1615,18 +1614,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &867624908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867624907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 212490c00a032dd4b92ed09797b050c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &867624909
 Transform:
   m_ObjectHideFlags: 0
@@ -2351,7 +2338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6378040046413034110, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Name
@@ -2513,7 +2500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 2102708008}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1440301167
@@ -2589,7 +2576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6378040046413034110, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Name
