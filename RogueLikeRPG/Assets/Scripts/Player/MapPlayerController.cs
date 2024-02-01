@@ -34,12 +34,14 @@ public class MapPlayerController : MonoBehaviour
 
     private List<GameObject> _activeCells = new List<GameObject>();
 
-    private void Awake()
+    private void Start()
     {
         if (Instance != null)
         {
             Debug.LogError("There is no more than one Player instance");
         }
+
+        Debug.Log("SOZDALSYA", this.gameObject);
 
         Instance = this;
 
@@ -49,7 +51,7 @@ public class MapPlayerController : MonoBehaviour
 
         _playerInputActions.Map.Enable();
 
-        _playerInputActions.Map.Interact.performed += Interact_performed;
+        // _playerInputActions.Map.Interact.performed += Interact_performed;
 
         _playerInputActions.Map.GetCells.performed += GetCells_performed;
     }
@@ -59,7 +61,7 @@ public class MapPlayerController : MonoBehaviour
         if(!_isSelecting)
         {
             _isSelecting = true;
-            _playerInputActions.Map.Interact.performed -= Interact_performed;
+            // _playerInputActions.Map.Interact.performed -= Interact_performed;
             GetCurrentCells();
         }
         else
@@ -70,8 +72,8 @@ public class MapPlayerController : MonoBehaviour
 
     private void GetCurrentCells()
     {
-        _activeCells = MapLoader.Instance.ActiveCells.OrderBy(c => c.transform.localPosition.x).ToList(); // гениальная разработка, но нужно менять!
-        foreach(var cell in _activeCells)
+        _activeCells = MapLoader.Instance.ActiveCells; // гениальная разработка, но нужно менять! .OrderBy(c => c.transform.localPosition.x).ToList()
+        foreach (var cell in _activeCells)
         {
             cell.GetComponent<Selectable>().enabled = true;
         }
@@ -96,11 +98,6 @@ public class MapPlayerController : MonoBehaviour
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnInteractCell?.Invoke();
-    }
-
-    private void Start()
-    {
-        // OnActiveCell?.Invoke();
     }
 
     private void Update()

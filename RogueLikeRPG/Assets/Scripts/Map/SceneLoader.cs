@@ -13,6 +13,7 @@ public class SceneLoader : MonoBehaviour
         {
             /*var player = MapPlayerController.Instance.gameObject; // »«Ã≈Õ»“‹
             Destroy(player);*/
+            
             SceneManager.LoadScene(NEXT_SCENE_TO_LOAD);
         }
     }
