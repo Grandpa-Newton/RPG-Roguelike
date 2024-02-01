@@ -73,7 +73,6 @@ public class RoomContent : MonoBehaviour
         yield return new WaitUntil(() => Enemies.Count == 0);
         Debug.Log("Destroy walls started");
         DestroyWalls();
-        PlayerController.Instance.OnKeyButtonDown();
     }
 
     public void DestroyWalls()

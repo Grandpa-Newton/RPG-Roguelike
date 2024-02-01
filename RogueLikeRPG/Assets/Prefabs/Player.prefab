@@ -136,10 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gfxObject: {fileID: 6722602797244962993}
-  _speed: 15
+  _speed: 7
   _rb: {fileID: 6415982650210668780}
-  keyIcon: {fileID: 7244969986164393748, guid: b31bc58913d22b54daec7e73d04700d5, type: 3}
-  wallEffect: {fileID: 8690950337773083281, guid: 803b96fa8ebd5a749bdf32bd0e553139, type: 3}
 --- !u!114 &3722959482431474586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a270b04f490394588048741ea012dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 6415982650210668780}
 --- !u!114 &2040162995935628188
 MonoBehaviour:
   m_ObjectHideFlags: 0

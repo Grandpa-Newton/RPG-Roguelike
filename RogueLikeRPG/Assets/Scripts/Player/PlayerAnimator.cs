@@ -8,6 +8,8 @@ public class PlayerAnimator : MonoBehaviour
     private Animator _playerAnimator;
     private SpriteRenderer _spriteRenderer;
 
+    private bool isWalking = false;
+    
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -25,18 +27,24 @@ public class PlayerAnimator : MonoBehaviour
         float yDir = PlayerController.Instance.GetMoveDirection().y;
         
         Vector2 movement = new Vector2(xDir, yDir);
-        Debug.Log(movement.x + "  " + movement.y);
-        if (movement == new Vector2(0, 0))
+
+        if (xDir != 0 || yDir != 0)
         {
-            
-            _playerAnimator.SetBool("IsMoving", false);
+            _playerAnimator.SetFloat("Horizontal", movement.x);
+            _playerAnimator.SetFloat("Vertical", movement.y);
+            if (!isWalking)
+            {
+                isWalking = true;
+                _playerAnimator.SetBool("IsMoving", isWalking);
+            }
         }
         else
         {
-            _playerAnimator.SetBool("IsMoving", true);
+            if (isWalking)
+            {
+                isWalking = false;
+                _playerAnimator.SetBool("IsMoving", isWalking);
+            }
         }
-        
-        _playerAnimator.SetFloat("Horizontal", movement.x);
-        _playerAnimator.SetFloat("Vertical", movement.y);
     }
 }
