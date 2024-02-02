@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MapPlayerController : MonoBehaviour
@@ -13,6 +14,8 @@ public class MapPlayerController : MonoBehaviour
     public event Action OnCurrentCell; // когда пользователь встал на новую клетку (может быть, поменять название) */
 
     public event Action OnInteractCell;
+
+    public event Action OnDeselectCells;
 
     [SerializeField] private float _speed;
     [SerializeField] Rigidbody2D _rb;
@@ -34,7 +37,7 @@ public class MapPlayerController : MonoBehaviour
 
     private List<GameObject> _activeCells = new List<GameObject>();
 
-    private void Start()
+    private void Awake()
     {
         if (Instance != null)
         {
@@ -48,7 +51,10 @@ public class MapPlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
 
         _playerInputActions = new PlayerInputActions();
+    }
 
+    private void Start()
+    {
         _playerInputActions.Map.Enable();
 
         // _playerInputActions.Map.Interact.performed += Interact_performed;
@@ -58,7 +64,7 @@ public class MapPlayerController : MonoBehaviour
 
     private void GetCells_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if(!_isSelecting)
+        if (!_isSelecting)
         {
             _isSelecting = true;
             // _playerInputActions.Map.Interact.performed -= Interact_performed;
@@ -67,6 +73,10 @@ public class MapPlayerController : MonoBehaviour
         else
         {
             // либо ничего (выход с менюшки через другую кнопку), либо тут выход с  меню: акцент на игрока, возвращение interact и т.п.
+            SelectingCell = null;
+            OnDeselectCells?.Invoke();
+            _playerInputActions.Map.ConfirmCell.performed -= ConfirmCell_performed;
+            _isSelecting = false;
         }
     }
 
@@ -77,9 +87,9 @@ public class MapPlayerController : MonoBehaviour
         {
             cell.GetComponent<Selectable>().enabled = true;
         }
-        SelectingCell = _activeCells[0];
-        if(SelectingCell != null)
+        if (_activeCells.Count > 0)
         {
+            SelectingCell = _activeCells[0];
             SelectingCell.GetComponent<Selectable>().Select();
             // _selectingCell.GetComponent<BaseCell>().CellType = CellType.Selecting;
             _playerInputActions.Map.ConfirmCell.performed += ConfirmCell_performed;
@@ -180,7 +190,7 @@ public class MapPlayerController : MonoBehaviour
         if (!_isMoving) // ПОМЕНЯТЬ
         {
             Debug.Log("In Input");
-           
+
             if (SelectingCell != null)
             {
                 // Debug.Log(raycastHit.transform.gameObject);
@@ -214,6 +224,8 @@ public class MapPlayerController : MonoBehaviour
                         _playerInputActions.Map.Interact.performed += Interact_performed;
 
                         _playerInputActions.Map.ConfirmCell.performed -= ConfirmCell_performed;
+
+                        _playerInputActions.Map.GetCells.performed -= GetCells_performed;
 
                         _isMoving = true;
 
