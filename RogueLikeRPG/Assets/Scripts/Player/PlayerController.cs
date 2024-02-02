@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _moveDirection;
     private PlayerInputActions _playerInputActions;
-
+    
     private void Awake()
     {
         if (Instance != null)
