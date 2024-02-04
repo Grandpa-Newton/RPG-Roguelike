@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
     public GameObject gfxObject;
+    [SerializeField] private GameObject crossHair;
+
 
     public event Action OnPlayerMovement;
 
@@ -17,7 +19,12 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _moveDirection;
     private PlayerInputActions _playerInputActions;
-    
+
+    private bool _isWalking = false;
+    private bool _canMove = true;
+
+    private Vector2 inputVector;
+
     private void Awake()
     {
         if (Instance != null)
@@ -42,13 +49,23 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector2 inputVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
+        inputVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
         _moveDirection = new Vector2(inputVector.x, inputVector.y).normalized;
+
+        if ((inputVector.x == 0 && inputVector.y == 0))
+        {
+            _isWalking = false;
+        }
+        else if (inputVector.x != 0 || inputVector.y != 0)
+        {
+            _isWalking = true;
+        }
 
         OnPlayerMovement?.Invoke();
 
         _rb.velocity = _moveDirection * _speed;
     }
+
 
     public Vector2 GetMoveDirection()
     {

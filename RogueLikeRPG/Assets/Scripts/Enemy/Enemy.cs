@@ -6,26 +6,29 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private EnemySO enemySO;
+    [Header("Components")]
     [SerializeField] private PlayerController player;
-    private Rigidbody2D _rigidbody2D;
+    [SerializeField] private EnemySO enemySO;
 
+    private Rigidbody2D _rigidbody2D;
     private Vector2 moveDirection;
+    
+    [Header("Stats")]
+    [SerializeField] private float health;
+    [SerializeField] private float speed;
     
     // Start is called before the first frame update
     private void Awake()
     {
         player = GameObject.FindObjectOfType<PlayerController>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
 
-    void Start()
-    {
+        CopyStatsFromSO();
     }
 
     private void Update()
     {
-        if (player != null)
+        if (player)
         {
             Vector3 direction = (player.transform.position - transform.position).normalized;
             moveDirection = direction;
@@ -37,8 +40,20 @@ public class Enemy : MonoBehaviour
         _rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * enemySO.speed;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void TakeDamage(float damage)
     {
-        Destroy(gameObject);
+        Debug.Log(health);
+        health -= damage;
+        Debug.Log(health);
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void CopyStatsFromSO()
+    {
+        health = enemySO.health;
+        speed = enemySO.speed;
     }
 }

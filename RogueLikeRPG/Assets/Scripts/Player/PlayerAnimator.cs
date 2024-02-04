@@ -13,6 +13,7 @@ public class PlayerAnimator : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
 
     private void Start()
