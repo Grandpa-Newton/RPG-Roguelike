@@ -1,120 +1,76 @@
- using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
-{
-    public static PlayerController Instance { get; private set; }
-    public GameObject gfxObject;
-    [SerializeField] private GameObject crossHair;
-
-
-    public event Action OnPlayerMovement;
-
-    [SerializeField] private float _speed;
-    [SerializeField] Rigidbody2D _rb;
-
-    private Vector2 _moveDirection;
-    private PlayerInputActions _playerInputActions;
-
-    private bool _isWalking = false;
-    private bool _canMove = true;
-
-    private Vector2 inputVector;
-    private Vector2 inputMouseVector;
-    private Vector2 mousePosition;
-    private Vector2 mousePos;
-    [SerializeField] private GameObject sword;
-
-    private void Awake()
+    public class PlayerController : MonoBehaviour
     {
-        if (Instance != null)
-        {
-            Debug.LogError("There is no more than one Player instance");
-        }
+        public static PlayerController Instance { get; private set; }
 
-        Instance = this;
+        [Header("Components")]
+        [SerializeField] private float speed;
+        [SerializeField] Rigidbody2D rigidbody2D;
+        private PlayerInputActions _playerInputActions;
 
-        // Rigidbpdy
-        _rb = GetComponent<Rigidbody2D>();
+        [Header("Child Objects")]
+        [SerializeField] private GameObject crossHair;
+        [SerializeField] private GameObject sword;
+        [SerializeField] private GameObject gfxObject;
+        
+        
+        //Events
+        public event Action OnPlayerMovement;
 
-        // Player Input Actions
-        _playerInputActions = new PlayerInputActions();
-        _playerInputActions.Player.Enable();
-    }
-
-    private void Start()
-    {
-        Instantiate(crossHair,transform.position,Quaternion.identity);
-
-    }
-
-    private void Update()
-    {
-        RotateSwordToMouseDirection();
-    }
+        // Vectors
+        private Vector2 _inputVector;
+        private Vector2 _inputMouseVector;
     
-    private void RotateSwordToMouseDirection()
-    {
-        // Получаем позицию мыши в мировых координатах
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        private bool _canMove = true;
 
-        // Вычисляем направление от игрока к мыши
-        Vector2 direction = (mousePosition).normalized;
 
-        // Поворачиваем дочерний объект (GFX) в направлении мыши
-        gfxObject.transform.up = direction;
-    }
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Debug.LogError("There is no more than one Player instance");
+            }
+
+            Instance = this;
+
+            // Rigidbody
+            rigidbody2D = GetComponent<Rigidbody2D>();
+
+            // Player Input Actions
+            _playerInputActions = new PlayerInputActions();
+            _playerInputActions.Player.Enable();
+        }
     
-    public void FixedUpdate()
-    {
-        Move();
-        
-    }
-
-    private Vector2 worldMousePos;
-    private void Move()
-    {
-        // Movement
-        inputVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
-        // Mouse/Stick
-        inputMouseVector = _playerInputActions.Player.PointerPosition.ReadValue<Vector2>();
-        
-        Debug.Log(inputMouseVector);
-        
-         worldMousePos = 
-            (Camera.main.ScreenToViewportPoint(inputMouseVector) - new Vector3(0.5f, 0.5f, 0f)) * 2;
-        Debug.Log(worldMousePos);   
-        
-
-        if ((inputVector.x == 0 && inputVector.y == 0))
+        public void FixedUpdate()
         {
-            _isWalking = false;
-        }
-        else if (inputVector.x != 0 || inputVector.y != 0)
-        {
-            _isWalking = true;
+            Move();
+        
         }
 
-        OnPlayerMovement?.Invoke();
+        private Vector2 worldMousePos;
+        private void Move()
+        {
+            // Movement
+            _inputVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
+            // Mouse/Stick
+            _inputMouseVector = _playerInputActions.Player.PointerPosition.ReadValue<Vector2>();
+        
+        
+            worldMousePos = 
+                (Camera.main.ScreenToViewportPoint(_inputMouseVector) - new Vector3(0.5f, 0.5f, 0f)) * 2;
 
-        _rb.velocity = new Vector2(inputVector.x, inputVector.y).normalized * _speed;
+            OnPlayerMovement?.Invoke();
+
+            rigidbody2D.velocity = new Vector2(_inputVector.x, _inputVector.y).normalized * speed;
+        }
+        public Vector2 GetMoveDirection()
+        {
+            return _inputVector;
+        }
+        public Vector2 GetMouseDirection()
+        {
+            return worldMousePos;
+        }
     }
-
-
-
-
-
-    public Vector2 GetMoveDirection()
-    {
-        return inputVector;
-    }
-    public Vector2 GetMouseDirection()
-    {
-        return worldMousePos;
-    }
-}
