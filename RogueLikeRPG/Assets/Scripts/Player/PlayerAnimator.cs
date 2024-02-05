@@ -13,26 +13,25 @@ public class PlayerAnimator : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        
     }
 
     private void Start()
     {
-        _playerAnimator = PlayerController.Instance.gfxObject.GetComponent<Animator>();
+        _playerAnimator = PlayerController.Instance.GetComponent<Animator>();
         PlayerController.Instance.OnPlayerMovement += Player_OnPlayerMovement;
     }
 
     private void Player_OnPlayerMovement()
     {
-        float xDir = PlayerController.Instance.GetMoveDirection().x;
-        float yDir = PlayerController.Instance.GetMoveDirection().y;
+        float xMouse = PlayerController.Instance.GetMouseDirection().x;
+        float yMouse = PlayerController.Instance.GetMouseDirection().y;
         
-        Vector2 movement = new Vector2(xDir, yDir);
+        Vector2 movementMouse = new Vector2(xMouse, yMouse).normalized;
 
-        if (xDir != 0 || yDir != 0)
+        if (xMouse != 0 || yMouse != 0)
         {
-            _playerAnimator.SetFloat("Horizontal", movement.x);
-            _playerAnimator.SetFloat("Vertical", movement.y);
+            _playerAnimator.SetFloat("Horizontal", movementMouse.x);
+            _playerAnimator.SetFloat("Vertical", movementMouse.y);
             if (!isWalking)
             {
                 isWalking = true;

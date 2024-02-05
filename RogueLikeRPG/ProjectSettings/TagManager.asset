@@ -11,6 +11,7 @@ TagManager:
   - Cell
   - Door
   - Key
+  - Enemy
   layers:
   - Default
   - TransparentFX
