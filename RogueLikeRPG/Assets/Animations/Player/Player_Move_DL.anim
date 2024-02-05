@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
-    - time: 0.05
+    - time: 0
       value: {fileID: 1016701413, guid: 238b0ffdc340c544da937750730c9982, type: 3}
-    - time: 0.11666667
+    - time: 0.083333336
       value: {fileID: 1632491856, guid: 238b0ffdc340c544da937750730c9982, type: 3}
-    - time: 0.2
+    - time: 0.16666667
       value: {fileID: 2017621378, guid: 238b0ffdc340c544da937750730c9982, type: 3}
-    - time: 0.26666668
+    - time: 0.25
       value: {fileID: -1293897613, guid: 238b0ffdc340c544da937750730c9982, type: 3}
     - time: 0.33333334
       value: {fileID: 1016701413, guid: 238b0ffdc340c544da937750730c9982, type: 3}
