@@ -8,9 +8,9 @@ public class PlayerAimWeapon : MonoBehaviour
 {
     public event EventHandler OnShoot;
 
-    [SerializeField] private Bullet bullet;
+    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootPoint;
-    
+
     public class OnShootEventArgs : EventArgs
     {
         public Vector3 gunEndPointPosition;
@@ -62,8 +62,9 @@ public class PlayerAimWeapon : MonoBehaviour
         {
             Vector3 mousePosition = GetMouseWorldPosition();
             aimAnimator.SetTrigger("Shoot");
-            Instantiate(bullet, shootPoint.position, transform.rotation);
-            bullet.SetDirection(shootPoint.position);
+            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.AddForce(aimTransform.right * 10, ForceMode2D.Impulse);
             OnShoot?.Invoke(this, new OnShootEventArgs()
             {
                 gunEndPointPosition = aimGunEndPointTransform.position,
@@ -71,6 +72,7 @@ public class PlayerAimWeapon : MonoBehaviour
             });
         }
     }
+
 
     private static Vector3 GetMouseWorldPosition()
     {
