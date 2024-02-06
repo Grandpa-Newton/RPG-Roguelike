@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSO: {fileID: 11400000, guid: 0311434ce9393b34fa3451687eec3ff5, type: 2}
-  spriteRenderer: {fileID: 0}
 --- !u!50 &1018795478778474979
 Rigidbody2D:
   serializedVersion: 4
