@@ -6,32 +6,37 @@ using UnityEngine.Diagnostics;
 
 public class PlayerAimWeapon : MonoBehaviour
 {
-    public event EventHandler OnShoot;
+    private PlayerInputActions _playerInputActions;
+
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private Transform bulletsContainer;
 
-    public class OnShootEventArgs : EventArgs
-    {
-        public Vector3 gunEndPointPosition;
-        public Vector3 shootPosition;
-    }
+
+    [SerializeField] private float fireRateTime = 0.5f;
+    private float timeToNextShot = 0;
 
     private Transform aimTransform;
-    private Transform aimGunEndPointTransform;
     private Animator aimAnimator;
+    private BulletSO bulletSO;
+
+    private Queue<GameObject> aliveBullets = new Queue<GameObject>();
 
     private void Awake()
     {
         aimTransform = transform.Find("Aim");
-        aimGunEndPointTransform = aimTransform.Find("GunEndPointPosition");
         aimAnimator = aimTransform.GetComponent<Animator>();
+
+        _playerInputActions = new PlayerInputActions();
+        _playerInputActions.Player.Enable();
     }
 
     private void Update()
     {
         HandleAiming();
         HandleShooting();
+        Debug.Log(aliveBullets.Count);
     }
 
     private void HandleAiming()
@@ -56,23 +61,38 @@ public class PlayerAimWeapon : MonoBehaviour
         aimTransform.localScale = localScale;
     }
 
-    private void HandleShooting()
+
+    IEnumerator BulletsContainerClear()
     {
-        if (Input.GetMouseButtonDown(0))
+        yield return new WaitUntil(() => aliveBullets.Count >= 20);
+        while (aliveBullets.Count >= 20)
         {
-            Vector3 mousePosition = GetMouseWorldPosition();
-            aimAnimator.SetTrigger("Shoot");
-            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(aimTransform.right * 10, ForceMode2D.Impulse);
-            OnShoot?.Invoke(this, new OnShootEventArgs()
-            {
-                gunEndPointPosition = aimGunEndPointTransform.position,
-                shootPosition = mousePosition,
-            });
+            Destroy(aliveBullets.Dequeue());
         }
     }
 
+    private void HandleShooting()
+    {
+        timeToNextShot += Time.deltaTime;
+        if (_playerInputActions.Player.Attack.IsPressed() &&
+            timeToNextShot > fireRateTime) // make with SO weapon.firaRateTime
+        {
+            aimAnimator.SetTrigger("Shoot");
+
+            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            if (bullet)
+            {
+                aliveBullets.Enqueue(bullet);
+                bullet.transform.SetParent(bulletsContainer, true);
+                bulletSO = bullet.GetComponent<Bullet>().GetBulletSO();
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                rb.AddForce(aimTransform.right * bulletSO.speed, ForceMode2D.Impulse);
+            }
+
+            StartCoroutine(BulletsContainerClear());
+            timeToNextShot = 0f;
+        }
+    }
 
     private static Vector3 GetMouseWorldPosition()
     {

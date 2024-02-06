@@ -5,28 +5,24 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-   [SerializeField] private float speed;
-   [SerializeField] private float lifeTime;
-   [SerializeField] private float distance;
-   [SerializeField] private float damage;
+   [SerializeField] private BulletSO bulletSO;
 
-   private Rigidbody2D _rigidbody2D;
-   private Vector2 direction;
-
-   private void Awake()
+   public BulletSO GetBulletSO()
    {
-      _rigidbody2D = GetComponent<Rigidbody2D>();
+      return bulletSO;
    }
-
    private void OnTriggerEnter2D(Collider2D other)
    {
       if (other.CompareTag("Enemy"))
       {
-         other.GetComponent<Enemy>().TakeDamage(damage);
+         other.GetComponent<Enemy>().TakeDamage(bulletSO.damage);
+         Destroy(gameObject);
+      }
+      else
+      {
          Destroy(gameObject);
       }
    }
-
    /*private void Update()
    {
       RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, direction, distance, whatIsSolid);
