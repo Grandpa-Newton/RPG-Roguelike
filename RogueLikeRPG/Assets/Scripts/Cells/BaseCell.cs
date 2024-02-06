@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class BaseCell : MonoBehaviour
 {
     [SerializeField] private GameObject isActiveCircle;
-    public string SCENE_TO_LOAD { get; set; } // сделать так, чтобы не было у всех объектов
+    public string SCENE_TO_LOAD { get; set; } // сделать так, чтобы не было у всех объектов (Scriptable Objects)
 
     /* public virtual void Interact()
     {
