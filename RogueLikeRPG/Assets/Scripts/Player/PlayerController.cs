@@ -1,57 +1,65 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
-{
-    public static PlayerController Instance { get; private set; }
-    public GameObject gfxObject;
+    public class PlayerController : MonoBehaviour
+    {
+        public static PlayerController Instance { get; private set; }
 
-    public event Action OnPlayerMovement;
+        [Header("Components")]
+        [SerializeField] private float speed;
+        [SerializeField] Rigidbody2D rigidbody2D;
+        private PlayerInputActions _playerInputActions;
+        
+        //Events
+        public event Action OnPlayerMovement;
 
-    [SerializeField] private float _speed;
-    [SerializeField] Rigidbody2D _rb;
-
-    private Vector2 _moveDirection;
-    private PlayerInputActions _playerInputActions;
+        // Vectors
+        private Vector2 _inputMouseVector;
+        private Vector2 _worldMousePos;
+        private Vector2 _inputVector;
     
-    private void Awake()
-    {
-        if (Instance != null)
+        private void Awake()
         {
-            Debug.LogError("There is no more than one Player instance");
+            
+            if (Instance != null)
+            {
+                Debug.LogError("There is no more than one Player instance");
+            }
+
+            Instance = this;
+
+            // Rigidbody
+            rigidbody2D = GetComponent<Rigidbody2D>();
+
+            // Player Input Actions
+            _playerInputActions = new PlayerInputActions();
+            _playerInputActions.Player.Enable();
         }
+        public void FixedUpdate()
+        {
+            Move();
+        }
+        
+        private void Move()
+        {
+            // Movement
+            _inputVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
+            // Mouse/Stick
+            _inputMouseVector = _playerInputActions.Player.PointerPosition.ReadValue<Vector2>();
+        
+            _worldMousePos = 
+                (Camera.main.ScreenToViewportPoint(_inputMouseVector) - new Vector3(0.5f, 0.5f, 0f)) * 2;
 
-        Instance = this;
+            OnPlayerMovement?.Invoke();
 
-        // Rigidbpdy
-        _rb = GetComponent<Rigidbody2D>();
-
-        // Player Input Actions
-        _playerInputActions = new PlayerInputActions();
-        _playerInputActions.Player.Enable();
+            rigidbody2D.velocity = new Vector2(_inputVector.x, _inputVector.y).normalized * speed;
+        }
+        public Vector2 GetMoveDirection()
+        {
+            return _inputVector;
+        }
+        public Vector2 GetMouseDirection()
+        {
+            return _worldMousePos;
+        }
     }
-
-    public void FixedUpdate()
-    {
-        Move();
-    }
-
-    private void Move()
-    {
-        Vector2 inputVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
-        _moveDirection = new Vector2(inputVector.x, inputVector.y).normalized;
-
-        OnPlayerMovement?.Invoke();
-
-        _rb.velocity = _moveDirection * _speed;
-    }
-
-    public Vector2 GetMoveDirection()
-    {
-        return _moveDirection;
-    }
-}

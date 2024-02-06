@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerAnimator : MonoBehaviour
 {
     private Animator _playerAnimator;
@@ -17,7 +18,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Start()
     {
-        _playerAnimator = PlayerController.Instance.gfxObject.GetComponent<Animator>();
+        _playerAnimator = PlayerController.Instance.GetComponent<Animator>();
         PlayerController.Instance.OnPlayerMovement += Player_OnPlayerMovement;
     }
 
@@ -25,13 +26,19 @@ public class PlayerAnimator : MonoBehaviour
     {
         float xDir = PlayerController.Instance.GetMoveDirection().x;
         float yDir = PlayerController.Instance.GetMoveDirection().y;
-        
-        Vector2 movement = new Vector2(xDir, yDir);
+    
+        float xMouse = PlayerController.Instance.GetMouseDirection().x;
+        float yMouse = PlayerController.Instance.GetMouseDirection().y;
+    
+        Vector2 direction = new Vector2(xDir, yDir).normalized;
+        Vector2 movementMouse = new Vector2(xMouse, yMouse).normalized;
+
+        // Устанавливаем направление персонажа в зависимости от положения мыши
+        _playerAnimator.SetFloat("Horizontal", movementMouse.x);
+        _playerAnimator.SetFloat("Vertical", movementMouse.y);
 
         if (xDir != 0 || yDir != 0)
         {
-            _playerAnimator.SetFloat("Horizontal", movement.x);
-            _playerAnimator.SetFloat("Vertical", movement.y);
             if (!isWalking)
             {
                 isWalking = true;
@@ -47,4 +54,6 @@ public class PlayerAnimator : MonoBehaviour
             }
         }
     }
+
+
 }

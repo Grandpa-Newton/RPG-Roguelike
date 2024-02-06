@@ -18,7 +18,7 @@ public class StartNextLevel : MonoBehaviour
         _mapPlayerController = Player.GetComponent<MapPlayerController>();
     }
 
-    public void InCurrentCell() // когда игрок дошёл до новой клетки
+    public void InCurrentCell() // РєРѕРіРґР° РёРіСЂРѕРє РґРѕС€С‘Р» РґРѕ РЅРѕРІРѕР№ РєР»РµС‚РєРё
     {
         MapPlayerController.Instance.OnInteractCell += Instance_OnInteractCell;
     }

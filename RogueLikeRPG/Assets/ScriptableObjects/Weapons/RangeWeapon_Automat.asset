@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e45e062a3fe28b4d9515e98ae3f2b04, type: 3}
+  m_Name: RangeWeapon_Automat
+  m_EditorClassIdentifier: 
+  fireRate: 0.15
+  weaponSprite: {fileID: 21300000, guid: 81d13820c4c96fa4ab595ca822d1b2ba, type: 3}

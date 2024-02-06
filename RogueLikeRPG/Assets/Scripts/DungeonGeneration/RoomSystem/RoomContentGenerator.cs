@@ -64,7 +64,7 @@ public class RoomContentGenerator : MonoBehaviour
 
         SelectPlayerSpawnPoint(dungeonData);
         SelectEnemySpawnPoints(dungeonData);
-
+        
         foreach (GameObject item in spawnedObjects)
         {
             if (item != null)
