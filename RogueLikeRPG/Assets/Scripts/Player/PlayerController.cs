@@ -9,25 +9,18 @@ using UnityEngine;
         [SerializeField] private float speed;
         [SerializeField] Rigidbody2D rigidbody2D;
         private PlayerInputActions _playerInputActions;
-
-        [Header("Child Objects")]
-        [SerializeField] private GameObject crossHair;
-        [SerializeField] private GameObject sword;
-        [SerializeField] private GameObject gfxObject;
-        
         
         //Events
         public event Action OnPlayerMovement;
 
         // Vectors
-        private Vector2 _inputVector;
         private Vector2 _inputMouseVector;
+        private Vector2 _worldMousePos;
+        private Vector2 _inputVector;
     
-        private bool _canMove = true;
-
-
         private void Awake()
         {
+            
             if (Instance != null)
             {
                 Debug.LogError("There is no more than one Player instance");
@@ -42,14 +35,11 @@ using UnityEngine;
             _playerInputActions = new PlayerInputActions();
             _playerInputActions.Player.Enable();
         }
-    
         public void FixedUpdate()
         {
             Move();
-        
         }
-
-        private Vector2 worldMousePos;
+        
         private void Move()
         {
             // Movement
@@ -57,8 +47,7 @@ using UnityEngine;
             // Mouse/Stick
             _inputMouseVector = _playerInputActions.Player.PointerPosition.ReadValue<Vector2>();
         
-        
-            worldMousePos = 
+            _worldMousePos = 
                 (Camera.main.ScreenToViewportPoint(_inputMouseVector) - new Vector3(0.5f, 0.5f, 0f)) * 2;
 
             OnPlayerMovement?.Invoke();
@@ -71,6 +60,6 @@ using UnityEngine;
         }
         public Vector2 GetMouseDirection()
         {
-            return worldMousePos;
+            return _worldMousePos;
         }
     }

@@ -81,7 +81,7 @@ Transform:
   m_GameObject: {fileID: 2081912538424911597}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -209,8 +209,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7689258479891330253}
-  - {fileID: 931827921514768830}
   - {fileID: 6743381972759492382}
+  - {fileID: 931827921514768830}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5359380135867509143
@@ -309,10 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  rigidbody2D: {fileID: 0}
-  crossHair: {fileID: 4962646720053866454, guid: 80e03f1f6d597cb46aebf91a0d2f40d2, type: 3}
-  sword: {fileID: 0}
-  gfxObject: {fileID: 0}
+  rigidbody2D: {fileID: 5359380135867509143}
 --- !u!114 &2191871537133175800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,9 +323,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7143429579437156745, guid: e07bc0491c57868499d299ac5e1cfdb5, type: 3}
+  rangeWeapon: {fileID: 5171355971773381324}
   shootPoint: {fileID: 2133715077729565275}
-  bulletsContainer: {fileID: 0}
-  fireRateTime: 0.5
+  bulletsContainer: {fileID: 931827921514768830}
+  _rangeWeaponSo: {fileID: 11400000, guid: a55532500365e19428014c7c188d684e, type: 2}
 --- !u!114 &2671509649919419075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,8 +662,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1110256157436861220}
   - component: {fileID: 7499437923072878225}
+  - component: {fileID: 5171355971773381324}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: RangeWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -729,7 +728,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: 96ad6187dfd55994eb247dfc4c776620, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -737,6 +736,19 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5171355971773381324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8045914415567815399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53adc37ea4d0b5045952ac8870f0cb7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeWeaponSO: {fileID: 11400000, guid: 4b632186e70810641bc02c504f3c3dbd, type: 2}

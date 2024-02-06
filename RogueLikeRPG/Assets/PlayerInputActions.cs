@@ -186,6 +186,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""5841b41a-1c23-4601-8c07-4a1ba67a4646"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""38d6602c-2cf2-47cf-88eb-2d1e0b3d321d"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",

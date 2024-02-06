@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.Serialization;
 
 public class PlayerAimWeapon : MonoBehaviour
 {
@@ -10,43 +11,45 @@ public class PlayerAimWeapon : MonoBehaviour
 
 
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private RangeWeapon rangeWeapon;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Transform bulletsContainer;
+    
+    private Transform _aimTransform;
+    private Animator _aimAnimator;
+    
+    //Scriptable Objects
+    private BulletSO _bulletSo;
+    [SerializeField] private RangeWeaponSO _rangeWeaponSo;
 
-
-    [SerializeField] private float fireRateTime = 0.5f;
-    private float timeToNextShot = 0;
-
-    private Transform aimTransform;
-    private Animator aimAnimator;
-    private BulletSO bulletSO;
-
-    private Queue<GameObject> aliveBullets = new Queue<GameObject>();
-
+    private float _timeToNextShot = 0;
+    
     private void Awake()
     {
-        aimTransform = transform.Find("Aim");
-        aimAnimator = aimTransform.GetComponent<Animator>();
+        _rangeWeaponSo = rangeWeapon.GetRangeWeaponSO();
+        _aimTransform = transform.Find("Aim");
+        _aimAnimator = _aimTransform.GetComponent<Animator>();
 
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Enable();
+        
     }
 
     private void Update()
     {
         HandleAiming();
         HandleShooting();
-        Debug.Log(aliveBullets.Count);
+        
     }
 
     private void HandleAiming()
     {
-        Vector3 mousePosition = GetMouseWorldPosition();
+        Vector3 mousePosition = GetMouseWorldPosition(_playerInputActions);
 
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
 
-        aimTransform.eulerAngles = new Vector3(0, 0, angle);
+        _aimTransform.eulerAngles = new Vector3(0, 0, angle);
 
         Vector3 localScale = Vector3.one;
         if (angle > 90 || angle < -90)
@@ -58,47 +61,36 @@ public class PlayerAimWeapon : MonoBehaviour
             localScale.y = +1f;
         }
 
-        aimTransform.localScale = localScale;
+        _aimTransform.localScale = localScale;
     }
-
-
-    IEnumerator BulletsContainerClear()
-    {
-        yield return new WaitUntil(() => aliveBullets.Count >= 20);
-        while (aliveBullets.Count >= 20)
-        {
-            Destroy(aliveBullets.Dequeue());
-        }
-    }
-
+    
     private void HandleShooting()
     {
-        timeToNextShot += Time.deltaTime;
-        if (_playerInputActions.Player.Attack.IsPressed() &&
-            timeToNextShot > fireRateTime) // make with SO weapon.firaRateTime
+        _timeToNextShot += Time.deltaTime;
+        Debug.Log(_rangeWeaponSo.fireRate);
+        if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextShot > _rangeWeaponSo.fireRate)
         {
-            aimAnimator.SetTrigger("Shoot");
+            _aimAnimator.SetTrigger("Shoot");
 
             GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
             if (bullet)
             {
-                aliveBullets.Enqueue(bullet);
                 bullet.transform.SetParent(bulletsContainer, true);
-                bulletSO = bullet.GetComponent<Bullet>().GetBulletSO();
+                _bulletSo = bullet.GetComponent<Bullet>().GetBulletSO();
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-                rb.AddForce(aimTransform.right * bulletSO.speed, ForceMode2D.Impulse);
+                rb.AddForce(_aimTransform.right * _bulletSo.speed, ForceMode2D.Impulse);
+                
             }
-
-            StartCoroutine(BulletsContainerClear());
-            timeToNextShot = 0f;
+            _timeToNextShot = 0f;
         }
     }
 
-    private static Vector3 GetMouseWorldPosition()
+    private static Vector3 GetMouseWorldPosition(PlayerInputActions playerInputActions)
     {
-        Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
-        vec.z = 0f;
-        return vec;
+        Vector2 mousePosition = playerInputActions.Player.PointerPosition.ReadValue<Vector2>();
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        worldPosition.z = 0f;
+        return worldPosition;
     }
 
     private static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera)
