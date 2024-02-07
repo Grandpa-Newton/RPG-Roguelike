@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.VFX;
 
     public class PlayerController : MonoBehaviour
     {
@@ -8,7 +9,9 @@ using UnityEngine;
         [Header("Components")]
         [SerializeField] private float speed;
         [SerializeField] Rigidbody2D rigidbody2D;
+        [SerializeField] private VisualEffect vfxRenderer;
         private PlayerInputActions _playerInputActions;
+        
         
         //Events
         public event Action OnPlayerMovement;
@@ -35,7 +38,13 @@ using UnityEngine;
             _playerInputActions = new PlayerInputActions();
             _playerInputActions.Player.Enable();
         }
-        public void FixedUpdate()
+
+        private void Update()
+        {
+            vfxRenderer.SetVector3("ColliderPos", transform.position);
+        }
+
+        private void FixedUpdate()
         {
             Move();
         }

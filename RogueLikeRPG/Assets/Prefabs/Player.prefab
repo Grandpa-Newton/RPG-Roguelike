@@ -310,6 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rigidbody2D: {fileID: 5359380135867509143}
+  vfxRenderer: {fileID: 8132865267836127082, guid: 3c27dfa34c937024796c0786dc044b57, type: 3}
 --- !u!114 &2191871537133175800
 MonoBehaviour:
   m_ObjectHideFlags: 0
