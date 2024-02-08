@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FirstLevelDungeon_01.unity
     guid: e7da1264cb91b4640bfe7b5b78724905
+  - enabled: 1
+    path: Assets/Scenes/NewFitchesTest.unity
+    guid: 3917a056301be2b4b90dfe00bdffb2e4
+  - enabled: 1
+    path: Assets/Scenes/NewFitchesTest2.unity
+    guid: d6faa72bab2f30143a706d221809de34
+  - enabled: 1
+    path: Assets/Scenes/NewFitchesTest3.unity
+    guid: 96ded34f97d7da647862a0db74a54c34
   m_configObjects: {}
