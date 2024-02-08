@@ -1,4 +1,5 @@
 using DefaultNamespace;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class TestSelectHandler : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
+    public Action OnChangeSelectingCell;
     private CellType _previousType;
     public void OnDeselect(BaseEventData eventData)
     {
@@ -19,5 +21,6 @@ public class TestSelectHandler : MonoBehaviour, ISelectHandler, IDeselectHandler
         BaseCell currentCell = gameObject.GetComponent<BaseCell>();
         _previousType = currentCell.CellType;
         currentCell.CellType = DefaultNamespace.CellType.Selecting;
+        OnChangeSelectingCell?.Invoke();
     }
 }
