@@ -1,3 +1,4 @@
+using Cinemachine;
 using DefaultNamespace;
 using System;
 using System.Collections;
@@ -20,6 +21,8 @@ public class MapPlayerController : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] Rigidbody2D _rb;
     [SerializeField] LayerMask _layerMask;
+    [SerializeField] private GameObject _camera;
+    [SerializeField] private Transform _followObject;
 
     private BaseCell _interactingCell;
 
@@ -27,13 +30,36 @@ public class MapPlayerController : MonoBehaviour
 
     private PlayerInputActions _playerInputActions;
 
+    private CinemachineVirtualCamera _virtualCamera;
+
     private bool _isMoving = false;
     private Vector2 _moveDirection;
 
     private bool _isSelecting = false; // производит ли сейчас выбор клетки пользователь
 
+    private GameObject _selectingCell;
+
     [HideInInspector]
-    public GameObject SelectingCell = null;
+    public GameObject SelectingCell
+    {
+        get
+        {
+            return _selectingCell;
+        }
+        set
+        {
+            _selectingCell = value;
+            if(value != null)
+            {
+                // мб сюда перенести isselecting = true??
+                _virtualCamera.Follow = SelectingCell.transform;
+            }
+            else
+            {
+                _virtualCamera.Follow = _followObject.transform;
+            }
+        }
+    }
 
     private List<GameObject> _activeCells = new List<GameObject>();
 
@@ -49,9 +75,10 @@ public class MapPlayerController : MonoBehaviour
         Instance = this;
 
         _rb = GetComponent<Rigidbody2D>();
-
+        _virtualCamera = _camera.GetComponent<CinemachineVirtualCamera>();
         _playerInputActions = new PlayerInputActions();
     }
+
 
     private void Start()
     {
@@ -62,6 +89,7 @@ public class MapPlayerController : MonoBehaviour
         _playerInputActions.Map.GetCells.performed += GetCells_performed;
         _playerInputActions.Map.ConfirmCell.performed += ConfirmCell_performed;
         _playerInputActions.Map.ConfirmCell.Disable();
+
     }
 
     private void GetCells_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -75,6 +103,7 @@ public class MapPlayerController : MonoBehaviour
         else
         {
             // либо ничего (выход с менюшки через другую кнопку), либо тут выход с  меню: акцент на игрока, возвращение interact и т.п.
+            // _virtualCamera.Follow = _followObject;
             SelectingCell = null;
             OnDeselectCells?.Invoke();
             // _playerInputActions.Map.ConfirmCell.performed -= ConfirmCell_performed;
@@ -174,6 +203,8 @@ public class MapPlayerController : MonoBehaviour
                     _isMoving = true;
 
                     _interactingCell.CellType = CellType.Active;
+
+                    this.SelectingCell = null;
                 }
                 else
                 {
