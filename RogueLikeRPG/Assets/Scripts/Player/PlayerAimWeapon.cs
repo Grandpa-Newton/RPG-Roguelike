@@ -38,11 +38,6 @@ public class PlayerAimWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            // HERE!!!
-            rangeWeapon.rangeWeaponSO = rangeWeapon.rangeWeaponSO;
-        }
         HandleAiming();
         HandleShooting();
         Debug.Log(_rangeWeaponSo.fireRate);

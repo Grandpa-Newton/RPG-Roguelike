@@ -326,7 +326,6 @@ MonoBehaviour:
   rangeWeapon: {fileID: 5171355971773381324}
   shootPoint: {fileID: 2133715077729565275}
   bulletsContainer: {fileID: 931827921514768830}
-  _rangeWeaponSo: {fileID: 11400000, guid: 4b632186e70810641bc02c504f3c3dbd, type: 2}
 --- !u!114 &2671509649919419075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,3 +752,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeWeaponSO: {fileID: 11400000, guid: a55532500365e19428014c7c188d684e, type: 2}
+  next_weapon: {fileID: 11400000, guid: 4b632186e70810641bc02c504f3c3dbd, type: 2}
