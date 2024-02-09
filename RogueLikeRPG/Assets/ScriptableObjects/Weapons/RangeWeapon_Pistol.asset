@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: RangeWeapon_Pistol
   m_EditorClassIdentifier: 
   fireRate: 0.75
+  damage: 8
+  bullet: {fileID: 0}
   weaponSprite: {fileID: 21300000, guid: 96ad6187dfd55994eb247dfc4c776620, type: 3}

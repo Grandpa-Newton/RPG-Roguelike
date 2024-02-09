@@ -7,11 +7,14 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private BulletSO bulletSO;
     private SpriteRenderer spriteRenderer;
+    private RangeWeaponSO rangeWeaponSO;
 
+    public event Action OnTakeDamage;
+    
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = bulletSO.bulletSprite;
+        spriteRenderer.sprite = bulletSO.departingBulletSprite;
     }
 
     private void Start()
@@ -31,11 +34,16 @@ public class Bullet : MonoBehaviour
         return bulletSO;
     }
 
+    public void SetRangeWeaponSO(RangeWeaponSO rangeWeaponSO)
+    {
+        this.rangeWeaponSO = rangeWeaponSO;
+    }
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<Enemy>().TakeDamage(bulletSO.damage);
+            other.GetComponent<Enemy>().TakeDamage(rangeWeaponSO.damage);
             Destroy(gameObject);
         }
         else

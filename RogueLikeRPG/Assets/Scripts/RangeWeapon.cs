@@ -5,17 +5,21 @@ using UnityEngine;
 
 public class RangeWeapon : MonoBehaviour
 {
-    [SerializeField] private RangeWeaponSO rangeWeaponSO;
+    [SerializeField] public RangeWeaponSO rangeWeaponSO;
     private SpriteRenderer spriteRenderer;
+    
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = rangeWeaponSO.weaponSprite;
+        
     }
 
     public RangeWeaponSO GetRangeWeaponSO()
     {
         return rangeWeaponSO;
     }
+    
+    
 }

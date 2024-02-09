@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSO: {fileID: 11400000, guid: 0311434ce9393b34fa3451687eec3ff5, type: 2}
+  rangeWeaponSO: {fileID: 11400000, guid: 4b632186e70810641bc02c504f3c3dbd, type: 2}
 --- !u!50 &1018795478778474979
 Rigidbody2D:
   serializedVersion: 4

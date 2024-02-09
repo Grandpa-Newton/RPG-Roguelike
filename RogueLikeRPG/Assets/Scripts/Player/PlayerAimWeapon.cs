@@ -1,16 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.Serialization;
 
 public class PlayerAimWeapon : MonoBehaviour
 {
+    
     private PlayerInputActions _playerInputActions;
 
-
-    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private RangeWeapon rangeWeapon;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Transform bulletsContainer;
@@ -20,7 +20,7 @@ public class PlayerAimWeapon : MonoBehaviour
     
     //Scriptable Objects
     private BulletSO _bulletSo;
-    [SerializeField] private RangeWeaponSO _rangeWeaponSo;
+    private RangeWeaponSO _rangeWeaponSo;
 
     private float _timeToNextShot = 0;
     
@@ -33,13 +33,19 @@ public class PlayerAimWeapon : MonoBehaviour
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Enable();
         
+        
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            // HERE!!!
+            rangeWeapon.rangeWeaponSO = rangeWeapon.rangeWeaponSO;
+        }
         HandleAiming();
         HandleShooting();
-        
+        Debug.Log(_rangeWeaponSo.fireRate);
     }
 
     private void HandleAiming()
@@ -71,7 +77,7 @@ public class PlayerAimWeapon : MonoBehaviour
         {
             _aimAnimator.SetTrigger("Shoot");
 
-            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            Bullet bullet = Instantiate(_rangeWeaponSo.bullet, shootPoint.position, shootPoint.rotation);
             if (bullet)
             {
                 bullet.transform.SetParent(bulletsContainer, true);
@@ -79,6 +85,7 @@ public class PlayerAimWeapon : MonoBehaviour
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 rb.AddForce(_aimTransform.right * _bulletSo.speed, ForceMode2D.Impulse);
                 
+                bullet.SetRangeWeaponSO(_rangeWeaponSo);
             }
             _timeToNextShot = 0f;
         }

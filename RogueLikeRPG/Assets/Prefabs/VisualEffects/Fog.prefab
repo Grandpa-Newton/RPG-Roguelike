@@ -70,7 +70,7 @@ VisualEffect:
       - m_Value: {x: 1, y: 0.7, z: 0}
         m_Name: WindSpeedMax
         m_Overridden: 1
-      - m_Value: {x: -27.698257, y: 72.831055, z: 0}
+      - m_Value: {x: -43.3049, y: -72.396095, z: 0}
         m_Name: ColliderPos
         m_Overridden: 1
     m_Vector4f:

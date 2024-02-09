@@ -8,6 +8,5 @@ public class BulletSO : ScriptableObject
     public float speed;
     public float lifeTime;
     public float distance;
-    public int damage;
-    public Sprite bulletSprite;
+    public Sprite departingBulletSprite;
 }

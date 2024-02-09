@@ -323,11 +323,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331f90a4334505742ae48486998ab3e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7143429579437156745, guid: e07bc0491c57868499d299ac5e1cfdb5, type: 3}
   rangeWeapon: {fileID: 5171355971773381324}
   shootPoint: {fileID: 2133715077729565275}
   bulletsContainer: {fileID: 931827921514768830}
-  _rangeWeaponSo: {fileID: 11400000, guid: a55532500365e19428014c7c188d684e, type: 2}
+  _rangeWeaponSo: {fileID: 11400000, guid: 4b632186e70810641bc02c504f3c3dbd, type: 2}
 --- !u!114 &2671509649919419075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,7 +368,8 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 0
-  SelectingCell: {fileID: 0}
+  _camera: {fileID: 0}
+  _followObject: {fileID: 0}
 --- !u!1 &4639642764309313730
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,4 +752,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53adc37ea4d0b5045952ac8870f0cb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeWeaponSO: {fileID: 11400000, guid: 4b632186e70810641bc02c504f3c3dbd, type: 2}
+  rangeWeaponSO: {fileID: 11400000, guid: a55532500365e19428014c7c188d684e, type: 2}

@@ -6,6 +6,8 @@ using UnityEngine;
 public class RangeWeaponSO : ScriptableObject
 {
     [Range(0.1f, 1)] public float fireRate;
+    [Range(0, 100)] public float damage;
+    public Bullet bullet;
     public Sprite weaponSprite;
     
 }
