@@ -75,7 +75,6 @@ public class MapPlayerController : MonoBehaviour
         Instance = this;
 
         _rb = GetComponent<Rigidbody2D>();
-        _virtualCamera = _camera.GetComponent<CinemachineVirtualCamera>();
         _playerInputActions = new PlayerInputActions();
     }
 
@@ -89,6 +88,9 @@ public class MapPlayerController : MonoBehaviour
         _playerInputActions.Map.GetCells.performed += GetCells_performed;
         _playerInputActions.Map.ConfirmCell.performed += ConfirmCell_performed;
         _playerInputActions.Map.ConfirmCell.Disable();
+        
+        
+        _virtualCamera = _camera.GetComponent<CinemachineVirtualCamera>();
 
     }
 

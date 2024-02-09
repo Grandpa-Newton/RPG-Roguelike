@@ -4,15 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class TilemapVisualizer : MonoBehaviour
 {
-    [SerializeField] private Tilemap floorTilemap;
+    [Header("Tile Maps")] [SerializeField] private Tilemap floorTilemap;
     [SerializeField] private Tilemap wallTilemap;
 
-    [SerializeField] private TileBase floorTile;
+    [Header("Floor Tiles")] [SerializeField]
+    private TileBase[] floorTile;
 
-    [SerializeField] private TileBase wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull;
+    [Header("Wall Tiles")] [SerializeField]
+    private TileBase wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull;
 
     [SerializeField] private TileBase
         wallInnerCornerDownLeft,
@@ -21,16 +24,18 @@ public class TilemapVisualizer : MonoBehaviour
         wallDiagonalCornerDownRight,
         wallDiagonalCornerUpLeft,
         wallDiagonalCornerUpRight;
+
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
         PaintTiles(floorPositions, floorTilemap, floorTile);
     }
 
-    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
+    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase[] tiles)
     {
         foreach (var position in positions)
         {
-            PaintSingleTile(tilemap, tile, position);
+            int randomFloorTile = Random.Range(0, tiles.Length);
+            PaintSingleTile(tilemap, tiles[randomFloorTile], position);
         }
     }
 
@@ -112,7 +117,8 @@ public class TilemapVisualizer : MonoBehaviour
         {
             tile = wallBottom;
         }
-        if(tile != null)
+
+        if (tile != null)
             PaintSingleTile(wallTilemap, tile, position);
     }
 }
