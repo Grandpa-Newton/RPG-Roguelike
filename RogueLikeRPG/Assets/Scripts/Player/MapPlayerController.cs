@@ -49,14 +49,17 @@ public class MapPlayerController : MonoBehaviour
         set
         {
             _selectingCell = value;
-            if(value != null)
+            if (value != null)
             {
                 // мб сюда перенести isselecting = true??
-                _virtualCamera.Follow = SelectingCell.transform;
+                //_virtualCamera.Follow = SelectingCell.transform;
+                _virtualCamera.Follow = CameraMover.Instance.transform; // 
+                CameraMover.Instance.ClickedCellTransform = _selectingCell.transform;
             }
             else
             {
-                _virtualCamera.Follow = _followObject.transform;
+                CameraMover.Instance.ClickedCellTransform = _followObject;
+                // _virtualCamera.Follow = _followObject.transform;
             }
         }
     }
