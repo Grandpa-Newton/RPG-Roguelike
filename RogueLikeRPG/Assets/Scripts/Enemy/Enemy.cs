@@ -9,13 +9,17 @@ public class Enemy : MonoBehaviour
     [Header("Components")]
     [SerializeField] private PlayerController player;
     [SerializeField] private EnemySO enemySO;
-
+    [SerializeField] private LayerMask hittable;
     private Rigidbody2D _rigidbody2D;
     private Vector2 moveDirection;
     
     [Header("Stats")]
     [SerializeField] private float health;
     [SerializeField] private float speed;
+
+    [Header("Knockback Parameters")] 
+    [SerializeField] private float knockbackDuration;
+    [SerializeField] private float knockbackPower;
     
     // Start is called before the first frame update
     private void Awake()
@@ -48,6 +52,20 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if ((hittable & 1 << other.gameObject.layer) != 0)
+        {
+            Health health = other.gameObject.GetComponent<Health>();
+            if (health)
+            { 
+                Debug.Log("I hit player:" + gameObject.name);
+                StartCoroutine(PlayerController.Instance.Knockback(knockbackDuration,knockbackPower,this.transform));
+                health.Reduce(enemySO.damage);
+            }
         }
     }
 
