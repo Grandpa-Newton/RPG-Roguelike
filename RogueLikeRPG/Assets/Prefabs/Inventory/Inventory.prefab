@@ -169,7 +169,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sword
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -858,7 +858,9 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   contentPanel: {fileID: 5811899979665152358}
   itemDescription: {fileID: 8912064942368378467}
+  mouseFollower: {fileID: 0}
   image: {fileID: 21300000, guid: 96ad6187dfd55994eb247dfc4c776620, type: 3}
+  image2: {fileID: 21300000, guid: 81d13820c4c96fa4ab595ca822d1b2ba, type: 3}
   quantity: 8
   title: "\u041F\u0438\u0441\u0442\u043E\u043B\u0435\u0442"
   description: "\u041F\u0438\u0441\u0442\u043E\u043B\u0435\u0442 \u0434\u043B\u044F
@@ -1026,11 +1028,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\"The Radiant Blade, a legendary sword known for its gleaming silver blade
-    that shines with an ethereal light. Forged in the ancient times, it is said to
-    cut through darkness and bring justice. Its hilt is adorned with precious gems,
-    and the grip is wrapped in the finest leather for a comfortable hold. This sword
-    is not just a weapon, but a symbol of courage and honor.\"\r"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1482,7 +1480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8068596846528117898
 RectTransform:
   m_ObjectHideFlags: 0
