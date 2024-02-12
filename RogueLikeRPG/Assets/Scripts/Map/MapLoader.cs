@@ -39,7 +39,7 @@ public class MapLoader : MonoBehaviour
     {
         BaseCell[] cells = Object.FindObjectsOfType<BaseCell>();
 
-        GameObject currentCell = new GameObject();
+        GameObject currentCell = null;
 
         foreach (var spawn in cells)
         {
@@ -50,18 +50,21 @@ public class MapLoader : MonoBehaviour
             }
         }
 
-        BaseCell cell = currentCell.GetComponent<BaseCell>();
-
-        Player.position = currentCell.transform.position;
-
-        CameraMover.Instance.ChangePosition(); // לב סמבûעטול
-
-        foreach (var neighborCell in cell.NeighborsCells)
+        if(currentCell != null)
         {
-            ActiveCells.Add(neighborCell);
-            neighborCell.GetComponent<BaseCell>().CellType = CellType.Active;
-        }
+            BaseCell cell = currentCell.GetComponent<BaseCell>();
 
-        cell.CellType = CellType.Current;
+            Player.position = currentCell.transform.position;
+
+            CameraMover.Instance.ChangePosition(); // לב סמבûעטול
+
+            foreach (var neighborCell in cell.NeighborsCells)
+            {
+                ActiveCells.Add(neighborCell);
+                neighborCell.GetComponent<BaseCell>().CellType = CellType.Active;
+            }
+
+            cell.CellType = CellType.Current;
+        }
     }
 }
