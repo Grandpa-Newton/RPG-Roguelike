@@ -54,6 +54,8 @@ public class MapLoader : MonoBehaviour
 
         Player.position = currentCell.transform.position;
 
+        CameraMover.Instance.ChangePosition(); // לב סמבûעטול
+
         foreach (var neighborCell in cell.NeighborsCells)
         {
             ActiveCells.Add(neighborCell);

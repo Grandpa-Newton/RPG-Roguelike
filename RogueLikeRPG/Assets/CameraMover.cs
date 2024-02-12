@@ -29,7 +29,6 @@ public class CameraMover : MonoBehaviour
 
     private void Start()
     {
-        transform.position = MapPlayerController.Instance.transform.position;
     }
 
     public static CameraMover Instance;
@@ -54,6 +53,11 @@ public class CameraMover : MonoBehaviour
                 _isMoving = false;
             }
         }
+    }
+
+    public void ChangePosition()
+    {
+        transform.position = MapPlayerController.Instance.transform.position;
     }
 
     private void Update()
