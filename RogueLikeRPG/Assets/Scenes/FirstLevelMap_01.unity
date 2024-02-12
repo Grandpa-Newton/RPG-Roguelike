@@ -1574,6 +1574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActiveCircle: {fileID: 0}
+  CellData: {fileID: 0}
   CellId: 
   activeColor: {r: 0, g: 0, b: 1, a: 1}
   inactiveColor: {r: 0, g: 0, b: 1, a: 1}
@@ -1887,6 +1888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActiveCircle: {fileID: 0}
+  CellData: {fileID: 0}
   CellId: 
   activeColor: {r: 0, g: 0, b: 0, a: 0}
   inactiveColor: {r: 0, g: 0, b: 0, a: 0}
@@ -2726,6 +2728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActiveCircle: {fileID: 0}
+  CellData: {fileID: 0}
   CellId: 
   activeColor: {r: 0, g: 0, b: 0, a: 0}
   inactiveColor: {r: 0, g: 0, b: 0, a: 0}
