@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
-  <MaxStackSize>k__BackingField: 10
+  <MaxStackSize>k__BackingField: 6
   <Name>k__BackingField: "\u042F\u0431\u043B\u043E\u043A\u043E"
   <Description>k__BackingField: "\u041C\u043C\u043C\u043C \u043A\u0443\u0448\u0430\u0446"
   <ItemImage>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
