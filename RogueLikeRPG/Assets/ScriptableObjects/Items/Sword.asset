@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a89bc20f6f63267458585843781a53a0, type: 3}
+  m_Script: {fileID: 11500000, guid: e4754ac7f4807ae41ab6109c42cb753c, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <Name>k__BackingField: "\u041F\u0438\u0441\u0442\u043E\u043B\u0435\u0442"
-  <Description>k__BackingField: "\u0420\u0435\u0437\u043D\u044F"
+  <Name>k__BackingField: Pistolet
+  <Description>k__BackingField: Fire!!!
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 96ad6187dfd55994eb247dfc4c776620, type: 3}
+  <DefaultParametersList>k__BackingField:
+  - itemParameter: {fileID: 11400000, guid: 533c012a18006a946bb1f4f12d81227a, type: 2}
+    value: 100
