@@ -182,8 +182,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 8807091535373032333, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
   enemySO: {fileID: 11400000, guid: fffc18ed88bc71b4bb7e0f44a3ae4bc1, type: 2}
+  hittable:
+    serializedVersion: 2
+    m_Bits: 256
   health: 0
   speed: 0
+  knockbackDuration: 2
+  knockbackPower: 50
 --- !u!70 &8754173314768956755
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
