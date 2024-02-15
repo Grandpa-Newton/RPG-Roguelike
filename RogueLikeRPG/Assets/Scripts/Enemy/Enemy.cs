@@ -7,15 +7,15 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private PlayerController player;
-    [SerializeField] private EnemySO enemySO;
+    [SerializeField] protected PlayerController player;
+    [SerializeField] protected EnemySO enemySO;
 
     private Rigidbody2D _rigidbody2D;
     private Vector2 moveDirection;
     
     [Header("Stats")]
-    [SerializeField] private float health;
-    [SerializeField] private float speed;
+    [SerializeField] protected float health;
+    [SerializeField] protected float speed;
     
     // Start is called before the first frame update
     private void Awake()
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
         _rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * enemySO.speed;
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         Debug.Log(health);
         health -= damage;
@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void CopyStatsFromSO()
+    protected virtual void CopyStatsFromSO()
     {
         health = enemySO.health;
         speed = enemySO.speed;
