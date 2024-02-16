@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class BaseCell : MonoBehaviour
 {
-    [SerializeField] private GameObject isActiveCircle;
+    [SerializeField] protected GameObject isActiveCircle;
 
     [SerializeField] public CellSO CellData;
     // public string SCENE_TO_LOAD { get; set; } // сделать так, чтобы не было у всех объектов (Scriptable Objects)
@@ -46,15 +46,19 @@ public abstract class BaseCell : MonoBehaviour
         {
             case CellType.Inactive:
                 _renderer.material.color = inactiveColor;
+                isActiveCircle.SetActive(false);
                 break;
             case CellType.Active:
                 _renderer.material.color = activeColor;
+                isActiveCircle.SetActive(false);
                 break;
             case CellType.Current:
                 _renderer.material.color = currentColor;
+                isActiveCircle.SetActive(false);
                 break;
             case CellType.Selecting:
                 _renderer.material.color = selectingColor;
+                isActiveCircle.SetActive(true);
                 break;
         }
     }
@@ -63,8 +67,10 @@ public abstract class BaseCell : MonoBehaviour
     {
         CellId = name + transform.position.ToString();
         _renderer = GetComponent<Renderer>();
+        isActiveCircle.SetActive(false);
         // Сделать этот метод событием вызываемом при каждой загрузке карты
         ChangeCellType();
+
         //IsCellActive();
     }
 }
