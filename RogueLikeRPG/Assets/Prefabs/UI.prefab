@@ -730,6 +730,14 @@ PrefabInstance:
       propertyPath: mouseFollower
       value: 
       objectReference: {fileID: 7816412321863322242}
+    - target: {fileID: 7485677648548055393, guid: 457442f2a4c083b458826d77b301358a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 7485677648548055393, guid: 457442f2a4c083b458826d77b301358a, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7999416218212500430, guid: 457442f2a4c083b458826d77b301358a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
