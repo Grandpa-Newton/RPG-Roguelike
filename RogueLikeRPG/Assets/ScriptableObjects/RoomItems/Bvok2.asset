@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25ee9aa28bb9a94c845f08b786731bc, type: 3}
   m_Name: Bvok2
   m_EditorClassIdentifier: 
-  sprite: {fileID: -1967387770, guid: e318db312867f9c4f8a988475678c136, type: 3}
+  sprite: {fileID: -1034604436700536505, guid: a0d3fbbc155eb404a87f827b40a48dfe, type: 3}
   size: {x: 1, y: 1}
   placementType: 1
   addOffset: 0
