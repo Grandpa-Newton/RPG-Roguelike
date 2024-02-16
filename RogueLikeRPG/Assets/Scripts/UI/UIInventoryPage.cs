@@ -83,7 +83,7 @@ namespace Inventory.UI
         private void HandleSwap(UIInventoryItem inventoryItemUI)
         {
             int index = listOfUIItems.IndexOf(inventoryItemUI);
-            if (index == -1)
+            if (index == -1 || currantlyDraggedItemIndex == -1)
             {
                 return;
             }

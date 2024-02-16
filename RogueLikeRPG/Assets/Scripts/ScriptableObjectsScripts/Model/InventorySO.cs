@@ -132,6 +132,11 @@ namespace Inventory.Model
 
         public void SwapItems(int itemIndex1, int itemIndex2)
         {
+            if (itemIndex1 < 0 || itemIndex1 >= inventoryItems.Count || itemIndex2 < 0 || itemIndex2 >= inventoryItems.Count)
+            {
+                Debug.LogError("Invalid item index");
+                return;
+            }
             (inventoryItems[itemIndex1], inventoryItems[itemIndex2]) =
                 (inventoryItems[itemIndex2], inventoryItems[itemIndex1]);
             InformAboutChanges();

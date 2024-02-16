@@ -40,7 +40,6 @@ public class PlayerAimWeapon : MonoBehaviour
     {
         HandleAiming();
         HandleShooting();
-        Debug.Log(_rangeWeaponSo.fireRate);
     }
 
     private void HandleAiming()

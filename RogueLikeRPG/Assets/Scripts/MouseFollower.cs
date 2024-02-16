@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Inventory.UI;
+using Unity.VisualScripting;
 
 public class MouseFollower : MonoBehaviour
 {
@@ -12,9 +13,10 @@ public class MouseFollower : MonoBehaviour
 
     private void Awake()
     {
-        canvas = transform.root.GetComponent<Canvas>();
+        canvas = transform.parent.GetComponent<Canvas>();
         item = GetComponentInChildren<UIInventoryItem>();
     }
+
 
     public void SetData(Sprite sprite, int quantity)
     {
