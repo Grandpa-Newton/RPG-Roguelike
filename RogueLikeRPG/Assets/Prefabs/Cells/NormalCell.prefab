@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 7172891866342440106}
   - component: {fileID: 7001226470238607165}
   - component: {fileID: 6378040046413034110}
+  - component: {fileID: 9031717922201768279}
   m_Layer: 3
   m_Name: NormalCell
   m_TagString: Cell
@@ -137,7 +138,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 32.1, y: -18.3, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1244571169540828789}
@@ -304,3 +305,16 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
+--- !u!114 &9031717922201768279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987083260137727135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5062f32c0fa8c354884782d5c6942223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1024461959818967223, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
