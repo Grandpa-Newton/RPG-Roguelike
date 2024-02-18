@@ -1,20 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private BulletSO bulletSO;
-    private SpriteRenderer spriteRenderer;
-    private RangeWeaponSO rangeWeaponSO;
+    private SpriteRenderer _spriteRenderer;
+    private RangeWeaponSO _rangeWeaponSo;
 
     public event Action OnTakeDamage;
     
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = bulletSO.departingBulletSprite;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.sprite = bulletSO.departingBulletSprite;
     }
 
     private void Start()
@@ -36,14 +37,15 @@ public class Bullet : MonoBehaviour
 
     public void SetRangeWeaponSO(RangeWeaponSO rangeWeaponSO)
     {
-        this.rangeWeaponSO = rangeWeaponSO;
+        this._rangeWeaponSo = rangeWeaponSO;
     }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        IDamageable damageable = other.GetComponent<IDamageable>();
+        if (damageable != null)
         {
-            other.GetComponent<Enemy>().TakeDamage(rangeWeaponSO.damage);
+            damageable.TakeDamage(_rangeWeaponSo.damage);
             Destroy(gameObject);
         }
         else

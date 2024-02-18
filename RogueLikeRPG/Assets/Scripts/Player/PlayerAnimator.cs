@@ -9,8 +9,11 @@ public class PlayerAnimator : MonoBehaviour
     private Animator _playerAnimator;
     private SpriteRenderer _spriteRenderer;
 
-    private bool isWalking = false;
-    
+    private bool _isWalking = false;
+    private static readonly int Horizontal = Animator.StringToHash("Horizontal");
+    private static readonly int Vertical = Animator.StringToHash("Vertical");
+    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -30,27 +33,26 @@ public class PlayerAnimator : MonoBehaviour
         float xMouse = PlayerController.Instance.GetMouseDirection().x;
         float yMouse = PlayerController.Instance.GetMouseDirection().y;
     
-        Vector2 direction = new Vector2(xDir, yDir).normalized;
         Vector2 movementMouse = new Vector2(xMouse, yMouse).normalized;
 
         // Устанавливаем направление персонажа в зависимости от положения мыши
-        _playerAnimator.SetFloat("Horizontal", movementMouse.x);
-        _playerAnimator.SetFloat("Vertical", movementMouse.y);
+        _playerAnimator.SetFloat(Horizontal, movementMouse.x);
+        _playerAnimator.SetFloat(Vertical, movementMouse.y);
 
         if (xDir != 0 || yDir != 0)
         {
-            if (!isWalking)
+            if (!_isWalking)
             {
-                isWalking = true;
-                _playerAnimator.SetBool("IsMoving", isWalking);
+                _isWalking = true;
+                _playerAnimator.SetBool(IsMoving, _isWalking);
             }
         }
         else
         {
-            if (isWalking)
+            if (_isWalking)
             {
-                isWalking = false;
-                _playerAnimator.SetBool("IsMoving", isWalking);
+                _isWalking = false;
+                _playerAnimator.SetBool(IsMoving, _isWalking);
             }
         }
     }

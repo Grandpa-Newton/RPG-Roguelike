@@ -31,8 +31,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1110256157436861220}
-  - {fileID: 6556242794330230956}
   - {fileID: 1484734488673094348}
+  - {fileID: 6556242794330230956}
   m_Father: {fileID: 1024461959818967223}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3778373216131434755
@@ -186,7 +186,6 @@ GameObject:
   - component: {fileID: 2191871537133175800}
   - component: {fileID: 2671509649919419075}
   - component: {fileID: 4524324115122470558}
-  - component: {fileID: 2040162995935628188}
   - component: {fileID: 2018821293375233273}
   - component: {fileID: 7490865900675531576}
   - component: {fileID: 7442927163657405319}
@@ -318,8 +317,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rigidbody2D: {fileID: 5359380135867509143}
-  vfxRenderer: {fileID: 8132865267836127082, guid: 3c27dfa34c937024796c0786dc044b57, type: 3}
 --- !u!114 &2191871537133175800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,25 +361,6 @@ MonoBehaviour:
   bloodParticle: {fileID: 0}
   renderer: {fileID: 2163374977534921141}
   flashTime: 0.2
---- !u!114 &2040162995935628188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4306722505127858314}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 763f1362f9839cd46a5dd132cb528bd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 10
-  _rb: {fileID: 0}
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  _camera: {fileID: 0}
-  _followObject: {fileID: 0}
 --- !u!95 &2018821293375233273
 Animator:
   serializedVersion: 5
