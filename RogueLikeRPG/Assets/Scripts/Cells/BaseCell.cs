@@ -1,4 +1,5 @@
 using DefaultNamespace;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,10 @@ public abstract class BaseCell : MonoBehaviour
     [SerializeField] private Color selectingColor;
 
     public List<GameObject> NeighborsCells = new List<GameObject>(); // клетки, на которые можно попасть из этой клетки
+
+    public List<Path> Paths = new List<Path>();
+
+    // public List<List<GameObject>> Paths = new List<List<GameObject>>();
 
     protected Renderer _renderer;
 
@@ -72,5 +77,12 @@ public abstract class BaseCell : MonoBehaviour
         ChangeCellType();
 
         //IsCellActive();
+    }
+
+
+    [Serializable]
+    public class Path
+    {
+        public List<GameObject> WayPoints = new List<GameObject>();
     }
 }

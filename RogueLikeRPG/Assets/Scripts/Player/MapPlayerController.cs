@@ -63,7 +63,13 @@ public class MapPlayerController : MonoBehaviour
         }
     }
 
+    private BaseCell.Path _currentPath;
+
+    private int _wayPointIndex = -1;
+
     private List<GameObject> _activeCells = new List<GameObject>();
+
+    private Transform _wayPointTransform;
 
     private void Awake()
     {
@@ -150,7 +156,8 @@ public class MapPlayerController : MonoBehaviour
     {
         if (_isMoving)
         {
-            if ((Vector2)transform.position != (Vector2)_clickedCellTransform.position)
+            // _wayPointTransform = _currentPath.WayPoints[_wayPointIndex].transform;
+            /*if ((Vector2)transform.position != (Vector2)_clickedCellTransform.position)
             {
                 _moveDirection = Vector2.MoveTowards(transform.position, (Vector2)_clickedCellTransform.position, _speed * Time.deltaTime);
                 transform.position = _moveDirection;
@@ -161,8 +168,43 @@ public class MapPlayerController : MonoBehaviour
                 _interactingCell.CellType = CellType.Current;
                 // _interactingCell.Interact();
                 _isMoving = false;
+            }*/
+
+            if((Vector2)transform.position != (Vector2)_wayPointTransform.position)
+            {
+                _moveDirection = Vector2.MoveTowards(transform.position, (Vector2)_wayPointTransform.position, _speed * Time.deltaTime);
+                transform.position = _moveDirection;
+            }
+            else
+            {
+                ChangeWayPoint();
+                
             }
         }
+    }
+
+    private void ChangeWayPoint()
+    {
+        if (_wayPointIndex + 1 == _currentPath.WayPoints.Count)
+        {
+            _wayPointTransform = _clickedCellTransform;
+            _wayPointIndex++;
+        }
+        else if(_wayPointIndex + 1 > _currentPath.WayPoints.Count)
+        {
+            _clickedCellTransform.GetComponent<StartNextLevel>().InCurrentCell();
+            _interactingCell.CellType = CellType.Current;
+            // _interactingCell.Interact();
+            _isMoving = false;
+            _currentPath = null;
+            _wayPointIndex = -1;
+        }
+        else
+        {
+            _wayPointIndex++;
+            _wayPointTransform = _currentPath.WayPoints[_wayPointIndex].transform;
+        }
+
     }
 
     private void SelectCell()
@@ -186,6 +228,13 @@ public class MapPlayerController : MonoBehaviour
 
                     currentCell.CellType = CellType.Inactive;
 
+                    GetCurrentPath(currentCell);
+
+                    _wayPointIndex = 0;
+
+                    _wayPointTransform = _currentPath.WayPoints[_wayPointIndex].transform;
+
+
                     MapLoader.CurrentCellId = _interactingCell.CellId;
 
                     // ЦИКЛ НИЖЕ - ДЛЯ ТЕСТА!
@@ -196,6 +245,8 @@ public class MapPlayerController : MonoBehaviour
                     }*/
 
                     _clickedCellTransform = SelectingCell.transform;
+
+
 
                     _playerInputActions.Map.Interact.performed += Interact_performed;
 
@@ -217,6 +268,19 @@ public class MapPlayerController : MonoBehaviour
             else
             {
                 Debug.Log("The cell is not active");
+            }
+        }
+    }
+
+    private void GetCurrentPath(BaseCell currentCell)
+    {
+        foreach(var path in _interactingCell.Paths)
+        {
+            if (path.WayPoints[0].gameObject == currentCell.gameObject)
+            {
+                Debug.Log("Transforms are equal");
+                _currentPath = path;
+                return;
             }
         }
     }
