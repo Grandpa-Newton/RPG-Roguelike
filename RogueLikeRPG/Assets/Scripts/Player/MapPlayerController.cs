@@ -19,7 +19,6 @@ public class MapPlayerController : MonoBehaviour
     public event Action OnDeselectCells;
 
     [SerializeField] private float _speed;
-    [SerializeField] Rigidbody2D _rb;
     [SerializeField] LayerMask _layerMask;
     [SerializeField] private GameObject _camera;
     [SerializeField] private Transform _followObject;
@@ -77,7 +76,6 @@ public class MapPlayerController : MonoBehaviour
 
         Instance = this;
 
-        _rb = GetComponent<Rigidbody2D>();
         _playerInputActions = new PlayerInputActions();
     }
 
