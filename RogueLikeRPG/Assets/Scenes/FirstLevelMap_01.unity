@@ -7766,7 +7766,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1606420894}
   - {fileID: 2101124875}
   - {fileID: 1366760116}
   m_Father: {fileID: 0}
@@ -107404,7 +107403,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1354694606}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3098698050159065193, guid: cc9eab7e40483bf458d38264ade5cf89, type: 3}
       propertyPath: m_Name
@@ -107464,6 +107463,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1584353759}
+  - {fileID: 969436897452272857}
   - {fileID: 1354694606}
   - {fileID: 753412496}
   - {fileID: 1214728637}
