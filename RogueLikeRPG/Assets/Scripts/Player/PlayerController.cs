@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.VFX;
 using System.Collections;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,10 +30,32 @@ public class PlayerController : MonoBehaviour
     private Vector2 _worldMousePos;
     private Vector2 _inputVector;
 
+    void Awake() {
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            EnablePlayerComponents();
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
-    private void Awake()
+    private void Start()
     {
-        EnablePlayerComponents();
+        CinemachineVirtualCamera vcam = FindObjectOfType<CinemachineVirtualCamera>();
+
+        // Установка игрока в качестве цели для слежения и наблюдения
+        if (vcam != null)
+        {
+            vcam.Follow = transform;
+            vcam.LookAt = transform;
+        }
+        else
+        {
+            Debug.LogError("Не найдена виртуальная камера Cinemachine");
+        }
     }
 
     private void Update()

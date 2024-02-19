@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PlayerHealthData
   m_EditorClassIdentifier: 
   _value: 1
+  IsInitialized: 1

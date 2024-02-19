@@ -414,8 +414,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8165226584263436593}
   m_HandleRect: {fileID: 5091680575774759106}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -751,6 +751,7 @@ GameObject:
   - component: {fileID: 4550388508582038486}
   - component: {fileID: 289638691063341582}
   - component: {fileID: 6353615883579334728}
+  - component: {fileID: 4124975627030451458}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -859,12 +860,20 @@ MonoBehaviour:
   contentPanel: {fileID: 5811899979665152358}
   itemDescription: {fileID: 8912064942368378467}
   mouseFollower: {fileID: 0}
-  image: {fileID: 21300000, guid: 96ad6187dfd55994eb247dfc4c776620, type: 3}
-  image2: {fileID: 21300000, guid: 81d13820c4c96fa4ab595ca822d1b2ba, type: 3}
-  quantity: 8
-  title: "\u041F\u0438\u0441\u0442\u043E\u043B\u0435\u0442"
-  description: "\u041F\u0438\u0441\u0442\u043E\u043B\u0435\u0442 \u0434\u043B\u044F
-    \u043D\u0443\u0431\u043E\u0432"
+  actionPanel: {fileID: 0}
+--- !u!114 &4124975627030451458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5651858605313414169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba50bf644eaf3a43b2ebc197c6f5878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryData: {fileID: 11400000, guid: f37c1c10a167764469f0bb4cb1b8b5b2, type: 2}
 --- !u!1 &5833036870142832147
 GameObject:
   m_ObjectHideFlags: 0

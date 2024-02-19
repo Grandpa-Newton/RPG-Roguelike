@@ -15,11 +15,11 @@ public class PlayerAnimator : MonoBehaviour
     private static readonly int Vertical = Animator.StringToHash("Vertical");
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
 
-    public void Initialize(PlayerController playerController)
+    private void Awake()
     {
-        _playerController = playerController;
+        _playerController = GetComponent<PlayerController>();
+        _playerAnimator = GetComponent<Animator>();
         _playerController.OnPlayerMovement += Player_OnPlayerMovement;
-        _playerAnimator = _playerController.GetComponent<Animator>();
     }
 
     private void Player_OnPlayerMovement(Vector2 movementInputVector, Vector2 worldMouseVectorPosition)

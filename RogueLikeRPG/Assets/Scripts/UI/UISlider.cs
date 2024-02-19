@@ -10,7 +10,16 @@ public class UISlider : MonoBehaviour
 
     [SerializeField]
     private FloatValueSO floatValue;
-
+    private void Start()
+    {
+        SetValue(floatValue.Value);
+    }
+    
+    public void SetValue(float currentValue)
+    {
+        sliderImage.fillAmount = Mathf.Clamp01(currentValue);
+    }
+    
     private void OnEnable()
     {
         floatValue.OnValueChange += SetValue;
@@ -20,9 +29,5 @@ public class UISlider : MonoBehaviour
     {
         floatValue.OnValueChange -= SetValue;
     }
-
-    public void SetValue(float currentValue)
-    {
-        sliderImage.fillAmount = Mathf.Clamp01(currentValue);
-    }
+    
 }

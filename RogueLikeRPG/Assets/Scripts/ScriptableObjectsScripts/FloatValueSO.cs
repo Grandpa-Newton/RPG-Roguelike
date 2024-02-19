@@ -20,6 +20,8 @@ public class FloatValueSO : ScriptableObject
         }
 
     }
+
+    public bool IsInitialized;
     public event Action<float> OnValueChange;
 
 }

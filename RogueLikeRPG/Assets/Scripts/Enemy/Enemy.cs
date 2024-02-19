@@ -1,7 +1,7 @@
 using Interfaces;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour, IDamageable
+public class Enemy : MonoBehaviour, IDamageable
 {
     #region Components
 

@@ -1,61 +1,42 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 10;
+    [SerializeField] private float maxHealth = 100f;
     [SerializeField] private FloatValueSO currentHealth;
-    
-    [SerializeField] private GameObject bloodParticle;
+    [SerializeField] private Slider healthBar;
 
-    [SerializeField] private Renderer renderer;
-    [SerializeField] private float flashTime = 0.2f;
-    
     private void Start()
     {
-        currentHealth.Value = 1;
-    }
-    
-    public void Reduce(int damage)
-    {
-        currentHealth.Value -= damage / maxHealth;
-        CreateHitFeedback();
-        if (currentHealth.Value <= 0)
+        if (!currentHealth.IsInitialized)
         {
-            Die();
+            currentHealth.Value = 1;
+            currentHealth.IsInitialized = true;
         }
     }
     public void AddHealth(int healthBoost)
     {
         int health = Mathf.RoundToInt(currentHealth.Value * maxHealth);
         int val = health + healthBoost;
-        currentHealth.Value = (val > maxHealth ? maxHealth : val / maxHealth);
+        currentHealth.Value = val > maxHealth ? 1 : val / maxHealth;
     }
-    private void CreateHitFeedback()
+
+    public void Reduce(int damage)
     {
-        //Instantiate(bloodParticle, transform.position, Quaternion.identity);
-        StartCoroutine(FlashFeedback());
+        currentHealth.Value -= damage / maxHealth;
+        if (currentHealth.Value <= 0)
+        {
+            Die();
+        }
     }
-    private IEnumerator FlashFeedback()
-    {
-        renderer.material.SetInt("_Flash", 1);
-        yield return new WaitForSeconds(flashTime);
-        renderer.material.SetInt("_Flash", 0);
-    }
-    
     private void Die()
     {
         Debug.Log("Died");
         currentHealth.Value = 1;
     }
 
-    public float GetCurrentHealth()
-    {
-        return currentHealth.Value;
-    }
-    public void SetCurrentHealth(float health)
-    {
-         currentHealth.Value = health;
-    }
+    
 }

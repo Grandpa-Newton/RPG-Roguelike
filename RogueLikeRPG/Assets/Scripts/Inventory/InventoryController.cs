@@ -14,9 +14,7 @@ namespace Inventory
         [SerializeField] private UIInventoryPage inventoryUI;
 
         [SerializeField] private InventorySO inventoryData;
-
-        [SerializeField] private int inventorySize = 10;
-
+        
         public List<InventoryItem> initialItems = new List<InventoryItem>();
 
         [SerializeField] private AudioClip dropClip;
@@ -30,14 +28,17 @@ namespace Inventory
 
         private void PrepareInventoryData()
         {
-            inventoryData.Initialize();
-            inventoryData.OnInventoryUpdated += UpdateInventoryUI;
-            foreach (InventoryItem item in initialItems)
+            if (inventoryData.inventoryItems == null || inventoryData.inventoryItems.Count == 0)
             {
-                if (item.IsEmpty)
-                    continue;
-                inventoryData.AddItem(item);
+                inventoryData.Initialize();
+                foreach (InventoryItem item in initialItems)
+                {
+                    if (item.IsEmpty)
+                        continue;
+                    inventoryData.AddItem(item);
+                }
             }
+            inventoryData.OnInventoryUpdated += UpdateInventoryUI;
         }
 
         private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
@@ -115,9 +116,9 @@ namespace Inventory
             inventoryUI.CreateDraggedItem(inventoryItem.item.ItemImage, inventoryItem.quantity);
         }
 
-        private void HandleSwapItems(int itemIndex_1, int itemIndex_2)
+        private void HandleSwapItems(int itemIndex1, int itemIndex2)
         {
-            inventoryData.SwapItems(itemIndex_1, itemIndex_2);
+            inventoryData.SwapItems(itemIndex1, itemIndex2);
         }
 
         private void HandleDescriptionRequest(int itemIndex)
