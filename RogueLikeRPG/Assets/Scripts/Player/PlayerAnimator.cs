@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
+    private PlayerController _playerController;
+    
     private Animator _playerAnimator;
     private SpriteRenderer _spriteRenderer;
 
@@ -19,27 +21,21 @@ public class PlayerAnimator : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Start()
+    public void Initialize(PlayerController playerController)
     {
-        _playerAnimator = PlayerController.Instance.GetComponent<Animator>();
-        PlayerController.Instance.OnPlayerMovement += Player_OnPlayerMovement;
+        _playerController = playerController;
+        _playerController.OnPlayerMovement += Player_OnPlayerMovement;
+        _playerAnimator = _playerController.GetComponent<Animator>();
     }
 
-    private void Player_OnPlayerMovement()
+    private void Player_OnPlayerMovement(Vector2 movementInputVector, Vector2 worldMouseVectorPosition)
     {
-        float xDir = PlayerController.Instance.GetMoveDirection().x;
-        float yDir = PlayerController.Instance.GetMoveDirection().y;
-    
-        float xMouse = PlayerController.Instance.GetMouseDirection().x;
-        float yMouse = PlayerController.Instance.GetMouseDirection().y;
-    
-        Vector2 movementMouse = new Vector2(xMouse, yMouse).normalized;
+        Vector2 movementMouse = new Vector2(worldMouseVectorPosition.x, worldMouseVectorPosition.y).normalized;
 
-        // Устанавливаем направление персонажа в зависимости от положения мыши
         _playerAnimator.SetFloat(Horizontal, movementMouse.x);
         _playerAnimator.SetFloat(Vertical, movementMouse.y);
 
-        if (xDir != 0 || yDir != 0)
+        if (movementInputVector.x != 0 || movementInputVector.y != 0)
         {
             if (!_isWalking)
             {
@@ -57,5 +53,8 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-
+    private void OnDestroy()
+    {
+        _playerController.OnPlayerMovement -= Player_OnPlayerMovement;
+    }
 }

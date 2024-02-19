@@ -7,35 +7,38 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    [Header("Components")]
-    [SerializeField] private PlayerController player;
+    [Header("Components")] private PlayerController _player;
     [SerializeField] private EnemySO enemySO;
     [SerializeField] private LayerMask hittable;
     private Rigidbody2D _rigidbody2D;
     private Vector2 moveDirection;
-    
-    [Header("Stats")]
-    [SerializeField] private float health;
+
+    [Header("Stats")] [SerializeField] private float health;
     [SerializeField] private float speed;
 
-    [Header("Knockback Parameters")] 
-    [SerializeField] private float knockbackDuration;
-    [SerializeField] private float knockbackPower;
-    
-    // Start is called before the first frame update
-    private void Awake()
-    {
-        player = GameObject.FindObjectOfType<PlayerController>();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+    [Header("Knockback Parameters")] [SerializeField]
+    private float knockbackDuration;
 
+    [SerializeField] private float knockbackPower;
+
+    private void Start()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         CopyStatsFromSO();
+        _player = FindObjectOfType<PlayerController>();
+        Initialize(_player);
+    }
+
+    public void Initialize(PlayerController playerController)
+    {
+        _player = playerController;
     }
 
     private void Update()
     {
-        if (player)
+        if (_player)
         {
-            Vector3 direction = (player.transform.position - transform.position).normalized;
+            Vector3 direction = (_player.transform.position - transform.position).normalized;
             moveDirection = direction;
         }
     }
@@ -60,9 +63,9 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             Health health = other.gameObject.GetComponent<Health>();
             if (health)
-            { 
+            {
                 Debug.Log("I hit player:" + gameObject.name);
-                StartCoroutine(PlayerController.Instance.Knockback(knockbackDuration,knockbackPower,this.transform));
+                StartCoroutine(_player.Knockback(knockbackDuration, knockbackPower, this.transform));
                 health.Reduce(enemySO.damage);
             }
         }
