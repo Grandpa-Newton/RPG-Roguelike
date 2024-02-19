@@ -1,51 +1,52 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Interfaces;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class EnemyController : MonoBehaviour, IDamageable
 {
-    [Header("Components")] private PlayerController _player;
+    #region Components
+
     [SerializeField] private EnemySO enemySO;
     [SerializeField] private LayerMask hittable;
-    private Rigidbody2D _rigidbody2D;
+    private Rigidbody2D rigidbody2D;
     private Vector2 moveDirection;
 
-    [Header("Stats")] [SerializeField] private float health;
+    #endregion
+
+    #region Stats
+
+    [SerializeField] private float health;
     [SerializeField] private float speed;
 
-    [Header("Knockback Parameters")] [SerializeField]
-    private float knockbackDuration;
+    #endregion
 
+    #region Knockback Parameters
+
+    [SerializeField] private float knockbackDuration;
     [SerializeField] private float knockbackPower;
+
+    #endregion
+
+    private PlayerController player;
 
     private void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        CopyStatsFromSO();
-        _player = FindObjectOfType<PlayerController>();
-        Initialize(_player);
-    }
-
-    public void Initialize(PlayerController playerController)
-    {
-        _player = playerController;
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        InitializeStatsFromSO();
+        player = FindObjectOfType<PlayerController>();
     }
 
     private void Update()
     {
-        if (_player)
+        if (player != null)
         {
-            Vector3 direction = (_player.transform.position - transform.position).normalized;
+            Vector3 direction = (player.transform.position - transform.position).normalized;
             moveDirection = direction;
         }
     }
 
     private void FixedUpdate()
     {
-        _rigidbody2D.velocity = new Vector2(moveDirection.x, moveDirection.y) * enemySO.speed;
+        rigidbody2D.velocity = moveDirection * speed;
     }
 
     public void TakeDamage(float damage)
@@ -61,17 +62,16 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if ((hittable & 1 << other.gameObject.layer) != 0)
         {
-            Health health = other.gameObject.GetComponent<Health>();
-            if (health)
+            if (other.gameObject.TryGetComponent(out Health healthComponent))
             {
-                Debug.Log("I hit player:" + gameObject.name);
-                StartCoroutine(_player.Knockback(knockbackDuration, knockbackPower, this.transform));
-                health.Reduce(enemySO.damage);
+                Debug.Log("I hit player: " + gameObject.name);
+                StartCoroutine(player.Knockback(knockbackDuration, knockbackPower, transform));
+                healthComponent.Reduce(enemySO.damage);
             }
         }
     }
 
-    private void CopyStatsFromSO()
+    private void InitializeStatsFromSO()
     {
         health = enemySO.health;
         speed = enemySO.speed;

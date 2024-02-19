@@ -9,17 +9,11 @@ public class PlayerAnimator : MonoBehaviour
     private PlayerController _playerController;
     
     private Animator _playerAnimator;
-    private SpriteRenderer _spriteRenderer;
 
     private bool _isWalking = false;
     private static readonly int Horizontal = Animator.StringToHash("Horizontal");
     private static readonly int Vertical = Animator.StringToHash("Vertical");
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-
-    private void Awake()
-    {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     public void Initialize(PlayerController playerController)
     {

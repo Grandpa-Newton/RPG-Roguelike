@@ -49,5 +49,13 @@ public class Health : MonoBehaviour
         Debug.Log("Died");
         currentHealth.Value = 1;
     }
-    
+
+    public float GetCurrentHealth()
+    {
+        return currentHealth.Value;
+    }
+    public void SetCurrentHealth(float health)
+    {
+         currentHealth.Value = health;
+    }
 }

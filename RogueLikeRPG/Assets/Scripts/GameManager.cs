@@ -6,9 +6,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
     [SerializeField] private PlayerAnimator playerAnimator;
-
+   
     private void Start()
     {
         playerAnimator.Initialize(playerController);
     }
+    
 }
