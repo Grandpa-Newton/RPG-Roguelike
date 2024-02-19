@@ -1,6 +1,8 @@
 using DefaultNamespace;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class BaseCell : MonoBehaviour
@@ -25,6 +27,10 @@ public abstract class BaseCell : MonoBehaviour
 
     public List<GameObject> NeighborsCells = new List<GameObject>(); // клетки, на которые можно попасть из этой клетки
 
+    public List<Path> Paths = new List<Path>();
+
+    // public List<List<GameObject>> Paths = new List<List<GameObject>>();
+
     protected Renderer _renderer;
 
     [SerializeField]
@@ -39,7 +45,6 @@ public abstract class BaseCell : MonoBehaviour
             ChangeCellType();
         }
     }
-
     protected void ChangeCellType()
     {
         switch (CellType)
@@ -73,4 +78,42 @@ public abstract class BaseCell : MonoBehaviour
 
         //IsCellActive();
     }
+
+
+    [Serializable]
+    public class Path
+    {
+        public List<GameObject> WayPoints = new List<GameObject>();
+        /* protected void OnDrawGizmos()
+        {
+            for (int j = 0; j < WayPoints.Count; j++)
+            {
+                GameObject currentWayPoint = WayPoints[j];
+                Gizmos.color = Color.yellow;
+
+                if (j + 1 < WayPoints.Count)
+                {
+                    Gizmos.DrawLine(currentWayPoint.transform.position, WayPoints[j + 1].transform.position);
+                }
+            }
+        } */
+    }
+
+    /* protected void OnDrawGizmos()
+    {
+        for (int i = 0; i < Paths.Count; i++)
+        {
+            for (int j = 0; j < Paths[i].WayPoints.Count; j++)
+            {
+                GameObject currentWayPoint = Paths[i].WayPoints[j];
+                Gizmos.color = Color.yellow;
+
+                if (j + 1 < Paths[i].WayPoints.Count)
+                {
+                    Gizmos.DrawLine(currentWayPoint.transform.position, Paths[i].WayPoints[j + 1].transform.position);
+                }
+            }
+        }
+    }*/
+
 }
