@@ -31,7 +31,7 @@ public class StartNextLevel : MonoBehaviour
         MapPlayerController.Instance.OnInteractCell -= Instance_OnInteractCell; // ???
         SceneManager.LoadScene(cell.CellData.SceneToLoad); // мб лучше сделать sceneToLoad не пабликом, а вызывать как-то событием / методом
         _playerController.enabled = true;
-        _mapPlayerController.enabled = false;
+        // _mapPlayerController.enabled = false;
     }
 
     private void Update()
