@@ -31,6 +31,8 @@ public abstract class BaseCell : MonoBehaviour
 
     // public List<List<GameObject>> Paths = new List<List<GameObject>>();
 
+    protected SpriteRenderer _spriteRenderer;
+
     protected Renderer _renderer;
 
     [SerializeField]
@@ -47,22 +49,35 @@ public abstract class BaseCell : MonoBehaviour
     }
     protected void ChangeCellType()
     {
+        float H, S, V;
         switch (CellType)
         {
             case CellType.Inactive:
                 _renderer.material.color = inactiveColor;
+                Color.RGBToHSV(_spriteRenderer.color, out H, out S, out V);
+                V = 0.38f;
+                _spriteRenderer.color = Color.HSVToRGB(H, S, V);
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Active:
                 _renderer.material.color = activeColor;
+                Color.RGBToHSV(_spriteRenderer.color, out H, out S, out V);
+                V = 1f;
+                _spriteRenderer.color = Color.HSVToRGB(H, S, V);
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Current:
                 _renderer.material.color = currentColor;
+                Color.RGBToHSV(_spriteRenderer.color, out H, out S, out V);
+                V = 1f;
+                _spriteRenderer.color = Color.HSVToRGB(H, S, V);
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Selecting:
                 _renderer.material.color = selectingColor;
+                Color.RGBToHSV(_spriteRenderer.color, out H, out S, out V);
+                V = 1f;
+                _spriteRenderer.color = Color.HSVToRGB(H, S, V);
                 isActiveCircle.SetActive(true);
                 break;
         }
@@ -72,6 +87,7 @@ public abstract class BaseCell : MonoBehaviour
     {
         CellId = name + transform.position.ToString();
         _renderer = GetComponent<Renderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         isActiveCircle.SetActive(false);
         // Сделать этот метод событием вызываемом при каждой загрузке карты
         ChangeCellType();

@@ -3748,6 +3748,22 @@ PrefabInstance:
       propertyPath: Paths.Array.data[0].WayPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1466420272}
+    - target: {fileID: 1924240950571133862, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924240950571133862, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_Color.b
+      value: 0.355
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924240950571133862, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_Color.g
+      value: 0.355
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924240950571133862, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_Color.r
+      value: 0.355
+      objectReference: {fileID: 0}
     - target: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.252
@@ -8163,6 +8179,23 @@ Transform:
   - {fileID: 978546664}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1347658781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1626714979433183822, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+  m_PrefabInstance: {fileID: 1708995092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1347658784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347658781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f25e3ffff1fd894eb7a21a3e978a1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1354694605
 GameObject:
   m_ObjectHideFlags: 0
@@ -107679,6 +107712,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3414058089022552030, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9e0aadbabd3f7ee408a6e3fbe8ca5dfa, type: 3}
     - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Name
       value: NormalCell
@@ -107686,7 +107723,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1626714979433183822, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1347658784}
   m_SourcePrefab: {fileID: 100100000, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
 --- !u!1 &1855155457
 GameObject:
