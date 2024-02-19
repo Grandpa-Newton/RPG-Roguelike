@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3926381607689582060}
   - component: {fileID: 3414058089022552030}
+  - component: {fileID: 6023015998190818454}
   m_Layer: 0
   m_Name: LevelIcon
   m_TagString: Untagged
@@ -190,6 +191,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6023015998190818454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626714979433183822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853a230c5a6357244b4803e7319224e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSprite: {fileID: 21300000, guid: 76b2a558caa45c8408f95218ef64a63f, type: 3}
 --- !u!1 &6987083260137727135
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +285,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -300,9 +314,10 @@ MonoBehaviour:
   inactiveColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   currentColor: {r: 1, g: 0.9622972, b: 0, a: 1}
   selectingColor: {r: 1, g: 0, b: 0.90270615, a: 1}
+  levelIconGameObject: {fileID: 1626714979433183822}
   NeighborsCells: []
   Paths: []
-  _cellType: 1
+  _cellType: 2
 --- !u!58 &7172891866342440106
 CircleCollider2D:
   m_ObjectHideFlags: 0

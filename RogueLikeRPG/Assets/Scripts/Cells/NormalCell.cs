@@ -15,7 +15,7 @@ public class NormalCell : BaseCell
 
     private void Start()
     {
-
+        ConfigureObjectStart();
     }
     /* public override void Interact()
     {

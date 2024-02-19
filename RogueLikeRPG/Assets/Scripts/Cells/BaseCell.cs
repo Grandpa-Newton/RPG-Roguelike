@@ -25,6 +25,8 @@ public abstract class BaseCell : MonoBehaviour
     [SerializeField] private Color currentColor;
     [SerializeField] private Color selectingColor;
 
+    [SerializeField] private GameObject levelIconGameObject;
+
     public List<GameObject> NeighborsCells = new List<GameObject>(); // клетки, на которые можно попасть из этой клетки
 
     public List<Path> Paths = new List<Path>();
@@ -34,6 +36,8 @@ public abstract class BaseCell : MonoBehaviour
     protected SpriteRenderer _spriteRenderer;
 
     protected Renderer _renderer;
+
+    private LevelIcon _levelIcon;
 
     [SerializeField]
     private CellType _cellType = CellType.Inactive;
@@ -54,30 +58,22 @@ public abstract class BaseCell : MonoBehaviour
         {
             case CellType.Inactive:
                 _renderer.material.color = inactiveColor;
-                Color.RGBToHSV(_spriteRenderer.color, out H, out S, out V);
-                V = 0.38f;
-                _spriteRenderer.color = Color.HSVToRGB(H, S, V);
+                _levelIcon.DecreaseSpriteBrightness();
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Active:
                 _renderer.material.color = activeColor;
-                Color.RGBToHSV(_spriteRenderer.color, out H, out S, out V);
-                V = 1f;
-                _spriteRenderer.color = Color.HSVToRGB(H, S, V);
+                _levelIcon.IncreaseSpriteBrightness();
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Current:
                 _renderer.material.color = currentColor;
-                Color.RGBToHSV(_spriteRenderer.color, out H, out S, out V);
-                V = 1f;
-                _spriteRenderer.color = Color.HSVToRGB(H, S, V);
+                _levelIcon.IncreaseSpriteBrightness();
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Selecting:
                 _renderer.material.color = selectingColor;
-                Color.RGBToHSV(_spriteRenderer.color, out H, out S, out V);
-                V = 1f;
-                _spriteRenderer.color = Color.HSVToRGB(H, S, V);
+                _levelIcon.IncreaseSpriteBrightness();
                 isActiveCircle.SetActive(true);
                 break;
         }
@@ -89,10 +85,20 @@ public abstract class BaseCell : MonoBehaviour
         _renderer = GetComponent<Renderer>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         isActiveCircle.SetActive(false);
+        _levelIcon = levelIconGameObject.GetComponent<LevelIcon>();
         // Сделать этот метод событием вызываемом при каждой загрузке карты
-        ChangeCellType();
 
         //IsCellActive();
+    }
+
+    protected void ConfigureObjectStart()
+    {
+        ChangeCellType();
+    }
+
+    public void AfterLevelCompleting()
+    {
+        // _levelIcon.ChangeSprite();
     }
 
 

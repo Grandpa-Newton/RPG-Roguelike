@@ -54,6 +54,8 @@ public class MapLoader : MonoBehaviour
         {
             BaseCell cell = currentCell.GetComponent<BaseCell>();
 
+            // cell.AfterLevelCompleting(); // мб где-то в другом месте? и мб только для basecell?
+
             Player.position = currentCell.transform.position;
 
             CameraMover.Instance.ChangePosition(); // мб событием

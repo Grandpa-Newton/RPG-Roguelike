@@ -10,4 +10,9 @@ public class BonusCell : BaseCell
         // SCENE_TO_LOAD = "FirstLevelDungeon_01";
         ConfigureObject();
     }
+
+    private void Start()
+    {
+        ConfigureObjectStart();
+    }
 }
