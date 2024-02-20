@@ -44,18 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        CinemachineVirtualCamera vcam = FindObjectOfType<CinemachineVirtualCamera>();
-
-        // Установка игрока в качестве цели для слежения и наблюдения
-        if (vcam != null)
-        {
-            vcam.Follow = transform;
-            vcam.LookAt = transform;
-        }
-        else
-        {
-            Debug.LogError("Не найдена виртуальная камера Cinemachine");
-        }
+        
     }
 
     private void Update()
