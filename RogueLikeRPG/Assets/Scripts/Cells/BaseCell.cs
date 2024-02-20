@@ -76,6 +76,12 @@ public abstract class BaseCell : MonoBehaviour
                 _levelIcon.IncreaseSpriteBrightness();
                 isActiveCircle.SetActive(true);
                 break;
+            case CellType.Passed:
+                _renderer.material.color = inactiveColor;
+                _levelIcon.DecreaseSpriteBrightness();
+                _levelIcon.ChangeSprite();
+                isActiveCircle.SetActive(false);
+                break;
         }
     }
 

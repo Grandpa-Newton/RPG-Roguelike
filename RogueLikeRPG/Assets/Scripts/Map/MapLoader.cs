@@ -1,6 +1,7 @@
 using DefaultNamespace;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MapLoader : MonoBehaviour
@@ -9,6 +10,8 @@ public class MapLoader : MonoBehaviour
     public List<GameObject> ActiveCells = new List<GameObject>();
 
     public static string CurrentCellId;
+
+    public static List<string> PassedCellsIds = new List<string>(); // список с пройденными клетками
 
     [SerializeField]
     private Transform _spawnCell;
@@ -53,6 +56,15 @@ public class MapLoader : MonoBehaviour
         if(currentCell != null)
         {
             BaseCell cell = currentCell.GetComponent<BaseCell>();
+
+            PassedCellsIds.Add(cell.CellId);
+
+            foreach(var passedCell in PassedCellsIds)
+            {
+                cells.First(c => c.CellId == passedCell).CellType = CellType.Passed;
+            }
+
+            cell.CellType = CellType.Passed;
 
             // cell.AfterLevelCompleting(); // мб где-то в другом месте? и мб только для basecell?
 
