@@ -356,11 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31d633575c34d84faf9aad0ee71a6c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 100
   currentHealth: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
-  bloodParticle: {fileID: 0}
-  renderer: {fileID: 2163374977534921141}
-  flashTime: 0.2
+  healthBar: {fileID: 0}
 --- !u!95 &2018821293375233273
 Animator:
   serializedVersion: 5
@@ -396,7 +394,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 2469603400693758405}
   inventoryData: {fileID: 11400000, guid: f37c1c10a167764469f0bb4cb1b8b5b2, type: 2}
-  inventorySize: 4
   initialItems:
   - quantity: 4
     item: {fileID: 11400000, guid: 4e3c1e44673a8c74dbcafa6adc0fc4c5, type: 2}

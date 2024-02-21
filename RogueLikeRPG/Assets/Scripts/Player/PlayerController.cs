@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             EnablePlayerComponents();
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     }
 
