@@ -9,8 +9,6 @@ public class Bullet : MonoBehaviour
     [SerializeField] private BulletSO bulletSO;
     private SpriteRenderer _spriteRenderer;
     private RangeWeaponSO _rangeWeaponSo;
-
-    public event Action OnTakeDamage;
     
     private void Awake()
     {

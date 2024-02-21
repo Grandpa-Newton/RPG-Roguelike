@@ -53,7 +53,6 @@ public abstract class BaseCell : MonoBehaviour
     }
     protected void ChangeCellType()
     {
-        float H, S, V;
         switch (CellType)
         {
             case CellType.Inactive:

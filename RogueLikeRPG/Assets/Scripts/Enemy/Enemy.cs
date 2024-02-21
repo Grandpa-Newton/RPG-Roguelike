@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField] private EnemySO enemySO;
     [SerializeField] private LayerMask hittable;
-    private Rigidbody2D rigidbody2D;
-    private Vector2 moveDirection;
+    private Rigidbody2D _rigidbody2D;
+    private Vector2 _moveDirection;
 
     #endregion
 
@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         InitializeStatsFromSO();
         player = FindObjectOfType<PlayerController>();
     }
@@ -40,13 +40,13 @@ public class Enemy : MonoBehaviour, IDamageable
         if (player != null)
         {
             Vector3 direction = (player.transform.position - transform.position).normalized;
-            moveDirection = direction;
+            _moveDirection = direction;
         }
     }
 
     private void FixedUpdate()
     {
-        rigidbody2D.velocity = moveDirection * speed;
+        _rigidbody2D.velocity = _moveDirection * speed;
     }
 
     public void TakeDamage(float damage)
