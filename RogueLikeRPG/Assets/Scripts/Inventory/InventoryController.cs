@@ -52,6 +52,8 @@ namespace Inventory
 
         private void PrepareUI()
         {
+            inventoryUI.Show();
+            inventoryUI.Hide();
             inventoryUI.InitializeInventoryUI(inventoryData.Size);
             this.inventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
             this.inventoryUI.OnSwapItems += HandleSwapItems;

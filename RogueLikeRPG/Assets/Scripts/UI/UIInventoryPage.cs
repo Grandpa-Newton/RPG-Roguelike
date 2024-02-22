@@ -166,7 +166,7 @@ namespace Inventory.UI
             listOfUIItems[itemIndex].Select();
         }
 
-        private List<UIInventoryItem> UpdateInventoryState()
+        private List<UIInventoryItem> UpdateInventoryStateBetweenScenes()
         {
             contentPanel = GameObject.Find("Content").GetComponent<RectTransform>();
 
@@ -186,7 +186,7 @@ namespace Inventory.UI
         public void ResetAllItems()
         {
            
-            foreach (var item in UpdateInventoryState())
+            foreach (var item in UpdateInventoryStateBetweenScenes())
             {
                 item.ResetData();
                 item.Deselect();
