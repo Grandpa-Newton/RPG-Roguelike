@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
@@ -12,7 +13,9 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField] private int corridorCount = 5;
     
     [SerializeField] private int corridorWidth = 3;
-    [SerializeField] private int corridorHeight = 3; 
+    [SerializeField] private int corridorHeight = 3;
+
+    [SerializeField] private NavMeshSurface2d navMeshSurface2d;
     
     [SerializeField] [Range(0.1f, 1f)] private float roomPercent = 0.8f;
     
@@ -78,6 +81,21 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         tilemapVisualizer.PaintFloorTiles(floorPositions);
         
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
+
+        CreateNavMeshForLevel();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            navMeshSurface2d.BuildNavMesh();
+        }
+    }
+
+    private void CreateNavMeshForLevel()
+    {
+        navMeshSurface2d.BuildNavMesh();
     }
     private List<Vector2Int> IncreaseCorridorBrush3by3(List<Vector2Int> corridor)
     {

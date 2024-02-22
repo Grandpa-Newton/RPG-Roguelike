@@ -1,5 +1,6 @@
 using Interfaces;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
@@ -7,6 +8,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField] private EnemySO enemySO;
     [SerializeField] private LayerMask hittable;
+    [SerializeField] private NavMeshAgent navMeshAgent;
     private Rigidbody2D _rigidbody2D;
     private Vector2 _moveDirection;
 
@@ -35,20 +37,6 @@ public class Enemy : MonoBehaviour, IDamageable
         player = FindObjectOfType<PlayerController>();
     }
 
-    private void Update()
-    {
-        if (player != null)
-        {
-            Vector3 direction = (player.transform.position - transform.position).normalized;
-            _moveDirection = direction;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        _rigidbody2D.velocity = _moveDirection * speed;
-    }
-
     public void TakeDamage(float damage)
     {
         health -= damage;
@@ -57,6 +45,7 @@ public class Enemy : MonoBehaviour, IDamageable
             Destroy(gameObject);
         }
     }
+    
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -74,6 +63,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void InitializeStatsFromSO()
     {
         health = enemySO.health;
-        speed = enemySO.speed;
+        navMeshAgent.speed = enemySO.speed;
+        //speed = enemySO.speed;
     }
 }

@@ -5,13 +5,17 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    private GameObject player;
+    private PlayerController player;
     private NavMeshAgent _agent;
+    private Rigidbody2D _rigidbody2D;
+
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
+        player = FindObjectOfType<PlayerController>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -19,12 +23,21 @@ public class EnemyAI : MonoBehaviour
         Debug.Log(_agent.isOnNavMesh);
         if (player == null)
         {
-            player = GameObject.FindWithTag("Player");
+            player = FindObjectOfType<PlayerController>();
         }
 
         if (player != null && _agent.isOnNavMesh)
         {
-            _agent.SetDestination(player.transform.position);
+            /*float distanceBetweenObjects = Vector3.Distance(transform.position, player.transform.position);
+            if (distanceBetweenObjects < 1)
+            {
+                Vector3 direction = (player.transform.position - transform.position).normalized;
+                _rigidbody2D.velocity = direction * _agent.speed;
+            }*/
+            //else
+            //{
+                _agent.SetDestination(player.transform.position);
+            //}
         }
     }
 }

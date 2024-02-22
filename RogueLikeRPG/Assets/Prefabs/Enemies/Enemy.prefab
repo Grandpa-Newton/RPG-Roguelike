@@ -177,7 +177,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8929243361590597935}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cc223a4a919b7d40a6512ee44d1aa61, type: 3}
   m_Name: 
@@ -186,6 +186,7 @@ MonoBehaviour:
   hittable:
     serializedVersion: 2
     m_Bits: 256
+  navMeshAgent: {fileID: 2420243736242984210}
   health: 0
   speed: 0
   knockbackDuration: 2
@@ -235,7 +236,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 0
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -259,4 +260,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4867adf511d0284b8502236bff7473a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1024461959818967223, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
