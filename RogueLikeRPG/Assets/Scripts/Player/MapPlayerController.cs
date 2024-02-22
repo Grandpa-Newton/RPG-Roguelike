@@ -215,6 +215,13 @@ public class MapPlayerController : MonoBehaviour
 
             if (SelectingCell.gameObject.TryGetComponent(out _interactingCell) && _interactingCell.CellType == CellType.Selecting)
             {
+                /* foreach (var cell in _activeCells)
+                {
+                    cell.GetComponent<Selectable>().enabled = false;
+                } */
+
+                OnDeselectCells?.Invoke();
+
                 BaseCell[] cells = UnityEngine.Object.FindObjectsOfType<BaseCell>();
 
                 BaseCell currentCell = FindCurrentCell(cells);
