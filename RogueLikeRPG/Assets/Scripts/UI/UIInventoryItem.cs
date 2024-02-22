@@ -27,7 +27,7 @@ namespace Inventory.UI
             ResetData();
             Deselect();
         }
-
+        
         public void ResetData()
         {
             this.itemImage.gameObject.SetActive(false);

@@ -394,19 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 2469603400693758405}
   inventoryData: {fileID: 11400000, guid: f37c1c10a167764469f0bb4cb1b8b5b2, type: 2}
-  initialItems:
-  - quantity: 4
-    item: {fileID: 11400000, guid: 4e3c1e44673a8c74dbcafa6adc0fc4c5, type: 2}
-    itemState: []
-  - quantity: 3
-    item: {fileID: 11400000, guid: 4e3c1e44673a8c74dbcafa6adc0fc4c5, type: 2}
-    itemState: []
-  - quantity: 0
-    item: {fileID: 0}
-    itemState: []
-  - quantity: 0
-    item: {fileID: 0}
-    itemState: []
+  initialItems: []
   dropClip: {fileID: 8300000, guid: c66a4a1db6099e34ca14a09e09c6ec26, type: 3}
   audioSource: {fileID: 5958824334006302602}
 --- !u!114 &7442927163657405319
@@ -1012,6 +1000,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5408044490506181364, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
+      propertyPath: contentContainer
+      value: 
+      objectReference: {fileID: 3080845822879760619}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1028,6 +1020,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c064196b7aaaa4a9cc745c36a074a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &3080845822879760619 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4866610027142390746, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
+  m_PrefabInstance: {fileID: 7586578533004321585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3430832293039317094 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5103760567405871959, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}

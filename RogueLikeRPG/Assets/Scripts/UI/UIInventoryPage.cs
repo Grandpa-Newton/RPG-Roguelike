@@ -18,8 +18,7 @@ namespace Inventory.UI
         private List<UIInventoryItem> listOfUIItems = new List<UIInventoryItem>();
 
         private int currantlyDraggedItemIndex = -1;
-        
-        
+
 
         public event Action<int> OnDescriptionRequested;
         public event Action<int> OnItemActionRequested;
@@ -28,7 +27,7 @@ namespace Inventory.UI
         public event Action<int, int> OnSwapItems;
 
         [SerializeField] private ItemActionPanel actionPanel;
-        
+
         private void Awake()
         {
             Hide();
@@ -135,19 +134,21 @@ namespace Inventory.UI
         {
             actionPanel.AddButton(actionName, performAction);
         }
+
         public void ShowItemAction(int itemIndex)
         {
             actionPanel.Toggle(true);
             actionPanel.transform.position = listOfUIItems[itemIndex].transform.position;
         }
-        
-        
+
+
         private void DeselectAllItems()
         {
             foreach (UIInventoryItem item in listOfUIItems)
             {
                 item.Deselect();
             }
+
             actionPanel.Toggle(false);
         }
 
@@ -165,13 +166,31 @@ namespace Inventory.UI
             listOfUIItems[itemIndex].Select();
         }
 
+        private List<UIInventoryItem> UpdateInventoryState()
+        {
+            contentPanel = GameObject.Find("Content").GetComponent<RectTransform>();
+
+            listOfUIItems = new List<UIInventoryItem>();
+    
+            foreach (RectTransform child in contentPanel)
+            {
+                UIInventoryItem item = child.GetComponent<UIInventoryItem>();
+                if (item != null)
+                {
+                    listOfUIItems.Add(item);
+                }
+            }
+
+            return listOfUIItems;
+        }
         public void ResetAllItems()
         {
-            foreach (var item in listOfUIItems)
+           
+            foreach (var item in UpdateInventoryState())
             {
                 item.ResetData();
                 item.Deselect();
-            }
+            } 
         }
     }
 }
