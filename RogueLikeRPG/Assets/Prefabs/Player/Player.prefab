@@ -920,6 +920,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4866610027142390746, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1050
+      objectReference: {fileID: 0}
     - target: {fileID: 5103760567405871959, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
