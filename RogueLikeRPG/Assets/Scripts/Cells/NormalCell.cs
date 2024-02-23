@@ -7,7 +7,7 @@ public class NormalCell : BaseCell
 {
 
 
-    private void Awake()
+    /* private void Awake()
     {
         // SCENE_TO_LOAD = "GenerationLevel";
         ConfigureObject();
@@ -16,7 +16,7 @@ public class NormalCell : BaseCell
     private void Start()
     {
         ConfigureObjectStart();
-    }
+    } */
     /* public override void Interact()
     {
         Debug.Log("YES! VICTORY!");

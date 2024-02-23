@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b45d4cc8d0ba8747ae30ae0b05547cd, type: 3}
-  m_Name: Cell_Normal
+  m_Name: Cell_Normal_Hard
   m_EditorClassIdentifier: 
-  SceneToLoad: GenerationLevel
+  SceneToLoad: EasyLevelGenerateScene
+  CellColor: {r: 1, g: 0, b: 0, a: 1}

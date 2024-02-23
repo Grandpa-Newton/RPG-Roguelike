@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b45d4cc8d0ba8747ae30ae0b05547cd, type: 3}
-  m_Name: Cell_Bonus
+  m_Name: Cell_Treasury
   m_EditorClassIdentifier: 
-  SceneToLoad: TestScene
-  CellColor: {r: 1, g: 0.95759493, b: 0, a: 1}
+  SceneToLoad: 
+  CellColor: {r: 0, g: 1, b: 0.94729495, a: 1}

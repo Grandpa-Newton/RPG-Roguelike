@@ -20,10 +20,10 @@ public abstract class BaseCell : MonoBehaviour
     [HideInInspector]
     public string CellId; // ÛÌËÍ‡Î¸Ì˚È Ë‰ÂÌÚËÙËÍ‡ÚÓ Ó·˙ÂÍÚ‡
 
-    [SerializeField] private Color activeColor;
+    /*[SerializeField] private Color activeColor;
     [SerializeField] private Color inactiveColor;
     [SerializeField] private Color currentColor;
-    [SerializeField] private Color selectingColor;
+    [SerializeField] private Color selectingColor;*/
 
     [SerializeField] private GameObject levelIconGameObject;
 
@@ -56,27 +56,32 @@ public abstract class BaseCell : MonoBehaviour
         switch (CellType)
         {
             case CellType.Inactive:
-                _renderer.material.color = inactiveColor;
+                //_renderer.material.color = inactiveColor;
+                DecreaseSpriteBrightness();
                 _levelIcon.DecreaseSpriteBrightness();
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Active:
-                _renderer.material.color = activeColor;
+                //_renderer.material.color = activeColor;
+                IncreaseSpriteBrightness();
                 _levelIcon.IncreaseSpriteBrightness();
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Current:
-                _renderer.material.color = currentColor;
+                // _renderer.material.color = currentColor;
+                IncreaseSpriteBrightness();
                 _levelIcon.IncreaseSpriteBrightness();
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Selecting:
-                _renderer.material.color = selectingColor;
+                //_renderer.material.color = selectingColor;
+                IncreaseSpriteBrightness();
                 _levelIcon.IncreaseSpriteBrightness();
                 isActiveCircle.SetActive(true);
                 break;
             case CellType.Passed:
-                _renderer.material.color = inactiveColor;
+                //_renderer.material.color = inactiveColor;
+                DecreaseSpriteBrightness();
                 _levelIcon.DecreaseSpriteBrightness();
                 _levelIcon.ChangeSprite();
                 isActiveCircle.SetActive(false);
@@ -99,11 +104,39 @@ public abstract class BaseCell : MonoBehaviour
     protected void ConfigureObjectStart()
     {
         ChangeCellType();
+        _renderer.material.color = CellData.CellColor;
     }
 
     public void AfterLevelCompleting()
     {
         // _levelIcon.ChangeSprite();
+    }
+
+    protected void Awake()
+    {
+        ConfigureObject();
+    }
+
+    protected void Start()
+    {
+        ConfigureObjectStart();
+    }
+
+    // œŒ¬“Œ–≈Õ»≈  Œƒ¿, ¬€Õ≈—“» ¬ Œ“ƒ≈À‹Õ€…  À¿—— » Ã¡ ¬€«€¬¿“‹ —“¿“»◊≈— »
+    public void DecreaseSpriteBrightness()
+    {
+        float H, S, V;
+        Color.RGBToHSV(_spriteRenderer.color, out H, out S, out V);
+        V = 0.38f;
+        _spriteRenderer.color = Color.HSVToRGB(H, S, V);
+    }
+
+    public void IncreaseSpriteBrightness()
+    {
+        float H, S, V;
+        Color.RGBToHSV(_spriteRenderer.color, out H, out S, out V);
+        V = 1f;
+        _spriteRenderer.color = Color.HSVToRGB(H, S, V);
     }
 
 

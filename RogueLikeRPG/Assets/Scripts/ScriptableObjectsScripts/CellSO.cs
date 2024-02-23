@@ -6,5 +6,7 @@ using UnityEngine;
 public class CellSO : ScriptableObject
 {
     public string SceneToLoad;
+
+    public Color CellColor;
     // Тут потом будут спрайты и т.п., связанное с визуалом
 }

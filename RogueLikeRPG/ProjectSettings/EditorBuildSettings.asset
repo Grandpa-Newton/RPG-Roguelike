@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScene.unity
     guid: 7ee3d7c7164f67e4095fc4c6ce16cb00
   - enabled: 1
-    path: Assets/Scenes/GenerationLevel.unity
+    path: Assets/Scenes/EasyLevelGenerateScene.unity
     guid: da7e6fd998c90254a83bdb51ef166086
   - enabled: 1
     path: Assets/Scenes/FirstLevelMap_01.unity
