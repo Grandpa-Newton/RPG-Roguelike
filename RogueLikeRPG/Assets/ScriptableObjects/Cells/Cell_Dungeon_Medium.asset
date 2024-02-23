@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b45d4cc8d0ba8747ae30ae0b05547cd, type: 3}
-  m_Name: Cell_Merchant
+  m_Name: Cell_Dungeon_Medium
   m_EditorClassIdentifier: 
   SceneToLoad: EasyLevelGenerateScene
-  CellColor: {r: 0, g: 0.040804863, b: 1, a: 1}
+  CellColor: {r: 0.8396226, g: 0.48976362, b: 0.099012084, a: 1}

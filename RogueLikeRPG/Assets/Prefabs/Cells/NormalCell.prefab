@@ -310,10 +310,6 @@ MonoBehaviour:
   isActiveCircle: {fileID: 516025205840297952}
   CellData: {fileID: 11400000, guid: 566470084d824964b9088a3729423e40, type: 2}
   CellId: 
-  activeColor: {r: 0.6434172, g: 1, b: 0.514151, a: 1}
-  inactiveColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
-  currentColor: {r: 1, g: 0.9622972, b: 0, a: 1}
-  selectingColor: {r: 1, g: 0, b: 0.90270615, a: 1}
   levelIconGameObject: {fileID: 1626714979433183822}
   NeighborsCells: []
   Paths: []
