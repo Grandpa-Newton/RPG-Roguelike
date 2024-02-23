@@ -83,7 +83,7 @@ public abstract class BaseCell : MonoBehaviour
                 //_renderer.material.color = inactiveColor;
                 DecreaseSpriteBrightness();
                 _levelIcon.DecreaseSpriteBrightness();
-                _levelIcon.ChangeSprite();
+                _levelIcon.ChangeSprite(CellData.NextSprite);
                 isActiveCircle.SetActive(false);
                 break;
         }
@@ -103,13 +103,19 @@ public abstract class BaseCell : MonoBehaviour
 
     protected void ConfigureObjectStart()
     {
-        ChangeCellType();
         _renderer.material.color = CellData.CellColor;
+        ChangeCellType();
     }
 
     public void AfterLevelCompleting()
     {
         // _levelIcon.ChangeSprite();
+    }
+
+    // œŒÃ≈Õﬂ“‹
+    protected void OnEnable()
+    {
+        _levelIcon.ChangeSprite(CellData.OriginalSprite);
     }
 
     protected void Awake()

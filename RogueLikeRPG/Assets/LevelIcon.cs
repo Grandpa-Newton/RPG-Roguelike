@@ -6,7 +6,16 @@ public class LevelIcon : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
 
-    [SerializeField] private Sprite nextSprite;
+    /* private Sprite _currentSprite;
+
+    private Sprite _nextSprite; */
+
+    public void ChangeSprite(Sprite sprite)
+    {
+        _spriteRenderer.sprite = sprite;
+    }
+
+    // [SerializeField] private Sprite nextSprite;
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -27,8 +36,8 @@ public class LevelIcon : MonoBehaviour
         _spriteRenderer.color = Color.HSVToRGB(H, S, V);
     }
 
-    public void ChangeSprite()
+    /* public void ChangeSprite()
     {
         _spriteRenderer.sprite = nextSprite;
-    }
+    } */
 }
