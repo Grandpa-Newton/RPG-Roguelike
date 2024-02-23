@@ -7,7 +7,6 @@ public class EnemyAI : MonoBehaviour
 {
     private PlayerController player;
     private NavMeshAgent _agent;
-    private Rigidbody2D _rigidbody2D;
 
     void Start()
     {
@@ -15,12 +14,10 @@ public class EnemyAI : MonoBehaviour
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         player = FindObjectOfType<PlayerController>();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
-    {
-        Debug.Log(_agent.isOnNavMesh);
+    { 
         if (player == null)
         {
             player = FindObjectOfType<PlayerController>();

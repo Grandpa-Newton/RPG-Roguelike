@@ -53,7 +53,6 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             if (other.gameObject.TryGetComponent(out Health healthComponent))
             {
-                Debug.Log("I hit player: " + gameObject.name);
                 StartCoroutine(player.Knockback(knockbackDuration, knockbackPower, transform));
                 healthComponent.Reduce(enemySO.damage);
             }

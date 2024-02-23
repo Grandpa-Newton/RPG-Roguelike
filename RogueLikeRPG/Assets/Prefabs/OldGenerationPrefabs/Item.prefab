@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 914489989085097394}
   - component: {fileID: 2737955674955375568}
   - component: {fileID: 306860043807385631}
+  - component: {fileID: 1883021852188862366}
   m_Layer: 11
   m_Name: Item
   m_TagString: Untagged
@@ -114,17 +115,31 @@ Rigidbody2D:
   m_LinearDrag: 1
   m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 35ff7a6ba296f3d47aba91ba2c00605d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1883021852188862366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101323343152536724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a0fa9cd849cbc42b4186277f4e0d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: 0.1
+  deceleration: 0.1
 --- !u!1 &1413995697487611556
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +150,6 @@ GameObject:
   m_Component:
   - component: {fileID: 210770895667976429}
   - component: {fileID: 2457601557809499737}
-  - component: {fileID: 4611133136462893799}
   m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
@@ -210,19 +224,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4611133136462893799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413995697487611556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b19189bd4304f2469763e2ec36e9e3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
