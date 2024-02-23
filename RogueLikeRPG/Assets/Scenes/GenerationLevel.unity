@@ -1540,7 +1540,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3584
   m_UseGeometry: 0
   m_OverrideByGrid: 0
   m_UseMeshPrefab: {fileID: 0}
@@ -1552,7 +1552,7 @@ MonoBehaviour:
   m_OverrideTileSize: 1
   m_TileSize: 16
   m_OverrideVoxelSize: 1
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.1
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
   m_NavMeshData: {fileID: 0}

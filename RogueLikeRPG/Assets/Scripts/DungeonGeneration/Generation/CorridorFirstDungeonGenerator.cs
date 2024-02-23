@@ -118,7 +118,7 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         List<Vector2Int> newCorridor = new List<Vector2Int>();
         for (int i = 1; i < corridor.Count; i++)
         {
-            for (int x = -corridorWidth/2; x <= corridorWidth/2; x++)
+            for (int x = -corridorWidth / 2; x <= corridorWidth/2; x++)
             {
                 for (int y = -corridorHeight/2; y <= corridorHeight/2; y++)
                 {
