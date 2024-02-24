@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e45e062a3fe28b4d9515e98ae3f2b04, type: 3}
   m_Name: RangeWeapon_Uzi
   m_EditorClassIdentifier: 
-  fireRate: 0.15
+  fireRate: 0.1
   damage: 5
   bullet: {fileID: 9027614786788320636, guid: e07bc0491c57868499d299ac5e1cfdb5, type: 3}
   weaponSprite: {fileID: 535003058, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}

@@ -959,7 +959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53adc37ea4d0b5045952ac8870f0cb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeWeaponSO: {fileID: 11400000, guid: 4b632186e70810641bc02c504f3c3dbd, type: 2}
+  rangeWeaponSO: {fileID: 11400000, guid: 95c515f4fd7d41b4dace8849a5063af1, type: 2}
   next_weapon: {fileID: 11400000, guid: 4b632186e70810641bc02c504f3c3dbd, type: 2}
 --- !u!1001 &7586578533004321585
 PrefabInstance:
