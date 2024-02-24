@@ -39,6 +39,8 @@ public abstract class BaseCell : MonoBehaviour
 
     private LevelIcon _levelIcon;
 
+    private bool _isPassed = false;
+
     [SerializeField]
     private CellType _cellType = CellType.Inactive;
     public CellType CellType
@@ -81,6 +83,7 @@ public abstract class BaseCell : MonoBehaviour
                 break;
             case CellType.Passed:
                 //_renderer.material.color = inactiveColor;
+                _isPassed = true;
                 DecreaseSpriteBrightness();
                 _levelIcon.DecreaseSpriteBrightness();
                 _levelIcon.ChangeSprite(CellData.NextSprite);
@@ -105,6 +108,15 @@ public abstract class BaseCell : MonoBehaviour
     {
         _renderer.material.color = CellData.CellColor;
         ChangeCellType();
+        if (_isPassed)
+        {
+            _levelIcon.ChangeSprite(CellData.NextSprite);
+        }
+        else
+        {
+            _levelIcon.ChangeSprite(CellData.OriginalSprite);
+        }
+
     }
 
     public void AfterLevelCompleting()
@@ -113,10 +125,10 @@ public abstract class BaseCell : MonoBehaviour
     }
 
     // œŒÃ≈Õﬂ“‹
-    protected void OnEnable()
+    /* protected void OnEnable()
     {
         _levelIcon.ChangeSprite(CellData.OriginalSprite);
-    }
+    } */
 
     protected void Awake()
     {
