@@ -3,34 +3,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeWeapon : MonoBehaviour
+public class RangeWeapon : MonoBehaviour, IWeapon
 {
-    [SerializeField] private RangeWeaponSO rangeWeaponSO;
-    private SpriteRenderer spriteRenderer;
-    [SerializeField] private RangeWeaponSO next_weapon;
-
-    private void Awake()
+    private RangeWeaponSO _rangeWeaponData;
+    public WeaponSO WeaponData => _rangeWeaponData;
+    
+    private float _timeToNextShot = 0;
+    private PlayerInputActions _playerInputActions;
+    [SerializeField] private Transform shootPoint;
+    [SerializeField] private Transform bulletsContainer;
+    private Transform _aimTransform;
+    
+    public RangeWeapon(RangeWeaponSO data)
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = rangeWeaponSO.weaponSprite;
+        _rangeWeaponData = data;
     }
 
-    private void Update()
+    
+    
+    public void DealDamage()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        _timeToNextShot += Time.deltaTime;
+        if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextShot > _rangeWeaponData.attackRate)
         {
-            //rangeWeaponSO.damage = next_weapon.damage;
-            //rangeWeaponSO.fireRate = next_weapon.fireRate;
-            //rangeWeaponSO.weaponSprite = next_weapon.weaponSprite;
-            Debug.Log(rangeWeaponSO.damage);
-            Debug.Log(rangeWeaponSO.fireRate);
-            Debug.Log(rangeWeaponSO.weaponSprite);
-            Debug.Log(rangeWeaponSO.bullet);
-        }
-    }
 
-    public RangeWeaponSO GetRangeWeaponSO()
-    {
-        return rangeWeaponSO;
+            Bullet bullet = Instantiate(_rangeWeaponData.bullet, shootPoint.position, shootPoint.rotation);
+            if (bullet)
+            {
+                bullet.transform.SetParent(bulletsContainer, true);
+                _bulletSo = bullet.GetComponent<Bullet>().GetBulletSO();
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                rb.AddForce(_aimTransform.right * _bulletSo.speed, ForceMode2D.Impulse);
+                
+                bullet.SetRangeWeaponSO(_rangeWeaponData);
+            }
+            _timeToNextShot = 0f;
+        }
     }
 }

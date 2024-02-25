@@ -61,7 +61,7 @@ public class PlayerAimWeapon : MonoBehaviour
     private void HandleShooting()
     {
         _timeToNextShot += Time.deltaTime;
-        if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextShot > _rangeWeaponSo.fireRate)
+        if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextShot > _rangeWeaponSo.attackRate)
         {
             _aimAnimator.SetTrigger("Shoot");
 
