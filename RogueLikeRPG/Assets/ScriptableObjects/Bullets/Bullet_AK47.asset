@@ -16,3 +16,4 @@ MonoBehaviour:
   distance: 15
   departingBulletSprite: {fileID: 21300048, guid: 6b8cae393d78c1d42b53e8dbf69a1d6d, type: 3}
   trailRenderer: {fileID: 8092561460582941276, guid: 59134b84d2275134cbd3af18e2ec5cda, type: 3}
+  bulletTrailParticle: {fileID: 6449233060191240383, guid: 0da22f2b31cf799469e97f1970f43ffa, type: 3}

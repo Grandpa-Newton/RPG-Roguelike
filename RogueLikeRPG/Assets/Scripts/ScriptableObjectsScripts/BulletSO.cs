@@ -9,4 +9,5 @@ public class BulletSO : ScriptableObject
     public float distance;
     public Sprite departingBulletSprite;
     public TrailRenderer trailRenderer;
+    public ParticleSystem bulletTrailParticle;
 }
