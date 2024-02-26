@@ -78,8 +78,6 @@ public class MapPlayerController : MonoBehaviour
             Debug.LogError("There is no more than one Player instance");
         }
 
-        Debug.Log("SOZDALSYA", this.gameObject);
-
         Instance = this;
 
         _playerInputActions = new PlayerInputActions();
@@ -211,8 +209,7 @@ public class MapPlayerController : MonoBehaviour
     {
         if (!_isMoving && SelectingCell != null)
         {
-            Debug.Log("In Input");
-
+            
             if (SelectingCell.gameObject.TryGetComponent(out _interactingCell) && _interactingCell.CellType == CellType.Selecting)
             {
                 /* foreach (var cell in _activeCells)

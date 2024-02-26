@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Bullet_", menuName = "BulletSO")]
 public class BulletSO : ScriptableObject
 {
-    public float speed;
     public float lifeTime;
     public float distance;
     public Sprite departingBulletSprite;
+    public TrailRenderer trailRenderer;
 }

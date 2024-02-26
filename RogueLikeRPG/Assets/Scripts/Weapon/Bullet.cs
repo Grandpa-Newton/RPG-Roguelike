@@ -6,15 +6,40 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private BulletSO bulletSO;
+    private BulletSO _bulletSo;
     private SpriteRenderer _spriteRenderer;
+    private TrailRenderer _trailRenderer;
     private RangeWeaponSO _rangeWeaponSo;
+
+    private RangeWeapon _rangeWeapon;
     
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.sprite = bulletSO.departingBulletSprite;
+        _trailRenderer = gameObject.GetComponent<TrailRenderer>(); 
+        
+        
+        //_rangeWeapon.OnProportiesSet += RangeWeaponOnProportiesSet;
     }
+
+    private void RangeWeaponOnProportiesSet()
+    {
+        _spriteRenderer.sprite = _bulletSo.departingBulletSprite;
+        _trailRenderer = _bulletSo.trailRenderer;
+        //SetTrailRenderer(_bulletSo.trailRenderer);
+    }
+
+    /*private void SetTrailRenderer(TrailRenderer trailSettings)
+    {
+        _trailRenderer = gameObject.AddComponent<TrailRenderer>();
+        // _trailRenderer = trailSettings;
+        _trailRenderer.time = trailSettings.time;
+        _trailRenderer.startWidth = trailSettings.startWidth;
+        _trailRenderer.endWidth = trailSettings.endWidth;
+        _trailRenderer.colorGradient = trailSettings.colorGradient;
+        _trailRenderer.sortingOrder = trailSettings.sortingOrder;
+        _trailRenderer.materials[0] = trailSettings.materials[0];
+    }*/
 
     private void Start()
     {
@@ -23,19 +48,30 @@ public class Bullet : MonoBehaviour
 
     IEnumerator DestroyBullet()
     {
-        yield return new WaitForSeconds(bulletSO.lifeTime);
+        yield return new WaitForSeconds(_bulletSo.lifeTime);
         if (gameObject != null)
             Destroy(gameObject);
     }
 
     public BulletSO GetBulletSO()
     {
-        return bulletSO;
+        return _bulletSo;
+    }
+    public void SetBulletSO(BulletSO bulletSO)
+    {
+        this._bulletSo = bulletSO;
+        _spriteRenderer.sprite = bulletSO.departingBulletSprite;
+        _trailRenderer = bulletSO.trailRenderer;
     }
 
     public void SetRangeWeaponSO(RangeWeaponSO rangeWeaponSO)
     {
-        this._rangeWeaponSo = rangeWeaponSO;
+        _rangeWeaponSo = rangeWeaponSO;
+    }
+    public void SetRangeWeapon(RangeWeapon rangeWeapon)
+    {
+        _rangeWeapon = rangeWeapon;
+        _rangeWeapon.OnProportiesSet += RangeWeaponOnProportiesSet;
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -51,4 +87,9 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnDestroy()
+    {
+        _rangeWeapon.OnProportiesSet -= RangeWeaponOnProportiesSet;
+    }
+
 }

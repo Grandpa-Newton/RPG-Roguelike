@@ -2,38 +2,22 @@ using UnityEngine;
 
 public class PlayerAimWeapon : MonoBehaviour
 {
-    
     private PlayerInputActions _playerInputActions;
-
-    [SerializeField] private RangeWeapon rangeWeapon;
-    [SerializeField] private Transform shootPoint;
-    [SerializeField] private Transform bulletsContainer;
-    
     private Transform _aimTransform;
-    private Animator _aimAnimator;
     
     //Scriptable Objects
     private BulletSO _bulletSo;
     private RangeWeaponSO _rangeWeaponSo;
-
-    private float _timeToNextShot = 0;
     
     private void Awake()
     {
-        _rangeWeaponSo = rangeWeapon.GetRangeWeaponSO();
         _aimTransform = transform.Find("Aim");
-        _aimAnimator = _aimTransform.GetComponent<Animator>();
-
-        _playerInputActions = new PlayerInputActions();
-        _playerInputActions.Player.Enable();
-        
-        
+        _playerInputActions = InputManager.Instance.PlayerInputActions;
     }
 
     private void Update()
     {
         HandleAiming();
-        HandleShooting();
     }
 
     private void HandleAiming()
@@ -56,27 +40,6 @@ public class PlayerAimWeapon : MonoBehaviour
         }
 
         _aimTransform.localScale = localScale;
-    }
-    
-    private void HandleShooting()
-    {
-        _timeToNextShot += Time.deltaTime;
-        if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextShot > _rangeWeaponSo.attackRate)
-        {
-            _aimAnimator.SetTrigger("Shoot");
-
-            Bullet bullet = Instantiate(_rangeWeaponSo.bullet, shootPoint.position, shootPoint.rotation);
-            if (bullet)
-            {
-                bullet.transform.SetParent(bulletsContainer, true);
-                _bulletSo = bullet.GetComponent<Bullet>().GetBulletSO();
-                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-                rb.AddForce(_aimTransform.right * _bulletSo.speed, ForceMode2D.Impulse);
-                
-                bullet.SetRangeWeaponSO(_rangeWeaponSo);
-            }
-            _timeToNextShot = 0f;
-        }
     }
 
     private static Vector3 GetMouseWorldPosition(PlayerInputActions playerInputActions)
