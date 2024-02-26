@@ -11,15 +11,12 @@ using UnityEngine.UI;
 public class MapPlayerController : MonoBehaviour
 {
     public static MapPlayerController Instance;
-    /* public event Action OnActiveCell;
-    public event Action OnCurrentCell; // когда пользователь встал на новую клетку (может быть, поменять название) */
 
     public event Action OnInteractCell;
 
     public event Action OnDeselectCells;
 
     [SerializeField] private float _speed;
-    [SerializeField] LayerMask _layerMask;
     [SerializeField] private GameObject _camera;
     [SerializeField] private Transform _followObject;
 
@@ -32,11 +29,20 @@ public class MapPlayerController : MonoBehaviour
     private CinemachineVirtualCamera _virtualCamera;
 
     private bool _isMoving = false;
+
     private Vector2 _moveDirection;
 
     private bool _isSelecting = false; // производит ли сейчас выбор клетки пользователь
 
     private GameObject _selectingCell;
+
+    private BaseCell.Path _currentPath;
+
+    private int _wayPointIndex = -1;
+
+    private List<GameObject> _activeCells = new List<GameObject>();
+
+    private Transform _wayPointTransform;
 
     [HideInInspector]
     public GameObject SelectingCell
@@ -51,25 +57,15 @@ public class MapPlayerController : MonoBehaviour
             if (value != null)
             {
                 // мб сюда перенести isselecting = true??
-                //_virtualCamera.Follow = SelectingCell.transform;
-                _virtualCamera.Follow = CameraMover.Instance.transform; // 
+                _virtualCamera.Follow = CameraMover.Instance.transform;
                 CameraMover.Instance.ClickedCellTransform = _selectingCell.transform;
             }
             else
             {
-                CameraMover.Instance.ClickedCellTransform = _followObject;
-                // _virtualCamera.Follow = _followObject.transform;
+                CameraMover.Instance.ClickedCellTransform = _followObject; // если Selecting Cell обращается в ноль, то камера фокусируется на followObject (игрок) 
             }
         }
     }
-
-    private BaseCell.Path _currentPath;
-
-    private int _wayPointIndex = -1;
-
-    private List<GameObject> _activeCells = new List<GameObject>();
-
-    private Transform _wayPointTransform;
 
     private void Awake()
     {
@@ -77,8 +73,6 @@ public class MapPlayerController : MonoBehaviour
         {
             Debug.LogError("There is no more than one Player instance");
         }
-
-        Debug.Log("SOZDALSYA", this.gameObject);
 
         Instance = this;
 
@@ -90,13 +84,10 @@ public class MapPlayerController : MonoBehaviour
     {
         _playerInputActions.Map.Enable();
 
-        // _playerInputActions.Map.Interact.performed += Interact_performed;
-
         _playerInputActions.Map.GetCells.performed += GetCells_performed;
         _playerInputActions.Map.ConfirmCell.performed += ConfirmCell_performed;
-        _playerInputActions.Map.ConfirmCell.Disable();
-        
-        
+        _playerInputActions.Map.ConfirmCell.Disable(); // добавляется метод к подтверждению клетки, но потом выключается, так как при загрузке это нельзя использовать
+
         _virtualCamera = _camera.GetComponent<CinemachineVirtualCamera>();
 
     }
@@ -106,16 +97,13 @@ public class MapPlayerController : MonoBehaviour
         if (!_isSelecting)
         {
             _isSelecting = true;
-            // _playerInputActions.Map.Interact.performed -= Interact_performed;
             GetCurrentCells();
         }
         else
         {
-            // либо ничего (выход с менюшки через другую кнопку), либо тут выход с  меню: акцент на игрока, возвращение interact и т.п.
-            // _virtualCamera.Follow = _followObject;
+            // если уже производится выбор, то по этой же кнопке происходит выход с выбора клеток
             SelectingCell = null;
             OnDeselectCells?.Invoke();
-            // _playerInputActions.Map.ConfirmCell.performed -= ConfirmCell_performed;
             _playerInputActions.Map.ConfirmCell.Disable();
             _isSelecting = false;
         }
@@ -123,7 +111,7 @@ public class MapPlayerController : MonoBehaviour
 
     private void GetCurrentCells()
     {
-        _activeCells = MapLoader.Instance.ActiveCells; // гениальная разработка, но нужно менять! .OrderBy(c => c.transform.localPosition.x).ToList()
+        _activeCells = MapLoader.Instance.ActiveCells;
         foreach (var cell in _activeCells)
         {
             cell.GetComponent<Selectable>().enabled = true;
@@ -132,8 +120,6 @@ public class MapPlayerController : MonoBehaviour
         {
             SelectingCell = _activeCells[0];
             SelectingCell.GetComponent<Selectable>().Select();
-            // _selectingCell.GetComponent<BaseCell>().CellType = CellType.Selecting;
-            // _playerInputActions.Map.ConfirmCell.performed += ConfirmCell_performed;
             _playerInputActions.Map.ConfirmCell.Enable();
         }
         else
@@ -156,21 +142,9 @@ public class MapPlayerController : MonoBehaviour
     {
         if (_isMoving)
         {
-            // _wayPointTransform = _currentPath.WayPoints[_wayPointIndex].transform;
-            /*if ((Vector2)transform.position != (Vector2)_clickedCellTransform.position)
-            {
-                _moveDirection = Vector2.MoveTowards(transform.position, (Vector2)_clickedCellTransform.position, _speed * Time.deltaTime);
-                transform.position = _moveDirection;
-            }
-            else
-            {
-                _clickedCellTransform.GetComponent<StartNextLevel>().InCurrentCell();
-                _interactingCell.CellType = CellType.Current;
-                // _interactingCell.Interact();
-                _isMoving = false;
-            }*/
-
-            if((Vector2)transform.position != (Vector2)_wayPointTransform.position)
+            // если игрок двигается, то он идёт к ближайшей точке пути.
+            // если он до неё дошёл, то меняется точка пути (или заканчивается маршрут)
+            if ((Vector2)transform.position != (Vector2)_wayPointTransform.position)
             {
                 _moveDirection = Vector2.MoveTowards(transform.position, (Vector2)_wayPointTransform.position, _speed * Time.deltaTime);
                 transform.position = _moveDirection;
@@ -178,30 +152,28 @@ public class MapPlayerController : MonoBehaviour
             else
             {
                 ChangeWayPoint();
-                
             }
         }
     }
 
     private void ChangeWayPoint()
     {
-        if (_wayPointIndex + 1 == _currentPath.WayPoints.Count)
+        _wayPointIndex++;
+        if (_wayPointIndex == _currentPath.WayPoints.Count)
         {
             _wayPointTransform = _clickedCellTransform;
             _wayPointIndex++;
         }
-        else if(_wayPointIndex + 1 > _currentPath.WayPoints.Count)
+        else if (_wayPointIndex > _currentPath.WayPoints.Count)
         {
             _clickedCellTransform.GetComponent<StartNextLevel>().InCurrentCell();
             _interactingCell.CellType = CellType.Current;
-            // _interactingCell.Interact();
             _isMoving = false;
             _currentPath = null;
             _wayPointIndex = -1;
         }
         else
         {
-            _wayPointIndex++;
             _wayPointTransform = _currentPath.WayPoints[_wayPointIndex].transform;
         }
 
@@ -209,79 +181,66 @@ public class MapPlayerController : MonoBehaviour
 
     private void SelectCell()
     {
-        if (!_isMoving && SelectingCell != null)
+        if (!_isMoving && SelectingCell != null &&
+            SelectingCell.gameObject.TryGetComponent(out _interactingCell) && 
+            _interactingCell.CellType == CellType.Selecting)
         {
-            Debug.Log("In Input");
+            OnDeselectCells?.Invoke();
 
-            if (SelectingCell.gameObject.TryGetComponent(out _interactingCell) && _interactingCell.CellType == CellType.Selecting)
+            BaseCell[] cells = UnityEngine.Object.FindObjectsOfType<BaseCell>();
+
+            BaseCell currentCell = cells.Where(c => c.CellId == MapLoader.CurrentCellId).FirstOrDefault(); // получение текущей клетки
+
+            if (currentCell != null)
             {
-                /* foreach (var cell in _activeCells)
+                foreach (GameObject neighbor in currentCell.NeighborsCells)
                 {
-                    cell.GetComponent<Selectable>().enabled = false;
-                } */
-
-                OnDeselectCells?.Invoke();
-
-                BaseCell[] cells = UnityEngine.Object.FindObjectsOfType<BaseCell>();
-
-                BaseCell currentCell = FindCurrentCell(cells);
-
-                if (currentCell != null)
-                {
-                    foreach (GameObject neighbor in currentCell.NeighborsCells)
-                    {
-                        neighbor.GetComponent<BaseCell>().CellType = CellType.Inactive;
-                    }
-
-                    currentCell.CellType = CellType.Inactive;
-
-                    GetCurrentPath(currentCell);
-
-                    _wayPointIndex = 0;
-
-                    _wayPointTransform = _currentPath.WayPoints[_wayPointIndex].transform;
-
-
-                    MapLoader.CurrentCellId = _interactingCell.CellId;
-
-                    // ЦИКЛ НИЖЕ - ДЛЯ ТЕСТА!
-
-                    /*foreach (GameObject neighbor in interactingCellTransform.GetComponent<NormalCell>().NeighborsCells)
-                    {
-                        neighbor.GetComponent<NormalCell>().IsActive = true;
-                    }*/
-
-                    _clickedCellTransform = SelectingCell.transform;
-
-
-
-                    _playerInputActions.Map.Interact.performed += Interact_performed;
-
-                    _playerInputActions.Map.ConfirmCell.Disable();
-
-                    _playerInputActions.Map.GetCells.Disable();
-
-                    _isMoving = true;
-
-                    _interactingCell.CellType = CellType.Active;
-
-                    this.SelectingCell = null;
+                    neighbor.GetComponent<BaseCell>().CellType = CellType.Inactive;
                 }
-                else
-                {
-                    Debug.LogError("BaseCell Component is not attached to object");
-                }
+
+                currentCell.CellType = CellType.Passed;
+
+                // GetCurrentPath(currentCell);
+
+                // получение текущего пути: по которому пойдёт игрок
+
+                _currentPath = _interactingCell.Paths.Where(p => p.WayPoints[0].gameObject == currentCell.gameObject).FirstOrDefault();
+
+                _wayPointIndex = 0;
+
+                _wayPointTransform = _currentPath.WayPoints[_wayPointIndex].transform;
+
+                MapLoader.CurrentCellId = _interactingCell.CellId;
+
+                _clickedCellTransform = SelectingCell.transform;
+
+                _playerInputActions.Map.Interact.performed += Interact_performed;
+
+                _playerInputActions.Map.ConfirmCell.Disable();
+
+                _playerInputActions.Map.GetCells.Disable();
+
+                _interactingCell.CellType = CellType.Active;
+
+                this.SelectingCell = null;
+
+                _isMoving = true;
             }
             else
             {
-                Debug.Log("The cell is not active");
+                Debug.LogError("BaseCell Component is not attached to object");
             }
         }
+        else
+        {
+            Debug.Log("The cell is not active");
+        }
+
     }
 
-    private void GetCurrentPath(BaseCell currentCell)
+    /* private void GetCurrentPath(BaseCell currentCell)
     {
-        foreach(var path in _interactingCell.Paths)
+        foreach (var path in _interactingCell.Paths)
         {
             if (path.WayPoints[0].gameObject == currentCell.gameObject)
             {
@@ -290,9 +249,9 @@ public class MapPlayerController : MonoBehaviour
                 return;
             }
         }
-    }
+    } */
 
-    private BaseCell FindCurrentCell(BaseCell[] cells)
+    /* private BaseCell FindCurrentCell(BaseCell[] cells)
     {
         foreach (var cell in cells)
         {
@@ -303,5 +262,5 @@ public class MapPlayerController : MonoBehaviour
         }
 
         return null;
-    }
+    } */
 }

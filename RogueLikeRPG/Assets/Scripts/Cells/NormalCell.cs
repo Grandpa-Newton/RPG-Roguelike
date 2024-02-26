@@ -6,19 +6,4 @@ using UnityEngine;
 public class NormalCell : BaseCell
 {
 
-
-    /* private void Awake()
-    {
-        // SCENE_TO_LOAD = "GenerationLevel";
-        ConfigureObject();
-    }
-
-    private void Start()
-    {
-        ConfigureObjectStart();
-    } */
-    /* public override void Interact()
-    {
-        Debug.Log("YES! VICTORY!");
-    } */
 }

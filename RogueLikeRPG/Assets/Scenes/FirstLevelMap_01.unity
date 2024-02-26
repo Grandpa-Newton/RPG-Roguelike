@@ -800,7 +800,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1509,7 +1509,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1606420894}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 10
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1884,23 +1884,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1347658781 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1626714979433183822, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
-  m_PrefabInstance: {fileID: 1708995092}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1347658784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347658781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f25e3ffff1fd894eb7a21a3e978a1fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1354694605
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,10 +2373,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1626714979433183822, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1347658784}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
 --- !u!1 &1855155457
 GameObject:
@@ -2832,6 +2812,10 @@ PrefabInstance:
       propertyPath: NeighborsCells.Array.data[2]
       value: 
       objectReference: {fileID: 1580396146}
+    - target: {fileID: 4109324407322925649, guid: 5d735ad17fee50944bdbe5c8b6e341da, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
     - target: {fileID: 8195689664513202287, guid: 5d735ad17fee50944bdbe5c8b6e341da, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

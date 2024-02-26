@@ -11,10 +11,10 @@ public class MapLoader : MonoBehaviour
 
     public static string CurrentCellId;
 
-    public static List<string> PassedCellsIds = new List<string>(); // список с пройденными клетками
+    public static List<string> PassedCellsIds = new List<string>(); // список с пройденными клетками (по Id)
 
     [SerializeField]
-    private Transform _spawnCell;
+    private Transform _spawnCell; // клетка дл€ первого спавна
 
     public Transform Player;
 
@@ -27,10 +27,11 @@ public class MapLoader : MonoBehaviour
         }
         else
         {
+            Debug.LogError("There is can't be more than one Map Loader Instance");
             Destroy(gameObject);
         }
 
-        if (string.IsNullOrEmpty(CurrentCellId))
+        if (string.IsNullOrEmpty(CurrentCellId)) // если клетка дл€ спавна не задана, то берЄтс€ та, котора€ указываетс€ в _spawnCell
         {
             CurrentCellId = _spawnCell.GetComponent<BaseCell>().CellId;
         }
@@ -44,14 +45,16 @@ public class MapLoader : MonoBehaviour
 
         GameObject currentCell = null;
 
-        foreach (var spawn in cells)
+        currentCell = cells.Where(c => c.CellId == CurrentCellId).FirstOrDefault().gameObject;
+
+        /* foreach (var spawn in cells)
         {
             if (spawn.CellId == CurrentCellId)
             {
                 currentCell = spawn.gameObject;
                 break;
             }
-        }
+        }*/
 
         if(currentCell != null)
         {
@@ -64,13 +67,12 @@ public class MapLoader : MonoBehaviour
                 cells.First(c => c.CellId == passedCell).CellType = CellType.Passed;
             }
 
-            cell.CellType = CellType.Passed;
-
-            // cell.AfterLevelCompleting(); // мб где-то в другом месте? и мб только дл€ basecell?
+            // cell.CellType = CellType.Passed; раскомментить, если будут проблемы с отображением пройденных уровней
+            // (если их спрайт мен€етс€ после того, как игрок "отбежал" от него)
 
             Player.position = currentCell.transform.position;
 
-            CameraMover.Instance.ChangePosition(); // мб событием
+            CameraMover.Instance.ChangePositionToPlayer(); // мб событием
 
             foreach (var neighborCell in cell.NeighborsCells)
             {
