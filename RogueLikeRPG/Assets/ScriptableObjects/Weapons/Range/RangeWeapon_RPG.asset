@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e45e062a3fe28b4d9515e98ae3f2b04, type: 3}
   m_Name: RangeWeapon_RPG
   m_EditorClassIdentifier: 
-  fireRate: 3
+  attackRate: 0.6
   damage: 15
-  bullet: {fileID: 9027614786788320636, guid: e07bc0491c57868499d299ac5e1cfdb5, type: 3}
   weaponSprite: {fileID: -406886898, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
+  weaponAttackSound: {fileID: 0}
+  weaponName: 
+  weaponDescription: 
+  bulletSO: {fileID: 11400000, guid: 33a6a0692a2d18f43a562d5d1a0acbf5, type: 2}
+  bulletSpeed: 20
+  magSize: 5
+  reloadTime: 5
