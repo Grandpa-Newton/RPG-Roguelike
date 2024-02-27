@@ -9,7 +9,10 @@ public class CameraMover : MonoBehaviour
     private Transform _clickedCellTransform;
     public Transform ClickedCellTransform 
     { 
-        get { return _clickedCellTransform; }
+        get 
+        { 
+            return _clickedCellTransform; 
+        }
         set 
         {
             _isMoving = true;
@@ -25,10 +28,6 @@ public class CameraMover : MonoBehaviour
         }
 
         Instance = this;
-    }
-
-    private void Start()
-    {
     }
 
     public static CameraMover Instance;
@@ -55,7 +54,7 @@ public class CameraMover : MonoBehaviour
         }
     }
 
-    public void ChangePosition()
+    public void ChangePositionToPlayer()
     {
         transform.position = MapPlayerController.Instance.transform.position;
     }
