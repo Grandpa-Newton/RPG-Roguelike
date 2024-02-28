@@ -62,10 +62,10 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
         if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextAttack > _meleeWeaponData.attackRate)
         {
             //float step = Time.deltaTime * 10;
-            gameObject transformLocal = transform;
+            //gameObject transformLocal = transform;
             StartCoroutine(MoveObject(transform, attackPoint.position, 0.15f)); // добовлять вектор направления а не 0.5 0 0
             //transform.position = Vector3.MoveTowards(transform.position, attackPoint.position, step);
-            transform.position = transformLocal;
+            //transform.position = transformLocal;
             _timeToNextAttack = 0f;
             
         }
