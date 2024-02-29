@@ -8,7 +8,7 @@ public class SwitchWeaponBetweenRangeAndMelee : MonoBehaviour
   [SerializeField] private Transform meleeWeapon;
   [SerializeField] private Transform rangeWeapon;
 
-  private bool isMeleeWeapon;
+  private bool isMeleeWeapon = true;
 
   private void Start()
   {
