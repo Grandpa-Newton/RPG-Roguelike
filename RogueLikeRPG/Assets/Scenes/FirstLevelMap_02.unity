@@ -813,7 +813,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1526,7 +1526,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1606420894}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 4
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -7386,23 +7386,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1347658781 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1626714979433183822, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
-  m_PrefabInstance: {fileID: 1708995092}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1347658784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347658781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f25e3ffff1fd894eb7a21a3e978a1fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1354694605
 GameObject:
   m_ObjectHideFlags: 0
@@ -7892,10 +7875,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1626714979433183822, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1347658784}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
 --- !u!1 &1979621470 stripped
 GameObject:

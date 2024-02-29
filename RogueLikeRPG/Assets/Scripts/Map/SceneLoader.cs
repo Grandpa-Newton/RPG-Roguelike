@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Experimental.GraphView.GraphView;
-
 public class SceneLoader : MonoBehaviour
 {
-    private const string NEXT_SCENE_TO_LOAD = "FirstLevelMap_01";
+    private const string NEXT_SCENE_TO_LOAD = "LevelLoadingScreen";
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            /*var player = MapPlayerController.Instance.gameObject; // хглемхрэ
+            /*var player = MapPlayerController.Instance.gameObject; // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
             Destroy(player);*/
             
             SceneManager.LoadScene(NEXT_SCENE_TO_LOAD);

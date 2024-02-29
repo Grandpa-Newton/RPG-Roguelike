@@ -66,8 +66,15 @@ public class PrefabPlacer : MonoBehaviour
         newItem.GetComponent<Item>().Initialize(item);
         return newItem;
     }
-
     public GameObject CreateObject(GameObject prefab, Vector3 placementPosition)
+    {
+        if (prefab == null)
+            return null;
+    
+        GameObject newItem = Instantiate(prefab, placementPosition, Quaternion.identity);
+        return newItem;
+    }
+    /*public GameObject CreateObject(GameObject prefab, Vector3 placementPosition)
     {
         if (prefab == null)
             return null;
@@ -84,5 +91,5 @@ public class PrefabPlacer : MonoBehaviour
         }
 
         return newItem;
-    }
+    }*/
 }

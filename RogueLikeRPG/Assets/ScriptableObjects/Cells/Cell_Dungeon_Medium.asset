@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b45d4cc8d0ba8747ae30ae0b05547cd, type: 3}
   m_Name: Cell_Dungeon_Medium
   m_EditorClassIdentifier: 
-  SceneToLoad: EasyLevelGenerateScene
+  SceneToLoad: LevelLoadingScreen
   CellColor: {r: 0.8396226, g: 0.48976362, b: 0.099012084, a: 1}
   OriginalSprite: {fileID: 21300000, guid: 81d13820c4c96fa4ab595ca822d1b2ba, type: 3}
   NextSprite: {fileID: 21300000, guid: 62e88a30504be3541b1f11664067885d, type: 3}

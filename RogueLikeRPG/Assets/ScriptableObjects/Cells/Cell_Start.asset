@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b45d4cc8d0ba8747ae30ae0b05547cd, type: 3}
   m_Name: Cell_Start
   m_EditorClassIdentifier: 
-  SceneToLoad: EasyLevelGenerateScene
+  SceneToLoad: LevelLoadingScreen
   CellColor: {r: 0.8066038, g: 0.95542645, b: 1, a: 1}
+  OriginalSprite: {fileID: 0}
+  NextSprite: {fileID: 0}
