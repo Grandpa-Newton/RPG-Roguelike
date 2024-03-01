@@ -1213,7 +1213,7 @@ Transform:
   m_GameObject: {fileID: 723978333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.262, y: 25.819, z: 0}
+  m_LocalPosition: {x: 2.984, y: 17.986, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1695,7 +1695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[1].WayPoints.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.data[0]
@@ -7927,11 +7927,11 @@ PrefabInstance:
       objectReference: {fileID: 563348210}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[1].WayPoints.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.data[0]
@@ -7940,7 +7940,7 @@ PrefabInstance:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 517990339}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.data[2]
       value: 
