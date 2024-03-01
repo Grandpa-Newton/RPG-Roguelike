@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using Cinemachine;
 using Unity.VisualScripting;
 
-public class StartNextLevel : MonoBehaviour
+public class NextLevelStarter : MonoBehaviour
 {
     public Transform Player;
     private PlayerController _playerController;

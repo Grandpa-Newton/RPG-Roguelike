@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MyEventSystem : EventSystem
+public class MapEventSystem : EventSystem
 {
     protected override void Start()
     {
