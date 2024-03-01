@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8367638369610412029}
   - component: {fileID: 9217251775574970632}
   m_Layer: 5
-  m_Name: InGameMenu
+  m_Name: InventoryWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

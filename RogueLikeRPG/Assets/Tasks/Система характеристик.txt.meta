@@ -1,9 +1,6 @@
 fileFormatVersion: 2
-guid: a14c4f87842efab4e99fa6ce403eae86
-labels:
-- Architecture
-folderAsset: yes
-DefaultImporter:
+guid: 54d8f90d813828641b508930db1c37c5
+TextScriptImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
