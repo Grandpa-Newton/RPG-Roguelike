@@ -9,8 +9,8 @@ using Unity.VisualScripting;
 public class NextLevelStarter : MonoBehaviour
 {
     public Transform Player;
+    [SerializeField] private GameObject panel;
     private PlayerController _playerController;
-    
     private void Awake()
     {
         _playerController = Player.GetComponent<PlayerController>();
@@ -23,11 +23,22 @@ public class NextLevelStarter : MonoBehaviour
 
     private void Instance_OnInteractCell()
     {
-        BaseCell cell = gameObject.GetComponent<BaseCell>();
+        LoadTransition.Instance.gameObject.SetActive(true);
+        LoadTransition.Instance.nextLevelStarter = this;
+        
+    }
 
+    public void ABC()
+    {
+        BaseCell cell = gameObject.GetComponent<BaseCell>();
+    
         MapPlayerController.Instance.OnInteractCell -= Instance_OnInteractCell; // ???
         SceneManager.LoadScene(cell.CellData.SceneToLoad); // мб лучше сделать sceneToLoad не пабликом, а вызывать как-то событием / методом
-                                                           // (теперь через SO сделано - не уверен)
+        // (теперь через SO сделано - не уверен)
         _playerController.enabled = true;
+    }
+    public void LoadTransitionToNextLevel()
+    {
+        panel.SetActive(true);
     }
 }
