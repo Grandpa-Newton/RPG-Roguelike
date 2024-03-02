@@ -19,6 +19,8 @@ public class MapLoader : MonoBehaviour
     public Transform Player;
 
     public static MapLoader Instance = null;
+
+    public LoadTransition StartPanelLoadTransition;
     private void Start()
     {
         if (Instance == null)
@@ -35,6 +37,8 @@ public class MapLoader : MonoBehaviour
         {
             CurrentCellId = _spawnCell.GetComponent<BaseCell>().CellId;
         }
+
+        StartPanelLoadTransition.gameObject.SetActive(true);
 
         UpdateInfo();
     }

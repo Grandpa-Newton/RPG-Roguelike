@@ -30,4 +30,9 @@ public class LoadTransition : MonoBehaviour
     {
         NextLevelStarter.StartNextLevel();
     }
+
+    public void HideObject()
+    {
+        gameObject.SetActive(false);
+    }
 }
