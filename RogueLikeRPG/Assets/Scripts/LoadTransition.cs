@@ -2,14 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class LoadTransition : MonoBehaviour
 {
-    public static LoadTransition Instance { get; private set; }
-    public NextLevelStarter nextLevelStarter;
+    [HideInInspector]
+    public NextLevelStarter NextLevelStarter;
+
     private void Awake()
     {
-        Instance = this;
+
     }
 
     // Start is called before the first frame update
@@ -26,6 +28,6 @@ public class LoadTransition : MonoBehaviour
 
     public void StartNextScene()
     {
-        nextLevelStarter.ABC();
+        NextLevelStarter.StartNextLevel();
     }
 }

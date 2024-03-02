@@ -23,12 +23,16 @@ public class NextLevelStarter : MonoBehaviour
 
     private void Instance_OnInteractCell()
     {
-        LoadTransition.Instance.gameObject.SetActive(true);
-        LoadTransition.Instance.nextLevelStarter = this;
+        /* LoadTransition.Instance.gameObject.SetActive(true);
+        LoadTransition.Instance.nextLevelStarter = this; */
+
+        NextLevelManager.Instance.LoadTransition.gameObject.SetActive(true);
+        NextLevelManager.Instance.LoadTransition.NextLevelStarter = this;
+
         
     }
 
-    public void ABC()
+    public void StartNextLevel()
     {
         BaseCell cell = gameObject.GetComponent<BaseCell>();
     
@@ -36,9 +40,5 @@ public class NextLevelStarter : MonoBehaviour
         SceneManager.LoadScene(cell.CellData.SceneToLoad); // мб лучше сделать sceneToLoad не пабликом, а вызывать как-то событием / методом
         // (теперь через SO сделано - не уверен)
         _playerController.enabled = true;
-    }
-    public void LoadTransitionToNextLevel()
-    {
-        panel.SetActive(true);
     }
 }
