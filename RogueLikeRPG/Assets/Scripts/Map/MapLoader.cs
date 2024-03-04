@@ -33,7 +33,7 @@ public class MapLoader : MonoBehaviour
 
     public static MapLoader Instance = null;
 
-    public LoadTransition StartPanelLoadTransition;
+    //public LoadTransition StartPanelLoadTransition;
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public class MapLoader : MonoBehaviour
             CurrentCellId = _spawnCell.GetComponent<BaseCell>().CellId;
         }
 
-        StartPanelLoadTransition.gameObject.SetActive(true);
+        //StartPanelLoadTransition.gameObject.SetActive(true);
 
         if (!WasSpawned)
         {
