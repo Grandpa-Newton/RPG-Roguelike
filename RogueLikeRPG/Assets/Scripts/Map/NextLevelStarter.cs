@@ -24,13 +24,17 @@ public class NextLevelStarter : MonoBehaviour
         MapPlayerController.Instance.OnInteractCell += Instance_OnInteractCell;
     }
 
+    IEnumerator WaitAMinute()
+    {
+        yield return new WaitForSeconds(1f);
+    }
     private void Instance_OnInteractCell()
     {
         BaseCell cell = gameObject.GetComponent<BaseCell>();
         Debug.Log("123");
         MapPlayerController.Instance.OnInteractCell -= Instance_OnInteractCell; // ???
-        _startShowDeLoadPanel.ExitScene();
-        SceneManager.LoadScene(cell.CellData.SceneToLoad); // мб лучше сделать sceneToLoad не пабликом, а вызывать как-то событием / методом
+        //StartCoroutine(WaitAMinute());
+        //SceneManager.LoadScene(cell.CellData.SceneToLoad); // мб лучше сделать sceneToLoad не пабликом, а вызывать как-то событием / методом
         // (теперь через SO сделано - не уверен)
         _playerController.enabled = true;
         /* LoadTransition.Instance.gameObject.SetActive(true);

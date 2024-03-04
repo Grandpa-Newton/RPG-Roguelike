@@ -12,10 +12,4 @@ public class TransitionCanvas : MonoBehaviour
     {
         showLoad.gameObject.SetActive(true);
     }
-
-    void OnApplicationQuit()
-    {
-       
-        showDeLoad.SetActive(true);
-    }
 }
