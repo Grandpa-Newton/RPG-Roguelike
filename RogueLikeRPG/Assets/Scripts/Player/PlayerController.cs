@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 using System.Collections;
 using Cinemachine;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 _worldMousePos;
     private Vector2 _inputVector;
 
+    public float dashDistance = 200; // Расстояние рывка
+    public float dashDuration = 0.2f; 
+    
     void Awake() {
         if (FindObjectsOfType(GetType()).Length > 1)
         {
@@ -38,15 +42,13 @@ public class PlayerController : MonoBehaviour
         else
         {
             EnablePlayerComponents();
-            //DontDestroyOnLoad(gameObject);
         }
     }
 
     private void Start()
     {
         CinemachineVirtualCamera vcam = FindObjectOfType<CinemachineVirtualCamera>();
-
-        // Установка игрока в качестве цели для слежения и наблюдения
+        
         if (vcam != null)
         {
             vcam.Follow = transform;
@@ -60,6 +62,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            Vector2 dashDirection = _rigidbody2D.velocity.normalized; // Направление рывка - это нормализованный вектор скорости игрока
+            Vector2 dashTarget = (Vector2)transform.position + dashDirection * dashDistance * Time.deltaTime;
+            transform.DOMove(dashTarget, dashDuration);
+        }
         UpdateInputsInformationAndInvokeEvent();
     }
 
