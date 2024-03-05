@@ -15,18 +15,19 @@ public class StartShowDeLoadPanel : MonoBehaviour
         //yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
     }
  
-    private void InstanceOnInteractPressed()
+    public void InstanceOnInteractPressed(string sceneToLoad)
     {
+        MapInputManager.Instance.OnInteractPressed -= InstanceOnInteractPressed;
         Debug.Log("BABIZYANA");
         gameObject.SetActive(true);
         _animator.SetTrigger("StartAnim");
         StartCoroutine(ExitAfterAnimation());
-        //SceneManager.LoadScene("EasyLevelGenerateScene");
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     private void Start()
     {
-        InputManager.Instance.OnInteractPressed += InstanceOnInteractPressed;
+        MapInputManager.Instance.OnInteractPressed += InstanceOnInteractPressed;
         gameObject.SetActive(false);
     }
     
