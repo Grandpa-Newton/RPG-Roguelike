@@ -20,15 +20,19 @@ public class PlayerAnimator : MonoBehaviour
         _playerController = GetComponent<PlayerController>();
         _playerAnimator = GetComponent<Animator>();
         _playerController.OnPlayerMovement += Player_OnPlayerMovement;
+        _playerController.OnPlayerMouseMovement += Player_OnPlayerMouseMovement;
     }
 
-    private void Player_OnPlayerMovement(Vector2 movementInputVector, Vector2 worldMouseVectorPosition)
+    private void Player_OnPlayerMouseMovement(Vector2 movementInputVector, Vector2 worldMouseVectorPosition)
     {
         Vector2 movementMouse = new Vector2(worldMouseVectorPosition.x, worldMouseVectorPosition.y).normalized;
 
         _playerAnimator.SetFloat(Horizontal, movementMouse.x);
         _playerAnimator.SetFloat(Vertical, movementMouse.y);
+    }
 
+    private void Player_OnPlayerMovement(Vector2 movementInputVector, Vector2 worldMouseVectorPosition)
+    {
         if (movementInputVector.x != 0 || movementInputVector.y != 0)
         {
             if (!_isWalking)

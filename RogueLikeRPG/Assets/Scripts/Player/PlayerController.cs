@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     //Events
     public event Action<Vector2, Vector2> OnPlayerMovement;
+    public event Action<Vector2, Vector2> OnPlayerMouseMovement;
 
     // Vectors
     private Vector2 _inputMouseVector;
@@ -78,9 +79,14 @@ public class PlayerController : MonoBehaviour
 
         if (_worldMousePos != _previousMousePos)
         {
-            OnPlayerMovement?.Invoke(_inputVector, _worldMousePos);
+            OnPlayerMouseMovement?.Invoke(_inputVector, _worldMousePos);
             _previousMousePos = _worldMousePos;
         }
+        if (_inputVector.magnitude < 0.01f || _inputVector != Vector2.zero)
+        {
+            OnPlayerMovement?.Invoke(_inputVector, _worldMousePos);
+        }
+        
     }
 
     private void FixedUpdate()
@@ -135,8 +141,7 @@ public class PlayerController : MonoBehaviour
         // Rigid body
         _rigidbody2D = GetComponent<Rigidbody2D>();
         // Player Input Actions
-        _playerInputActions = new PlayerInputActions();
-        _playerInputActions.Player.Enable();
+        _playerInputActions = InputManager.Instance.PlayerInputActions;
     }
 
     public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
