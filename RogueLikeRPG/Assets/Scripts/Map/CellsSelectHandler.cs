@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TestSelectHandler : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class CellsSelectHandler : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     public Action OnChangeSelectingCell;
     private CellType _previousType;

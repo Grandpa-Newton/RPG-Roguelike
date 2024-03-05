@@ -161,12 +161,13 @@ public class MapPlayerController : MonoBehaviour
         _wayPointIndex++;
         if (_wayPointIndex == _currentPath.WayPoints.Count)
         {
+            SelectingCell = _clickedCellTransform.gameObject;
             _wayPointTransform = _clickedCellTransform;
             _wayPointIndex++;
         }
         else if (_wayPointIndex > _currentPath.WayPoints.Count)
         {
-            _clickedCellTransform.GetComponent<StartNextLevel>().InCurrentCell();
+            _clickedCellTransform.GetComponent<NextLevelStarter>().InCurrentCell();
             _interactingCell.CellType = CellType.Current;
             _isMoving = false;
             _currentPath = null;

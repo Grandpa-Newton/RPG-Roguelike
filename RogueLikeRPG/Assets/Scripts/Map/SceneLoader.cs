@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
-    private const string NEXT_SCENE_TO_LOAD = "LevelLoadingScreen";
+    private const string NEXT_SCENE_TO_LOAD = "FirstLevelMap_02";
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))

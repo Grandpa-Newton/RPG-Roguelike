@@ -14,7 +14,36 @@ namespace Inventory.Model
 
         public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
         [field: SerializeField] public int Size { get; private set; } = 10;
+        /*public void Load() {
+            if (File.Exists(Application.persistentDataPath + "/savefile.json")) {
+                string json = File.ReadAllText(Application.persistentDataPath + "/savefile.json");
+                var serializableObject = JsonUtility.FromJson<SerializableInventorySO>(json);
 
+                // Преобразуем данные обратно в наши типы Unity
+                this.inventoryItems = new List<InventoryItem>();
+                foreach (var item in serializableObject.InventoryItems) {
+                    this.inventoryItems.Add(new InventoryItem {
+                        // Здесь вы можете добавить код для преобразования SerializableInventoryItem обратно в InventoryItem
+                    });
+                }
+                this.Size = serializableObject.Size;
+            }
+        }*/
+        /*public void Save() {
+            // Создаем новый список сериализуемых объектов
+            var serializableItems = new List<SerializableInventoryItem>();
+            foreach (var item in inventoryItems) {
+                serializableItems.Add(new SerializableInventoryItem {
+                    // Здесь вы можете добавить код для преобразования InventoryItem в SerializableInventoryItem
+                });
+            }
+
+            string json = JsonUtility.ToJson(new SerializableInventorySO {
+                InventoryItems = serializableItems,
+                Size = this.Size
+            });
+            File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        }*/
         public void Initialize()
         {
             inventoryItems = new List<InventoryItem>();
@@ -192,4 +221,13 @@ namespace Inventory.Model
             
         };
     }
+    /*[System.Serializable]
+    public class SerializableInventorySO {
+        public List<SerializableInventoryItem> InventoryItems;
+        public int Size;
+    }
+
+    [System.Serializable]
+    public class SerializableInventoryItem {
+    }*/
 }

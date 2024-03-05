@@ -85,12 +85,18 @@ public abstract class BaseCell : MonoBehaviour
 
     protected void ConfigureObjectStart()
     {
-        _renderer.material.color = CellData.CellColor;
         ChangeCellType();
         if (!_isPassed) 
         {
             _levelIcon.ChangeSprite(CellData.OriginalSprite);
         }
+    }
+
+    public void SetCellData(CellSO cellData)
+    {
+        CellData = cellData;
+        _renderer.material.color = CellData.CellColor;
+
     }
 
     protected void Awake()

@@ -414,3 +414,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1024461959818967223, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+  panel: {fileID: 0}
