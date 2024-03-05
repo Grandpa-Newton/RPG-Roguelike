@@ -21,7 +21,7 @@ public class StartShowDeLoadPanel : MonoBehaviour
         gameObject.SetActive(true);
         _animator.SetTrigger("StartAnim");
         StartCoroutine(ExitAfterAnimation());
-        SceneManager.LoadScene("EasyLevelGenerateScene");
+        //SceneManager.LoadScene("EasyLevelGenerateScene");
     }
 
     private void Start()
