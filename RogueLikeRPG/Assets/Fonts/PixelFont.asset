@@ -60,9 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: PixelFont
   m_EditorClassIdentifier: 
-  hashCode: -1699987425
+  hashCode: 352398971
   material: {fileID: 3719217385242807935}
-  materialHashCode: 1341457759
+  materialHashCode: -454877957
   m_Version: 1.1.0
   m_SourceFontFileGUID: a3d757ae1ac3c2e42a3cec9d6ecbf401
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: a3d757ae1ac3c2e42a3cec9d6ecbf401, type: 3}
@@ -2536,7 +2536,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.6
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333

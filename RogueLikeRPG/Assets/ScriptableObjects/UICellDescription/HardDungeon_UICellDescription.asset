@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f9ad1ed91c72744b88db45b39c62a6, type: 3}
+  m_Name: HardDungeon_UICellDescription
+  m_EditorClassIdentifier: 
+  levelName: Dungeon
+  levelDifficulty: Hard
+  levelIcon: {fileID: 1369372634922183146, guid: a0d3fbbc155eb404a87f827b40a48dfe, type: 3}
+  difficultyColor: {r: 0.6, g: 0.227451, b: 0.26666668, a: 1}
+  enemyListOnLevel:
+  - {fileID: 21300000, guid: bf6672961913db34b8fce9ef2dc2593e, type: 3}
+  - {fileID: 21300000, guid: c99ff54b6fd91ba45baecda2ccccf5ba, type: 3}
+  illustrationImage: {fileID: 21300000, guid: 2c1ec2d4102b5a44d97ca83af0b5b9a7, type: 3}
+  levelDescription: At this level you will meet enemies who are ready to fight back
+    with full confidence
