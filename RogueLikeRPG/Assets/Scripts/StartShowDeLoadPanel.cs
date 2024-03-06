@@ -21,8 +21,7 @@ public class StartShowDeLoadPanel : MonoBehaviour
         Debug.Log("BABIZYANA");
         gameObject.SetActive(true);
         _animator.SetTrigger("StartAnim");
-        StartCoroutine(ExitAfterAnimation());
-        SceneManager.LoadScene(sceneToLoad);
+        StartCoroutine(ExitAfterAnimation(sceneToLoad));
     }
 
     private void Start()
@@ -30,11 +29,18 @@ public class StartShowDeLoadPanel : MonoBehaviour
         MapInputManager.Instance.OnInteractPressed += InstanceOnInteractPressed;
         gameObject.SetActive(false);
     }
-    
-    IEnumerator ExitAfterAnimation()
+
+    IEnumerator ExitAfterAnimation(string sceneToLoad)
+    {
+        yield return new WaitWhile(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f);
+        SceneManager.LoadScene(sceneToLoad);
+    }
+
+    /*IEnumerator ExitAfterAnimation(string sceneToLoad)
     {
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-    }
+        SceneManager.LoadScene(sceneToLoad);
+    }*/
 
     public void HideDeLoadPanel()
     {
