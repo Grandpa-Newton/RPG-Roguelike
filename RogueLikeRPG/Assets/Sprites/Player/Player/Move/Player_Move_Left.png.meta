@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Left_0
+      name: Player_Move_Left_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,20 +118,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78a13d8b1fb951c40bf74c3e63db2450
-      internalID: 801244892
+      spriteID: cf84d5f39d7e4384bb088c556414d81c
+      internalID: 1308119908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_1
+      name: Player_Move_Left_1
       rect:
         serializedVersion: 2
         x: 32
@@ -139,20 +139,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e500d5f68f7ab884089887fbd22dc0e8
-      internalID: -1177158077
+      spriteID: ca7e42acb1bcd984d8f7913c04d61012
+      internalID: -1332101954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_2
+      name: Player_Move_Left_2
       rect:
         serializedVersion: 2
         x: 64
@@ -160,20 +160,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fa4aa23188e31a4785e17f052a905cc
-      internalID: -1744981334
+      spriteID: 6acc96ea0cd00d547bf37eda02666b5a
+      internalID: -544000435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Left_3
+      name: Player_Move_Left_3
       rect:
         serializedVersion: 2
         x: 96
@@ -181,14 +181,56 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c939094328b41740a446039935f0a24
-      internalID: 662160289
+      spriteID: 61d4bfbbf966b434e92a8b0e8a8e1136
+      internalID: -945335713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Move_Left_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3401249575b74604ba9085cbb7cc3cfb
+      internalID: 1607164516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Move_Left_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d60c55fa4897b34b98b6e83898683ed
+      internalID: 166211308
       vertices: []
       indices: 
       edges: []
@@ -204,10 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_Left_0: 801244892
-      Player_Left_1: -1177158077
-      Player_Left_2: -1744981334
-      Player_Left_3: 662160289
+      Player_Move_Left_0: 1308119908
+      Player_Move_Left_1: -1332101954
+      Player_Move_Left_2: -544000435
+      Player_Move_Left_3: -945335713
+      Player_Move_Left_4: 1607164516
+      Player_Move_Left_5: 166211308
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

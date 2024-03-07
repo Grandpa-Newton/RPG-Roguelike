@@ -520,15 +520,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActiveCells: []
   CellTypesFrequencySerializedDictionary:
-  - Key: {fileID: 11400000, guid: ed74ff1f83e47e24c953ae79a280aa66, type: 2}
-    Value: 1
-  - Key: {fileID: 11400000, guid: d3f566123372c604a8c77565793b2435, type: 2}
-    Value: 1
   - Key: {fileID: 11400000, guid: 566470084d824964b9088a3729423e40, type: 2}
     Value: 1
-  - Key: {fileID: 11400000, guid: 27975d923420dd041aa66fc7dbf12524, type: 2}
-    Value: 1
   - Key: {fileID: 11400000, guid: 71e9940217d48524c9c9b6f14304aa18, type: 2}
+    Value: 1
+  - Key: {fileID: 11400000, guid: 27975d923420dd041aa66fc7dbf12524, type: 2}
     Value: 1
   - Key: {fileID: 11400000, guid: 92ca02ce81e5c9b4eb984e697ee92689, type: 2}
     Value: 1
@@ -1407,6 +1403,22 @@ PrefabInstance:
       propertyPath: Paths.Array.data[0].WayPoints.Array.data[0]
       value: 
       objectReference: {fileID: 6987083261209619262}
+    - target: {fileID: 1244571169540828789, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244571169540828789, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244571169540828789, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.22500001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924240950571133862, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
     - target: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8221,10 +8233,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2254641987173871452, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3187945095760142204, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8321,6 +8329,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4054162890787019266, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ec4716ba52158434daa3e8db5f9905e2, type: 3}
     - target: {fileID: 4065743987041909694, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8517,6 +8529,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7924195576547420874, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6a3715bc563a40d488fc9a1ae5a13c18, type: 3}
     - target: {fileID: 7980122838271297634, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8669,6 +8685,14 @@ PrefabInstance:
       propertyPath: Paths.Array.data[0].WayPoints.Array.data[1]
       value: 
       objectReference: {fileID: 769379668}
+    - target: {fileID: 1924240950571133862, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    - target: {fileID: 1924240950571133862, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3
@@ -8712,6 +8736,10 @@ PrefabInstance:
     - target: {fileID: 3414058089022552030, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Sprite
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414058089022552030, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3414058089022552030, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -9154,6 +9182,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    - target: {fileID: 4109324407322925649, guid: 5d735ad17fee50944bdbe5c8b6e341da, type: 3}
+      propertyPath: m_Color.b
+      value: 0.07058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109324407322925649, guid: 5d735ad17fee50944bdbe5c8b6e341da, type: 3}
+      propertyPath: m_Color.g
+      value: 0.27058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109324407322925649, guid: 5d735ad17fee50944bdbe5c8b6e341da, type: 3}
+      propertyPath: m_Color.r
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109324407322925649, guid: 5d735ad17fee50944bdbe5c8b6e341da, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8195689664513202287, guid: 5d735ad17fee50944bdbe5c8b6e341da, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9210,6 +9254,10 @@ PrefabInstance:
       propertyPath: NeighborsCells.Array.data[2]
       value: 
       objectReference: {fileID: 1580396146}
+    - target: {fileID: 8797685246699802125, guid: 5d735ad17fee50944bdbe5c8b6e341da, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

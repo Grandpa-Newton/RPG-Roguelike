@@ -95,7 +95,7 @@ public abstract class BaseCell : MonoBehaviour
     public void SetCellData(CellSO cellData)
     {
         CellData = cellData;
-        _renderer.material.color = CellData.CellColor;
+       // _renderer.material.color = CellData.CellColor;
 
     }
 

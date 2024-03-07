@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Right_0
+      name: Player_Move_Right_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2db57e3c7eeff244daa131a6806457e5
-      internalID: -1832738564
+      spriteID: e820971aa73360148af0e90027aad798
+      internalID: -876973418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Right_1
+      name: Player_Move_Right_1
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e06c720900bbfed45abef46670c605ac
-      internalID: -1366869672
+      spriteID: 5f29843b639e6024882173ab26dfff6d
+      internalID: -1824257515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Right_2
+      name: Player_Move_Right_2
       rect:
         serializedVersion: 2
         x: 64
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2edcb02b220e8240a0c42237b1f8e68
-      internalID: 2120819891
+      spriteID: 6a82963c663671948af163fb9a9bcd9e
+      internalID: -1873420439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Right_3
+      name: Player_Move_Right_3
       rect:
         serializedVersion: 2
         x: 96
@@ -187,8 +187,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cea9d14a0a118e4d92d515af175f496
-      internalID: 1350830687
+      spriteID: f8569cda004e16448b7fb6cd57dde239
+      internalID: 1121106342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Move_Right_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb8321b9a04e8bb46a8d7e934cdbf13e
+      internalID: 8072844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Move_Right_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c425c9719585b14e9a37348a5e05272
+      internalID: -236451513
       vertices: []
       indices: 
       edges: []
@@ -204,10 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_Right_0: -1832738564
-      Player_Right_1: -1366869672
-      Player_Right_2: 2120819891
-      Player_Right_3: 1350830687
+      Player_Move_Right_0: -876973418
+      Player_Move_Right_1: -1824257515
+      Player_Move_Right_2: -1873420439
+      Player_Move_Right_3: 1121106342
+      Player_Move_Right_4: 8072844
+      Player_Move_Right_5: -236451513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

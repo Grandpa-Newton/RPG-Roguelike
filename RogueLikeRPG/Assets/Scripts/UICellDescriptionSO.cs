@@ -9,7 +9,6 @@ public class UICellDescriptionSO : ScriptableObject
 {
     public string levelName;
     public string levelDifficulty;
-    public Sprite levelIcon;
     public Color difficultyColor;
     public List<Sprite> enemyListOnLevel;
     public Sprite illustrationImage;

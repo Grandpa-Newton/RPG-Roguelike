@@ -11,7 +11,6 @@ public class LevelDescriptionUI : MonoBehaviour
     [Header("UI Parameters")] 
     [SerializeField] private TMP_Text levelName;
     [SerializeField] private TMP_Text levelDifficulty;
-    [SerializeField] private Image levelIcon;
     [SerializeField] private Image difficultyColor;
     [SerializeField] private List<Image> enemyListOnLevel;
     [SerializeField] private Image illustrationImage;
@@ -22,7 +21,6 @@ public class LevelDescriptionUI : MonoBehaviour
     {
         levelName.text = uiCellDescriptionSo.levelName;
         levelDifficulty.text = uiCellDescriptionSo.levelDifficulty;
-        levelIcon.sprite = uiCellDescriptionSo.levelIcon;
         difficultyColor.color = uiCellDescriptionSo.difficultyColor;
         illustrationImage.sprite = uiCellDescriptionSo.illustrationImage;
         levelDescription.text = uiCellDescriptionSo.levelDescription;

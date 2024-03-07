@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneToLoad: LevelLoadingScreen
   CellColor: {r: 0.8113208, g: 0.34060165, b: 0.34060165, a: 1}
-  OriginalSprite: {fileID: 0}
+  OriginalSprite: {fileID: 21300000, guid: 8720af3e54158ff4cb1c4efd5683a236, type: 3}
   NextSprite: {fileID: 0}
