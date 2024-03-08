@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField] private float distanceToPlayer;
     private PlayerController player;
     private NavMeshAgent _agent;
-
+    public event Action<Vector2> OnEnemyMovement;
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -18,23 +20,26 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     { 
-        if (player == null)
+        if (!player)
         {
             player = FindObjectOfType<PlayerController>();
         }
 
         if (player != null && _agent.isOnNavMesh)
         {
-            /*float distanceBetweenObjects = Vector3.Distance(transform.position, player.transform.position);
-            if (distanceBetweenObjects < 1)
+            _agent.SetDestination(player.transform.position);
+            if (_agent.remainingDistance < distanceToPlayer)
             {
-                Vector3 direction = (player.transform.position - transform.position).normalized;
-                _rigidbody2D.velocity = direction * _agent.speed;
-            }*/
-            //else
-            //{
+                Vector3 direction = _agent.velocity.normalized;
+                OnEnemyMovement?.Invoke(new Vector2(direction.x, direction.z));
                 _agent.SetDestination(player.transform.position);
-            //}
+            }
+            else
+            {
+                OnEnemyMovement?.Invoke(new Vector2(0, 0));
+                _agent.ResetPath();
+            }
         }
     }
+
 }

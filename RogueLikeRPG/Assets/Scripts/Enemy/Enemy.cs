@@ -4,30 +4,21 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    #region Components
-
+    
     [SerializeField] private EnemySO enemySO;
     [SerializeField] private LayerMask hittable;
     [SerializeField] private NavMeshAgent navMeshAgent;
     private Rigidbody2D _rigidbody2D;
     private Vector2 _moveDirection;
-
-    #endregion
-
-    #region Stats
+    
 
     [SerializeField] private float health;
     [SerializeField] private float speed;
 
-    #endregion
-
-    #region Knockback Parameters
 
     [SerializeField] private float knockbackDuration;
     [SerializeField] private float knockbackPower;
-
-    #endregion
-
+    
     private PlayerController player;
 
     private void Start()

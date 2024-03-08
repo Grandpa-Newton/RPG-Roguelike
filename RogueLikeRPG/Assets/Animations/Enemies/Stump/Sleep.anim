@@ -22,20 +22,20 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -1705272441, guid: 4f38a7d098b5dd24181488eec6dcab53, type: 3}
-    - time: 0.1
+    - time: 0.11666667
       value: {fileID: -461239536, guid: 4f38a7d098b5dd24181488eec6dcab53, type: 3}
-    - time: 0.23333333
+    - time: 0.21666667
       value: {fileID: -1796391795, guid: 4f38a7d098b5dd24181488eec6dcab53, type: 3}
     - time: 0.33333334
       value: {fileID: 1709408645, guid: 4f38a7d098b5dd24181488eec6dcab53, type: 3}
-    - time: 0.43333334
+    - time: 0.45
       value: {fileID: 1466998448, guid: 4f38a7d098b5dd24181488eec6dcab53, type: 3}
-    - time: 0.56666666
+    - time: 0.55
       value: {fileID: 608206658, guid: 4f38a7d098b5dd24181488eec6dcab53, type: 3}
     - time: 0.6666667
       value: {fileID: -1898569494, guid: 4f38a7d098b5dd24181488eec6dcab53, type: 3}
     attribute: m_Sprite
-    path: 
+    path: GFX
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -47,7 +47,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 1225224978
       attribute: 0
       script: {fileID: 0}
       typeID: 212
