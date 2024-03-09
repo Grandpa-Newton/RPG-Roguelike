@@ -110,85 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Top_0
+      name: Player_Move_Top_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e0f63cacb9784148abf00e79bbb9b5b
-      internalID: -1471151389
+      spriteID: 3413c1afb188a174ab6a176957b84a19
+      internalID: 1452540299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Top_1
+      name: Player_Move_Top_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d3513a259ed15f419e3aeaa26daab11
-      internalID: -1304872744
+      spriteID: d6612cd775758014fb221475ee6f3871
+      internalID: 1271583819
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Top_2
+      name: Player_Move_Top_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd04b4dbad6ec3948a84f9b2b3535165
-      internalID: -648215835
+      spriteID: 98985e911e321a64d9c9816d9aad2cc6
+      internalID: -805757076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Top_3
+      name: Player_Move_Top_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f43b3a2e7feb62142b7c040837bc7060
-      internalID: 176187693
+      spriteID: 463b9ad2138faaa4c91c0930eb5855d8
+      internalID: -1985314841
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_Top_0: -1471151389
-      Player_Top_1: -1304872744
-      Player_Top_2: -648215835
-      Player_Top_3: 176187693
+      Player_Move_Top_0: 1452540299
+      Player_Move_Top_1: 1271583819
+      Player_Move_Top_2: -805757076
+      Player_Move_Top_3: -1985314841
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

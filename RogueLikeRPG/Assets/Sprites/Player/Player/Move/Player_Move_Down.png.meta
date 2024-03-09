@@ -110,85 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Down_0
+      name: Player_Move_Down_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8dfff7a410d84f4d90847d8de328e06
-      internalID: 317792147
+      spriteID: 9c0f1de341c2b5c4b87de3cc8629c8e6
+      internalID: 2088132486
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Down_1
+      name: Player_Move_Down_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b49d2827b6c47f48918bc65e1fb2f4c
-      internalID: -1782474179
+      spriteID: 6e9d98f0cc3abac46a109d938dd1d4af
+      internalID: 1042750324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Down_2
+      name: Player_Move_Down_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb4d469f2a0cb0b49b8dd4400cf7c867
-      internalID: 35175267
+      spriteID: a82d820c2f648be47b4dad5ba1f201fa
+      internalID: 954073153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Down_3
+      name: Player_Move_Down_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94e6329bfcc9ec2479317204c4d13e2d
-      internalID: -547034323
+      spriteID: 359f25e8d1300314ea7850a1f47ebc6e
+      internalID: 1311620051
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_Down_0: 317792147
-      Player_Down_1: -1782474179
-      Player_Down_2: 35175267
-      Player_Down_3: -547034323
+      Player_Move_Down_0: 2088132486
+      Player_Move_Down_1: 1042750324
+      Player_Move_Down_2: 954073153
+      Player_Move_Down_3: 1311620051
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

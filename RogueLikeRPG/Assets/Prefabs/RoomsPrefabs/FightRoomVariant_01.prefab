@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 796018339236667811}
   - component: {fileID: 8608263087838646138}
   m_Layer: 0
-  m_Name: FightRoom
+  m_Name: FightRoomVariant_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,6 +55,12 @@ MonoBehaviour:
     enemyPrefab: {fileID: 687997395514756573, guid: e59ccf646e407f644842c74ce77b39b0, type: 3}
     enemySize: {x: 1, y: 1}
   itemData:
-  - minQuantity: 1
+  - minQuantity: 4
     maxQuantity: 5
+    itemData: {fileID: 11400000, guid: 8f76d6bd7dc14de4eafcc2e0f5fe8ea4, type: 2}
+  - minQuantity: 1
+    maxQuantity: 3
+    itemData: {fileID: 11400000, guid: 7a5c43d483ad39d4f9c0ea83a6f989ad, type: 2}
+  - minQuantity: 2
+    maxQuantity: 4
     itemData: {fileID: 11400000, guid: 8c22909f92a320f44b2091897e99770f, type: 2}
