@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -22,7 +23,6 @@ public class Item : MonoBehaviour
         
         itemCollider.size = new Vector2(itemData.colliderSize.x, itemData.colliderSize.y);
         itemCollider.offset = new Vector2(itemData.colliderOffset.x, itemData.colliderOffset.y);
-
         if (itemData.nonDestuctible)
             _nonDestructible = true;
 

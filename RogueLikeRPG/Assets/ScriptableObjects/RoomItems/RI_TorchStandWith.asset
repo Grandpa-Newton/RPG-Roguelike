@@ -18,5 +18,6 @@ MonoBehaviour:
   addOffset: 0
   health: 1
   nonDestuctible: 0
-  colliderSize: {x: 0.55, y: 0.2}
-  colliderOffset: {x: 0.53, y: 0.6}
+  sortingLayerName: 
+  colliderSize: {x: 0.55, y: 0.4}
+  colliderOffset: {x: 0.53, y: 0.36}

@@ -8,7 +8,7 @@ using System.Linq;
 
 public class RoomContentGenerator : MonoBehaviour
 {
-    [SerializeField] private RoomGenerator defaultRoom;
+    [SerializeField] private RoomGenerator[] enemyRooms;
     [SerializeField] private RoomGenerator playerRoom;
 
     List<GameObject> spawnedObjects = new List<GameObject>();
@@ -104,8 +104,9 @@ public class RoomContentGenerator : MonoBehaviour
     {
         foreach (KeyValuePair<Vector2Int, HashSet<Vector2Int>> roomData in dungeonData.roomsDictionary)
         {
+            int randomIndex = Random.Range(0, enemyRooms.Length);
             spawnedObjects.AddRange(
-                defaultRoom.ProcessRoom(
+                enemyRooms[randomIndex].ProcessRoom(
                     roomData.Key,
                     roomData.Value,
                     dungeonData.GetRoomFloorWithoutCorridors(roomData.Key)
