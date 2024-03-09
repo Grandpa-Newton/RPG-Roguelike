@@ -16,6 +16,11 @@ public class MapPlayerController : MonoBehaviour
 
     public event Action OnDeselectCells;
 
+    public event Action OnStartingSelectCell; // при старте выборе клетки
+
+    public event Action OnSelectingCell; // после выбора клетки
+
+
     [SerializeField] private float _speed;
     [SerializeField] private GameObject _camera;
     [SerializeField] private Transform _followObject;
@@ -82,17 +87,17 @@ public class MapPlayerController : MonoBehaviour
 
     private void Start()
     {
-        _playerInputActions.Map.Enable();
+        /*_playerInputActions.Map.Enable();
 
         _playerInputActions.Map.GetCells.performed += GetCells_performed;
         _playerInputActions.Map.ConfirmCell.performed += ConfirmCell_performed;
         _playerInputActions.Map.ConfirmCell.Disable(); // добавляется метод к подтверждению клетки, но потом выключается, так как при загрузке это нельзя использовать
-
+        */
         _virtualCamera = _camera.GetComponent<CinemachineVirtualCamera>();
 
     }
 
-    private void GetCells_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    public void GetCells_performed()
     {
         if (!_isSelecting)
         {
@@ -104,7 +109,7 @@ public class MapPlayerController : MonoBehaviour
             // если уже производится выбор, то по этой же кнопке происходит выход с выбора клеток
             SelectingCell = null;
             OnDeselectCells?.Invoke();
-            _playerInputActions.Map.ConfirmCell.Disable();
+            //_playerInputActions.Map.ConfirmCell.Disable();
             _isSelecting = false;
         }
     }
@@ -120,7 +125,8 @@ public class MapPlayerController : MonoBehaviour
         {
             SelectingCell = _activeCells[0];
             SelectingCell.GetComponent<Selectable>().Select();
-            _playerInputActions.Map.ConfirmCell.Enable();
+            //_playerInputActions.Map.ConfirmCell.Enable();
+            OnStartingSelectCell?.Invoke();
         }
         else
         {
@@ -128,7 +134,7 @@ public class MapPlayerController : MonoBehaviour
         }
     }
 
-    private void ConfirmCell_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    public void ConfirmCell_performed()
     {
         SelectCell();
     }
@@ -215,11 +221,10 @@ public class MapPlayerController : MonoBehaviour
 
                 _clickedCellTransform = SelectingCell.transform;
 
-                _playerInputActions.Map.Interact.performed += Interact_performed;
+                OnSelectingCell?.Invoke();
+                    
+                // _playerInputActions.Map.Interact.performed += Interact_performed;
 
-                _playerInputActions.Map.ConfirmCell.Disable();
-
-                _playerInputActions.Map.GetCells.Disable();
 
                 _interactingCell.CellType = CellType.Active;
 

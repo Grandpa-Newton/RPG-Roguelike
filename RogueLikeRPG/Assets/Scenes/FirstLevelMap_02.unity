@@ -563,6 +563,7 @@ MonoBehaviour:
     Value: 1
   _spawnCell: {fileID: 3379407618604700805}
   Player: {fileID: 1606420894}
+  _randomTilemapGenerator: {fileID: 736938238}
 --- !u!4 &307014263
 Transform:
   m_ObjectHideFlags: 0
