@@ -6,12 +6,12 @@ using System.Linq;
 using UnityEngine;
 
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Tilemaps;
 
 public class MapLoader : MonoBehaviour
 {
     [HideInInspector]
     public List<GameObject> ActiveCells = new List<GameObject>();
-
 
     [SerializeField]
     private List<SerializedDictionaryItem<CellSO, int>> CellTypesFrequencySerializedDictionary = new List<SerializedDictionaryItem<CellSO, int>>();
@@ -19,6 +19,8 @@ public class MapLoader : MonoBehaviour
     private Dictionary<CellSO, int> _cellTypesFrequencies = new Dictionary<CellSO, int>();
 
     private static Dictionary<string, CellSO> _cellTypes = new Dictionary<string, CellSO>();
+
+    private static List<int> _tilesIndexes;
     //private Dictionary<CellSO, int> CellTypesProbabilities = new Dictionary<CellSO, int>();
 
     public static string CurrentCellId;
@@ -31,6 +33,9 @@ public class MapLoader : MonoBehaviour
     private Transform _spawnCell; // клетка дл€ первого спавна
 
     public Transform Player;
+
+    [SerializeField]
+    private RandomTilemapGenerator _randomTilemapGenerator;
 
     public static MapLoader Instance = null;
 
@@ -58,6 +63,18 @@ public class MapLoader : MonoBehaviour
         if (!WasSpawned)
         {
             GenerateCellsType();
+            _tilesIndexes = _randomTilemapGenerator.Generate(); // запоминаю индексы (которые были рандомно сгенерированы) тайлов
+        }
+        else
+        {
+            if(_tilesIndexes != null)
+            {
+                _randomTilemapGenerator.ApplyGeneration(_tilesIndexes);
+            }
+            else
+            {
+                Debug.LogError("Tilemap was not generated before.");
+            }
         }
     }
     private void Start()
