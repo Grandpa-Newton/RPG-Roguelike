@@ -46,28 +46,28 @@ public abstract class BaseCell : MonoBehaviour
         switch (CellType)
         {
             case CellType.Inactive:
-                SpriteBrightnessChanger.DecreaseSpriteBrightness(_spriteRenderer);
+                // SpriteBrightnessChanger.DecreaseSpriteBrightness(_spriteRenderer);
                 _levelIcon.DecreaseSpriteBrightness();
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Active:
-                SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
+                //SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
                 _levelIcon.IncreaseSpriteBrightness();
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Current:
-                SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
+                //SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
                 _levelIcon.IncreaseSpriteBrightness();
                 isActiveCircle.SetActive(false);
                 break;
             case CellType.Selecting:
-                SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
+                //SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
                 _levelIcon.IncreaseSpriteBrightness();
                 isActiveCircle.SetActive(true);
                 break;
             case CellType.Passed:
                 _isPassed = true;
-                SpriteBrightnessChanger.DecreaseSpriteBrightness(_spriteRenderer);
+                //SpriteBrightnessChanger.DecreaseSpriteBrightness(_spriteRenderer);
                 _levelIcon.DecreaseSpriteBrightness();
                 _levelIcon.ChangeSprite(CellData.NextSprite);
                 isActiveCircle.SetActive(false);
