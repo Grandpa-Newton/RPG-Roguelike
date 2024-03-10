@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneToLoad: EasyLevelGenerateScene
   CellColor: {r: 0.46226418, g: 0.008961357, b: 0, a: 1}
+  OriginalSprite: {fileID: -2021304744, guid: 5f0a9a1a95e73b64aa2ebac2fe08f01a, type: 3}
+  NextSprite: {fileID: 0}

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cf818c7f8ef24b4f909fa0569f7bf2d, type: 3}
-  m_Name: SimpleRandomWalkParameters_MediumLevel 2
+  m_Name: SimpleRandomWalkParameters_EasyLevel
   m_EditorClassIdentifier: 
-  iterations: 70
+  iterations: 50
   walkLength: 20
   startRandomlyEachIteration: 0

@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 _worldMousePos;
     private Vector2 _inputVector;
 
-    public float dashDistance = 200; // Расстояние рывка
+    public float dashDistance = 2000; // Расстояние рывка
     public float dashDuration = 0.2f; 
     
     void Awake() {
