@@ -11,4 +11,8 @@ public class ItemData : ScriptableObject
     public bool addOffset;
     public int health = 1;
     public bool nonDestuctible;
+
+    public string sortingLayerName;
+    public Vector2 colliderSize;
+    public Vector2 colliderOffset;
 }

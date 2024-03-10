@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -7,29 +8,30 @@ public class Item : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private BoxCollider2D itemCollider;
 
-    [SerializeField] private int health = 3;
-    [SerializeField] private bool nonDestructible;
+    [SerializeField] private int health = 3; 
+    private bool _nonDestructible;
     
     [SerializeField]
     private GameObject hitFeedback, destoyFeedback;
 
+    
+    
     public void Initialize(ItemData itemData)
     {
         spriteRenderer.sprite = itemData.sprite;
         spriteRenderer.transform.localPosition = new Vector2(0.5f * itemData.size.x, 0.5f * itemData.size.y);
-
-        itemCollider.size = itemData.size;
-        itemCollider.offset = spriteRenderer.transform.localPosition;
-
+        
+        itemCollider.size = new Vector2(itemData.colliderSize.x, itemData.colliderSize.y);
+        itemCollider.offset = new Vector2(itemData.colliderOffset.x, itemData.colliderOffset.y);
         if (itemData.nonDestuctible)
-            nonDestructible = true;
+            _nonDestructible = true;
 
         health = itemData.health;
     }
     
     public void GetHit(int damage, GameObject damageDealer)
     {
-        if (nonDestructible)
+        if (_nonDestructible)
             return;
         if(health>1)
             Instantiate(hitFeedback, spriteRenderer.transform.position, Quaternion.identity);
