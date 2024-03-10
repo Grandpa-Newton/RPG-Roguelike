@@ -2920,7 +2920,7 @@ PrefabInstance:
     - target: {fileID: 176040091496435608, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
       propertyPath: uiCellDescriptionSo
       value: 
-      objectReference: {fileID: 11400000, guid: 6bfd053ab66b0fd49a79c884d83bf80e, type: 2}
+      objectReference: {fileID: 11400000, guid: cb5a59732002fad4dadc9897fa77ddca, type: 2}
     - target: {fileID: 234152734648448549, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
