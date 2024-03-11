@@ -25,7 +25,7 @@ public class MapPlayerController : MonoBehaviour
     [SerializeField] private GameObject _camera;
     [SerializeField] private Transform _followObject;
 
-    private BaseCell _interactingCell;
+    private PathCell _interactingCell;
 
     private Transform _clickedCellTransform;
 
@@ -41,7 +41,7 @@ public class MapPlayerController : MonoBehaviour
 
     private GameObject _selectingCell;
 
-    private BaseCell.Path _currentPath;
+    private PathCell.Path _currentPath;
 
     private int _wayPointIndex = -1;
 

@@ -191,11 +191,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8195689664513202287}
   - component: {fileID: 4109324407322925649}
-  - component: {fileID: 3133128478823173088}
   - component: {fileID: 8195893076468743552}
   - component: {fileID: 6658626663801059749}
   - component: {fileID: 583453678562719663}
   - component: {fileID: 1790369802797447734}
+  - component: {fileID: 5517601835480100110}
   m_Layer: 3
   m_Name: StartCell
   m_TagString: Cell
@@ -273,25 +273,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3133128478823173088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2444265630392585706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bc9af9092e6d03449caa3b986a144f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActiveCircle: {fileID: 3944144862327330534}
-  CellData: {fileID: 11400000, guid: 566470084d824964b9088a3729423e40, type: 2}
-  CellId: 
-  levelIconGameObject: {fileID: 506504404586377102}
-  NeighborsCells: []
-  Paths: []
-  _cellType: 1
 --- !u!114 &8195893076468743552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +290,6 @@ MonoBehaviour:
   CellId: 
   levelIconGameObject: {fileID: 506504404586377102}
   NeighborsCells: []
-  Paths: []
   _cellType: 1
 --- !u!58 &6658626663801059749
 CircleCollider2D:
@@ -399,6 +379,24 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
+--- !u!114 &5517601835480100110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2444265630392585706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0a93b5b8663e847a408d24724400ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActiveCircle: {fileID: 0}
+  CellData: {fileID: 0}
+  CellId: 
+  levelIconGameObject: {fileID: 0}
+  NeighborsCells: []
+  _cellType: 1
 --- !u!1 &3944144862327330534
 GameObject:
   m_ObjectHideFlags: 0

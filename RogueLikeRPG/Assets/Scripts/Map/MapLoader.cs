@@ -90,25 +90,23 @@ public class MapLoader : MonoBehaviour
     private void GenerateCellsType()
     {
 
-        _cellTypesFrequencies = ConvertToDictinary<CellSO, int>(CellTypesFrequencySerializedDictionary);
+        // _cellTypesFrequencies = ConvertToDictinary<CellSO, int>(CellTypesFrequencySerializedDictionary);
 
         // int currentFrequency = 0;
 
-        int sumOfFrequency = _cellTypesFrequencies.Sum(c => c.Value);
+        int sumOfFrequency = CellTypesFrequencySerializedDictionary.Sum(c => c.Value);
 
         NormalCell[] cells = UnityEngine.Object.FindObjectsOfType<NormalCell>(); // все клетки без стартовой
 
         foreach (var item in cells)
         {
-
             int currentFrequency = 0;
-
 
             System.Random random = new System.Random();
 
             int frequencyNumber = random.Next(0, sumOfFrequency + 1);
 
-            foreach (var cellTypeFrequency in _cellTypesFrequencies)
+            foreach (var cellTypeFrequency in CellTypesFrequencySerializedDictionary)
             {
                 currentFrequency += cellTypeFrequency.Value;
 

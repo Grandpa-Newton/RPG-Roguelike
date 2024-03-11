@@ -18,8 +18,6 @@ public abstract class BaseCell : MonoBehaviour
 
     public List<GameObject> NeighborsCells = new List<GameObject>(); // клетки, на которые можно попасть из этой клетки
 
-    public List<Path> Paths = new List<Path>(); // пути, по которым можно попасть к данной клетке
-                                                // (первый элемент - клетка, из которой идёт путь, потом идут точки "поворота" пути)
 
     protected SpriteRenderer _spriteRenderer;
 
@@ -107,13 +105,6 @@ public abstract class BaseCell : MonoBehaviour
     protected void Start()
     {
         ConfigureObjectStart();
-    }
-
-
-    [Serializable] 
-    public class Path // отдельный класс для того, чтобы сделать список списков
-    {
-        public List<GameObject> WayPoints = new List<GameObject>();
     }
 
     /* protected void OnDrawGizmos()
