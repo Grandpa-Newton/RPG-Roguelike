@@ -60,6 +60,10 @@ public class MapLoader : MonoBehaviour
 
         //StartPanelLoadTransition.gameObject.SetActive(true);
 
+        
+    }
+    private void Start()
+    {
         if (!WasSpawned)
         {
             GenerateCellsType();
@@ -67,7 +71,8 @@ public class MapLoader : MonoBehaviour
         }
         else
         {
-            if(_tilesIndexes != null)
+            ApplyGeneratedTypes();
+            if (_tilesIndexes != null)
             {
                 _randomTilemapGenerator.ApplyGeneration(_tilesIndexes);
             }
@@ -75,13 +80,6 @@ public class MapLoader : MonoBehaviour
             {
                 Debug.LogError("Tilemap was not generated before.");
             }
-        }
-    }
-    private void Start()
-    {
-        if (WasSpawned)
-        {
-            ApplyGeneratedTypes();
         }
 
         UpdateInfo();
@@ -94,7 +92,7 @@ public class MapLoader : MonoBehaviour
 
         // int currentFrequency = 0;
 
-        int sumOfFrequency = CellTypesFrequencySerializedDictionary.Sum(c => c.Value);
+        /* int sumOfFrequency = CellTypesFrequencySerializedDictionary.Sum(c => c.Value);
 
         NormalCell[] cells = UnityEngine.Object.FindObjectsOfType<NormalCell>(); // все клетки без стартовой
 
@@ -118,7 +116,7 @@ public class MapLoader : MonoBehaviour
                 }
 
             }
-        }
+        }*/
 
         //_cellTypesProbabilities
 
@@ -129,7 +127,19 @@ public class MapLoader : MonoBehaviour
             _cellTypesProbabilities.Add(cellTypeFrequency.Key, (float)cellTypeFrequency.Value / (float)sumOfFrequency);
         }*/
 
+        NormalCell[] cells = UnityEngine.Object.FindObjectsOfType<NormalCell>();
 
+        foreach (var item in cells)
+        {
+
+            System.Random random = new System.Random();
+
+            int randomNumber = random.Next(0, item.PossibleCellData.Count);
+
+            _cellTypes[item.CellId] = item.PossibleCellData[randomNumber];
+
+            item.SetCellData(item.PossibleCellData[randomNumber]);
+        }
 
 
         WasSpawned = true;

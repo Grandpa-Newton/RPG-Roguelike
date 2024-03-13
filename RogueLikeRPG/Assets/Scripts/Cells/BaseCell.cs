@@ -18,6 +18,8 @@ public abstract class BaseCell : MonoBehaviour
 
     public List<GameObject> NeighborsCells = new List<GameObject>(); // клетки, на которые можно попасть из этой клетки
 
+    public List<CellSO> PossibleCellData = new List<CellSO>();
+
 
     protected SpriteRenderer _spriteRenderer;
 
