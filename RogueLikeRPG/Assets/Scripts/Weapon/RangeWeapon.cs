@@ -19,9 +19,13 @@ public class RangeWeapon : MonoBehaviour, IWeapon
 
     private void Awake()
     {
-        _playerInputActions = InputManager.Instance.PlayerInputActions;
         _aimTransform = transform.root.Find("Aim");
         GetComponent<SpriteRenderer>().sprite = _rangeWeaponData.weaponSprite;
+    }
+
+    private void Start()
+    {
+        _playerInputActions = InputManager.Instance.PlayerInputActions;
     }
 
     public RangeWeapon(RangeWeaponSO data)

@@ -261,11 +261,11 @@ GameObject:
   - component: {fileID: 5359380135867509143}
   - component: {fileID: 4159857717505111935}
   - component: {fileID: 1610640700938836702}
-  - component: {fileID: 8807091535373032333}
-  - component: {fileID: 2191871537133175800}
-  - component: {fileID: 2671509649919419075}
-  - component: {fileID: 4524324115122470558}
   - component: {fileID: 2018821293375233273}
+  - component: {fileID: 8807091535373032333}
+  - component: {fileID: 2671509649919419075}
+  - component: {fileID: 2191871537133175800}
+  - component: {fileID: 4524324115122470558}
   - component: {fileID: 7490865900675531576}
   - component: {fileID: 7442927163657405319}
   - component: {fileID: 7152533395521013163}
@@ -403,6 +403,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.2}
   m_EdgeRadius: 0
+--- !u!95 &2018821293375233273
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306722505127858314}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb3e26e86ed5c1e47be74419dd5590d3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8807091535373032333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,18 +464,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   dashDistance: 50
   dashDuration: 0.2
---- !u!114 &2191871537133175800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4306722505127858314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 331f90a4334505742ae48486998ab3e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2671509649919419075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,6 +474,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08a270b04f490394588048741ea012dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2191871537133175800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306722505127858314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331f90a4334505742ae48486998ab3e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &4524324115122470558
@@ -481,27 +502,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
---- !u!95 &2018821293375233273
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4306722505127858314}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cb3e26e86ed5c1e47be74419dd5590d3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7490865900675531576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,11 +544,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f3240b4f394584d9b245431b575eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  equp_weapon: {fileID: 0}
   inventoryData: {fileID: 11400000, guid: f37c1c10a167764469f0bb4cb1b8b5b2, type: 2}
-  parametersToModify:
-  - itemParameter: {fileID: 11400000, guid: 533c012a18006a946bb1f4f12d81227a, type: 2}
-    value: -10
+  parametersToModify: []
   itemCurrentState: []
 --- !u!82 &5958824334006302602
 AudioSource:

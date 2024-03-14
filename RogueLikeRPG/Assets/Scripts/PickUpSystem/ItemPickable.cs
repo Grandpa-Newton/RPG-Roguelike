@@ -13,7 +13,7 @@ public class ItemPickable : MonoBehaviour
 
    private void Start()
    {
-      GetComponent<SpriteRenderer>().sprite = InventoryItem.ItemImage;
+      GetComponent<SpriteRenderer>().sprite = InventoryItem.playerWeapon.weaponSprite;
    }
 
    public void DestroyItem()

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerAimWeapon : MonoBehaviour
@@ -12,6 +13,10 @@ public class PlayerAimWeapon : MonoBehaviour
     private void Awake()
     {
         _aimTransform = transform.Find("Aim");
+    }
+
+    private void Start()
+    {
         _playerInputActions = InputManager.Instance.PlayerInputActions;
     }
 

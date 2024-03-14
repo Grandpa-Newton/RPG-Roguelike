@@ -21,8 +21,13 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
 
     private void Awake()
     {
-        _playerInputActions = InputManager.Instance.PlayerInputActions;
+        //_playerInputActions = InputManager.Instance.PlayerInputActions;
         GetComponent<SpriteRenderer>().sprite = _meleeWeaponData.weaponSprite;
+    }
+
+    private void Start()
+    {
+        _playerInputActions = InputManager.Instance.PlayerInputActions;
     }
 
     private void Update()

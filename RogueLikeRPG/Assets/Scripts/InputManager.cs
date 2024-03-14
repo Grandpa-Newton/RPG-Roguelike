@@ -27,7 +27,6 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Update");
         if (PlayerInputActions.Player.Interact.IsPressed())
         {
             Debug.Log("KeyCode");

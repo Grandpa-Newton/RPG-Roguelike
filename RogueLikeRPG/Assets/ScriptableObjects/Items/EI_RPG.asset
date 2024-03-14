@@ -10,14 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4754ac7f4807ae41ab6109c42cb753c, type: 3}
-  m_Name: Sword
+  m_Name: EI_RPG
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <Name>k__BackingField: Pistolet
-  <Description>k__BackingField: Fire!!!
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: 96ad6187dfd55994eb247dfc4c776620, type: 3}
-  <DefaultParametersList>k__BackingField:
-  - itemParameter: {fileID: 11400000, guid: 533c012a18006a946bb1f4f12d81227a, type: 2}
-    value: 100
+  playerWeapon: {fileID: 11400000, guid: 9bb95734ed411d24ea3426002081577d, type: 2}
+  <DefaultParametersList>k__BackingField: []
   <actionSFX>k__BackingField: {fileID: 8300000, guid: c66a4a1db6099e34ca14a09e09c6ec26, type: 3}

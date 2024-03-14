@@ -4,19 +4,20 @@ using UnityEngine;
 using Inventory.Model;
     public class AgentWeapon : MonoBehaviour
     {
-        [SerializeField] private EquippableItemSO weapon;
+        [SerializeField] private EquippableItemSO equp_weapon;
+        [SerializeField] private IWeapon weapon;
         [SerializeField] private InventorySO inventoryData;
         [SerializeField] private List<ItemParameter> parametersToModify;
         [SerializeField] private List<ItemParameter> itemCurrentState;
 
         public void SetWeapon(EquippableItemSO weaponItemSO, List<ItemParameter> itemState)
         {
-            if (weapon != null)
+            if (equp_weapon != null)
             {
-                inventoryData.AddItem(weapon, 1, itemCurrentState);
+                inventoryData.AddItem(equp_weapon, 1, itemCurrentState);
             }
 
-            this.weapon = weaponItemSO;
+            this.equp_weapon = weaponItemSO;
             this.itemCurrentState = new List<ItemParameter>(itemState);
             ModifyParameters();
         }

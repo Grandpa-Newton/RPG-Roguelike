@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _playerInputActions = InputManager.Instance.PlayerInputActions;
+
         CinemachineVirtualCamera vcam = FindObjectOfType<CinemachineVirtualCamera>();
         
         if (vcam != null)
@@ -141,7 +143,6 @@ public class PlayerController : MonoBehaviour
         // Rigid body
         _rigidbody2D = GetComponent<Rigidbody2D>();
         // Player Input Actions
-        _playerInputActions = InputManager.Instance.PlayerInputActions;
     }
 
     public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)

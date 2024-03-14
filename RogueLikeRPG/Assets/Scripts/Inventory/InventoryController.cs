@@ -46,7 +46,7 @@ namespace Inventory
             inventoryUI.ResetAllItems();
             foreach (var item in inventoryState)
             {
-                inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
+                inventoryUI.UpdateData(item.Key, item.Value.item.playerWeapon.weaponSprite, item.Value.quantity);
             }
         }
 
@@ -115,7 +115,7 @@ namespace Inventory
             InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
             if (inventoryItem.IsEmpty)
                 return;
-            inventoryUI.CreateDraggedItem(inventoryItem.item.ItemImage, inventoryItem.quantity);
+            inventoryUI.CreateDraggedItem(inventoryItem.item.playerWeapon.weaponSprite, inventoryItem.quantity);
         }
 
         private void HandleSwapItems(int itemIndex1, int itemIndex2)
@@ -134,13 +134,13 @@ namespace Inventory
 
             ItemSO item = inventoryItem.item;
             string description = PrepareDescription(inventoryItem);
-            inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, description);
+            inventoryUI.UpdateDescription(itemIndex, item.playerWeapon.weaponSprite, item.name, description);
         }
 
         private string PrepareDescription(InventoryItem inventoryItem)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(inventoryItem.item.Description);
+            sb.Append(inventoryItem.item.playerWeapon.weaponDescription);
             sb.AppendLine();
             for (int i = 0; i < inventoryItem.itemState.Count; i++)
             {
@@ -162,7 +162,7 @@ namespace Inventory
 
                     foreach (var item in inventoryData.GetCurrentInventoryState())
                     {
-                        inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
+                        inventoryUI.UpdateData(item.Key, item.Value.item.playerWeapon.weaponSprite, item.Value.quantity);
                     }
                 }
                 else
