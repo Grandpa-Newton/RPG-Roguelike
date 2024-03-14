@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class TraderInventoryController : MonoBehaviour
+public class TraderInventoryController : MonoBehaviour, IInteractable
 {
     [SerializeField] private UIInventoryPage inventoryUI;
 
@@ -148,40 +148,20 @@ public class TraderInventoryController : MonoBehaviour
         return sb.ToString();
     }
 
-    public void Update()
+    public void Interact() // мб реализовать в отдельном скрипте
     {
-        
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        var other = collision.gameObject.GetComponent<IShopCustomer>();
-
-        Debug.Log("jjjjjjjjjjj");
-        if (other != null)
+        if (inventoryUI.isActiveAndEnabled == false)
         {
-            Debug.Log("AAAAAAAAAAAAA");
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                if (inventoryUI.isActiveAndEnabled == false)
-                {
-                    inventoryUI.Show();
+            inventoryUI.Show();
 
-                    foreach (var item in inventoryData.GetCurrentInventoryState())
-                    {
-                        inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
-                    }
-                }
-                else
-                {
-                    inventoryUI.Hide();
-                }
+            foreach (var item in inventoryData.GetCurrentInventoryState())
+            {
+                inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
             }
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        
+        else
+        {
+            inventoryUI.Hide();
+        }
     }
 }

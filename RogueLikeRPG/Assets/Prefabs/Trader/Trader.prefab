@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6415700449798226002}
-  - component: {fileID: 4952902959062568712}
   m_Layer: 0
   m_Name: Trader
   m_TagString: Untagged
@@ -33,23 +32,6 @@ Transform:
   - {fileID: 4553079215462000867}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4952902959062568712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5239777785492891647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fc6d8bb2b9fc841a5be9982738c845, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryUI: {fileID: 5790439371675538626}
-  inventoryData: {fileID: 11400000, guid: f9479697f44226d4eae5718e5f4f6daa, type: 2}
-  initialItems: []
-  dropClip: {fileID: 0}
-  audioSource: {fileID: 0}
 --- !u!1001 &4036516078776970631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,14 +134,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 516608359742621028, guid: a4bf3d7a14dc3f24c8dba0d96d05e828, type: 3}
   m_PrefabInstance: {fileID: 4036516078776970631}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5790439371675538626 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7520817938011486533, guid: a4bf3d7a14dc3f24c8dba0d96d05e828, type: 3}
-  m_PrefabInstance: {fileID: 4036516078776970631}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27c064196b7aaaa4a9cc745c36a074a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
