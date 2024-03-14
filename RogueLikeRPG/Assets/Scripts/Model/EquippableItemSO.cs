@@ -13,6 +13,7 @@ namespace Inventory.Model
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
             AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
+            Debug.Log(weaponSystem + ": weapon system");
             if (weaponSystem != null)
             {
                 weaponSystem.SetWeapon(this, itemState == null ? DefaultParametersList : itemState);

@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Inventory.Model;
-    public class AgentWeapon : MonoBehaviour
+using UnityEngine.Serialization;
+
+public class AgentWeapon : MonoBehaviour
     {
-        [SerializeField] private EquippableItemSO equp_weapon;
+        [SerializeField] private EquippableItemSO equpWeapon;
         [SerializeField] private IWeapon weapon;
         [SerializeField] private InventorySO inventoryData;
         [SerializeField] private List<ItemParameter> parametersToModify;
@@ -12,12 +14,14 @@ using Inventory.Model;
 
         public void SetWeapon(EquippableItemSO weaponItemSO, List<ItemParameter> itemState)
         {
-            if (equp_weapon != null)
+            if (equpWeapon != null)
             {
-                inventoryData.AddItem(equp_weapon, 1, itemCurrentState);
+                inventoryData.AddItem(equpWeapon, 1, itemCurrentState);
             }
 
-            this.equp_weapon = weaponItemSO;
+            Debug.Log(weaponItemSO.name + "wIso");
+            Debug.Log(equpWeapon.name + "eq");
+            this.equpWeapon = weaponItemSO;
             this.itemCurrentState = new List<ItemParameter>(itemState);
             ModifyParameters();
         }

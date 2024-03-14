@@ -101,6 +101,7 @@ namespace Inventory
             }
 
             IItemAction itemAction = inventoryItem.item as IItemAction;
+            Debug.Log(itemAction + "iA");
             if (itemAction != null)
             {
                 itemAction.PerformAction(gameObject, inventoryItem.itemState);
