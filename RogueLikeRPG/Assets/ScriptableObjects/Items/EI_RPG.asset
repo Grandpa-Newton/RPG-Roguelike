@@ -16,4 +16,5 @@ MonoBehaviour:
   <MaxStackSize>k__BackingField: 1
   playerWeapon: {fileID: 11400000, guid: 9bb95734ed411d24ea3426002081577d, type: 2}
   <DefaultParametersList>k__BackingField: []
+  itemType: 1
   <actionSFX>k__BackingField: {fileID: 8300000, guid: c66a4a1db6099e34ca14a09e09c6ec26, type: 3}

@@ -43,6 +43,17 @@ public class SwitchWeaponBetweenRangeAndMelee : MonoBehaviour
         }
     }
 
+    public void SetActiveMeleeWeapon()
+    {
+        meleeWeapon.gameObject.SetActive(true);
+        rangeWeapon.gameObject.SetActive(false);
+    }
+    public void SetActiveRangeWeapon()
+    {
+        meleeWeapon.gameObject.SetActive(false);
+        rangeWeapon.gameObject.SetActive(true);
+    }
+
     public bool GetWeaponState()
     {
         return isMeleeWeapon;
