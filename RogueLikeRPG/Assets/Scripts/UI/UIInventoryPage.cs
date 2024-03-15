@@ -168,7 +168,7 @@ namespace Inventory.UI
 
         private List<UIInventoryItem> UpdateInventoryStateBetweenScenes()
         {
-            contentPanel = GameObject.Find("Content").GetComponent<RectTransform>();
+            //contentPanel = GameObject.Find("Content").GetComponent<RectTransform>();
 
             listOfUIItems = new List<UIInventoryItem>();
     

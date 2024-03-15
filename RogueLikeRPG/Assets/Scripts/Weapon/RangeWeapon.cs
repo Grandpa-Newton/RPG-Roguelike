@@ -8,6 +8,9 @@ public class RangeWeapon : MonoBehaviour, IWeapon
     [SerializeField] private RangeWeaponSO _rangeWeaponData;
     public WeaponSO WeaponData => _rangeWeaponData;
 
+    [SerializeField] private SwitchWeaponBetweenRangeAndMelee _switchWeaponBetweenRangeAndMelee;
+    
+    
     private float _timeToNextShot = 0;
     private PlayerInputActions _playerInputActions;
     [SerializeField] private Transform shootPoint;
@@ -20,7 +23,6 @@ public class RangeWeapon : MonoBehaviour, IWeapon
     private void Awake()
     {
         _aimTransform = transform.root.Find("Aim");
-        GetComponent<SpriteRenderer>().sprite = _rangeWeaponData.weaponSprite;
     }
 
     private void Start()
@@ -38,9 +40,26 @@ public class RangeWeapon : MonoBehaviour, IWeapon
         DealDamage();
     }
 
+    private void SetActivePlayerHands()
+    {
+        if (!_rangeWeaponData)
+        {
+            //set active true;
+        }
+        else
+        {
+            
+        }
+    }
 
     public void DealDamage()
     {
+        if (!_rangeWeaponData)
+        {
+            _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(false);
+            return;
+        }
+        
         _timeToNextShot += Time.deltaTime;
         if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextShot > _rangeWeaponData.attackRate)
         {
@@ -57,6 +76,17 @@ public class RangeWeapon : MonoBehaviour, IWeapon
         }
     }
 
+    public void SetRangeWeapon(RangeWeaponSO rangeWeaponSo)
+    {
+        if (!rangeWeaponSo)
+        {
+            Debug.LogError("RangeWeaponSO IS NULL");
+            return;
+        }
+        _rangeWeaponData = rangeWeaponSo;
+        _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
+        GetComponent<SpriteRenderer>().sprite = _rangeWeaponData.weaponSprite;
+    }
     private void SetBulletParameters(Bullet bullet)
     {
         bullet.SetRangeWeaponSO(_rangeWeaponData);

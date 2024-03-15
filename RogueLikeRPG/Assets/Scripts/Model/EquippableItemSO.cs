@@ -13,12 +13,14 @@ namespace Inventory.Model
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
             AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
-            Debug.Log(weaponSystem + ": weapon system");
-            if (weaponSystem != null)
+            RangeWeapon weapon = GameObject.Find("RangeWeapon").GetComponent<RangeWeapon>();
+            if (weaponSystem != null && weapon != null)
             {
                 weaponSystem.SetWeapon(this, itemState == null ? DefaultParametersList : itemState);
+                weapon.SetRangeWeapon((RangeWeaponSO)this.playerWeapon);
                 return true;
             }
+            
 
             return false;
         }

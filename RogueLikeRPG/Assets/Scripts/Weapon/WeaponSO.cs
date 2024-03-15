@@ -12,5 +12,10 @@ public class WeaponSO : ScriptableObject
     public AudioClip weaponAttackSound;
     public string weaponName;
     public string weaponDescription;
+
+    public void SetWeapon()
+    {
+        
+    }
     
 }

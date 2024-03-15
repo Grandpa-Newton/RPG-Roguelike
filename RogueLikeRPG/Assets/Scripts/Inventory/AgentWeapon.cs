@@ -7,7 +7,6 @@ using UnityEngine.Serialization;
 public class AgentWeapon : MonoBehaviour
     {
         [SerializeField] private EquippableItemSO equpWeapon;
-        [SerializeField] private IWeapon weapon;
         [SerializeField] private InventorySO inventoryData;
         [SerializeField] private List<ItemParameter> parametersToModify;
         [SerializeField] private List<ItemParameter> itemCurrentState;
@@ -19,10 +18,8 @@ public class AgentWeapon : MonoBehaviour
                 inventoryData.AddItem(equpWeapon, 1, itemCurrentState);
             }
 
-            Debug.Log(weaponItemSO.name + "wIso");
-            Debug.Log(equpWeapon.name + "eq");
             this.equpWeapon = weaponItemSO;
-            this.itemCurrentState = new List<ItemParameter>(itemState);
+            this.itemCurrentState = new List<ItemParameter>(itemState); 
             ModifyParameters();
         }
 

@@ -5,33 +5,43 @@ using UnityEngine;
 
 public class SwitchWeaponBetweenRangeAndMelee : MonoBehaviour
 {
-  [SerializeField] private Transform meleeWeapon;
-  [SerializeField] private Transform rangeWeapon;
+    [SerializeField] private Transform meleeWeapon;
+    [SerializeField] private Transform rangeWeapon;
 
-  private bool isMeleeWeapon = true;
+    [SerializeField] private GameObject[] hands;
 
-  private void Start()
-  {
-    meleeWeapon.gameObject.SetActive(true);
-    rangeWeapon.gameObject.SetActive(false);
-    
-  }
+    private bool isMeleeWeapon = true;
 
-  private void Update()
-  {
-    if (Input.GetKeyDown(KeyCode.Mouse1))
+    private void Start()
     {
-      isMeleeWeapon = !isMeleeWeapon;
-      if (isMeleeWeapon)
-      {
         meleeWeapon.gameObject.SetActive(true);
         rangeWeapon.gameObject.SetActive(false);
-      }
-      else
-      {
-        meleeWeapon.gameObject.SetActive(false);
-        rangeWeapon.gameObject.SetActive(true);
-      }
+        PlayerHandsVisible(false);
     }
-  }
+
+    private void Update()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") != 0)
+        {
+            isMeleeWeapon = !isMeleeWeapon;
+            if (isMeleeWeapon)
+            {
+                meleeWeapon.gameObject.SetActive(true);
+                rangeWeapon.gameObject.SetActive(false);
+            }
+            else
+            {
+                meleeWeapon.gameObject.SetActive(false);
+                rangeWeapon.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void PlayerHandsVisible(bool isActive)
+    {
+        foreach (var hand in hands)
+        {
+            hand.SetActive(isActive);
+        }
+    }
 }

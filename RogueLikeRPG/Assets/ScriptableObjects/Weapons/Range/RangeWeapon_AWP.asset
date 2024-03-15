@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e45e062a3fe28b4d9515e98ae3f2b04, type: 3}
   m_Name: RangeWeapon_AWP
   m_EditorClassIdentifier: 
-  attackRate: 0
+  attackRate: 0.3
   damage: 10
   weaponSprite: {fileID: -2011218429, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
   weaponAttackSound: {fileID: 0}
-  weaponName: 
-  weaponDescription: 
-  bulletSO: {fileID: 0}
-  bulletSpeed: 0
-  magSize: 0
-  reloadTime: 0
+  weaponName: AWP
+  weaponDescription: "\u0421\u0442\u0440\u0435\u043B\u044F\u0439 \u0431\u0440\u0430\u0442\u0438\u0448\u043A\u0430!"
+  bulletSO: {fileID: 11400000, guid: 33a6a0692a2d18f43a562d5d1a0acbf5, type: 2}
+  bulletSpeed: 30
+  magSize: 10
+  reloadTime: 2
