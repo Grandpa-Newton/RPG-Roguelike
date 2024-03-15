@@ -8,6 +8,7 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
     [SerializeField] private MeleeWeaponSO _meleeWeaponData;
     public WeaponSO WeaponData => _meleeWeaponData;
     [SerializeField] private Animator _animator;
+    [SerializeField] private SwitchWeaponBetweenRangeAndMelee _switchWeaponBetweenRangeAndMelee;
     private PlayerInputActions _playerInputActions;
 
     private float _timeToNextAttack = 0;
@@ -22,7 +23,6 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
     private void Awake()
     {
         //_playerInputActions = InputManager.Instance.PlayerInputActions;
-        GetComponent<SpriteRenderer>().sprite = _meleeWeaponData.weaponSprite;
     }
 
     private void Start()
@@ -36,6 +36,12 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
     }
     public void DealDamage()
     {
+        if (!_meleeWeaponData)
+        {
+            _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(false);
+            return;
+        }
+        
         _timeToNextAttack += Time.deltaTime;
         if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextAttack > _meleeWeaponData.attackRate)
         {
@@ -52,6 +58,19 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
         yield return new WaitForSeconds(_meleeWeaponData.attackRate);
     }
 
+    public void SetWeapon(WeaponSO meleeWeaponSo)
+    {
+        if (!meleeWeaponSo)
+        {
+            Debug.LogError("MeleeWeapon IS NULL");
+            return;
+        }
+
+        _meleeWeaponData = (MeleeWeaponSO)meleeWeaponSo;
+        _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
+        GetComponent<SpriteRenderer>().sprite = _meleeWeaponData.weaponSprite;
+    }
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.TryGetComponent(out Enemy enemy))

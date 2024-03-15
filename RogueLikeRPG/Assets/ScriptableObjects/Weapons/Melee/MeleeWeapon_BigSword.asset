@@ -16,5 +16,5 @@ MonoBehaviour:
   damage: 5
   weaponSprite: {fileID: 2089216685, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
   weaponAttackSound: {fileID: 0}
-  weaponName: Kukri
-  weaponDescription: Rezat`
+  weaponName: Big Sword
+  weaponDescription: Rubit`

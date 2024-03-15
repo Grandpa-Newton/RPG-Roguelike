@@ -10,20 +10,32 @@ namespace Inventory.Model
     {
         public string ActionName => "Equip";
         [field: SerializeField] public AudioClip actionSFX { get; private set; }
+
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
             AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
-            RangeWeapon weapon = GameObject.Find("RangeWeapon").GetComponent<RangeWeapon>();
-            if (weaponSystem != null && weapon != null)
+            IWeapon weapon;
+            if (SwitchWeaponBetweenRangeAndMelee.Instance.GetWeaponState())
             {
-                weaponSystem.SetWeapon(this, itemState == null ? DefaultParametersList : itemState);
-                weapon.SetRangeWeapon((RangeWeaponSO)this.playerWeapon);
-                return true;
+                 weapon = GameObject.Find("MeleeWeapon").GetComponent<MeleeWeapon>();
+                 if (weaponSystem != null)
+                 {
+                     weaponSystem.SetMeleeWeapon(this, itemState == null ? DefaultParametersList : itemState);
+                     weapon.SetWeapon(playerWeapon);
+                 }
             }
-            
+            else
+            {
+                 weapon = GameObject.Find("RangeWeapon").GetComponent<RangeWeapon>();
+                 if (weaponSystem != null)
+                 {
+                     weaponSystem.SetRangeWeapon(this, itemState == null ? DefaultParametersList : itemState);
+                     weapon.SetWeapon(playerWeapon);
+                 }
+            }
+
 
             return false;
         }
     }
-    
 }

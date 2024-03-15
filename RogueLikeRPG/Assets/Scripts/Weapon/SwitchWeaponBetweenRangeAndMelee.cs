@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SwitchWeaponBetweenRangeAndMelee : MonoBehaviour
 {
+    public static SwitchWeaponBetweenRangeAndMelee Instance { get; private set; }
     [SerializeField] private Transform meleeWeapon;
     [SerializeField] private Transform rangeWeapon;
 
@@ -12,6 +13,11 @@ public class SwitchWeaponBetweenRangeAndMelee : MonoBehaviour
 
     private bool isMeleeWeapon = true;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+    
     private void Start()
     {
         meleeWeapon.gameObject.SetActive(true);
@@ -37,6 +43,10 @@ public class SwitchWeaponBetweenRangeAndMelee : MonoBehaviour
         }
     }
 
+    public bool GetWeaponState()
+    {
+        return isMeleeWeapon;
+    }
     public void PlayerHandsVisible(bool isActive)
     {
         foreach (var hand in hands)

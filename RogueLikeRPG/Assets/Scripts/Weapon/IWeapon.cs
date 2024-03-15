@@ -7,4 +7,6 @@ public interface IWeapon
     public WeaponSO WeaponData { get; }
 
     public void DealDamage();
+
+    public void SetWeapon(WeaponSO weaponSo);
 }

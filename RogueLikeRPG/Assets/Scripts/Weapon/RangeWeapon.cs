@@ -76,14 +76,14 @@ public class RangeWeapon : MonoBehaviour, IWeapon
         }
     }
 
-    public void SetRangeWeapon(RangeWeaponSO rangeWeaponSo)
+    public void SetWeapon(WeaponSO rangeWeaponSo)
     {
         if (!rangeWeaponSo)
         {
             Debug.LogError("RangeWeaponSO IS NULL");
             return;
         }
-        _rangeWeaponData = rangeWeaponSo;
+        _rangeWeaponData = (RangeWeaponSO)rangeWeaponSo;
         _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
         GetComponent<SpriteRenderer>().sprite = _rangeWeaponData.weaponSprite;
     }

@@ -6,23 +6,38 @@ using UnityEngine.Serialization;
 
 public class AgentWeapon : MonoBehaviour
     {
-        [SerializeField] private EquippableItemSO equpWeapon;
-        [SerializeField] private InventorySO inventoryData;
+        [Header("Current Weapons")]
+        [SerializeField] private EquippableItemSO equipMeleeWeapon;
+        [SerializeField] private EquippableItemSO equipRangeWeapon;
+        
         [SerializeField] private List<ItemParameter> parametersToModify;
         [SerializeField] private List<ItemParameter> itemCurrentState;
 
-        public void SetWeapon(EquippableItemSO weaponItemSO, List<ItemParameter> itemState)
+        [Header("Inventory")]
+        [SerializeField] private InventorySO inventoryData;
+        
+        public void SetMeleeWeapon(EquippableItemSO weaponItemSO, List<ItemParameter> itemState)
         {
-            if (equpWeapon != null)
+            if (equipMeleeWeapon != null)
             {
-                inventoryData.AddItem(equpWeapon, 1, itemCurrentState);
+                inventoryData.AddItem(equipMeleeWeapon, 1, itemCurrentState);
             }
-
-            this.equpWeapon = weaponItemSO;
+            
+            this.equipMeleeWeapon = weaponItemSO;
             this.itemCurrentState = new List<ItemParameter>(itemState); 
             ModifyParameters();
         }
-
+        public void SetRangeWeapon(EquippableItemSO weaponItemSO, List<ItemParameter> itemState)
+        {
+            if (equipRangeWeapon != null)
+            {
+                inventoryData.AddItem(equipRangeWeapon, 1, itemCurrentState);
+            }
+            
+            this.equipRangeWeapon = weaponItemSO;
+            this.itemCurrentState = new List<ItemParameter>(itemState); 
+            ModifyParameters();
+        }
         private void ModifyParameters()
         {
             foreach (var parameter in parametersToModify)
