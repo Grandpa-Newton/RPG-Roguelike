@@ -7,8 +7,8 @@ using UnityEngine.Serialization;
 public class AgentWeapon : MonoBehaviour
     {
         [Header("Current Weapons")]
-        [SerializeField] private EquippableItemSO equipMeleeWeapon;
-        [SerializeField] private EquippableItemSO equipRangeWeapon;
+        [SerializeField] private WeaponItemSO equipMeleeWeapon;
+        [SerializeField] private WeaponItemSO equipRangeWeapon;
         
         [SerializeField] private List<ItemParameter> parametersToModify;
         [SerializeField] private List<ItemParameter> itemCurrentState;
@@ -16,7 +16,7 @@ public class AgentWeapon : MonoBehaviour
         [Header("Inventory")]
         [SerializeField] private InventorySO inventoryData;
         
-        public void SetMeleeWeapon(EquippableItemSO weaponItemSO, List<ItemParameter> itemState)
+        public void SetMeleeWeapon(WeaponItemSO weaponItemSO, List<ItemParameter> itemState)
         {
             if (equipMeleeWeapon != null)
             {
@@ -27,7 +27,7 @@ public class AgentWeapon : MonoBehaviour
             this.itemCurrentState = new List<ItemParameter>(itemState); 
             ModifyParameters();
         }
-        public void SetRangeWeapon(EquippableItemSO weaponItemSO, List<ItemParameter> itemState)
+        public void SetRangeWeapon(WeaponItemSO weaponItemSO, List<ItemParameter> itemState)
         {
             if (equipRangeWeapon != null)
             {

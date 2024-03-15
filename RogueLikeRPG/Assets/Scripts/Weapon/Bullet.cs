@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private TrailRenderer _trailRenderer;
     private RangeWeaponSO _rangeWeaponSo;
-    private ParticleSystem bulletParticleTrail;
+    //private ParticleSystem bulletParticleTrail;
     
     private RangeWeapon _rangeWeapon;
     
@@ -52,7 +52,7 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(_bulletSo.lifeTime);
         if (gameObject != null)
         {
-            bulletParticleTrail.Stop();
+            //bulletParticleTrail.Stop();
             Destroy(gameObject);
         }
     }
@@ -67,9 +67,9 @@ public class Bullet : MonoBehaviour
         _spriteRenderer.sprite = bulletSO.departingBulletSprite;
         _trailRenderer = bulletSO.trailRenderer;
         
-        bulletParticleTrail = Instantiate(bulletSO.bulletTrailParticle, transform.position, Quaternion.identity);
-        bulletParticleTrail.transform.parent = transform;
-        bulletParticleTrail.Play();
+        //bulletParticleTrail = Instantiate(bulletSO.bulletTrailParticle, transform.position, Quaternion.identity);
+        //bulletParticleTrail.transform.parent = transform;
+        //bulletParticleTrail.Play();
     }
 
     public void SetRangeWeaponSO(RangeWeaponSO rangeWeaponSO)

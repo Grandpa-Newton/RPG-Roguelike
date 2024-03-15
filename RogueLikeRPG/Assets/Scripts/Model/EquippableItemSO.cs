@@ -23,7 +23,7 @@ namespace Inventory.Model
 
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
-            AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
+            /*AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
             IWeapon weapon;
             if (itemType == ItemType.MeleeWeapon)
             {
@@ -32,7 +32,7 @@ namespace Inventory.Model
                  if (weaponSystem != null)
                  {
                      weaponSystem.SetMeleeWeapon(this, itemState == null ? DefaultParametersList : itemState);
-                     weapon.SetWeapon(playerWeapon);
+                     weapon.SetWeapon(this);
                  }
             }
             else if(itemType == ItemType.RangeWeapon)
@@ -42,13 +42,14 @@ namespace Inventory.Model
                  if (weaponSystem != null)
                  {
                      weaponSystem.SetRangeWeapon(this, itemState == null ? DefaultParametersList : itemState);
-                     weapon.SetWeapon(playerWeapon);
+                     weapon.SetWeapon(this);
                  }
             }
             else if (itemType == ItemType.Armour)
             {
                 //fdsl;fjsdlkj
             }
+            */
 
 
             return false;

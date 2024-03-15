@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Inventory.Model;
 using UnityEngine;
 
 public class MeleeWeapon : MonoBehaviour, IWeapon
 {
     [SerializeField] private MeleeWeaponSO _meleeWeaponData;
-    public WeaponSO WeaponData => _meleeWeaponData;
+    public WeaponItemSO WeaponData => _meleeWeaponData;
     [SerializeField] private Animator _animator;
     [SerializeField] private SwitchWeaponBetweenRangeAndMelee _switchWeaponBetweenRangeAndMelee;
     private PlayerInputActions _playerInputActions;
@@ -58,7 +59,7 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
         yield return new WaitForSeconds(_meleeWeaponData.attackRate);
     }
 
-    public void SetWeapon(WeaponSO meleeWeaponSo)
+    public void SetWeapon(ItemSO meleeWeaponSo)
     {
         if (!meleeWeaponSo)
         {
@@ -68,7 +69,7 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
 
         _meleeWeaponData = (MeleeWeaponSO)meleeWeaponSo;
         _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
-        GetComponent<SpriteRenderer>().sprite = _meleeWeaponData.weaponSprite;
+        GetComponent<SpriteRenderer>().sprite = _meleeWeaponData.ItemImage;
     }
     
     private void OnTriggerEnter2D(Collider2D other)

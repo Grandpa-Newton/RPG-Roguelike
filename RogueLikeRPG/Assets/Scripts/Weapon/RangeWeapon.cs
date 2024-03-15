@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Inventory.Model;
 using UnityEngine;
 
 public class RangeWeapon : MonoBehaviour, IWeapon
 {
     [SerializeField] private RangeWeaponSO _rangeWeaponData;
-    public WeaponSO WeaponData => _rangeWeaponData;
+    public WeaponItemSO WeaponData => _rangeWeaponData;
 
     [SerializeField] private SwitchWeaponBetweenRangeAndMelee _switchWeaponBetweenRangeAndMelee;
     
@@ -76,7 +77,7 @@ public class RangeWeapon : MonoBehaviour, IWeapon
         }
     }
 
-    public void SetWeapon(WeaponSO rangeWeaponSo)
+    public void SetWeapon(ItemSO rangeWeaponSo)
     {
         if (!rangeWeaponSo)
         {
@@ -85,7 +86,7 @@ public class RangeWeapon : MonoBehaviour, IWeapon
         }
         _rangeWeaponData = (RangeWeaponSO)rangeWeaponSo;
         _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
-        GetComponent<SpriteRenderer>().sprite = _rangeWeaponData.weaponSprite;
+        GetComponent<SpriteRenderer>().sprite = _rangeWeaponData.ItemImage;
     }
     private void SetBulletParameters(Bullet bullet)
     {

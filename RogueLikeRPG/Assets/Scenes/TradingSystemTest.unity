@@ -441,7 +441,7 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1001 &908966536
+--- !u!1001 &965263410
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -451,11 +451,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1024461959818967223, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -3.8181763
       objectReference: {fileID: 0}
     - target: {fileID: 1024461959818967223, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.46029282
       objectReference: {fileID: 0}
     - target: {fileID: 1024461959818967223, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -568,10 +568,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4306722505127858314, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1723208146}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
 --- !u!1001 &1129599717
 PrefabInstance:
@@ -723,23 +720,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1723208131 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4306722505127858314, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
-  m_PrefabInstance: {fileID: 908966536}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1723208146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1723208131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7df2a895355289949b2d511e2d55e795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &573928674004254770
@@ -897,6 +877,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 745547196}
   - {fileID: 573928674004254770}
-  - {fileID: 908966536}
   - {fileID: 1129599717}
   - {fileID: 282513571}
+  - {fileID: 965263410}

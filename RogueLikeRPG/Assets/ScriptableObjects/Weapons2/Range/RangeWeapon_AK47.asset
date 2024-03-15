@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e45e062a3fe28b4d9515e98ae3f2b04, type: 3}
+  m_Name: RangeWeapon_AK47
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <Name>k__BackingField: AK-47
+  <Description>k__BackingField: "\u041A\u0430\u043B\u0430\u0448\u043D\u0438\u043A\u043E\u0432
+    \u043D\u0430\u0448 \u043F\u0430\u0446\u0430\u043D!"
+  <ItemImage>k__BackingField: {fileID: -1369458870, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
+  <DefaultParametersList>k__BackingField: []
+  attackRate: 0.11
+  damage: 3
+  weaponAttackSound: {fileID: 0}
+  bulletSO: {fileID: 11400000, guid: 0311434ce9393b34fa3451687eec3ff5, type: 2}
+  bulletSpeed: 20
+  magSize: 30
+  reloadTime: 1

@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 5
-  playerWeapon: {fileID: 11400000, guid: 4b632186e70810641bc02c504f3c3dbd, type: 2}
+  <Name>k__BackingField: Healka
+  <Description>k__BackingField: "\u041B\u0435\u0447\u0438"
+  <ItemImage>k__BackingField: {fileID: -8258698053525156362, guid: a0d3fbbc155eb404a87f827b40a48dfe, type: 3}
   <DefaultParametersList>k__BackingField: []
   modifierData:
   - statModifier: {fileID: 11400000, guid: 849d8bdacc13a9d43864a8e023e9072b, type: 2}
