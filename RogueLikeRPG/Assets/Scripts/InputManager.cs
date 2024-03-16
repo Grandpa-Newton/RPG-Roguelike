@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class InputManager : MonoBehaviour
 {
-    public event Action OnInteractPressed;
     public static InputManager Instance { get; private set; }
     
     public PlayerInputActions PlayerInputActions { get; private set; }
@@ -22,15 +21,6 @@ public class InputManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    private void Update()
-    {
-        if (PlayerInputActions.Player.Interact.IsPressed())
-        {
-            Debug.Log("KeyCode");
-            OnInteractPressed?.Invoke();
         }
     }
 }
