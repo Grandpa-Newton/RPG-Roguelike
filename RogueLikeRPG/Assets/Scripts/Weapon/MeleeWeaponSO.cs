@@ -9,7 +9,7 @@ public class MeleeWeaponSO : WeaponItemSO
     public override bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
     {
         AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
-        IWeapon weapon;
+        Weapon weapon;
         
         SwitchWeaponBetweenRangeAndMelee.Instance.SetActiveMeleeWeapon();
         weapon = GameObject.Find("MeleeWeapon").GetComponent<MeleeWeapon>();

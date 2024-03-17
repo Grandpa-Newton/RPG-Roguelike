@@ -23463,8 +23463,8 @@ GameObject:
   - component: {fileID: 1882002636}
   - component: {fileID: 1882002635}
   - component: {fileID: 1882002634}
-  - component: {fileID: 1882002638}
   - component: {fileID: 1882002637}
+  - component: {fileID: 1882002638}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -23621,7 +23621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9cbdb77b608014e88ab94bb3a5bded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropbleItem: {fileID: 2172642507834302927, guid: 7e73484a54fd0bf4a98df7e39d31e961, type: 3}
+  listOfDropbleItems: {fileID: 11400000, guid: 5c0dca9849f65cb4a91acc065c33adfe, type: 2}
   uiCanvas: {fileID: 332538365}
 --- !u!1 &2094353878
 GameObject:

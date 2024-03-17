@@ -11,9 +11,10 @@ public class ItemPickable : MonoBehaviour
    [SerializeField] private AudioSource audioSource;
    [SerializeField] private float duration = 0.3f;
 
-   private void Start()
+   public void Initialize(ItemSO item)
    {
-      GetComponent<SpriteRenderer>().sprite = InventoryItem.ItemImage;
+      InventoryItem = item;
+      GetComponent<SpriteRenderer>().sprite = item.ItemImage;
    }
 
    public void DestroyItem()
@@ -22,6 +23,10 @@ public class ItemPickable : MonoBehaviour
       StartCoroutine(AnimateItemPickup());
    }
 
+   public void SetInventoryItem(ItemSO item)
+   {
+      InventoryItem = item;
+   }
    private IEnumerator AnimateItemPickup()
    {
       audioSource.Play();

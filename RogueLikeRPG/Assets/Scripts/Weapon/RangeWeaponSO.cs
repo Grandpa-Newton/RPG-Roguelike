@@ -16,7 +16,7 @@ public class RangeWeaponSO : WeaponItemSO
     public override bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
     {
         AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
-        IWeapon weapon;
+        Weapon weapon;
         
         SwitchWeaponBetweenRangeAndMelee.Instance.SetActiveRangeWeapon();
         weapon = GameObject.Find("RangeWeapon").GetComponent<RangeWeapon>();

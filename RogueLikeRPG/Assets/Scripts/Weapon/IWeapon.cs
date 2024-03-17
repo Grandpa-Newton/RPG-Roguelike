@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Inventory.Model;
 using UnityEngine;
 
-public interface IWeapon 
+public abstract class Weapon : MonoBehaviour
 {
     public WeaponItemSO WeaponData { get; }
 
-    public void DealDamage();
+    public abstract void DealDamage();
 
-    public void SetWeapon(ItemSO weaponSo);
+    public abstract void SetWeapon(ItemSO weaponSo);
 }

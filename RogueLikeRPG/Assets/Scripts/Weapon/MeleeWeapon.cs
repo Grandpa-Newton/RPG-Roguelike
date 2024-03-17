@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Inventory.Model;
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour, IWeapon
+public class MeleeWeapon : Weapon
 {
     [SerializeField] private MeleeWeaponSO _meleeWeaponData;
     public WeaponItemSO WeaponData => _meleeWeaponData;
@@ -35,7 +35,7 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
     {
         DealDamage();
     }
-    public void DealDamage()
+    public override void DealDamage()
     {
         if (!_meleeWeaponData)
         {
@@ -59,7 +59,7 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
         yield return new WaitForSeconds(_meleeWeaponData.attackRate);
     }
 
-    public void SetWeapon(ItemSO meleeWeaponSo)
+    public override void SetWeapon(ItemSO meleeWeaponSo)
     {
         if (!meleeWeaponSo)
         {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Inventory.Model;
 using UnityEngine;
 
-public class RangeWeapon : MonoBehaviour, IWeapon
+public class RangeWeapon : Weapon
 {
     [SerializeField] private RangeWeaponSO _rangeWeaponData;
     public WeaponItemSO WeaponData => _rangeWeaponData;
@@ -53,7 +53,7 @@ public class RangeWeapon : MonoBehaviour, IWeapon
         }
     }
 
-    public void DealDamage()
+    public override void DealDamage()
     {
         if (!_rangeWeaponData)
         {
@@ -77,7 +77,7 @@ public class RangeWeapon : MonoBehaviour, IWeapon
         }
     }
 
-    public void SetWeapon(ItemSO rangeWeaponSo)
+    public override void SetWeapon(ItemSO rangeWeaponSo)
     {
         if (!rangeWeaponSo)
         {
