@@ -16,6 +16,8 @@ public class TraderInventoryController : MonoBehaviour, IInteractable
     [SerializeField] private AudioClip dropClip;
     [SerializeField] private AudioSource audioSource;
 
+    [SerializeField] private GameObject player;
+
     private void Start()
     {
         PrepareUI();
@@ -69,19 +71,6 @@ public class TraderInventoryController : MonoBehaviour, IInteractable
             inventoryUI.ShowItemAction(itemIndex);
             inventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
         }
-
-        IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
-        if (destroyableItem != null)
-        {
-            inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
-        }
-    }
-
-    private void DropItem(int itemIndex, int quantity)
-    {
-        inventoryData.RemoveItem(itemIndex, quantity);
-        inventoryUI.ResetSelection();
-        audioSource.PlayOneShot(dropClip);
     }
 
     public void PerformAction(int itemIndex)
@@ -99,7 +88,7 @@ public class TraderInventoryController : MonoBehaviour, IInteractable
         IItemAction itemAction = inventoryItem.item as IItemAction;
         if (itemAction != null)
         {
-            itemAction.PerformAction(gameObject, inventoryItem.itemState);
+            itemAction.PerformAction(player, inventoryItem.itemState);
             audioSource.PlayOneShot(itemAction.actionSFX);
             if (inventoryData.GetItemAt(itemIndex).IsEmpty)
                 inventoryUI.ResetSelection();
