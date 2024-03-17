@@ -17,6 +17,7 @@ MonoBehaviour:
   <Name>k__BackingField: AK-47
   <Description>k__BackingField: "\u041A\u0430\u043B\u0430\u0448\u043D\u0438\u043A\u043E\u0432
     \u043D\u0430\u0448 \u043F\u0430\u0446\u0430\u043D!"
+  ItemLight: {fileID: 3398957582011760077, guid: 1aff1e53a02ac614bbccfac2c2122dc9, type: 3}
   <ItemImage>k__BackingField: {fileID: -1369458870, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
   <DefaultParametersList>k__BackingField: []
   attackRate: 0.11

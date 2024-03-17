@@ -16,6 +16,7 @@ MonoBehaviour:
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: AWP
   <Description>k__BackingField: OneShot - OneAshot
+  ItemLight: {fileID: 3398957582011760077, guid: 1aff1e53a02ac614bbccfac2c2122dc9, type: 3}
   <ItemImage>k__BackingField: {fileID: -2011218429, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
   <DefaultParametersList>k__BackingField: []
   attackRate: 0.3

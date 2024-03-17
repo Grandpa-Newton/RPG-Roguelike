@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Inventory.Model
 {
@@ -17,6 +18,7 @@ namespace Inventory.Model
         [field: TextArea]
         public string Description { get; set; }
 
+        public Light2D ItemLight;
         [field: SerializeField] public Sprite ItemImage { get; set; }
         
         

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -11,7 +12,7 @@ public class ChestOpen : MonoBehaviour
     [SerializeField] private Canvas uiCanvas;
     [SerializeField] private ItemPickable coin;
     private Animator _animator;
-    
+
     private bool _isChestOpened = false;
     private bool _isInsideTrigger = false;
 
@@ -30,49 +31,48 @@ public class ChestOpen : MonoBehaviour
             StartCoroutine(SpawnCoinsOnChestOpen());
         }
     }
+    
+    // сделать эти методы где-то в абстрактной месте чтобы вызывать и для сундуков и для врагов
 
-    private IEnumerator  SpawnCoinsOnChestOpen()
+    private IEnumerator SpawnCoinsOnChestOpen()
     {
-        int countToSpawn = 0;
-        while (countToSpawn < chestContent.coinsToSpawn)
+        for (int i = 0; i < chestContent.coinsToSpawn; i++)
         {
             yield return StartCoroutine(WaitToSpawnNextCoin());
             ItemPickable spawnedCoin = Instantiate(coin, transform.position, Quaternion.identity);
-        
-            // Генерируем случайный угол
+            spawnedCoin.InitializeItem();
+
             float angle = Random.Range(0, 360);
-            Vector3 direction = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle) , 0);
-        
-            // Вычисляем конечную позицию
+            Vector3 direction = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle), 0);
+
             Vector3 targetPosition = transform.position + direction * chestContent.radiusToSpawn;
-        
-            // Перемещаем монету к целевой позиции
+
             spawnedCoin.transform.DOMove(targetPosition, 0.5f);
-        
-            countToSpawn++;
         }
+    }
+
+    private void SpawnWeapon()
+    {
+        int randomIndex = Random.Range(0, chestContent.weapons.Count);
+        WeaponItemSO weapon = chestContent.weapons[randomIndex];
+
+        ItemPickable spawnedItem = Instantiate(weapon.weaponPrefab, transform.position, Quaternion.identity);
+        spawnedItem.InitializeWeapon(weapon);
+        spawnedItem.transform.DOMove(new Vector3(-0.5f, 2.5f, 0f), 0.5f);
     }
 
     IEnumerator WaitToSpawnNextCoin()
     {
         yield return new WaitForSeconds(chestContent.timeToSpawnNextCoin);
     }
+
     private void StartChestOpeningAnimation()
     {
         _isChestOpened = true;
         _animator.SetBool("IsOpen", _isChestOpened);
         uiCanvas.gameObject.SetActive(false);
     }
-    private void SpawnWeapon()
-    {
-        int randomIndex = Random.Range(0, chestContent.weapons.Count);
-        WeaponItemSO weapon = chestContent.weapons[randomIndex];
-            
-        ItemPickable spawnedItem = Instantiate(weapon.weaponPrefab, transform.position, Quaternion.identity);
-        spawnedItem.Initialize(weapon);
-        spawnedItem.transform.DOMove(new Vector3(-0.5f, 2.5f, 0f), 0.5f);
-    }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<PlayerController>() && !_isChestOpened)

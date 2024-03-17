@@ -26,7 +26,7 @@ namespace Inventory.Model
     {
         
     }
-
+    
     public interface IItemAction
     {
         public string ActionName { get; }

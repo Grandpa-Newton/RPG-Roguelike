@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Inventory.Model;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class ItemPickable : MonoBehaviour
 {
@@ -18,11 +19,30 @@ public class ItemPickable : MonoBehaviour
       
    }
 
-   public void Initialize(ItemSO item)
+      // КАРЯВАЯ РЕАЛИЗАЦИЯ ЧЕРЕЗ 2 МЕТОДА, НО У МЕНЯ УЖЕ ГОЛОВА НЕ ВАРИТ, ПОТОМ ИЗМЕНИТЬ
+   public void InitializeWeapon(WeaponItemSO item)
    {
-      
       InventoryItem = item;
+      Light2D inventoryItemLight = GetComponent<Light2D>();
+      
+      inventoryItemLight.color = InventoryItem.ItemLight.color;
+      inventoryItemLight.intensity = InventoryItem.ItemLight.intensity;
+      inventoryItemLight.pointLightInnerRadius = InventoryItem.ItemLight.pointLightInnerRadius;
+      inventoryItemLight.pointLightOuterRadius = InventoryItem.ItemLight.pointLightOuterRadius;
+      inventoryItemLight.falloffIntensity = InventoryItem.ItemLight.falloffIntensity;
+      
       GetComponent<SpriteRenderer>().sprite = item.ItemImage;
+   }
+   public void InitializeItem()
+   {
+      Light2D light2D = GetComponent<Light2D>();
+      light2D.color = this.InventoryItem.ItemLight.color;
+      light2D.intensity = this.InventoryItem.ItemLight.intensity;
+      light2D.pointLightInnerRadius = this.InventoryItem.ItemLight.pointLightInnerRadius;
+      light2D.pointLightOuterRadius = this.InventoryItem.ItemLight.pointLightOuterRadius;
+      light2D.falloffIntensity = this.InventoryItem.ItemLight.falloffIntensity;
+
+      GetComponent<SpriteRenderer>().sprite = this.InventoryItem.ItemImage;
    }
 
    public void DestroyItem()
