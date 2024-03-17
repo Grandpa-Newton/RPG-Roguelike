@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3133009829529630422}
   - component: {fileID: 3549460845567796643}
   m_Layer: 0
-  m_Name: PickItem
+  m_Name: PickItem_HealingPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
