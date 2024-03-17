@@ -79,19 +79,21 @@ public class TraderInventoryController : MonoBehaviour, IInteractable
         if (inventoryItem.IsEmpty)
             return;
 
-        IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
-        if (destroyableItem != null)
-        {
-            inventoryData.RemoveItem(itemIndex, 1);
-        }
-
         IItemAction itemAction = inventoryItem.item as IItemAction;
         if (itemAction != null)
         {
-            itemAction.PerformAction(player, inventoryItem.itemState);
-            audioSource.PlayOneShot(itemAction.actionSFX);
-            if (inventoryData.GetItemAt(itemIndex).IsEmpty)
-                inventoryUI.ResetSelection();
+            
+            if (itemAction.PerformAction(player, inventoryItem.itemState))
+            {
+                IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
+                if (destroyableItem != null)
+                {
+                    inventoryData.RemoveItem(itemIndex, 1);
+                }
+                audioSource.PlayOneShot(itemAction.actionSFX);
+                if (inventoryData.GetItemAt(itemIndex).IsEmpty)
+                    inventoryUI.ResetSelection();
+            }
         }
     }
 

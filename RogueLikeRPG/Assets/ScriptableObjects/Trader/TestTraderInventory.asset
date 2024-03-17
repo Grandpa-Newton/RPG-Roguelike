@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestTraderInventory
   m_EditorClassIdentifier: 
   inventoryItems:
-  - quantity: 2
+  - quantity: 25
     item: {fileID: 11400000, guid: ccc6be4b57feab44da7521fefd38a87a, type: 2}
     itemState: []
   - quantity: 0

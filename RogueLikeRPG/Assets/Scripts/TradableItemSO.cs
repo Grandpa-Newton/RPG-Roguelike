@@ -17,6 +17,17 @@ public class TradableItemSO : ItemSO, IDestroyableItem, IItemAction
     {
         Debug.Log("Cost = " + Cost);
 
+        if (character.GetComponent<Money>().TryReduceMoney(Cost))
+        {
+            Debug.Log("Player can afford it");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Player can't afford it.");
+            return false;
+        }
+
         return false;
     }
 }

@@ -18,4 +18,4 @@ MonoBehaviour:
   <Description>k__BackingField: Healing you!
   <ItemImage>k__BackingField: {fileID: -1427268792, guid: 383c9d56478056f4b9f41f6258bf10bf, type: 3}
   <DefaultParametersList>k__BackingField: []
-  Cost: 20
+  Cost: 90
