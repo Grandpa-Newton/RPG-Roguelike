@@ -12,6 +12,20 @@ public class Money : MonoBehaviour
         currentMoney.Value += moneyBoost;
     }
 
+    public bool CanAffordReduceMoney(int reducingMoney)
+    {
+
+        if (currentMoney.Value >= reducingMoney)
+        {
+            return true;
+        }
+        else
+        {
+            Debug.Log("Ну нет столько денег!");
+            return false;
+        }
+    }
+
     public bool TryReduceMoney(int reducingMoney)
     {
         if(currentMoney.Value >= reducingMoney)
@@ -21,8 +35,7 @@ public class Money : MonoBehaviour
         }
         else
         {
-            Debug.Log("Ну нет столько денег!");
-            return false;
+            throw new System.Exception("Player cannot afford this!!");
         }
     }
 }
