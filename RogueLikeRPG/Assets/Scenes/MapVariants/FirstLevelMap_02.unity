@@ -305,15 +305,15 @@ PrefabInstance:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 566470084d824964b9088a3729423e40, type: 2}
+      objectReference: {fileID: 11400000, guid: ed74ff1f83e47e24c953ae79a280aa66, type: 2}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 27975d923420dd041aa66fc7dbf12524, type: 2}
+      objectReference: {fileID: 11400000, guid: 92ca02ce81e5c9b4eb984e697ee92689, type: 2}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 71e9940217d48524c9c9b6f14304aa18, type: 2}
+      objectReference: {fileID: 11400000, guid: 4deeea74399cb0e46b38637ac31d3772, type: 2}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.size
       value: 1
@@ -1384,7 +1384,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 516025205840297952, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: CellData
@@ -1489,6 +1489,14 @@ PrefabInstance:
     - target: {fileID: 3379407619688160036, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3970437415191205878, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749421378028505208, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Name
@@ -2797,7 +2805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.data[0]
@@ -2806,11 +2814,15 @@ PrefabInstance:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 4deeea74399cb0e46b38637ac31d3772, type: 2}
+      objectReference: {fileID: 11400000, guid: 566470084d824964b9088a3729423e40, type: 2}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 92ca02ce81e5c9b4eb984e697ee92689, type: 2}
+      objectReference: {fileID: 11400000, guid: 71e9940217d48524c9c9b6f14304aa18, type: 2}
+    - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: PossibleCellData.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 27975d923420dd041aa66fc7dbf12524, type: 2}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.size
       value: 1

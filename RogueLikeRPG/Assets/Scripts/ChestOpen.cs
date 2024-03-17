@@ -33,6 +33,7 @@ public class ChestOpen : MonoBehaviour
     }
     
     // сделать эти методы где-то в абстрактной месте чтобы вызывать и для сундуков и для врагов
+    // сделать клетки уровней на которые может стать враг через scriptable object в котором другие три уровня 
 
     private IEnumerator SpawnCoinsOnChestOpen()
     {

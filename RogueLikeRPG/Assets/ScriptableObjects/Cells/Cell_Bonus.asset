@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneToLoad: TestScene
   CellColor: {r: 1, g: 1, b: 0.5882353, a: 1}
+  OriginalSprite: {fileID: -297097191, guid: ca3d665dda786374fae1cdff28b4adf7, type: 3}
+  NextSprite: {fileID: -297097191, guid: ca3d665dda786374fae1cdff28b4adf7, type: 3}
