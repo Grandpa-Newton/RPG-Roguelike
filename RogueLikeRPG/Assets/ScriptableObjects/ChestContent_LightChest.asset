@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 565ba0560062b164a9c135a45b6259c9, type: 3}
-  m_Name: WeaponsList_LightChest
+  m_Name: ChestContent_LightChest
   m_EditorClassIdentifier: 
   weapons:
   - {fileID: 11400000, guid: 46b6e0fcf21e257489ead109c7fff2f4, type: 2}
   - {fileID: 11400000, guid: 7aeec6ee42ee95e4292fb3e8e3d40a11, type: 2}
   - {fileID: 11400000, guid: 78756698a331de7439b3d0d7619cc86b, type: 2}
+  coinsToSpawn: 15
+  radiusToSpawn: 2
+  timeToSpawnNextCoin: 0.15

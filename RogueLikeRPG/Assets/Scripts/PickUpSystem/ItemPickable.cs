@@ -8,11 +8,19 @@ public class ItemPickable : MonoBehaviour
 {
    [field: SerializeField] public ItemSO InventoryItem { get; private set; }
    [field: SerializeField] public int Quantity { get; set; } = 1;
-   [SerializeField] private AudioSource audioSource;
+   [SerializeField] private AudioClip audioSourceOnPick; 
+   private AudioSource audioSource;
    [SerializeField] private float duration = 0.3f;
+
+   private void Awake()
+   {
+      audioSource = GetComponent<AudioSource>();
+      
+   }
 
    public void Initialize(ItemSO item)
    {
+      
       InventoryItem = item;
       GetComponent<SpriteRenderer>().sprite = item.ItemImage;
    }
@@ -22,13 +30,9 @@ public class ItemPickable : MonoBehaviour
       GetComponent<Collider2D>().enabled = false;
       StartCoroutine(AnimateItemPickup());
    }
-
-   public void SetInventoryItem(ItemSO item)
-   {
-      InventoryItem = item;
-   }
    private IEnumerator AnimateItemPickup()
    {
+      audioSource.clip = audioSourceOnPick;
       audioSource.Play();
       Vector3 startScale = transform.localScale;
       Vector3 endScale = Vector3.zero;

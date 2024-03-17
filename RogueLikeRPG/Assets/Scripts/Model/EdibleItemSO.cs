@@ -11,7 +11,7 @@ namespace Inventory.Model
         [SerializeField] private List<ModifierData> modifierData = new List<ModifierData>();
         
         public string ActionName => "Consume";
-        [field: SerializeField] public AudioClip actionSFX { get; private set; }
+        [field: SerializeField] public AudioClip itemActionSound { get; private set; }
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
             foreach (var data in modifierData)
@@ -30,7 +30,7 @@ namespace Inventory.Model
     public interface IItemAction
     {
         public string ActionName { get; }
-        public AudioClip actionSFX { get; }
+        public AudioClip itemActionSound { get; }
         bool PerformAction(GameObject character, List<ItemParameter> itemState);
     }
 

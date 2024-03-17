@@ -10,7 +10,7 @@ public class TradableItemSO : ItemSO, IDestroyableItem, IItemAction
 {
     public string ActionName => "Trade";
 
-    public AudioClip actionSFX { get; }
+    public AudioClip itemActionSound { get; }
 
     public int Cost;
 

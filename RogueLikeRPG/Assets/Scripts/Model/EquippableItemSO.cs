@@ -19,7 +19,7 @@ namespace Inventory.Model
         }
 
         public ItemType itemType;
-        [field: SerializeField] public AudioClip actionSFX { get; private set; }
+        [field: SerializeField] public AudioClip itemActionSound { get; private set; }
 
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {

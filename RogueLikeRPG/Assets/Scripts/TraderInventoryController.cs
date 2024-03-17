@@ -90,7 +90,7 @@ public class TraderInventoryController : MonoBehaviour, IInteractable
                 {
                     inventoryData.RemoveItem(itemIndex, 1);
                 }
-                audioSource.PlayOneShot(itemAction.actionSFX);
+                audioSource.PlayOneShot(itemAction.itemActionSound);
                 if (inventoryData.GetItemAt(itemIndex).IsEmpty)
                     inventoryUI.ResetSelection();
             }

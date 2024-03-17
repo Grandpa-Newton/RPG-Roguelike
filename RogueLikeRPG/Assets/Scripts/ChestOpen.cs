@@ -1,13 +1,15 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class ChestOpen : MonoBehaviour
 {
-    [SerializeField] private WeaponListSO listOfDropbleItems;
+    [SerializeField] private ChestContentSO chestContent;
     [SerializeField] private Canvas uiCanvas;
-    
+    [SerializeField] private ItemPickable coin;
     private Animator _animator;
     
     private bool _isChestOpened = false;
@@ -25,9 +27,36 @@ public class ChestOpen : MonoBehaviour
         {
             StartChestOpeningAnimation();
             SpawnWeapon();
+            StartCoroutine(SpawnCoinsOnChestOpen());
         }
     }
 
+    private IEnumerator  SpawnCoinsOnChestOpen()
+    {
+        int countToSpawn = 0;
+        while (countToSpawn < chestContent.coinsToSpawn)
+        {
+            yield return StartCoroutine(WaitToSpawnNextCoin());
+            ItemPickable spawnedCoin = Instantiate(coin, transform.position, Quaternion.identity);
+        
+            // Генерируем случайный угол
+            float angle = Random.Range(0, 360);
+            Vector3 direction = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle) , 0);
+        
+            // Вычисляем конечную позицию
+            Vector3 targetPosition = transform.position + direction * chestContent.radiusToSpawn;
+        
+            // Перемещаем монету к целевой позиции
+            spawnedCoin.transform.DOMove(targetPosition, 0.5f);
+        
+            countToSpawn++;
+        }
+    }
+
+    IEnumerator WaitToSpawnNextCoin()
+    {
+        yield return new WaitForSeconds(chestContent.timeToSpawnNextCoin);
+    }
     private void StartChestOpeningAnimation()
     {
         _isChestOpened = true;
@@ -36,8 +65,8 @@ public class ChestOpen : MonoBehaviour
     }
     private void SpawnWeapon()
     {
-        int randomIndex = Random.Range(0, listOfDropbleItems.weapons.Count);
-        WeaponItemSO weapon = listOfDropbleItems.weapons[randomIndex];
+        int randomIndex = Random.Range(0, chestContent.weapons.Count);
+        WeaponItemSO weapon = chestContent.weapons[randomIndex];
             
         ItemPickable spawnedItem = Instantiate(weapon.weaponPrefab, transform.position, Quaternion.identity);
         spawnedItem.Initialize(weapon);

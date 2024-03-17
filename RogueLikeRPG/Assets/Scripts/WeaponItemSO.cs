@@ -13,7 +13,7 @@ public abstract class WeaponItemSO : ItemSO, IDestroyableItem, IItemAction
     
     public AudioClip weaponAttackSound;
     public string ActionName => "Equip";
-    public AudioClip actionSFX { get; }
+    public AudioClip itemActionSound { get; }
     
     public ItemPickable weaponPrefab;
     public abstract bool PerformAction(GameObject character, List<ItemParameter> itemState = null);
