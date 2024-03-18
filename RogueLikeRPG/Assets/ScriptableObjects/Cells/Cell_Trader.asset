@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b45d4cc8d0ba8747ae30ae0b05547cd, type: 3}
   m_Name: Cell_Trader
   m_EditorClassIdentifier: 
-  SceneToLoad: LevelLoadingScreen
+  SceneToLoad: TradingSystemTest
   CellColor: {r: 1, g: 0.84313726, b: 0, a: 1}
   OriginalSprite: {fileID: 21300000, guid: 12e17c7c23e591d48bb9798eb868bcf7, type: 3}
   NextSprite: {fileID: 21300000, guid: 12e17c7c23e591d48bb9798eb868bcf7, type: 3}

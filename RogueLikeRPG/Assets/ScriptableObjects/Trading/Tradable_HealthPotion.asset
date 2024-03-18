@@ -16,6 +16,7 @@ MonoBehaviour:
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: Healing Potion
   <Description>k__BackingField: Healing you!
-  <ItemImage>k__BackingField: {fileID: -1427268792, guid: 383c9d56478056f4b9f41f6258bf10bf, type: 3}
+  ItemLight: {fileID: 3398957582011760077, guid: 1aff1e53a02ac614bbccfac2c2122dc9, type: 3}
+  <ItemImage>k__BackingField: {fileID: -3679828817949995438, guid: a0d3fbbc155eb404a87f827b40a48dfe, type: 3}
   <DefaultParametersList>k__BackingField: []
   Cost: 90
