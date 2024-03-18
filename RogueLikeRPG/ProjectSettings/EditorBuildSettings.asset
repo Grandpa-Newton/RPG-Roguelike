@@ -6,24 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MapVariants/FirstLevelMap_02.unity
+    path: Assets/App/Scenes/MapVariants/FirstLevelMap_02.unity
     guid: 152bd0537c30bef408de5dcea11b1f0d
   - enabled: 1
-    path: Assets/Scenes/CellsLevelVariants/EasyLevelGenerateScene.unity
+    path: Assets/App/Scenes/CellsLevelVariants/EasyLevelGenerateScene.unity
     guid: da7e6fd998c90254a83bdb51ef166086
   - enabled: 1
-    path: Assets/Scenes/MapVariants/FirstLevelMap_01.unity
+    path: Assets/App/Scenes/MapVariants/FirstLevelMap_01.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/NewFitchesTest.unity
+    path: Assets/App/Scenes/NewFitchesTest.unity
     guid: 395734568e7717e4db573f45b7d6fe4b
   - enabled: 1
-    path: Assets/Scenes/MapVariants/LevelLoadingScreen.unity
+    path: Assets/App/Scenes/MapVariants/LevelLoadingScreen.unity
     guid: d126a3a3d41ec7d409c64ef58bdb62b3
   - enabled: 1
-    path: Assets/Scenes/CellsLevelVariants/TreasureScene.unity
+    path: Assets/App/Scenes/CellsLevelVariants/TreasureScene.unity
     guid: 011b2c0f80246b4438b8a9dc2f53c7a4
   - enabled: 1
-    path: Assets/Scenes/TradingSystemTest.unity
+    path: Assets/App/Scenes/TradingSystemTest.unity
     guid: 5770116295f8f2e4c98a82e193ec00b0
   m_configObjects: {}

@@ -6,17 +6,17 @@ using Cinemachine;
 using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
-{
+{ 
     private Rigidbody2D _rigidbody2D;
     private PlayerInputActions _playerInputActions;
     private Camera _camera;
 
-    [SerializeField] private float maxSpeed = 5;
+    [SerializeField] private float speed = 5;
 
     [Header("Player Acceleration Components")] [SerializeField]
-    private float accelerationMaxTime = 1.25f;
+    //private float accelerationMaxTime = 1.25f;
 
-    [SerializeField] private AnimationCurve accelerationCurve;
+        //[SerializeField] private AnimationCurve accelerationCurve;
 
     private bool _isMoving;
     private float _timeButtonHeld;
@@ -124,8 +124,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isMoving)
         {
-            float acceleration = accelerationCurve.Evaluate(_timeButtonHeld / accelerationMaxTime);
-            return maxSpeed * acceleration;
+            return speed;
         }
 
         return 0;
