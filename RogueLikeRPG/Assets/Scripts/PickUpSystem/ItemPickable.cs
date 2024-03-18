@@ -25,22 +25,22 @@ public class ItemPickable : MonoBehaviour
       InventoryItem = item;
       Light2D inventoryItemLight = GetComponent<Light2D>();
       
-      inventoryItemLight.color = InventoryItem.itemLight.color;
-      inventoryItemLight.intensity = InventoryItem.itemLight.intensity;
-      inventoryItemLight.pointLightInnerRadius = InventoryItem.itemLight.pointLightInnerRadius;
-      inventoryItemLight.pointLightOuterRadius = InventoryItem.itemLight.pointLightOuterRadius;
-      inventoryItemLight.falloffIntensity = InventoryItem.itemLight.falloffIntensity;
+      inventoryItemLight.color = InventoryItem.ItemLight.color;
+      inventoryItemLight.intensity = InventoryItem.ItemLight.intensity;
+      inventoryItemLight.pointLightInnerRadius = InventoryItem.ItemLight.pointLightInnerRadius;
+      inventoryItemLight.pointLightOuterRadius = InventoryItem.ItemLight.pointLightOuterRadius;
+      inventoryItemLight.falloffIntensity = InventoryItem.ItemLight.falloffIntensity;
       
       GetComponent<SpriteRenderer>().sprite = item.ItemImage;
    }
    public void InitializeItem()
    {
       Light2D light2D = GetComponent<Light2D>();
-      light2D.color = this.InventoryItem.itemLight.color;
-      light2D.intensity = this.InventoryItem.itemLight.intensity;
-      light2D.pointLightInnerRadius = this.InventoryItem.itemLight.pointLightInnerRadius;
-      light2D.pointLightOuterRadius = this.InventoryItem.itemLight.pointLightOuterRadius;
-      light2D.falloffIntensity = this.InventoryItem.itemLight.falloffIntensity;
+      light2D.color = this.InventoryItem.ItemLight.color;
+      light2D.intensity = this.InventoryItem.ItemLight.intensity;
+      light2D.pointLightInnerRadius = this.InventoryItem.ItemLight.pointLightInnerRadius;
+      light2D.pointLightOuterRadius = this.InventoryItem.ItemLight.pointLightOuterRadius;
+      light2D.falloffIntensity = this.InventoryItem.ItemLight.falloffIntensity;
 
       GetComponent<SpriteRenderer>().sprite = this.InventoryItem.ItemImage;
    }
