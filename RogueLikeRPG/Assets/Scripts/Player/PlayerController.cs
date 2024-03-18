@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     void Awake() {
         if (FindObjectsOfType(GetType()).Length > 1)
         {
+            Debug.LogError("There cannot be more than one Player Controller Instance");
             Destroy(gameObject);
         }
         else

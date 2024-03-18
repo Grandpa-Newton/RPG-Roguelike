@@ -30,6 +30,7 @@ namespace Inventory.UI
 
         private void Awake()
         {
+            var a = gameObject;
             Hide();
             mouseFollower.Toggle(false);
             itemDescription.ResetDescription();
@@ -168,7 +169,16 @@ namespace Inventory.UI
 
         private List<UIInventoryItem> UpdateInventoryStateBetweenScenes()
         {
-            //contentPanel = GameObject.Find("Content").GetComponent<RectTransform>();
+
+            var a = gameObject;
+
+            // gameObject.SetActive(true);
+
+
+            if(contentPanel == null)
+            {
+                contentPanel = GameObject.Find("Content").GetComponent<RectTransform>();
+            }
 
             listOfUIItems = new List<UIInventoryItem>();
     
@@ -180,6 +190,9 @@ namespace Inventory.UI
                     listOfUIItems.Add(item);
                 }
             }
+
+
+            // gameObject.SetActive(false);
 
             return listOfUIItems;
         }

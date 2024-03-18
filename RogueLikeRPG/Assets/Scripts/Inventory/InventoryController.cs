@@ -43,6 +43,12 @@ namespace Inventory
 
         private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
         {
+            /*if (inventoryUI == null)
+            {
+                gameObject.SetActive(true);
+                inventoryUI = GameObject.FindObjectOfType<UIInventoryPage>();
+                gameObject.SetActive(false);
+            }*/
             inventoryUI.ResetAllItems();
             foreach (var item in inventoryState)
             {
@@ -152,6 +158,11 @@ namespace Inventory
             }
 
             return sb.ToString();
+        }
+
+        public void UnSubscribeEvent()
+        {
+            inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
         }
 
         public void Update()
