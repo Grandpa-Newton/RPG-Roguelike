@@ -14,7 +14,7 @@ public class SceneLoader : MonoBehaviour
         {
             /*var player = MapPlayerController.Instance.gameObject; // ��������
             Destroy(player);*/
-            GameObject.FindObjectOfType<InventoryController>().UnSubscribeEvent();
+            // GameObject.FindObjectOfType<InventoryController>().UnSubscribeEvent();
             SceneManager.LoadScene(NEXT_SCENE_TO_LOAD);
         }
     }

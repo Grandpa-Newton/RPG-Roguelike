@@ -26,6 +26,11 @@ namespace Inventory
             PrepareInventoryData();
         }
 
+        private void OnDisable()
+        {
+            UnSubscribeEvent();
+        }
+
         private void PrepareInventoryData()
         {
             if (inventoryData.inventoryItems == null || inventoryData.inventoryItems.Count == 0)
