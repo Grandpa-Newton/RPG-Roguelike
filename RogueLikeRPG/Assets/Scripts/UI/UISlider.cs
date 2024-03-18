@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class UISlider : MonoBehaviour
 {
     [SerializeField]
@@ -10,14 +10,18 @@ public class UISlider : MonoBehaviour
 
     [SerializeField]
     private FloatValueSO floatValue;
+
+    [SerializeField] private TMP_Text healthText;
     private void Start()
     {
-        SetValue(floatValue.Value);
+        SetValue(floatValue.CurrentValue);
     }
-    
-    public void SetValue(float currentValue)
+
+    private void SetValue(float currentValue)
     {
         sliderImage.fillAmount = Mathf.Clamp01(currentValue);
+        healthText.text = $" {Mathf.RoundToInt(floatValue.CurrentValue * 100)} / {Mathf.RoundToInt(floatValue.MaxValue * 100)}";
+
     }
     
     private void OnEnable()

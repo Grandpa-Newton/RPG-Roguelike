@@ -1,11 +1,12 @@
 using Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
     
-    [SerializeField] private EnemySO enemySO;
+    [FormerlySerializedAs("enemySO")] [SerializeField] private EnemySO enemySo;
     [SerializeField] private LayerMask hittable;
     [SerializeField] private NavMeshAgent navMeshAgent;
     private Rigidbody2D _rigidbody2D;
@@ -19,13 +20,13 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private float knockbackDuration;
     [SerializeField] private float knockbackPower;
     
-    private PlayerController player;
+    private PlayerController _player;
 
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         InitializeStatsFromSO();
-        player = FindObjectOfType<PlayerController>();
+        _player = FindObjectOfType<PlayerController>();
     }
 
     public void TakeDamage(float damage)
@@ -44,16 +45,16 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             if (other.gameObject.TryGetComponent(out Health healthComponent))
             {
-                StartCoroutine(player.Knockback(knockbackDuration, knockbackPower, transform));
-                healthComponent.Reduce(enemySO.damage);
+                StartCoroutine(_player.Knockback(knockbackDuration, knockbackPower, transform));
+                healthComponent.Reduce(enemySo.damage);
             }
         }
     }
 
     private void InitializeStatsFromSO()
     {
-        health = enemySO.health;
-        navMeshAgent.speed = enemySO.speed;
+        health = enemySo.health;
+        navMeshAgent.speed = enemySo.speed;
         //speed = enemySO.speed;
     }
 }

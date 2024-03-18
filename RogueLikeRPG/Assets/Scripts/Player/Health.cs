@@ -12,21 +12,21 @@ public class Health : MonoBehaviour
     {
         if (!currentHealth.IsInitialized)
         {
-            currentHealth.Value = 1;
+            currentHealth.CurrentValue = 1;
             currentHealth.IsInitialized = true;
         }
     }
     public void AddHealth(int healthBoost)
     {
-        int health = Mathf.RoundToInt(currentHealth.Value * maxHealth);
+        int health = Mathf.RoundToInt(currentHealth.CurrentValue * maxHealth);
         int val = health + healthBoost;
-        currentHealth.Value = val > maxHealth ? 1 : val / maxHealth;
+        currentHealth.CurrentValue = val > maxHealth ? 1 : val / maxHealth;
     }
 
     public void Reduce(int damage)
     {
-        currentHealth.Value -= damage / maxHealth;
-        if (currentHealth.Value <= 0)
+        currentHealth.CurrentValue -= damage / maxHealth;
+        if (currentHealth.CurrentValue <= 0)
         {
             Die();
         }
@@ -34,7 +34,7 @@ public class Health : MonoBehaviour
     private void Die()
     {
         Debug.Log("Died");
-        currentHealth.Value = 1;
+        currentHealth.CurrentValue = 1;
     }
 
     

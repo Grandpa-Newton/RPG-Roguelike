@@ -2,21 +2,34 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 [CreateAssetMenu(menuName ="Data/FloatData")]
 public class FloatValueSO : ScriptableObject
 {
-    [SerializeField]
-    private float _value;
+    [FormerlySerializedAs("_value")] [SerializeField]
+    private float currentValue;
 
-    public float Value
+    [SerializeField] private float _maxValue;
+    public float CurrentValue
     {
-        get => _value;
+        get => currentValue;
         set
         {
-            _value = value;
-            OnValueChange?.Invoke(_value);
+            currentValue = value;
+            OnValueChange?.Invoke(currentValue);
+        }
+
+    }
+    
+    public float MaxValue
+    {
+        get => _maxValue;
+        set
+        {
+            _maxValue = value;
+            OnValueChange?.Invoke(_maxValue);
         }
 
     }
