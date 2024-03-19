@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class NextLevelManager : MonoBehaviour
 {
-    public LoadTransition LoadTransition;
-
     public static NextLevelManager Instance;
 
     private void Awake()

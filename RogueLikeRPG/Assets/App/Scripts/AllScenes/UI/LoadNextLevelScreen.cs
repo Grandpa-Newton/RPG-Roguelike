@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
-public class LoadLobby : MonoBehaviour
+public class LoadNextLevelScreen : MonoBehaviour
 {
     private AsyncOperation _asyncOperation;
     [SerializeField] private Image LoadBar;

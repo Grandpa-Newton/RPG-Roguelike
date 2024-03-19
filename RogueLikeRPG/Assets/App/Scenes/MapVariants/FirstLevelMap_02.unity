@@ -3583,7 +3583,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a711d55792e7a314395a158150a2380d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadTransition: {fileID: 0}
 --- !u!1 &1693439014 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
@@ -4399,6 +4398,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TransitionCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2159039113182986513, guid: 9be919448218b884eba7b1a47c78f3d1, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4095
+      objectReference: {fileID: 0}
     - target: {fileID: 2432660417863890923, guid: 9be919448218b884eba7b1a47c78f3d1, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4409,6 +4412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5457444288032251166, guid: 9be919448218b884eba7b1a47c78f3d1, type: 3}
+    - {fileID: 3052053819809276161, guid: 9be919448218b884eba7b1a47c78f3d1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
