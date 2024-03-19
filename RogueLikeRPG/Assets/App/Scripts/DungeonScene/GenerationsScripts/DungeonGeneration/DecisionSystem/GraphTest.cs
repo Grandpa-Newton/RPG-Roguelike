@@ -1,40 +1,43 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-public class GraphTest : MonoBehaviour
+using UnityEngine;
+
+namespace App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.DecisionSystem
 {
-    Graph graph;
-
-    bool graphReady = false;
-
-    Dictionary<Vector2Int, int> dijkstraResult;
-    int highestValue;
-
-    public void RunDijkstraAlgorithm(Vector2Int playerPosition,IEnumerable<Vector2Int> floorPositions)
+    public class GraphTest : MonoBehaviour
     {
-        graphReady = false;
-        graph = new Graph(floorPositions);
-        dijkstraResult = DijkstraAlgorithm.Dijkstra(graph, playerPosition);
-        /*foreach (var value in dijkstraResult.Values) 
+        Graph graph;
+
+        bool graphReady = false;
+
+        Dictionary<Vector2Int, int> dijkstraResult;
+        int highestValue;
+
+        public void RunDijkstraAlgorithm(Vector2Int playerPosition,IEnumerable<Vector2Int> floorPositions)
+        {
+            graphReady = false;
+            graph = new Graph(floorPositions);
+            dijkstraResult = DijkstraAlgorithm.Dijkstra(graph, playerPosition);
+            /*foreach (var value in dijkstraResult.Values) 
         {
             Debug.Log(value);
         }*/
-        highestValue = dijkstraResult.Values.Max();
-        graphReady = true;
-    }
+            highestValue = dijkstraResult.Values.Max();
+            graphReady = true;
+        }
 
 
-    private void OnDrawGizmosSelected()
-    {
-        if (graphReady && dijkstraResult != null)
+        private void OnDrawGizmosSelected()
         {
-            foreach (var item in dijkstraResult)
+            if (graphReady && dijkstraResult != null)
             {
-                Color color = Color.Lerp(Color.green, Color.red, (float)item.Value / highestValue);
-                color.a = 0.5f;
-                Gizmos.color = color;
-                Gizmos.DrawCube(item.Key + new Vector2(0.5f, 0.5f), Vector3.one);
+                foreach (var item in dijkstraResult)
+                {
+                    Color color = Color.Lerp(Color.green, Color.red, (float)item.Value / highestValue);
+                    color.a = 0.5f;
+                    Gizmos.color = color;
+                    Gizmos.DrawCube(item.Key + new Vector2(0.5f, 0.5f), Vector3.one);
+                }
             }
         }
     }

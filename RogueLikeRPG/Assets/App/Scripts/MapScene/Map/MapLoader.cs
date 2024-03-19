@@ -1,8 +1,10 @@
-using DefaultNamespace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.DungeonScene.GenerationsScripts;
+using App.Scripts.MapScene.Camera;
+using App.Scripts.MapScene.Cells;
 using UnityEngine;
 
 using UnityEngine.Rendering.Universal;
@@ -27,10 +29,10 @@ public class MapLoader : MonoBehaviour
 
     private static bool WasSpawned = false;
 
-    public static List<string> PassedCellsIds = new List<string>(); // список с пройденными клетками (по Id)
+    public static List<string> PassedCellsIds = new List<string>(); // СЃРїРёСЃРѕРє СЃ РїСЂРѕР№РґРµРЅРЅС‹РјРё РєР»РµС‚РєР°РјРё (РїРѕ Id)
 
     [SerializeField]
-    private Transform _spawnCell; // клетка для первого спавна
+    private Transform _spawnCell; // РєР»РµС‚РєР° РґР»СЏ РїРµСЂРІРѕРіРѕ СЃРїР°РІРЅР°
 
     public Transform Player;
 
@@ -53,7 +55,7 @@ public class MapLoader : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (string.IsNullOrEmpty(CurrentCellId)) // если клетка для спавна не задана, то берётся та, которая указывается в _spawnCell
+        if (string.IsNullOrEmpty(CurrentCellId)) // РµСЃР»Рё РєР»РµС‚РєР° РґР»СЏ СЃРїР°РІРЅР° РЅРµ Р·Р°РґР°РЅР°, С‚Рѕ Р±РµСЂС‘С‚СЃСЏ С‚Р°, РєРѕС‚РѕСЂР°СЏ СѓРєР°Р·С‹РІР°РµС‚СЃСЏ РІ _spawnCell
         {
             CurrentCellId = _spawnCell.GetComponent<BaseCell>().CellId;
         }
@@ -67,7 +69,7 @@ public class MapLoader : MonoBehaviour
         if (!WasSpawned)
         {
             GenerateCellsType();
-            _tilesIndexes = _randomTilemapGenerator.Generate(); // запоминаю индексы (которые были рандомно сгенерированы) тайлов
+            _tilesIndexes = _randomTilemapGenerator.Generate(); // Р·Р°РїРѕРјРёРЅР°СЋ РёРЅРґРµРєСЃС‹ (РєРѕС‚РѕСЂС‹Рµ Р±С‹Р»Рё СЂР°РЅРґРѕРјРЅРѕ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅС‹) С‚Р°Р№Р»РѕРІ
         }
         else
         {
@@ -94,7 +96,7 @@ public class MapLoader : MonoBehaviour
 
         /* int sumOfFrequency = CellTypesFrequencySerializedDictionary.Sum(c => c.Value);
 
-        NormalCell[] cells = UnityEngine.Object.FindObjectsOfType<NormalCell>(); // все клетки без стартовой
+        NormalCell[] cells = UnityEngine.Object.FindObjectsOfType<NormalCell>(); // РІСЃРµ РєР»РµС‚РєРё Р±РµР· СЃС‚Р°СЂС‚РѕРІРѕР№
 
         foreach (var item in cells)
         {
@@ -149,7 +151,7 @@ public class MapLoader : MonoBehaviour
     {
 
 
-        NormalCell[] cells = UnityEngine.Object.FindObjectsOfType<NormalCell>(); // все клетки без стартовой
+        NormalCell[] cells = UnityEngine.Object.FindObjectsOfType<NormalCell>(); // РІСЃРµ РєР»РµС‚РєРё Р±РµР· СЃС‚Р°СЂС‚РѕРІРѕР№
 
         foreach (var cell in cells)
         {
@@ -208,12 +210,12 @@ public class MapLoader : MonoBehaviour
                 cells.First(c => c.CellId == passedCell).CellType = CellType.Passed;
             }
 
-            // cell.CellType = CellType.Passed; раскомментить, если будут проблемы с отображением пройденных уровней
-            // (если их спрайт меняется после того, как игрок "отбежал" от него)
+            // cell.CellType = CellType.Passed; СЂР°СЃРєРѕРјРјРµРЅС‚РёС‚СЊ, РµСЃР»Рё Р±СѓРґСѓС‚ РїСЂРѕР±Р»РµРјС‹ СЃ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµРј РїСЂРѕР№РґРµРЅРЅС‹С… СѓСЂРѕРІРЅРµР№
+            // (РµСЃР»Рё РёС… СЃРїСЂР°Р№С‚ РјРµРЅСЏРµС‚СЃСЏ РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РёРіСЂРѕРє "РѕС‚Р±РµР¶Р°Р»" РѕС‚ РЅРµРіРѕ)
 
             Player.position = currentCell.transform.position;
 
-            CameraMover.Instance.ChangePositionToPlayer(); // мб событием
+            CameraMover.Instance.ChangePositionToPlayer(); // РјР± СЃРѕР±С‹С‚РёРµРј
 
             foreach (var neighborCell in cell.NeighborsCells)
             {
@@ -239,7 +241,7 @@ public class MapLoader : MonoBehaviour
 
 
     [Serializable]
-    public class SerializedDictionaryItem<T, K> // отдельный класс для того, чтобы сделать dictionary (словарь), который отображается в Inspector'е
+    public class SerializedDictionaryItem<T, K> // РѕС‚РґРµР»СЊРЅС‹Р№ РєР»Р°СЃСЃ РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ СЃРґРµР»Р°С‚СЊ dictionary (СЃР»РѕРІР°СЂСЊ), РєРѕС‚РѕСЂС‹Р№ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РІ Inspector'Рµ
     {
         public T Key;
         public K Value;

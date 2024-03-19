@@ -1,40 +1,40 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-
-[CreateAssetMenu(menuName ="Data/FloatData")]
-public class FloatValueSO : ScriptableObject
+namespace App.Scripts.MixedScenes
 {
-    [FormerlySerializedAs("_value")] [SerializeField]
-    private float currentValue;
-
-    [SerializeField] private float _maxValue;
-    public float CurrentValue
+    [CreateAssetMenu(menuName ="Data/FloatData")]
+    public class FloatValueSO : ScriptableObject
     {
-        get => currentValue;
-        set
-        {
-            currentValue = value;
-            OnValueChange?.Invoke(currentValue);
-        }
+        [FormerlySerializedAs("_value")] [SerializeField]
+        private float currentValue;
 
-    }
+        [SerializeField] private float _maxValue;
+        public float CurrentValue
+        {
+            get => currentValue;
+            set
+            {
+                currentValue = value;
+                OnValueChange?.Invoke(currentValue);
+            }
+
+        }
     
-    public float MaxValue
-    {
-        get => _maxValue;
-        set
+        public float MaxValue
         {
-            _maxValue = value;
-            OnValueChange?.Invoke(_maxValue);
+            get => _maxValue;
+            set
+            {
+                _maxValue = value;
+                OnValueChange?.Invoke(_maxValue);
+            }
+
         }
 
+        public bool IsInitialized;
+        public event Action<float> OnValueChange;
+
     }
-
-    public bool IsInitialized;
-    public event Action<float> OnValueChange;
-
 }

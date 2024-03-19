@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IInteractable
+namespace App.Scripts.AllScenes.Interfaces
 {
-    public void Interact();
+    public interface IInteractable
+    {
+        public void Interact();
+    }
 }

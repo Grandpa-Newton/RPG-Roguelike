@@ -1,7 +1,8 @@
-using DefaultNamespace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.MapScene.Cells;
+using App.Scripts.MixedScenes.Player.Control;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,11 +17,11 @@ public class CellsSelectHandler : MonoBehaviour, ISelectHandler, IDeselectHandle
 
     public void OnSelect(BaseEventData eventData)
     {
-        gameObject.GetComponent<BaseCell>().CellType = DefaultNamespace.CellType.Selecting;
+        gameObject.GetComponent<BaseCell>().CellType = CellType.Selecting;
         MapPlayerController.Instance.SelectingCell = gameObject;
         BaseCell currentCell = gameObject.GetComponent<BaseCell>();
         _previousType = currentCell.CellType;
-        currentCell.CellType = DefaultNamespace.CellType.Selecting;
+        currentCell.CellType = CellType.Selecting;
         OnChangeSelectingCell?.Invoke();
     }
 }

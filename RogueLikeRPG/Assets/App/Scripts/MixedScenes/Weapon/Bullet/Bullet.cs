@@ -1,7 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Interfaces;
+using App.Scripts.AllScenes.Interfaces;
+using App.Scripts.MixedScenes.Weapon.RangeWeapon;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour

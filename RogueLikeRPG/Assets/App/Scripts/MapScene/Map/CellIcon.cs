@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.MapScene.Map;
 using UnityEngine;
 
-public class LevelIcon : MonoBehaviour
+public class CellIcon : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
 

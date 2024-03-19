@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IShopCustomer 
+namespace App.Scripts.TraderScene
 {
+    public interface IShopCustomer 
+    {
 
+    }
 }

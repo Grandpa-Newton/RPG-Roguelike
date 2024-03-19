@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.MixedScenes.Player.Control;
 using UnityEngine;
 
 public class MapInputManager : MonoBehaviour
@@ -70,7 +71,7 @@ public class MapInputManager : MonoBehaviour
         MapPlayerController.Instance.GetCells_performed();
     }
 
-    public void TurnOnSelectCell(string sceneToLoad) // фегня какая-то
+    public void TurnOnSelectCell(string sceneToLoad) // С„РµРіРЅСЏ РєР°РєР°СЏ-С‚Рѕ
     {
         _sceneToLoad = sceneToLoad; 
         PlayerInputActions.Map.Interact.Enable();
@@ -80,6 +81,6 @@ public class MapInputManager : MonoBehaviour
 
     private void SelectCell_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnInteractPressed?.Invoke(_sceneToLoad); // мб тут проверка на empty
+        OnInteractPressed?.Invoke(_sceneToLoad); // РјР± С‚СѓС‚ РїСЂРѕРІРµСЂРєР° РЅР° empty
     }
 }

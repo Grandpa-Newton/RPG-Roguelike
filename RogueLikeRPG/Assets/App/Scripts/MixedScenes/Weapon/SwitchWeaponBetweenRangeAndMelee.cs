@@ -1,68 +1,68 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SwitchWeaponBetweenRangeAndMelee : MonoBehaviour
+namespace App.Scripts.MixedScenes.Weapon
 {
-    public static SwitchWeaponBetweenRangeAndMelee Instance { get; private set; }
-    [SerializeField] private Transform meleeWeapon;
-    [SerializeField] private Transform rangeWeapon;
-
-    [SerializeField] private GameObject[] hands;
-
-    private bool isMeleeWeapon = true;
-
-    private void Awake()
+    public class SwitchWeaponBetweenRangeAndMelee : MonoBehaviour
     {
-        Instance = this;
-    }
-    
-    private void Start()
-    {
-        meleeWeapon.gameObject.SetActive(true);
-        rangeWeapon.gameObject.SetActive(false);
-        PlayerHandsVisible(false);
-    }
+        public static SwitchWeaponBetweenRangeAndMelee Instance { get; private set; }
+        [SerializeField] private Transform meleeWeapon;
+        [SerializeField] private Transform rangeWeapon;
 
-    private void Update()
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") != 0)
+        [SerializeField] private GameObject[] hands;
+
+        private bool isMeleeWeapon = true;
+
+        private void Awake()
         {
-            isMeleeWeapon = !isMeleeWeapon;
-            if (isMeleeWeapon)
+            Instance = this;
+        }
+    
+        private void Start()
+        {
+            meleeWeapon.gameObject.SetActive(true);
+            rangeWeapon.gameObject.SetActive(false);
+            PlayerHandsVisible(false);
+        }
+
+        private void Update()
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") != 0)
             {
-                meleeWeapon.gameObject.SetActive(true);
-                rangeWeapon.gameObject.SetActive(false);
-            }
-            else
-            {
-                meleeWeapon.gameObject.SetActive(false);
-                rangeWeapon.gameObject.SetActive(true);
+                isMeleeWeapon = !isMeleeWeapon;
+                if (isMeleeWeapon)
+                {
+                    meleeWeapon.gameObject.SetActive(true);
+                    rangeWeapon.gameObject.SetActive(false);
+                }
+                else
+                {
+                    meleeWeapon.gameObject.SetActive(false);
+                    rangeWeapon.gameObject.SetActive(true);
+                }
             }
         }
-    }
 
-    public void SetActiveMeleeWeapon()
-    {
-        meleeWeapon.gameObject.SetActive(true);
-        rangeWeapon.gameObject.SetActive(false);
-    }
-    public void SetActiveRangeWeapon()
-    {
-        meleeWeapon.gameObject.SetActive(false);
-        rangeWeapon.gameObject.SetActive(true);
-    }
-
-    public bool GetWeaponState()
-    {
-        return isMeleeWeapon;
-    }
-    public void PlayerHandsVisible(bool isActive)
-    {
-        foreach (var hand in hands)
+        public void SetActiveMeleeWeapon()
         {
-            hand.SetActive(isActive);
+            meleeWeapon.gameObject.SetActive(true);
+            rangeWeapon.gameObject.SetActive(false);
+        }
+        public void SetActiveRangeWeapon()
+        {
+            meleeWeapon.gameObject.SetActive(false);
+            rangeWeapon.gameObject.SetActive(true);
+        }
+
+        public bool GetWeaponState()
+        {
+            return isMeleeWeapon;
+        }
+        public void PlayerHandsVisible(bool isActive)
+        {
+            foreach (var hand in hands)
+            {
+                hand.SetActive(isActive);
+            }
         }
     }
 }

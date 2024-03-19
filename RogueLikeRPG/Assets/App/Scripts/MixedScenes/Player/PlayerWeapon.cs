@@ -1,10 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using App.Scripts.MixedScenes.Inventory.Model;
+using App.Scripts.MixedScenes.Weapon;
 using Inventory.Model;
-using UnityEngine.Serialization;
+using UnityEngine;
 
-public class AgentWeapon : MonoBehaviour
+namespace App.Scripts.MixedScenes.Player
+{
+    public class PlayerWeapon : MonoBehaviour
     {
         [Header("Current Weapons")]
         [SerializeField] private WeaponItemSO equipMeleeWeapon;
@@ -55,3 +57,4 @@ public class AgentWeapon : MonoBehaviour
             }
         }
     }
+}

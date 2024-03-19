@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class StartCell : BaseCell
+namespace App.Scripts.MapScene.Cells
 {
+    public class StartCell : BaseCell
+    {
 
+    }
 }

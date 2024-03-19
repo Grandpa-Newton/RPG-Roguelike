@@ -1,26 +1,26 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MovePlayerToMouse : MonoBehaviour
+namespace App.Scripts.MixedScenes.Player
 {
-    [SerializeField] private float _moveSpeed;
-    private Vector3 _target;
-
-    private void Start()
+    public class MovePlayerToMouse : MonoBehaviour
     {
-        _target = transform.position;
-    }
+        [SerializeField] private float _moveSpeed;
+        private Vector3 _target;
 
-    private void Update()
-    {
-        if (Input.GetMouseButton(1))
+        private void Start()
         {
-            _target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            _target.z = transform.position.z;
+            _target = transform.position;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, _target, _moveSpeed * Time.deltaTime);
+        private void Update()
+        {
+            if (Input.GetMouseButton(1))
+            {
+                _target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                _target.z = transform.position.z;
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, _target, _moveSpeed * Time.deltaTime);
+        }
     }
 }

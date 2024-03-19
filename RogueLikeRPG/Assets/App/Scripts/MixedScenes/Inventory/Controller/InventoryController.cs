@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using App.Scripts.MixedScenes.Inventory.Model;
+using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
+using App.Scripts.MixedScenes.Inventory.UI;
 using UnityEngine;
-using Inventory.UI;
 using Inventory.Model;
 using UnityEngine.Serialization;
 
-namespace Inventory
+namespace App.Scripts.MixedScenes.Inventory.Controller
 {
     public class InventoryController : MonoBehaviour
     {

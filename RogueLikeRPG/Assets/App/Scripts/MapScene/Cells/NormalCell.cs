@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class NormalCell : PathCell
+namespace App.Scripts.MapScene.Cells
 {
+    public class NormalCell : PathCell
+    {
 
     
+    }
 }

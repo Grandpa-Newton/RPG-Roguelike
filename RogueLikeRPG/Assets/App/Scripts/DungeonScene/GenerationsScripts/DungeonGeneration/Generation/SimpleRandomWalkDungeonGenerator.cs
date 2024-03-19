@@ -1,32 +1,34 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
+namespace App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.Generation
 {
-    [SerializeField] protected SimpleRandomWalkSO _randomWalkParameters;
-    
-    protected override void RunProceduralGeneration()
+    public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
     {
-        HashSet<Vector2Int> floorPositions = RunRandomWalk(_randomWalkParameters, startPosition);
-        tilemapVisualizer.Clear();
-        tilemapVisualizer.PaintFloorTiles(floorPositions);
-        WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
-    }
+        [SerializeField] protected SimpleRandomWalkSO _randomWalkParameters;
     
-    protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkSO randomWalkParameters, Vector2Int position)
-    {
-        var currentPosition = position;
-        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
-        for (int i = 0; i < randomWalkParameters.iterations; i++)
+        protected override void RunProceduralGeneration()
         {
-            var path = ProceduralGenerationAlgorithms.SimpleRandomWalk(currentPosition, randomWalkParameters.walkLength);
-            floorPositions.UnionWith(path);
-            if (randomWalkParameters.startRandomlyEachIteration)
-                currentPosition = floorPositions.ElementAt(Random.Range(0, floorPositions.Count));
+            HashSet<Vector2Int> floorPositions = RunRandomWalk(_randomWalkParameters, startPosition);
+            tilemapVisualizer.Clear();
+            tilemapVisualizer.PaintFloorTiles(floorPositions);
+            WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
         }
+    
+        protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkSO randomWalkParameters, Vector2Int position)
+        {
+            var currentPosition = position;
+            HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
+            for (int i = 0; i < randomWalkParameters.iterations; i++)
+            {
+                var path = ProceduralGenerationAlgorithms.SimpleRandomWalk(currentPosition, randomWalkParameters.walkLength);
+                floorPositions.UnionWith(path);
+                if (randomWalkParameters.startRandomlyEachIteration)
+                    currentPosition = floorPositions.ElementAt(Random.Range(0, floorPositions.Count));
+            }
 
-        return floorPositions;
+            return floorPositions;
+        }
     }
 }

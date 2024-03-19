@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.MixedScenes.Inventory.UI.ItemParameters;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 

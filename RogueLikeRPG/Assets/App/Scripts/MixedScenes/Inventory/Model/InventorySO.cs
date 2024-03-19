@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
+using Inventory.Model;
+using UnityEngine;
 
-namespace Inventory.Model
+namespace App.Scripts.MixedScenes.Inventory.Model
 {
     [CreateAssetMenu(fileName = "Inventory_", menuName = "InventorySO")]
     public class InventorySO : ScriptableObject

@@ -4,6 +4,8 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.Events;
 using System.Linq;
+using App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.DecisionSystem;
+using App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.RoomSystem;
 
 
 public class RoomContentGenerator : MonoBehaviour

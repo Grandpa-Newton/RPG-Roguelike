@@ -1,16 +1,18 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PathCell : BaseCell
+namespace App.Scripts.MapScene.Cells
 {
-    public List<Path> Paths = new List<Path>(); // пути, по которым можно попасть к данной клетке
-                                                // (первый элемент - клетка, из которой идёт путь, потом идут точки "поворота" пути)
-
-    [Serializable]
-    public class Path // отдельный класс для того, чтобы сделать список списков
+    public abstract class PathCell : BaseCell
     {
-        public List<GameObject> WayPoints = new List<GameObject>();
+        public List<Path> Paths = new List<Path>(); // РїСѓС‚Рё, РїРѕ РєРѕС‚РѕСЂС‹Рј РјРѕР¶РЅРѕ РїРѕРїР°СЃС‚СЊ Рє РґР°РЅРЅРѕР№ РєР»РµС‚РєРµ
+        // (РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚ - РєР»РµС‚РєР°, РёР· РєРѕС‚РѕСЂРѕР№ РёРґС‘С‚ РїСѓС‚СЊ, РїРѕС‚РѕРј РёРґСѓС‚ С‚РѕС‡РєРё "РїРѕРІРѕСЂРѕС‚Р°" РїСѓС‚Рё)
+
+        [Serializable]
+        public class Path // РѕС‚РґРµР»СЊРЅС‹Р№ РєР»Р°СЃСЃ РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ СЃРґРµР»Р°С‚СЊ СЃРїРёСЃРѕРє СЃРїРёСЃРєРѕРІ
+        {
+            public List<GameObject> WayPoints = new List<GameObject>();
+        }
     }
 }

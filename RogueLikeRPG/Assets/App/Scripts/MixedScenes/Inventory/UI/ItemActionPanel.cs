@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-namespace Inventory.UI
+namespace App.Scripts.MixedScenes.Inventory.UI
 {
     public class ItemActionPanel : MonoBehaviour
     {

@@ -1,116 +1,114 @@
-using DefaultNamespace;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class BaseCell : MonoBehaviour
+namespace App.Scripts.MapScene.Cells
 {
-    [SerializeField] protected GameObject isActiveCircle;
-
-    [SerializeField] public CellSO CellData;
-
-    [HideInInspector]
-    public string CellId; // уникальный идентификатор объекта
-
-    [SerializeField] private GameObject levelIconGameObject;
-
-    public List<GameObject> NeighborsCells = new List<GameObject>(); // клетки, на которые можно попасть из этой клетки
-
-    public List<CellSO> PossibleCellData = new List<CellSO>();
-
-
-    protected SpriteRenderer _spriteRenderer;
-
-    protected Renderer _renderer;
-
-    protected LevelIcon _levelIcon;
-
-    protected bool _isPassed = false;
-
-    [SerializeField]
-    private CellType _cellType = CellType.Inactive;
-    public CellType CellType
+    public abstract class BaseCell : MonoBehaviour
     {
-        get => _cellType;
+        [SerializeField] protected GameObject isActiveCircle;
 
-        set
+        [SerializeField] public CellSO CellData;
+
+        [HideInInspector]
+        public string CellId; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+
+        [SerializeField] private GameObject levelIconGameObject;
+
+        public List<GameObject> NeighborsCells = new List<GameObject>(); // пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+
+        public List<CellSO> PossibleCellData = new List<CellSO>();
+
+
+        protected SpriteRenderer _spriteRenderer;
+
+        protected Renderer _renderer;
+
+        protected CellIcon _cellIcon;
+
+        protected bool _isPassed = false;
+
+        [SerializeField]
+        private CellType _cellType = CellType.Inactive;
+        public CellType CellType
         {
-            _cellType = value;
+            get => _cellType;
+
+            set
+            {
+                _cellType = value;
+                ChangeCellType();
+            }
+        }
+        protected void ChangeCellType()
+        {
+            switch (CellType)
+            {
+                case CellType.Inactive:
+                    // SpriteBrightnessChanger.DecreaseSpriteBrightness(_spriteRenderer);
+                    _cellIcon.DecreaseSpriteBrightness();
+                    isActiveCircle.SetActive(false);
+                    break;
+                case CellType.Active:
+                    //SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
+                    _cellIcon.IncreaseSpriteBrightness();
+                    isActiveCircle.SetActive(false);
+                    break;
+                case CellType.Current:
+                    //SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
+                    _cellIcon.IncreaseSpriteBrightness();
+                    isActiveCircle.SetActive(false);
+                    break;
+                case CellType.Selecting:
+                    //SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
+                    _cellIcon.IncreaseSpriteBrightness();
+                    isActiveCircle.SetActive(true);
+                    break;
+                case CellType.Passed:
+                    _isPassed = true;
+                    //SpriteBrightnessChanger.DecreaseSpriteBrightness(_spriteRenderer);
+                    _cellIcon.DecreaseSpriteBrightness();
+                    _cellIcon.ChangeSprite(CellData.NextSprite);
+                    isActiveCircle.SetActive(false);
+                    break;
+            }
+        }
+
+        protected void ConfigureObject()
+        {
+            CellId = name + transform.position.ToString();
+            _renderer = GetComponent<Renderer>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _cellIcon = levelIconGameObject.GetComponent<CellIcon>();
+        }
+
+        protected void ConfigureObjectStart()
+        {
             ChangeCellType();
+            if (!_isPassed) 
+            {
+                _cellIcon.ChangeSprite(CellData.OriginalSprite);
+            }
         }
-    }
-    protected void ChangeCellType()
-    {
-        switch (CellType)
+
+        public void SetCellData(CellSO cellData)
         {
-            case CellType.Inactive:
-                // SpriteBrightnessChanger.DecreaseSpriteBrightness(_spriteRenderer);
-                _levelIcon.DecreaseSpriteBrightness();
-                isActiveCircle.SetActive(false);
-                break;
-            case CellType.Active:
-                //SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
-                _levelIcon.IncreaseSpriteBrightness();
-                isActiveCircle.SetActive(false);
-                break;
-            case CellType.Current:
-                //SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
-                _levelIcon.IncreaseSpriteBrightness();
-                isActiveCircle.SetActive(false);
-                break;
-            case CellType.Selecting:
-                //SpriteBrightnessChanger.IncreaseSpriteBrightness(_spriteRenderer);
-                _levelIcon.IncreaseSpriteBrightness();
-                isActiveCircle.SetActive(true);
-                break;
-            case CellType.Passed:
-                _isPassed = true;
-                //SpriteBrightnessChanger.DecreaseSpriteBrightness(_spriteRenderer);
-                _levelIcon.DecreaseSpriteBrightness();
-                _levelIcon.ChangeSprite(CellData.NextSprite);
-                isActiveCircle.SetActive(false);
-                break;
+            CellData = cellData;
+            _cellIcon.ChangeSprite(CellData.OriginalSprite);
+            // _renderer.material.color = CellData.CellColor;
+
         }
-    }
 
-    protected void ConfigureObject()
-    {
-        CellId = name + transform.position.ToString();
-        _renderer = GetComponent<Renderer>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _levelIcon = levelIconGameObject.GetComponent<LevelIcon>();
-    }
-
-    protected void ConfigureObjectStart()
-    {
-        ChangeCellType();
-        if (!_isPassed) 
+        protected void Awake()
         {
-            _levelIcon.ChangeSprite(CellData.OriginalSprite);
+            ConfigureObject();
         }
-    }
 
-    public void SetCellData(CellSO cellData)
-    {
-        CellData = cellData;
-        _levelIcon.ChangeSprite(CellData.OriginalSprite);
-       // _renderer.material.color = CellData.CellColor;
+        protected void Start()
+        {
+            ConfigureObjectStart();
+        }
 
-    }
-
-    protected void Awake()
-    {
-        ConfigureObject();
-    }
-
-    protected void Start()
-    {
-        ConfigureObjectStart();
-    }
-
-    /* protected void OnDrawGizmos()
+        /* protected void OnDrawGizmos()
     {
         for (int i = 0; i < Paths.Count; i++)
         {
@@ -127,4 +125,5 @@ public abstract class BaseCell : MonoBehaviour
         }
     }*/
 
+    }
 }

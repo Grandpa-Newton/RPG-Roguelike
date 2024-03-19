@@ -385,7 +385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 78359862}
   m_Layer: 0
-  m_Name: WayPoint_07 (1)
+  m_Name: WayPoint_07
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -648,7 +648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 517990340}
   m_Layer: 0
-  m_Name: WayPoint_05
+  m_Name: WayPoint_04
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -930,7 +930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 525997881}
   m_Layer: 0
-  m_Name: WayPoint_07
+  m_Name: WayPoint_06
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2470,7 +2470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1366332332}
   m_Layer: 0
-  m_Name: WayPoint_06
+  m_Name: WayPoint_05
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2502,7 +2502,7 @@ GameObject:
   - component: {fileID: 1366760116}
   - component: {fileID: 1366760115}
   m_Layer: 0
-  m_Name: LevelVariant_01
+  m_Name: LevelImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3154,6 +3154,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1567812207089486093, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4095
+      objectReference: {fileID: 0}
     - target: {fileID: 2012884706330960497, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3555,7 +3559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1644446247
 Transform:
   m_ObjectHideFlags: 0

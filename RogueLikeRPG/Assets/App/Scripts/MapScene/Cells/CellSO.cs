@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Cell_", menuName = "CellSO")]
-public class CellSO : ScriptableObject
+namespace App.Scripts.MapScene.Cells
 {
-    public string SceneToLoad;
+    [CreateAssetMenu(fileName = "Cell_", menuName = "CellSO")]
+    public class CellSO : ScriptableObject
+    {
+        public string SceneToLoad;
 
-    public Color CellColor;
+        public Color CellColor;
 
-    public Sprite OriginalSprite; // спрайт, который применяет при создании
+        public Sprite OriginalSprite; // спрайт, который применяет при создании
 
-    public Sprite NextSprite; // спрайт, который используется после прохождения данного уровня
+        public Sprite NextSprite; // спрайт, который используется после прохождения данного уровня
+    }
 }

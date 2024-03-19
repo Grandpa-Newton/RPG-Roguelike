@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using App.Scripts.AllScenes.UI;
+using App.Scripts.MapScene.Cells;
+using App.Scripts.MixedScenes.Player.Control;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using Unity.VisualScripting;
 
 public class NextLevelStarter : MonoBehaviour
 {
-    public event Action OnLevelEnd;
-    
     public Transform Player;
     [SerializeField] private GameObject panel;
     private PlayerController _playerController;

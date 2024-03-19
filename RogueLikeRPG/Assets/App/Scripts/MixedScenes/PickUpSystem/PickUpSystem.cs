@@ -1,23 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using App.Scripts.MixedScenes.Inventory.Model;
 using UnityEngine;
-using Inventory.Model;
 
-public class PickUpSystem : MonoBehaviour
+namespace App.Scripts.MixedScenes.PickUpSystem
 {
-    [SerializeField] private InventorySO inventoryData;
-
-    private void OnTriggerEnter2D(Collider2D other)
+    public class PickUpSystem : MonoBehaviour
     {
-        ItemPickable item = other.GetComponent<ItemPickable>();
-        if (item != null)
+        [SerializeField] private InventorySO inventoryData;
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            int reminder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
-            if (reminder == 0)
-                item.DestroyItem();
-            else
-                item.Quantity = reminder;
+            ItemPickable item = other.GetComponent<ItemPickable>();
+            if (item != null)
+            {
+                int reminder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
+                if (reminder == 0)
+                    item.DestroyItem();
+                else
+                    item.Quantity = reminder;
+            }
         }
     }
 }

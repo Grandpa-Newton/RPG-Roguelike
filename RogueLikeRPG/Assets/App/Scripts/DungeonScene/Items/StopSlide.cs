@@ -1,22 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class StopSlide : MonoBehaviour
+namespace App.Scripts.DungeonScene.Items
 {
-    private Rigidbody2D _rb2D;
-
-    void Start()
+    public class StopSlide : MonoBehaviour
     {
-        _rb2D = GetComponent<Rigidbody2D>();
-    }
+        private Rigidbody2D _rb2D;
 
-    private void FixedUpdate()
-    {
-        if (_rb2D.velocity.magnitude > 0)
+        void Start()
         {
-            _rb2D.velocity = new Vector2(0f, 0f);
+            _rb2D = GetComponent<Rigidbody2D>();
+        }
+
+        private void FixedUpdate()
+        {
+            if (_rb2D.velocity.magnitude > 0)
+            {
+                _rb2D.velocity = new Vector2(0f, 0f);
+            }
         }
     }
 }

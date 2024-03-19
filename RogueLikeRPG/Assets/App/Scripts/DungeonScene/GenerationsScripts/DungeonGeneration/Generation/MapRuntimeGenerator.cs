@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MapRuntimeGenerator : MonoBehaviour
+namespace App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.Generation
 {
-    public UnityEvent OnStart;
-    void Start()
+    public class MapRuntimeGenerator : MonoBehaviour
     {
-        OnStart?.Invoke();
+        public UnityEvent OnStart;
+        void Start()
+        {
+            OnStart?.Invoke();
+        }
     }
 }

@@ -1,29 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+using App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.RoomSystem.Items;
 using UnityEditor;
-using UnityEngine;
 
-[CustomEditor(typeof(ItemData))]
-public class ItemDataEditor : Editor
+namespace App.Scripts.DungeonScene.Editor
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(ItemData))]
+    public class ItemDataEditor : UnityEditor.Editor
     {
-        serializedObject.Update();
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
         
-        ItemData itemData = (ItemData)target;
+            ItemData itemData = (ItemData)target;
 
-        //DrawPropertiesExcluding(serializedObject, "colliderSize", "colliderOffset");
+            //DrawPropertiesExcluding(serializedObject, "colliderSize", "colliderOffset");
 
-        if (!itemData.nonDestuctible)
-        {
-            DrawDefaultInspector();
-            //itemData.colliderSize = EditorGUILayout.Vector2Field("Collider Size", itemData.colliderSize);
-            //itemData.colliderOffset = EditorGUILayout.Vector2Field("Collider Offset", itemData.colliderOffset);
+            if (!itemData.nonDestuctible)
+            {
+                DrawDefaultInspector();
+                //itemData.colliderSize = EditorGUILayout.Vector2Field("Collider Size", itemData.colliderSize);
+                //itemData.colliderOffset = EditorGUILayout.Vector2Field("Collider Offset", itemData.colliderOffset);
+            }
+            else
+            {
+                DrawPropertiesExcluding(serializedObject, "colliderSize", "colliderOffset");
+            }
+            serializedObject.ApplyModifiedProperties();
         }
-        else
-        {
-            DrawPropertiesExcluding(serializedObject, "colliderSize", "colliderOffset");
-        }
-        serializedObject.ApplyModifiedProperties();
     }
 }

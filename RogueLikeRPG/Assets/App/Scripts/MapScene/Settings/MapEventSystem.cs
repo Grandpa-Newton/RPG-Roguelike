@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.MixedScenes.Player.Control;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,6 +14,6 @@ public class MapEventSystem : EventSystem
 
     private void Instance_OnDeselectCells()
     {
-        SetSelectedGameObject(null); // убирает выделение всех объектов
+        SetSelectedGameObject(null); // СѓР±РёСЂР°РµС‚ РІС‹РґРµР»РµРЅРёРµ РІСЃРµС… РѕР±СЉРµРєС‚РѕРІ
     }
 }

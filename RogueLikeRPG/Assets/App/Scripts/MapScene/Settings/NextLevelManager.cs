@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
-public class NextLevelManager : MonoBehaviour
+namespace App.Scripts.MapScene.Settings
 {
-    public static NextLevelManager Instance;
-
-    private void Awake()
+    public class NextLevelManager : MonoBehaviour
     {
-        if(Instance != null)
+        public static NextLevelManager Instance;
+
+        private void Awake()
         {
-            Debug.LogError("There is no more than one Player instance");
+            if(Instance != null)
+            {
+                Debug.LogError("There is no more than one Player instance");
+            }
+            Instance = this;
         }
-        Instance = this;
     }
 }

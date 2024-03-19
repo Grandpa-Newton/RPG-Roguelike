@@ -1,27 +1,28 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.RoomSystem.Items;
 using UnityEngine;
 
-public class FightingPitRoom : RoomGenerator
+namespace App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.RoomSystem.RoomsScript
 {
-    [SerializeField]
-    private PrefabPlacer prefabPlacer;
-
-    public List<EnemyPlacementData> enemyPlacementData;
-    public List<ItemPlacementData> itemData;
-
-    public override List<GameObject> ProcessRoom(Vector2Int roomCenter, HashSet<Vector2Int> roomFloor, HashSet<Vector2Int> roomFloorNoCorridors)
+    public class FightingPitRoom : RoomGenerator
     {
-        ItemPlacementHelper itemPlacementHelper =
-            new ItemPlacementHelper(roomFloor, roomFloorNoCorridors);
+        [SerializeField]
+        private PrefabPlacer prefabPlacer;
 
-        List<GameObject> placedObjects =
-            prefabPlacer.PlaceAllItems(itemData, itemPlacementHelper);
+        public List<EnemyPlacementData> enemyPlacementData;
+        public List<ItemPlacementData> itemData;
 
-        placedObjects.AddRange(prefabPlacer.PlaceEnemies(enemyPlacementData, itemPlacementHelper));
+        public override List<GameObject> ProcessRoom(Vector2Int roomCenter, HashSet<Vector2Int> roomFloor, HashSet<Vector2Int> roomFloorNoCorridors)
+        {
+            ItemPlacementHelper itemPlacementHelper =
+                new ItemPlacementHelper(roomFloor, roomFloorNoCorridors);
 
-        return placedObjects;
+            List<GameObject> placedObjects =
+                prefabPlacer.PlaceAllItems(itemData, itemPlacementHelper);
+
+            placedObjects.AddRange(prefabPlacer.PlaceEnemies(enemyPlacementData, itemPlacementHelper));
+
+            return placedObjects;
+        }
     }
 }

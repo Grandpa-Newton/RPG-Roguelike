@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class StartShowLoadPanel : MonoBehaviour
+namespace App.Scripts.AllScenes.UI
 {
-    void Start()
+    public class StartShowLoadPanel : MonoBehaviour
     {
-        gameObject.SetActive(true);
-    }
-    public void HideLoadPanel()
-    {
-        gameObject.SetActive(false);
+        void Start()
+        {
+            gameObject.SetActive(true);
+        }
+        public void HideLoadPanel()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

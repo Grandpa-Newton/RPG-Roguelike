@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using App.Scripts.MixedScenes.Inventory.Controller;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Inventory.UI
+namespace App.Scripts.MixedScenes.Inventory.UI
 {
     public class UIInventoryPage : MonoBehaviour
     {

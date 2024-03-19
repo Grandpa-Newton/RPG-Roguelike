@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class FadeIn : MonoBehaviour
+public class FadeInCellDescription : MonoBehaviour
 {
     public CanvasGroup canvasGroup;
 

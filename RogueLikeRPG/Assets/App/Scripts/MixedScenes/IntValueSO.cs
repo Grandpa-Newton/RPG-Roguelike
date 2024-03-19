@@ -1,25 +1,26 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/IntData")]
-public class IntValueSO : ScriptableObject
+namespace App.Scripts.MixedScenes
 {
-    [SerializeField]
-    private int _value;
-
-    public int Value
+    [CreateAssetMenu(menuName = "Data/IntData")]
+    public class IntValueSO : ScriptableObject
     {
-        get => _value;
-        set
+        [SerializeField]
+        private int _value;
+
+        public int Value
         {
-            _value = value;
-            OnValueChange?.Invoke(_value);
+            get => _value;
+            set
+            {
+                _value = value;
+                OnValueChange?.Invoke(_value);
+            }
+
         }
 
+        public bool IsInitialized;
+        public event Action<int> OnValueChange;
     }
-
-    public bool IsInitialized;
-    public event Action<int> OnValueChange;
 }

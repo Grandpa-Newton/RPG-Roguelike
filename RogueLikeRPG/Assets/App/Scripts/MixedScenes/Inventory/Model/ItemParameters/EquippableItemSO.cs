@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Inventory.Model;
 using UnityEngine;
 
-namespace Inventory.Model
+namespace App.Scripts.MixedScenes.Inventory.Model.ItemParameters
 {
     [CreateAssetMenu]
     public class EquippableItemSO : ItemSO, IDestroyableItem, IItemAction

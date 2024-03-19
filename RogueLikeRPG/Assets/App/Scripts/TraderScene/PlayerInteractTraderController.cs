@@ -1,36 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
+using App.Scripts.AllScenes.Interfaces;
 using UnityEngine;
 
-public class PlayerInteractTraderController : MonoBehaviour // это, наверное, нужно будет вставить в playercontroller, и там тогда выключать playerinputactions, чтобы пользователь не мог бегац и стрелять
+namespace App.Scripts.TraderScene
 {
-    private void Update()
+    public class PlayerInteractTraderController : MonoBehaviour // СЌС‚Рѕ, РЅР°РІРµСЂРЅРѕРµ, РЅСѓР¶РЅРѕ Р±СѓРґРµС‚ РІСЃС‚Р°РІРёС‚СЊ РІ playercontroller, Рё С‚Р°Рј С‚РѕРіРґР° РІС‹РєР»СЋС‡Р°С‚СЊ playerinputactions, С‡С‚РѕР±С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµ РјРѕРі Р±РµРіР°С† Рё СЃС‚СЂРµР»СЏС‚СЊ
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        private void Update()
         {
-            IInteractable interactable = GetInteractableObject();
-            if(interactable != null)
+            if (Input.GetKeyDown(KeyCode.T))
             {
-                interactable.Interact();
-            }
-        }
-    }
-
-    private IInteractable GetInteractableObject()
-    {
-
-        float interactRange = 2f;
-
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(interactRange, interactRange), 0f);
-
-        foreach (var collider in colliders)
-        {
-            if(collider.TryGetComponent(out IInteractable interactableObject))
-            {
-                return interactableObject;
+                IInteractable interactable = GetInteractableObject();
+                if(interactable != null)
+                {
+                    interactable.Interact();
+                }
             }
         }
 
-        return null;
+        private IInteractable GetInteractableObject()
+        {
+
+            float interactRange = 2f;
+
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(interactRange, interactRange), 0f);
+
+            foreach (var collider in colliders)
+            {
+                if(collider.TryGetComponent(out IInteractable interactableObject))
+                {
+                    return interactableObject;
+                }
+            }
+
+            return null;
+        }
     }
 }

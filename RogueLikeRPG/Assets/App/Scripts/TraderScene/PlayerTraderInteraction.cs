@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTraderInteraction : MonoBehaviour, IShopCustomer
+namespace App.Scripts.TraderScene
 {
+    public class PlayerTraderInteraction : MonoBehaviour, IShopCustomer
+    {
 
+    }
 }

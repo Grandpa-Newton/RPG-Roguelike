@@ -1,4 +1,4 @@
-﻿namespace DefaultNamespace
+﻿namespace App.Scripts.MapScene.Cells
 {
     public enum CellType
     {

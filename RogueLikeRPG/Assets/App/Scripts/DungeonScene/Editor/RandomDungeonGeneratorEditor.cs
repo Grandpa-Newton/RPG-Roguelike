@@ -1,25 +1,26 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.Generation;
 using UnityEditor;
+using UnityEngine;
 
-[CustomEditor(typeof(AbstractDungeonGenerator), true)]
-public class RandomDungeonGeneratorEditor : Editor
+namespace App.Scripts.DungeonScene.Editor
 {
-    private AbstractDungeonGenerator _generator;
-
-    private void Awake()
+    [CustomEditor(typeof(AbstractDungeonGenerator), true)]
+    public class RandomDungeonGeneratorEditor : UnityEditor.Editor
     {
-        _generator = (AbstractDungeonGenerator)target;
-    }
+        private AbstractDungeonGenerator _generator;
 
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-        if (GUILayout.Button("Создание подземелья"))
+        private void Awake()
         {
-            _generator.GenerateDungeon();
+            _generator = (AbstractDungeonGenerator)target;
+        }
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            if (GUILayout.Button("Создание подземелья"))
+            {
+                _generator.GenerateDungeon();
+            }
         }
     }
 }

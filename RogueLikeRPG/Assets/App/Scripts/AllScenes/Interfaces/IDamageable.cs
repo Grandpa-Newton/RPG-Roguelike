@@ -1,4 +1,4 @@
-namespace Interfaces
+namespace App.Scripts.AllScenes.Interfaces
 {
     public interface IDamageable 
     {

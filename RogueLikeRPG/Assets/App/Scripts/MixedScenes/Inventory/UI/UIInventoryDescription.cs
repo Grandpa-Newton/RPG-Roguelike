@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Inventory.UI
+namespace App.Scripts.MixedScenes.Inventory.UI
 {
     public class UIInventoryDescription : MonoBehaviour
     {

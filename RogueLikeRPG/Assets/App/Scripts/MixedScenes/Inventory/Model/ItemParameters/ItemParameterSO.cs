@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Inventory.Model
+namespace App.Scripts.MixedScenes.Inventory.UI.ItemParameters
 {
     [CreateAssetMenu]
     public class ItemParameterSO : ScriptableObject
