@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
-    private const string NEXT_SCENE_TO_LOAD = "FirstLevelMap_02";
+    private const string NEXT_SCENE_TO_LOAD = "MapScene_01";
 
     private void Update()
     {
