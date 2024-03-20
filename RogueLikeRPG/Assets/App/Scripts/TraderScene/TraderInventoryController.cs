@@ -6,6 +6,7 @@ using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.MixedScenes.Inventory.UI;
 using Inventory.Model;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 namespace App.Scripts.TraderScene
 {
@@ -70,10 +71,64 @@ namespace App.Scripts.TraderScene
                 return;
 
             IItemAction itemAction = inventoryItem.item as IItemAction;
-            if (itemAction != null)
+            /*if (itemAction != null)
+            {
+                inventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
+            }*/
+
+            IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
+            if (destroyableItem != null)
             {
                 inventoryUI.ShowItemAction(itemIndex);
-                inventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
+                inventoryUI.AddAction("Buy", () => SellItem(inventoryItem, itemIndex));
+            }
+
+            /**/
+        }
+
+        private void SellItem(InventoryItem inventoryItem, int itemIndex)
+        {
+            if (TrySellItem(inventoryItem))
+            {
+                IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
+                if (destroyableItem != null)
+                {
+                    inventoryData.RemoveItem(itemIndex, 1);
+                }
+                //audioSource.PlayOneShot(itemAction.itemActionSound);
+                audioSource.PlayOneShot(dropClip); // тут мб другой звук
+                if (inventoryData.GetItemAt(itemIndex).IsEmpty)
+                    inventoryUI.ResetSelection();
+            }
+        }
+
+        private bool TrySellItem(InventoryItem inventoryItem)
+        {
+            var itemSO = inventoryItem.item;
+
+            Debug.Log("Sell Cost = " + itemSO.ItemBuyCost);
+
+
+            var playerMoney = player.GetComponent<Money>();
+
+            if (playerMoney.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
+            {
+                Debug.Log("Player can afford it");
+                if (player.GetComponent<TestTradingPlayerController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
+                {
+                    playerMoney.TryReduceMoney(itemSO.ItemBuyCost);
+                    return true;
+                }
+                else
+                {
+                    Debug.Log("Player doesn't have enough space in inventory");
+                    return false;
+                }
+            }
+            else
+            {
+                Debug.Log("Player can't afford it.");
+                return false;
             }
         }
 

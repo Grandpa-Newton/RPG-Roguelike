@@ -91,6 +91,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             if (destroyableItem != null)
             {
                 inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
+                inventoryUI.AddAction("Sell", () => Debug.Log("Sell"));
             }
         }
 
@@ -191,5 +192,6 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                 }
             }
         }
+
     }
 }
