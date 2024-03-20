@@ -39,7 +39,8 @@ namespace App.Scripts.TreasureScene
 
         private IEnumerator SpawnCoinsOnChestOpen()
         {
-            for (int i = 0; i < chestContent.coinsToSpawn; i++)
+            int coinsToSpawn = Random.Range(chestContent.coinsToSpawn.x, chestContent.coinsToSpawn.y);
+            for (int i = 0; i < coinsToSpawn; i++)
             {
                 yield return StartCoroutine(WaitToSpawnNextCoin());
                 ItemPickable spawnedCoin = Instantiate(coin, transform.position, Quaternion.identity);
@@ -48,7 +49,8 @@ namespace App.Scripts.TreasureScene
                 float angle = Random.Range(0, 360);
                 Vector3 direction = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle), 0);
 
-                Vector3 targetPosition = transform.position + direction * chestContent.radiusToSpawn;
+                float radius = Random.Range(chestContent.radiusToSpawn.x, chestContent.radiusToSpawn.y);
+                Vector3 targetPosition = transform.position + direction * radius;
 
                 spawnedCoin.transform.DOMove(targetPosition, 0.5f);
             }
@@ -59,7 +61,7 @@ namespace App.Scripts.TreasureScene
             int randomIndex = Random.Range(0, chestContent.weapons.Count);
             WeaponItemSO weapon = chestContent.weapons[randomIndex];
 
-            ItemPickable spawnedItem = Instantiate(weapon.weaponPrefab, transform.position, Quaternion.identity);
+            ItemPickable spawnedItem = Instantiate(weapon.weaponPickablePrefab, transform.position, Quaternion.identity);
             spawnedItem.InitializeWeapon(weapon);
             spawnedItem.transform.DOMove(new Vector3(-0.5f, 2.5f, 0f), 0.5f);
         }

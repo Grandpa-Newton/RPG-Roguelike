@@ -11,7 +11,7 @@ namespace App.Scripts.MixedScenes.Inventory.Model.ItemParameters
     public class EdibleItemSO : ItemSO, IDestroyableItem, IItemAction
     {
         [SerializeField] private List<ModifierData> modifierData = new List<ModifierData>();
-        
+        [SerializeField] private ItemsTypesEnum itemType;
         public string ActionName => "Consume";
         [field: SerializeField] public AudioClip itemActionSound { get; private set; }
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
@@ -23,7 +23,12 @@ namespace App.Scripts.MixedScenes.Inventory.Model.ItemParameters
             return true;
         }
     }
-
+    enum ItemsTypesEnum
+    {
+        Food = 1,
+        Money,
+        Potion,
+    }
     public interface IDestroyableItem
     {
         

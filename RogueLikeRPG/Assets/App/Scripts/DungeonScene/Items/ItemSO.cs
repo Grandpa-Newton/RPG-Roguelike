@@ -11,53 +11,40 @@ namespace Inventory.Model
 {
     public abstract class ItemSO : ScriptableObject, ISalable
     {
-        [field: SerializeField] public bool IsStackable { get; set; }
-        public int ID => GetInstanceID();
+        [Title("Information")] 
+        [SerializeField] public string itemName;
+        [SerializeField] [TextArea] public string Description;
 
-        [field: SerializeField] public int MaxStackSize { get; set; } = 1;
-        [field: SerializeField] public string Name { get; set; }
-
-        [field: SerializeField]
-        [field: TextArea]
-        public string Description { get; set; }
-
-        public Light2D ItemLight;
-        [field: SerializeField] public Sprite ItemImage { get; set; }
-
-
-
-        [field: SerializeField]
-        public List<ItemParameter> DefaultParametersList { get; set; }
-
-
-        [field: SerializeField, HorizontalGroup("ayaya"), LabelText("Buy Cost")]
-        public int ItemBuyCost
+        [field: SerializeField, HorizontalGroup("Trading"), LabelText("Buy Cost")]
+        public int ItemBuyCost { get; set; }
+        public int ItemSellCost
         {
-            get; set;
+            get { return _itemSellCost; }
+            set { _itemSellCost = value; }
         }
-
-        [ReadOnly, SerializeField]
-        private int _itemSellCost;
+        [ReadOnly, SerializeField] private int _itemSellCost;
 
 
-        [Button, HorizontalGroup("ayaya", Width = 0.6f)]
+        [Button, HorizontalGroup("Trading", Width = 0.6f)]
         private void CalculateSellCost()
         {
             ItemSellCost = (int)(ItemBuyCost * 0.75);
         }
 
+        [field: SerializeField] public bool IsStackable { get; set; }
+        public int ID => GetInstanceID();
 
-        public int ItemSellCost
-        {
-            get
-            {
-                return _itemSellCost;
-            }
-            set
-            {
-                _itemSellCost = value;
-            }
-        }
+        [field: SerializeField] public int MaxStackSize { get; set; } = 1;
+
+        [Title("Item Components")]
+        public Light2D ItemLight;
+        [field: SerializeField] public Sprite ItemImage { get; set; }
+
+
+        [field: SerializeField] public List<ItemParameter> DefaultParametersList { get; set; }
+
+
+        
     }
 
 
@@ -72,5 +59,4 @@ namespace Inventory.Model
             return other.itemParameter == itemParameter;
         }
     }
-
 }

@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f793ced0431bd04d80752ccb82da305, type: 3}
   m_Name: EI_Coin
   m_EditorClassIdentifier: 
+  itemName: 
+  Description: 
+  <ItemBuyCost>k__BackingField: 0
+  _itemSellCost: 0
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 999
-  <Name>k__BackingField: Coin
-  <Description>k__BackingField: "\u041A\u0443\u043F\u0438 \u0437\u0430 \u044D\u0442\u0443
-    \u0448\u0442\u0443\u043A\u0443 \u0434\u0440\u0443\u0433\u0443\u044E \u0448\u0442\u0443\u043A\u0443"
   ItemLight: {fileID: 3398957582011760077, guid: 1aff1e53a02ac614bbccfac2c2122dc9, type: 3}
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 2ee45053ef8ff0542882191bdc4431e6, type: 3}
   <DefaultParametersList>k__BackingField: []
   modifierData: []
+  itemType: 2
   <itemActionSound>k__BackingField: {fileID: 8300000, guid: 1cee744070f0a204586584df7b8987b5, type: 3}

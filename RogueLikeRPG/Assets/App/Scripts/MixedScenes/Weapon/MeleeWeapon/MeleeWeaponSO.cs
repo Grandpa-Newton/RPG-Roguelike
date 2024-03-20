@@ -11,7 +11,7 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
         public override bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
             PlayerWeapon weaponSystem = character.GetComponent<PlayerWeapon>();
-            global::App.Scripts.MixedScenes.Weapon.Weapon weapon;
+            Weapon weapon = null;
         
             SwitchWeaponBetweenRangeAndMelee.Instance.SetActiveMeleeWeapon();
             weapon = GameObject.Find("MeleeWeapon").GetComponent<MeleeWeapon>();

@@ -12,18 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e45e062a3fe28b4d9515e98ae3f2b04, type: 3}
   m_Name: RangeWeapon_AWP
   m_EditorClassIdentifier: 
+  itemName: 
+  Description: 
+  <ItemBuyCost>k__BackingField: 0
+  _itemSellCost: 0
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <Name>k__BackingField: AWP
-  <Description>k__BackingField: OneShot - OneAshot
   ItemLight: {fileID: 3398957582011760077, guid: 1aff1e53a02ac614bbccfac2c2122dc9, type: 3}
   <ItemImage>k__BackingField: {fileID: -2011218429, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
   <DefaultParametersList>k__BackingField: []
   attackRate: 0.3
   damage: 8
+  weaponRarity: 0
   weaponAttackSound: {fileID: 0}
-  weaponPrefab: {fileID: 5010212156195702267, guid: e27714494baa16b4faa22e5b565d50c3, type: 3}
-  bulletSO: {fileID: 11400000, guid: 0311434ce9393b34fa3451687eec3ff5, type: 2}
-  bulletSpeed: 40
+  weaponPickablePrefab: {fileID: 5010212156195702267, guid: e27714494baa16b4faa22e5b565d50c3, type: 3}
   magSize: 10
   reloadTime: 2
+  bulletSO: {fileID: 11400000, guid: 0311434ce9393b34fa3451687eec3ff5, type: 2}
+  bulletSpeed: 40
