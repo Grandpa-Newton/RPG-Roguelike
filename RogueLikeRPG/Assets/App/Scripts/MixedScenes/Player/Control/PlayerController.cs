@@ -70,7 +70,7 @@ namespace App.Scripts.MixedScenes.Player.Control
             if (Input.GetKeyDown(KeyCode.LeftAlt))
             {
                 Vector2 dashDirection = _rigidbody2D.velocity.normalized; // Направление рывка - это нормализованный вектор скорости игрока
-                Vector2 dashTarget = (Vector2)transform.position + dashDirection * dashDistance * Time.deltaTime;
+                Vector2 dashTarget = (Vector2)transform.position + dashDirection * (dashDistance * Time.deltaTime);
                 transform.DOMove(dashTarget, dashDuration);
             }
             UpdateInputsInformationAndInvokeEvent();
@@ -144,20 +144,6 @@ namespace App.Scripts.MixedScenes.Player.Control
             // Rigid body
             _rigidbody2D = GetComponent<Rigidbody2D>();
             // Player Input Actions
-        }
-
-        public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
-        {
-            float timer = 0;
-            Vector2 direction = (obj.transform.position - this.transform.position).normalized;
-
-            while (knockbackDuration > timer)
-            {
-                timer += Time.deltaTime;
-                _rigidbody2D.AddForce(-direction * knockbackPower);
-            }
-
-            yield return null;
         }
     }
 }

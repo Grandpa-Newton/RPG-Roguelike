@@ -441,8 +441,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   _isMoving: 0
-  dashDistance: 50
-  dashDuration: 0.2
+  dashDistance: 100
+  dashDuration: 0.4
 --- !u!114 &2671509649919419075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1018,6 +1018,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1024461959818967223}
     m_Modifications:
+    - target: {fileID: 275423181774377299, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4095
+      objectReference: {fileID: 0}
     - target: {fileID: 1285531607160947909, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0

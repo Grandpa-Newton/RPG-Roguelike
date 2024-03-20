@@ -47,7 +47,6 @@ namespace App.Scripts.DungeonScene.Enemy
             {
                 if (other.gameObject.TryGetComponent(out Health healthComponent))
                 {
-                    StartCoroutine(_player.Knockback(knockbackDuration, knockbackPower, transform));
                     healthComponent.Reduce(enemySo.damage);
                 }
             }

@@ -90,7 +90,7 @@ public class RoomContentGenerator : MonoBehaviour
         );
 
         FocusCameraOnThePlayer(placedPrefabs[placedPrefabs.Count - 1].transform);
-
+        
         spawnedObjects.AddRange(placedPrefabs);
 
         dungeonData.roomsDictionary.Remove(playerSpawnPoint);

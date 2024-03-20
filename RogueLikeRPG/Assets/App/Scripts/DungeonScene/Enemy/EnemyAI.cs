@@ -28,7 +28,7 @@ namespace App.Scripts.DungeonScene.Enemy
 
             if (player != null && _agent.isOnNavMesh)
             {
-                _agent.SetDestination(player.transform.position);
+                //_agent.SetDestination(player.transform.position);
                 if (_agent.remainingDistance < distanceToPlayer)
                 {
                     Vector3 direction = _agent.velocity.normalized;
