@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Inventory.Model;
+using App.Scripts.DungeonScene.Items;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;

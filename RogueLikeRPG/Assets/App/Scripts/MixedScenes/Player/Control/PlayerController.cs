@@ -1,29 +1,27 @@
 using System;
-using System.Collections;
 using Cinemachine;
-using DG.Tweening;
 using UnityEngine;
+// ReSharper disable Unity.InefficientPropertyAccess
 
 namespace App.Scripts.MixedScenes.Player.Control
 {
     public class PlayerController : MonoBehaviour
     {
-        private CinemachineVirtualCamera _vcam;
+        private CinemachineVirtualCamera _virtualCamera;
         private Health _playerHealth;
         private Rigidbody2D _rigidbody2D;
         private PlayerInputActions _playerInputActions;
         private Camera _camera;
 
         [SerializeField] private float speed = 5;
-        //private float accelerationMaxTime = 1.25f;
-
-        //[SerializeField] private AnimationCurve accelerationCurve;
 
         private bool _isMoving;
         private bool _isRolling;
-        private float _timeButtonHeld;
+        private float _rollSpeed;
+        
         private const float ScreenCenterOffset = 0.5f;
-        private float minimalMagnitudeToMove = 0.01f;
+        private const float MinimalMagnitudeToMove = 0.01f;
+
         //Events
         public event Action<Vector2, Vector2> OnPlayerMovement;
         public event Action<Vector2, Vector2> OnPlayerMouseMovement;
@@ -33,9 +31,8 @@ namespace App.Scripts.MixedScenes.Player.Control
         private Vector2 _previousMousePos;
         private Vector2 _worldMousePos;
         private Vector2 _inputVector;
-
-        public float dashDistance = 2000; // Расстояние рывка
-        public float dashDuration = 0.2f; 
+        private Vector2 _rollDirection;
+        
     
         void Awake() {
             if (FindObjectsOfType(GetType()).Length > 1)
@@ -55,14 +52,13 @@ namespace App.Scripts.MixedScenes.Player.Control
         private void Start()
         {
             _playerInputActions = InputManager.Instance.PlayerInputActions;
-
-           
-            _vcam = FindObjectOfType<CinemachineVirtualCamera>();
+            
+            _virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
         
-            if (_vcam != null)
+            if (_virtualCamera != null)
             {
-                _vcam.Follow = transform;
-                _vcam.LookAt = transform;
+                _virtualCamera.Follow = transform;
+                _virtualCamera.LookAt = transform;
             }
             else
             {
@@ -72,12 +68,6 @@ namespace App.Scripts.MixedScenes.Player.Control
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.LeftAlt))
-            {
-                Vector2 dashDirection = _rigidbody2D.velocity.normalized; // Направление рывка - это нормализованный вектор скорости игрока
-                Vector2 dashTarget = (Vector2)transform.position + dashDirection * (dashDistance * Time.deltaTime);
-                transform.DOMove(dashTarget, dashDuration);
-            }
             UpdateInputsInformationAndInvokeEvent();
         }
 
@@ -91,7 +81,7 @@ namespace App.Scripts.MixedScenes.Player.Control
                 OnPlayerMouseMovement?.Invoke(_inputVector, _worldMousePos);
                 _previousMousePos = _worldMousePos;
             }
-            if (_inputVector.magnitude < minimalMagnitudeToMove || _inputVector != Vector2.zero)
+            if (_inputVector.magnitude < MinimalMagnitudeToMove || _inputVector != Vector2.zero)
             {
                 OnPlayerMovement?.Invoke(_inputVector, _worldMousePos);
             }
@@ -116,13 +106,6 @@ namespace App.Scripts.MixedScenes.Player.Control
         {
             Vector2 input = _playerInputActions.Player.Movement.ReadValue<Vector2>();
             _isMoving = input.magnitude > 0;
-
-            if (_isMoving)
-                _timeButtonHeld += Time.deltaTime;
-            else
-                _timeButtonHeld = 0;
-
-
             return input;
         }
 
@@ -136,17 +119,14 @@ namespace App.Scripts.MixedScenes.Player.Control
             return 0;
         }
 
-        private Vector2 _rollDirection;
-        private float _rollSpeed;
-
         private void SetRollingState(bool isRolling)
         {
             _isRolling = isRolling;
             if (_isRolling)
             {
-                // Сохраняем текущую скорость и направление перед началом переката
-                _rollDirection = _rigidbody2D.velocity.normalized;
-                _rollSpeed = _rigidbody2D.velocity.magnitude;
+                Vector2 velocity = _rigidbody2D.velocity;
+                _rollDirection = velocity.normalized;
+                _rollSpeed = velocity.magnitude;
             }
         }
 
@@ -158,26 +138,19 @@ namespace App.Scripts.MixedScenes.Player.Control
             }
             else
             {
-                // Применяем сохраненную скорость и направление во время переката
                 _rigidbody2D.velocity = _rollDirection * _rollSpeed;
             }
         }
 
         private void EnablePlayerComponents()
         {
-            //Camera
             _camera = Camera.main;
-            // Rigid body
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            // Player Input Actions
-           
         }
 
         private void OnPlayerHealthReduce()
         {
-            Debug.Log("Shaked!");
-            //Debug.Log("vcam: " + _vcam);
-            //_vcam.transform.DOShakePosition(0.5f);
+            Debug.Log("Shook!");
         }
 
         private void OnDestroy()

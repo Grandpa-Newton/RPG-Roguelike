@@ -1,5 +1,5 @@
 using System;
-using Inventory.Model;
+using App.Scripts.DungeonScene.Items;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Weapon.RangeWeapon

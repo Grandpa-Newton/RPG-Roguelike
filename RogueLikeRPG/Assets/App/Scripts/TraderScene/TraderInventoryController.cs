@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Text;
 using App.Scripts.AllScenes.Interfaces;
+using App.Scripts.DungeonScene.Items;
 using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.MixedScenes.Inventory.UI;
-using Inventory.Model;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 

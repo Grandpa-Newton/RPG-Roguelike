@@ -13,8 +13,8 @@ namespace App.Scripts.MixedScenes.Player
 
         private Animator _playerAnimator;
 
-        private bool _isWalking = false;
-        private bool _isRolling = false;
+        private bool _isWalking;
+        private bool _isRolling;
         private static readonly int Horizontal = Animator.StringToHash("Horizontal");
         private static readonly int Vertical = Animator.StringToHash("Vertical");
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");

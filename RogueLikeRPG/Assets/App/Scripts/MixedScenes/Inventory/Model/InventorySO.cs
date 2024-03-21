@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Inventory.Model;
+using App.Scripts.DungeonScene.Items;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Inventory.Model
@@ -56,15 +56,13 @@ namespace App.Scripts.MixedScenes.Inventory.Model
         {
             if (item.IsStackable == false)
             {
-                for (int i = 0; i < inventoryItems.Count; i++)
-                {
                     while (quantity > 0 && !IsInventoryFull())
                     {
                        quantity -= AddItemToFirstFreeSlot(item, 1, itemState);
                     }
                     InformAboutChanges();
                     return quantity;
-                }
+                
             }
 
             quantity = AddStackableItem(item, quantity);

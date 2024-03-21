@@ -1,14 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.MixedScenes.Inventory.UI;
 using UnityEngine;
-using Inventory.Model;
-using UnityEngine.Serialization;
-using App.Scripts.AllScenes.Interfaces;
+using App.Scripts.DungeonScene.Items;
 using App.Scripts.TraderScene;
 
 namespace App.Scripts.MixedScenes.Inventory.Controller
@@ -24,9 +20,9 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         [SerializeField] private AudioClip dropClip;
         [SerializeField] private AudioSource audioSource;
 
-        [SerializeField] private GameObject _trader;
+        [SerializeField] private GameObject trader;
 
-        [SerializeField] private Money _money;
+        [SerializeField] private Money money;
 
         private void Start()
         {
@@ -56,12 +52,6 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
 
         private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
         {
-            /*if (inventoryUI == null)
-            {
-                gameObject.SetActive(true);
-                inventoryUI = GameObject.FindObjectOfType<UIInventoryPage>();
-                gameObject.SetActive(false);
-            }*/
             inventoryUI.ResetAllItems();
             foreach (var item in inventoryState)
             {
@@ -99,7 +89,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                 inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
             }
 
-            if(_trader != null)
+            if(trader != null)
             {
                 inventoryUI.AddAction("Sell", () => SellItem(inventoryItem, itemIndex));
             }
@@ -127,15 +117,15 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             Debug.Log("Sell Cost = " + itemSO.ItemBuyCost);
 
 
-            var traderMoney = _trader.GetComponent<Money>();
+            var traderMoney = trader.GetComponent<Money>();
 
             if (traderMoney.CanAffordReduceMoney(itemSO.ItemSellCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Trader can afford it");
-                if (_trader.GetComponent<TraderInventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
+                if (trader.GetComponent<TraderInventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
                     traderMoney.TryReduceMoney(itemSO.ItemSellCost);
-                    _money.AddMoney(itemSO.ItemSellCost);
+                    money.AddMoney(itemSO.ItemSellCost);
                     return true;
                 }
                 else
@@ -229,7 +219,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
 
         public void SetTraderObject(GameObject trader)
         {
-            _trader = trader;
+            this.trader = trader;
         }
 
         public void Update()

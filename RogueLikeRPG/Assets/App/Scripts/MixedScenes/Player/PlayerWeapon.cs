@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using App.Scripts.DungeonScene.Items;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Weapon;
-using Inventory.Model;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Player

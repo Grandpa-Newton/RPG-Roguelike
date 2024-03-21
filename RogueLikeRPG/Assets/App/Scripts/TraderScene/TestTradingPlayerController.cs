@@ -1,5 +1,4 @@
 using App.Scripts.MixedScenes.Inventory.Model;
-using Inventory.Model;
 using UnityEngine;
 
 namespace App.Scripts.TraderScene

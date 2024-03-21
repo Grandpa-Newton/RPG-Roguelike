@@ -1,7 +1,6 @@
-using Inventory;
-using Inventory.Model;
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.DungeonScene.Items;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.TraderScene;
 using Unity.VisualScripting;

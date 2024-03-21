@@ -1,6 +1,6 @@
 using System.Collections;
+using App.Scripts.DungeonScene.Items;
 using App.Scripts.MixedScenes.Weapon;
-using Inventory.Model;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -11,12 +11,12 @@ namespace App.Scripts.MixedScenes.PickUpSystem
       [field: SerializeField] public ItemSO InventoryItem { get; private set; }
       [field: SerializeField] public int Quantity { get; set; } = 1;
       [SerializeField] private AudioClip audioSourceOnPick; 
-      private AudioSource audioSource;
+      private AudioSource _audioSource;
       [SerializeField] private float duration = 0.3f;
 
       private void Awake()
       {
-         audioSource = GetComponent<AudioSource>();
+         _audioSource = GetComponent<AudioSource>();
       
       }
 
@@ -53,8 +53,8 @@ namespace App.Scripts.MixedScenes.PickUpSystem
       }
       private IEnumerator AnimateItemPickup()
       {
-         audioSource.clip = audioSourceOnPick;
-         audioSource.Play();
+         _audioSource.clip = audioSourceOnPick;
+         _audioSource.Play();
          Vector3 startScale = transform.localScale;
          Vector3 endScale = Vector3.zero;
          float currentTime = 0;

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using App.Scripts.DungeonScene.Items;
 using App.Scripts.MixedScenes.Player;
-using Inventory.Model;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: RangeWeapon_AWP
   m_EditorClassIdentifier: 
   itemName: AWP
-  description: 
+  description: AWPAWPAWP
   weaponRarityParameters: {fileID: 11400000, guid: 459e712b7aaec2f418b2f6179911d9b9, type: 2}
   itemRarity: 3
   <ItemBuyCost>k__BackingField: 100
-  _itemSellCost: 60
+  itemSellCost: 0
   itemLight: {fileID: 3398957582011760077, guid: ac54fdd9cab0a7549aaf5dd1f5c7f20c, type: 3}
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1

@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.DungeonScene.Items;
 using App.Scripts.MixedScenes.Inventory.Model.StatsModifiers;
-using Inventory.Model;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Inventory.Model.ItemParameters
