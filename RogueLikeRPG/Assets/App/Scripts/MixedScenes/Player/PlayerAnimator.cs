@@ -7,12 +7,17 @@ namespace App.Scripts.MixedScenes.Player
     {
         private PlayerController _playerController;
     
+        public delegate void RollingAction(bool isRolling);
+        public static event RollingAction OnPlayerRolling;
+        
         private Animator _playerAnimator;
 
         private bool _isWalking = false;
+        private bool _isRolling = false;
         private static readonly int Horizontal = Animator.StringToHash("Horizontal");
         private static readonly int Vertical = Animator.StringToHash("Vertical");
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+        private static readonly int IsRolling = Animator.StringToHash("IsRolling");
 
         private void Awake()
         {
@@ -32,24 +37,44 @@ namespace App.Scripts.MixedScenes.Player
 
         private void Player_OnPlayerMovement(Vector2 movementInputVector, Vector2 worldMouseVectorPosition)
         {
-            if (movementInputVector.x != 0 || movementInputVector.y != 0)
+            if (Input.GetKeyDown(KeyCode.Z) && _isWalking)
             {
-                if (!_isWalking)
-                {
-                    _isWalking = true;
-                    _playerAnimator.SetBool(IsMoving, _isWalking);
-                }
+                Debug.Log("z is Pressed");
+                _playerAnimator.SetBool(IsRolling,true);
+                _isRolling = true;
+                OnPlayerRolling?.Invoke(_isRolling);
             }
-            else
+
+            if (!_isRolling)
             {
-                if (_isWalking)
+                if (movementInputVector.x != 0 || movementInputVector.y != 0)
                 {
-                    _isWalking = false;
-                    _playerAnimator.SetBool(IsMoving, _isWalking);
+                    if (!_isWalking)
+                    {
+                        _isWalking = true;
+                        _playerAnimator.SetBool(IsMoving, _isWalking);
+                        Debug.Log("Is Walking!");
+                    }
+                }
+                else
+                {
+                    if (_isWalking)
+                    {
+                        _isWalking = false;
+                        _playerAnimator.SetBool(IsMoving, _isWalking);
+                    }
                 }
             }
         }
-
+        private void Update()
+        {
+            if (_playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Roll") && _playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0)
+            {
+                _playerAnimator.SetBool(IsRolling,false);
+                _isRolling = false;
+                OnPlayerRolling?.Invoke(_isRolling);
+            }
+        }
         private void OnDestroy()
         {
             _playerController.OnPlayerMovement -= Player_OnPlayerMovement;

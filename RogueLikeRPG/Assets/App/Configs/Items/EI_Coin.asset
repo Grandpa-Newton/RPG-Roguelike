@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f793ced0431bd04d80752ccb82da305, type: 3}
   m_Name: EI_Coin
   m_EditorClassIdentifier: 
-  itemName: 
-  Description: 
-  <ItemBuyCost>k__BackingField: 0
+  itemName: Coin
+  description: 
+  weaponRarityParameters: {fileID: 11400000, guid: 459e712b7aaec2f418b2f6179911d9b9, type: 2}
+  itemRarity: 5
+  <ItemBuyCost>k__BackingField: 1
   _itemSellCost: 0
+  itemLight: {fileID: 3398957582011760077, guid: 58cc68511c3644f43bce7408540f3d80, type: 3}
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 999
-  ItemLight: {fileID: 3398957582011760077, guid: 1aff1e53a02ac614bbccfac2c2122dc9, type: 3}
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 2ee45053ef8ff0542882191bdc4431e6, type: 3}
   <DefaultParametersList>k__BackingField: []
   modifierData: []

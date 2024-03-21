@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916e0315717f16641a552a7b92651338, type: 3}
   m_Name: MeleeWeapon_Bulava
   m_EditorClassIdentifier: 
+  itemName: Bulava
+  description: Bonk!
+  weaponRarityParameters: {fileID: 11400000, guid: 459e712b7aaec2f418b2f6179911d9b9, type: 2}
+  itemRarity: 1
+  <ItemBuyCost>k__BackingField: 5
+  _itemSellCost: 4
+  itemLight: {fileID: 3398957582011760077, guid: 8ed02da84a5ff5143bc46479092a93e9, type: 3}
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <ItemImage>k__BackingField: {fileID: 333713823, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
+  <DefaultParametersList>k__BackingField: []
+  weaponPickablePrefab: {fileID: 5010212156195702267, guid: e27714494baa16b4faa22e5b565d50c3, type: 3}
   attackRate: 0.8
   damage: 2
-  weaponSprite: {fileID: 333713823, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
   weaponAttackSound: {fileID: 0}
-  weaponName: Kukri
-  weaponDescription: Rezat`
+  weaponEquipSound: {fileID: 0}

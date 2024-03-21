@@ -19,8 +19,6 @@ namespace App.Scripts.MixedScenes.Weapon
         [Range(0.01f, 10)] public float attackRate;
         [Range(0, 100)] public float damage;
         
-        [LabelText("Rarity")]public WeaponRarityEnum weaponRarity;
-        
         [Title("Audio")]
         [LabelText("Shoot Sound")]public AudioClip weaponAttackSound;
         [LabelText("Equip Sound")]public AudioClip weaponEquipSound;

@@ -19,6 +19,9 @@ namespace Inventory.Model
         [SerializeField] public string itemName;
         [SerializeField] [TextArea] public string description;
 
+        [LabelText("RarityParameters SO")][Title("Weapon Rarity Parameters")] 
+        public WeaponRarityParametersSO weaponRarityParameters;
+        
         [Title("Item Rarity"), LabelText("Item Rarity"), VerticalGroup("SetParameters")]
         public RarityEnum itemRarity;
         [field: SerializeField, VerticalGroup("SetParameters"), LabelText("Buy Cost")]
@@ -37,24 +40,24 @@ namespace Inventory.Model
             switch (itemRarity)
             {
                 case(RarityEnum.Common):
-                    ItemSellCost = (int)(ItemBuyCost * weaponLights.costPercentagesOfFullPrice[RarityEnum.Common]);
-                    itemLight = weaponLights.avaibleLights[RarityEnum.Common];
+                    ItemSellCost = (int)(ItemBuyCost * weaponRarityParameters.costPercentagesOfFullPrice[RarityEnum.Common]);
+                    itemLight = weaponRarityParameters.avaibleLights[RarityEnum.Common];
                     break;
                 case(RarityEnum.Uncommon):
-                    ItemSellCost = (int)(ItemBuyCost * weaponLights.costPercentagesOfFullPrice[RarityEnum.Uncommon]);
-                    itemLight = weaponLights.avaibleLights[RarityEnum.Uncommon];
+                    ItemSellCost = (int)(ItemBuyCost * weaponRarityParameters.costPercentagesOfFullPrice[RarityEnum.Uncommon]);
+                    itemLight = weaponRarityParameters.avaibleLights[RarityEnum.Uncommon];
                     break;
                 case(RarityEnum.Rare):
-                    ItemSellCost = (int)(ItemBuyCost * weaponLights.costPercentagesOfFullPrice[RarityEnum.Rare]);
-                    itemLight = weaponLights.avaibleLights[RarityEnum.Rare];
+                    ItemSellCost = (int)(ItemBuyCost * weaponRarityParameters.costPercentagesOfFullPrice[RarityEnum.Rare]);
+                    itemLight = weaponRarityParameters.avaibleLights[RarityEnum.Rare];
                     break;
                 case(RarityEnum.Epic):
-                    ItemSellCost = (int)(ItemBuyCost * weaponLights.costPercentagesOfFullPrice[RarityEnum.Epic]);
-                    itemLight = weaponLights.avaibleLights[RarityEnum.Epic];
+                    ItemSellCost = (int)(ItemBuyCost * weaponRarityParameters.costPercentagesOfFullPrice[RarityEnum.Epic]);
+                    itemLight = weaponRarityParameters.avaibleLights[RarityEnum.Epic];
                     break;
                 case(RarityEnum.Legendary):
-                    ItemSellCost = (int)(ItemBuyCost * weaponLights.costPercentagesOfFullPrice[RarityEnum.Legendary]);
-                    itemLight = weaponLights.avaibleLights[RarityEnum.Legendary];
+                    ItemSellCost = (int)(ItemBuyCost * weaponRarityParameters.costPercentagesOfFullPrice[RarityEnum.Legendary]);
+                    itemLight = weaponRarityParameters.avaibleLights[RarityEnum.Legendary];
                     break;
                 default:
                     ItemSellCost = (int)(ItemBuyCost * 0.1);
@@ -62,8 +65,7 @@ namespace Inventory.Model
             }  
            
         }
-
-        [Title("Weapon Lights")] public WeaponRarityParametersSO weaponLights;
+        
         [Title("Item Components")][ReadOnly]
         public Light2D itemLight;
         

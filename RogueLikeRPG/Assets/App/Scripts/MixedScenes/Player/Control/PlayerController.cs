@@ -20,6 +20,7 @@ namespace App.Scripts.MixedScenes.Player.Control
         //[SerializeField] private AnimationCurve accelerationCurve;
 
         private bool _isMoving;
+        private bool _isRolling;
         private float _timeButtonHeld;
         private const float ScreenCenterOffset = 0.5f;
         private float minimalMagnitudeToMove = 0.01f;
@@ -47,6 +48,7 @@ namespace App.Scripts.MixedScenes.Player.Control
                 EnablePlayerComponents();
             }
             _playerHealth = GetComponent<Health>();
+            PlayerAnimator.OnPlayerRolling += SetRollingState;
             _playerHealth.OnHealthReduce += OnPlayerHealthReduce;
         }
 
@@ -134,10 +136,31 @@ namespace App.Scripts.MixedScenes.Player.Control
             return 0;
         }
 
+        private Vector2 _rollDirection;
+        private float _rollSpeed;
+
+        private void SetRollingState(bool isRolling)
+        {
+            _isRolling = isRolling;
+            if (_isRolling)
+            {
+                // Сохраняем текущую скорость и направление перед началом переката
+                _rollDirection = _rigidbody2D.velocity.normalized;
+                _rollSpeed = _rigidbody2D.velocity.magnitude;
+            }
+        }
 
         private void SetVelocity()
         {
-            _rigidbody2D.velocity = _inputVector.normalized * CalculateSpeed();
+            if (!_isRolling)
+            {
+                _rigidbody2D.velocity = _inputVector.normalized * CalculateSpeed();
+            }
+            else
+            {
+                // Применяем сохраненную скорость и направление во время переката
+                _rigidbody2D.velocity = _rollDirection * _rollSpeed;
+            }
         }
 
         private void EnablePlayerComponents()
@@ -160,6 +183,7 @@ namespace App.Scripts.MixedScenes.Player.Control
         private void OnDestroy()
         {
             _playerHealth.OnHealthReduce -= OnPlayerHealthReduce;
+            PlayerAnimator.OnPlayerRolling -= SetRollingState;
         }
     }
 }

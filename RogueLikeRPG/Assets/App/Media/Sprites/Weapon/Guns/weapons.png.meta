@@ -585,7 +585,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapons_22
+      name: meleeWeapon_Knife
       rect:
         serializedVersion: 2
         x: 0
@@ -627,7 +627,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapons_24
+      name: meleeWeapon_Kerambit
       rect:
         serializedVersion: 2
         x: 18
@@ -669,7 +669,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapons_26
+      name: meleeWeapon_Kukri
       rect:
         serializedVersion: 2
         x: 32
@@ -711,7 +711,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_Sword
+      name: meleeWeapon_Sword
       rect:
         serializedVersion: 2
         x: 64
@@ -732,7 +732,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_Katana
+      name: meleeWeapon_Katana
       rect:
         serializedVersion: 2
         x: 96
@@ -753,7 +753,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapons_30
+      name: meleeWeapon_Bulava
       rect:
         serializedVersion: 2
         x: 96
@@ -2024,13 +2024,18 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       RPG_bullet: -1497601042
+      meleeWeapon_Bulava: 333713823
+      meleeWeapon_Katana: 2060459130
+      meleeWeapon_Kerambit: -195719570
+      meleeWeapon_Knife: 560849617
+      meleeWeapon_Kukri: -2093115594
+      meleeWeapon_Sword: 2089216685
       weapon_AK_47: -1369458870
       weapon_AWP: -2011218429
       weapon_DefaultShotGun: 190190002
       weapon_Dragunov: -587630862
       weapon_Glock: -1631740447
       weapon_GrenadeLauncher: -277999707
-      weapon_Katana: 2060459130
       weapon_M4A4: 1948861845
       weapon_MP5: 777293721
       weapon_MP7: -1031692466
@@ -2038,7 +2043,6 @@ TextureImporter:
       weapon_RPG: -406886898
       weapon_Revolver: 770867301
       weapon_SCAR: -214990654
-      weapon_Sword: 2089216685
       weapon_USP: 1842350919
       weapon_UpperShotGun: -1379677113
       weapon_Uzi: 535003058
@@ -2058,16 +2062,12 @@ TextureImporter:
       weapons_2: 1910472637
       weapons_20: -21586734
       weapons_21: 291082008
-      weapons_22: 560849617
       weapons_23: 1036959763
-      weapons_24: -195719570
       weapons_25: -1863062381
-      weapons_26: -2093115594
       weapons_27: 960781370
       weapons_28: 956609250
       weapons_29: -307643315
       weapons_3: -2047574415
-      weapons_30: 333713823
       weapons_31: 367095293
       weapons_32: -22960469
       weapons_33: -1221028909

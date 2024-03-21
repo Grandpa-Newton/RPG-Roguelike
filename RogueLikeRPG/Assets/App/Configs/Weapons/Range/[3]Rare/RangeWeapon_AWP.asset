@@ -13,20 +13,21 @@ MonoBehaviour:
   m_Name: RangeWeapon_AWP
   m_EditorClassIdentifier: 
   itemName: AWP
-  Description: "\u0421\u0442\u0440\u0435\u043B\u044F\u0439 \u043F\u0440\u0440\u044F\u043C
-    \u0432 \u0436\u0431\u0430\u043D!"
-  <ItemBuyCost>k__BackingField: 0
-  _itemSellCost: 0
+  description: 
+  weaponRarityParameters: {fileID: 11400000, guid: 459e712b7aaec2f418b2f6179911d9b9, type: 2}
+  itemRarity: 3
+  <ItemBuyCost>k__BackingField: 100
+  _itemSellCost: 60
+  itemLight: {fileID: 3398957582011760077, guid: ac54fdd9cab0a7549aaf5dd1f5c7f20c, type: 3}
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  ItemLight: {fileID: 3398957582011760077, guid: 1aff1e53a02ac614bbccfac2c2122dc9, type: 3}
   <ItemImage>k__BackingField: {fileID: -2011218429, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
   <DefaultParametersList>k__BackingField: []
   weaponPickablePrefab: {fileID: 5010212156195702267, guid: e27714494baa16b4faa22e5b565d50c3, type: 3}
   attackRate: 0.8
   damage: 8
-  weaponRarity: 0
   weaponAttackSound: {fileID: 8300000, guid: 6a42a5b564cbc224287c764a272a8ce3, type: 3}
+  weaponEquipSound: {fileID: 0}
   magSize: 10
   reloadTime: 2
   bulletSO: {fileID: 11400000, guid: 0311434ce9393b34fa3451687eec3ff5, type: 2}
