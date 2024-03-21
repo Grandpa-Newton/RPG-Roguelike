@@ -13,8 +13,6 @@ namespace App.Scripts.MixedScenes.Player.Control
         private Camera _camera;
 
         [SerializeField] private float speed = 5;
-
-        [Header("Player Acceleration Components")] [SerializeField]
         //private float accelerationMaxTime = 1.25f;
 
         //[SerializeField] private AnimationCurve accelerationCurve;

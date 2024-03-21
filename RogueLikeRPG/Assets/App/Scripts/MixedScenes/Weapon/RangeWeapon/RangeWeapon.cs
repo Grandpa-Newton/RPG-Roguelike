@@ -9,8 +9,7 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
         [SerializeField] private RangeWeaponSO _rangeWeaponData;
 
         [SerializeField] private SwitchWeaponBetweenRangeAndMelee _switchWeaponBetweenRangeAndMelee;
-    
-    
+
         private float _timeToNextShot = 0;
         private PlayerInputActions _playerInputActions;
         [SerializeField] private Transform shootPoint;
@@ -18,6 +17,7 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
         [SerializeField] private Bullet bulletPrefab;
         private Transform _aimTransform;
 
+        [SerializeField] private AudioSource audioSource;
         public event Action OnProportiesSet;
 
         private void Awake()
@@ -48,7 +48,6 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
             }
             else
             {
-            
             }
         }
 
@@ -59,15 +58,16 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
                 _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(false);
                 return;
             }
-        
+
             _timeToNextShot += Time.deltaTime;
             if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextShot > _rangeWeaponData.attackRate)
             {
                 Bullet bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
                 if (bullet)
                 {
+                    audioSource.PlayOneShot(_rangeWeaponData.weaponAttackSound);
                     SetBulletParameters(bullet);
-                
+
                     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                     rb.AddForce(_aimTransform.right * _rangeWeaponData.bulletSpeed, ForceMode2D.Impulse);
                 }
@@ -83,19 +83,20 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
                 Debug.LogError("RangeWeaponSO IS NULL");
                 return;
             }
+
             _rangeWeaponData = (RangeWeaponSO)rangeWeaponSo;
             _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
             GetComponent<SpriteRenderer>().sprite = _rangeWeaponData.ItemImage;
         }
+
         private void SetBulletParameters(Bullet bullet)
         {
             bullet.SetRangeWeaponSO(_rangeWeaponData);
             bullet.SetBulletSO(_rangeWeaponData.bulletSO);
             bullet.SetRangeWeapon(this);
             bullet.transform.SetParent(bulletsContainer, true);
-        
+
             OnProportiesSet?.Invoke();
-        
         }
     }
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916e0315717f16641a552a7b92651338, type: 3}
   m_Name: MeleeWeapon_BigSword
   m_EditorClassIdentifier: 
-  itemName: 
-  Description: 
+  itemName: 1
+  Description: 1
   <ItemBuyCost>k__BackingField: 0
   _itemSellCost: 0
   <IsStackable>k__BackingField: 0
@@ -21,8 +21,8 @@ MonoBehaviour:
   ItemLight: {fileID: 3398957582011760077, guid: 1aff1e53a02ac614bbccfac2c2122dc9, type: 3}
   <ItemImage>k__BackingField: {fileID: 2089216685, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
   <DefaultParametersList>k__BackingField: []
+  weaponPickablePrefab: {fileID: 5010212156195702267, guid: e27714494baa16b4faa22e5b565d50c3, type: 3}
   attackRate: 0.15
   damage: 3
-  weaponRarity: 0
-  weaponAttackSound: {fileID: 0}
-  weaponPickablePrefab: {fileID: 0}
+  weaponRarity: 3
+  weaponAttackSound: {fileID: 8300000, guid: abe30efec9a7e2f4a96c797b6b9eb5b2, type: 3}
