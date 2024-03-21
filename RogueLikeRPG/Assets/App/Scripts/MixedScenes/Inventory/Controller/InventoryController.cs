@@ -211,7 +211,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         private string PrepareDescription(InventoryItem inventoryItem)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(inventoryItem.item.Description);
+            sb.Append(inventoryItem.item.description);
             sb.AppendLine();
             for (int i = 0; i < inventoryItem.itemState.Count; i++)
             {

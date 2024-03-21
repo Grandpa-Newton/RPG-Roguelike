@@ -83,10 +83,11 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
                 Debug.LogError("RangeWeaponSO IS NULL");
                 return;
             }
-
+            
             _rangeWeaponData = (RangeWeaponSO)rangeWeaponSo;
             _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
             GetComponent<SpriteRenderer>().sprite = _rangeWeaponData.ItemImage;
+            GetComponent<AudioSource>().PlayOneShot(_rangeWeaponData.weaponEquipSound);
         }
 
         private void SetBulletParameters(Bullet bullet)

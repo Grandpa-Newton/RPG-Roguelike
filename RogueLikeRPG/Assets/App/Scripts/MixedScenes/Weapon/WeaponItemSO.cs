@@ -23,6 +23,7 @@ namespace App.Scripts.MixedScenes.Weapon
         
         [Title("Audio")]
         [LabelText("Shoot Sound")]public AudioClip weaponAttackSound;
+        [LabelText("Equip Sound")]public AudioClip weaponEquipSound;
         public AudioClip itemActionSound { get; }
         
 

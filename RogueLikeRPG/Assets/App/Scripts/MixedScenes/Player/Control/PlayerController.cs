@@ -7,7 +7,9 @@ using UnityEngine;
 namespace App.Scripts.MixedScenes.Player.Control
 {
     public class PlayerController : MonoBehaviour
-    { 
+    {
+        private CinemachineVirtualCamera _vcam;
+        private Health _playerHealth;
         private Rigidbody2D _rigidbody2D;
         private PlayerInputActions _playerInputActions;
         private Camera _camera;
@@ -20,7 +22,7 @@ namespace App.Scripts.MixedScenes.Player.Control
         private bool _isMoving;
         private float _timeButtonHeld;
         private const float ScreenCenterOffset = 0.5f;
-
+        private float minimalMagnitudeToMove = 0.01f;
         //Events
         public event Action<Vector2, Vector2> OnPlayerMovement;
         public event Action<Vector2, Vector2> OnPlayerMouseMovement;
@@ -44,18 +46,21 @@ namespace App.Scripts.MixedScenes.Player.Control
             {
                 EnablePlayerComponents();
             }
+            _playerHealth = GetComponent<Health>();
+            _playerHealth.OnHealthReduce += OnPlayerHealthReduce;
         }
 
         private void Start()
         {
             _playerInputActions = InputManager.Instance.PlayerInputActions;
 
-            CinemachineVirtualCamera vcam = FindObjectOfType<CinemachineVirtualCamera>();
+           
+            _vcam = FindObjectOfType<CinemachineVirtualCamera>();
         
-            if (vcam != null)
+            if (_vcam != null)
             {
-                vcam.Follow = transform;
-                vcam.LookAt = transform;
+                _vcam.Follow = transform;
+                _vcam.LookAt = transform;
             }
             else
             {
@@ -84,7 +89,7 @@ namespace App.Scripts.MixedScenes.Player.Control
                 OnPlayerMouseMovement?.Invoke(_inputVector, _worldMousePos);
                 _previousMousePos = _worldMousePos;
             }
-            if (_inputVector.magnitude < 0.01f || _inputVector != Vector2.zero)
+            if (_inputVector.magnitude < minimalMagnitudeToMove || _inputVector != Vector2.zero)
             {
                 OnPlayerMovement?.Invoke(_inputVector, _worldMousePos);
             }
@@ -142,6 +147,19 @@ namespace App.Scripts.MixedScenes.Player.Control
             // Rigid body
             _rigidbody2D = GetComponent<Rigidbody2D>();
             // Player Input Actions
+           
+        }
+
+        private void OnPlayerHealthReduce()
+        {
+            Debug.Log("Shaked!");
+            //Debug.Log("vcam: " + _vcam);
+            //_vcam.transform.DOShakePosition(0.5f);
+        }
+
+        private void OnDestroy()
+        {
+            _playerHealth.OnHealthReduce -= OnPlayerHealthReduce;
         }
     }
 }

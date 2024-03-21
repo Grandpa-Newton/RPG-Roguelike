@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using DG.Tweening;
 
 namespace App.Scripts.MixedScenes.Player
 {
@@ -7,6 +9,8 @@ namespace App.Scripts.MixedScenes.Player
         [SerializeField] private float maxHealth = 100f;
         [SerializeField] private FloatValueSO currentHealth;
 
+        public event Action OnHealthReduce;
+        
         private void Start()
         {
             if (!currentHealth.IsInitialized)
@@ -24,6 +28,7 @@ namespace App.Scripts.MixedScenes.Player
 
         public void Reduce(int damage)
         {
+            OnHealthReduce?.Invoke();
             currentHealth.CurrentValue -= damage / maxHealth;
             if (currentHealth.CurrentValue <= 0)
             {
