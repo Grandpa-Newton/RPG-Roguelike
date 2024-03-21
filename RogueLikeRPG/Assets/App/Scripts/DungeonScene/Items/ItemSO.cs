@@ -17,8 +17,8 @@ namespace App.Scripts.DungeonScene.Items
 
         [SerializeField] [TextArea] public string description;
 
-        [LabelText("RarityParameters SO")] [Title("Weapon Rarity Parameters")]
-        public WeaponRarityParametersSO weaponRarityParameters;
+        [LabelText("RarityParameters SO")] [Title("Item Rarity Parameters")]
+        public ItemRarityParametersSO weaponRarityParameters;
 
         [Title("Item Rarity"), LabelText("Item Rarity"), VerticalGroup("SetParameters")]
         public RarityEnum itemRarity;
@@ -43,27 +43,27 @@ namespace App.Scripts.DungeonScene.Items
                 case (RarityEnum.Common):
                     ItemSellCost =
                         (int)(ItemBuyCost * weaponRarityParameters.costPercentagesOfFullPrice[RarityEnum.Common]);
-                    itemLight = weaponRarityParameters.avaibleLights[RarityEnum.Common];
+                    itemLight = weaponRarityParameters.availableLights[RarityEnum.Common];
                     break;
                 case (RarityEnum.Uncommon):
                     ItemSellCost = (int)(ItemBuyCost *
                                          weaponRarityParameters.costPercentagesOfFullPrice[RarityEnum.Uncommon]);
-                    itemLight = weaponRarityParameters.avaibleLights[RarityEnum.Uncommon];
+                    itemLight = weaponRarityParameters.availableLights[RarityEnum.Uncommon];
                     break;
                 case (RarityEnum.Rare):
                     ItemSellCost =
                         (int)(ItemBuyCost * weaponRarityParameters.costPercentagesOfFullPrice[RarityEnum.Rare]);
-                    itemLight = weaponRarityParameters.avaibleLights[RarityEnum.Rare];
+                    itemLight = weaponRarityParameters.availableLights[RarityEnum.Rare];
                     break;
                 case (RarityEnum.Epic):
                     ItemSellCost =
                         (int)(ItemBuyCost * weaponRarityParameters.costPercentagesOfFullPrice[RarityEnum.Epic]);
-                    itemLight = weaponRarityParameters.avaibleLights[RarityEnum.Epic];
+                    itemLight = weaponRarityParameters.availableLights[RarityEnum.Epic];
                     break;
                 case (RarityEnum.Legendary):
                     ItemSellCost = (int)(ItemBuyCost *
                                          weaponRarityParameters.costPercentagesOfFullPrice[RarityEnum.Legendary]);
-                    itemLight = weaponRarityParameters.avaibleLights[RarityEnum.Legendary];
+                    itemLight = weaponRarityParameters.availableLights[RarityEnum.Legendary];
                     break;
                 default:
                     ItemSellCost = (int)(ItemBuyCost * 0.1);

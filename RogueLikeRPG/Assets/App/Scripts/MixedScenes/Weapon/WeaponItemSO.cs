@@ -20,7 +20,7 @@ namespace App.Scripts.MixedScenes.Weapon
         [Range(0, 100)] public float damage;
         
         [Title("Audio")]
-        [LabelText("Shoot Sound")]public AudioClip weaponAttackSound;
+        [LabelText("Attack/Shoot Sound")]public AudioClip weaponAttackSound;
         [LabelText("Equip Sound")]public AudioClip weaponEquipSound;
         public AudioClip itemActionSound { get; }
         
