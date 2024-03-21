@@ -497,6 +497,8 @@ MonoBehaviour:
   initialItems: []
   dropClip: {fileID: 8300000, guid: c66a4a1db6099e34ca14a09e09c6ec26, type: 3}
   audioSource: {fileID: 5958824334006302602}
+  _trader: {fileID: 0}
+  _money: {fileID: 0}
 --- !u!114 &7442927163657405319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,8 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f3240b4f394584d9b245431b575eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipMeleeWeapon: {fileID: 0}
-  equipRangeWeapon: {fileID: 0}
+  currentWeaponsSO: {fileID: 11400000, guid: 96e88bf987a79b44e84297db21166217, type: 2}
   parametersToModify: []
   itemCurrentState: []
   inventoryData: {fileID: 11400000, guid: f37c1c10a167764469f0bb4cb1b8b5b2, type: 2}

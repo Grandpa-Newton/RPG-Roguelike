@@ -9,8 +9,7 @@ namespace App.Scripts.MixedScenes.Player
     public class PlayerWeapon : MonoBehaviour
     {
         [Header("Current Weapons")]
-        [SerializeField] private WeaponItemSO equipMeleeWeapon;
-        [SerializeField] private WeaponItemSO equipRangeWeapon;
+        [SerializeField] private CurrentWeaponsSO currentWeaponsSO;
         
         [SerializeField] private List<ItemParameter> parametersToModify;
         [SerializeField] private List<ItemParameter> itemCurrentState;
@@ -20,23 +19,23 @@ namespace App.Scripts.MixedScenes.Player
         
         public void SetMeleeWeapon(WeaponItemSO weaponItemSO, List<ItemParameter> itemState)
         {
-            if (equipMeleeWeapon != null)
+            if (currentWeaponsSO.EquipMeleeWeapon != null)
             {
-                inventoryData.AddItem(equipMeleeWeapon, 1, itemCurrentState);
+                inventoryData.AddItem(currentWeaponsSO.EquipMeleeWeapon, 1, itemCurrentState);
             }
             
-            this.equipMeleeWeapon = weaponItemSO;
+            currentWeaponsSO.EquipMeleeWeapon = weaponItemSO;
             this.itemCurrentState = new List<ItemParameter>(itemState); 
             ModifyParameters();
         }
         public void SetRangeWeapon(WeaponItemSO weaponItemSO, List<ItemParameter> itemState)
         {
-            if (equipRangeWeapon != null)
+            if (currentWeaponsSO.EquipRangeWeapon != null)
             {
-                inventoryData.AddItem(equipRangeWeapon, 1, itemCurrentState);
+                inventoryData.AddItem(currentWeaponsSO.EquipRangeWeapon, 1, itemCurrentState);
             }
             
-            this.equipRangeWeapon = weaponItemSO;
+            this.currentWeaponsSO.EquipRangeWeapon = weaponItemSO;
             this.itemCurrentState = new List<ItemParameter>(itemState); 
             ModifyParameters();
         }

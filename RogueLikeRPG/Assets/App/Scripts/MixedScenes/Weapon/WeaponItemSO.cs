@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Weapon
 {
-    [CreateAssetMenu(fileName = "Weapon_", menuName = "Weapons")]
     public abstract class WeaponItemSO : ItemSO, IDestroyableItem, IItemAction
     {
         public string ActionName => "Equip";
