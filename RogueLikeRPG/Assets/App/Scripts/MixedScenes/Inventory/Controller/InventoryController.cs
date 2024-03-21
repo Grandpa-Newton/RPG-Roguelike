@@ -26,6 +26,8 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
 
         [SerializeField] private GameObject _trader;
 
+        [SerializeField] private Money _money;
+
         private void Start()
         {
             PrepareUI();
@@ -113,8 +115,6 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                 {
                     inventoryData.RemoveItem(itemIndex, 1);
                 }
-                //audioSource.PlayOneShot(itemAction.itemActionSound);
-                audioSource.PlayOneShot(dropClip); // тут мб другой звук
                 if (inventoryData.GetItemAt(itemIndex).IsEmpty)
                     inventoryUI.ResetSelection();
             }
@@ -135,6 +135,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                 if (_trader.GetComponent<TraderInventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
                     traderMoney.TryReduceMoney(itemSO.ItemSellCost);
+                    _money.AddMoney(itemSO.ItemSellCost);
                     return true;
                 }
                 else
@@ -175,7 +176,6 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             {
                 itemAction.PerformAction(gameObject, inventoryItem.itemState);
                 inventoryUI.ResetSelection();
-                audioSource.PlayOneShot(itemAction.itemActionSound);
                 if(inventoryData.GetItemAt(itemIndex).IsEmpty)
                     inventoryUI.ResetSelection();
             }

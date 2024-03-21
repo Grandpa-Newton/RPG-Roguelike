@@ -24,6 +24,8 @@ namespace App.Scripts.TraderScene
 
         [SerializeField] private GameObject player;
 
+        [SerializeField] private Money _money;
+
         private void Start()
         {
             PrepareUI();
@@ -118,6 +120,7 @@ namespace App.Scripts.TraderScene
                 if (player.GetComponent<InventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
                     playerMoney.TryReduceMoney(itemSO.ItemBuyCost);
+                    _money.AddMoney(itemSO.ItemBuyCost);
                     return true;
                 }
                 else
