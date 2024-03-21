@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.MixedScenes.Inventory.UI.ItemParameters;
+using App.Scripts.MixedScenes.Weapon;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -12,39 +13,48 @@ namespace Inventory.Model
 {
     public abstract class ItemSO : ScriptableObject, ISalable
     {
+        public int ID => GetInstanceID();
+        
         [Title("Information")] 
         [SerializeField] public string itemName;
         [SerializeField] [TextArea] public string description;
 
-        [field: SerializeField, HorizontalGroup("Trading"), LabelText("Buy Cost")]
+        [Title("Item Rarity"), LabelText("Item Rarity"), VerticalGroup("SetParameters")]
+        public RarityEnum itemRarity;
+        [field: SerializeField, VerticalGroup("SetParameters"), LabelText("Buy Cost")]
         public int ItemBuyCost { get; set; }
         public int ItemSellCost
         {
             get { return _itemSellCost; }
             set { _itemSellCost = value; }
         }
-        [ReadOnly, SerializeField] private int _itemSellCost;
-        [Title("Item Rarity"), LabelText("Rarity"), VerticalGroup("ItemRarity")]
-        public RarityEnum itemRarity;
+        [ReadOnly, SerializeField][VerticalGroup("SetParameters")] private int _itemSellCost;
+        
 
-        [Button, HorizontalGroup("Trading", Width = 0.6f)]
-        private void CalculateSellCost()
+        [Button, VerticalGroup("SetParameters")]
+        private void SetItemParameterByRarity()
         {
             switch (itemRarity)
             {
                 case(RarityEnum.Common):
-                    ItemSellCost = (int)(ItemBuyCost * 0.8);
+                    ItemSellCost = (int)(ItemBuyCost * weaponLights.costPercentagesOfFullPrice[RarityEnum.Common]);
+                    itemLight = weaponLights.avaibleLights[RarityEnum.Common];
                     break;
                 case(RarityEnum.Uncommon):
-                    ItemSellCost = (int)(ItemBuyCost * 0.7);
+                    ItemSellCost = (int)(ItemBuyCost * weaponLights.costPercentagesOfFullPrice[RarityEnum.Uncommon]);
+                    itemLight = weaponLights.avaibleLights[RarityEnum.Uncommon];
                     break;
                 case(RarityEnum.Rare):
-                    ItemSellCost = (int)(ItemBuyCost * 0.6);
+                    ItemSellCost = (int)(ItemBuyCost * weaponLights.costPercentagesOfFullPrice[RarityEnum.Rare]);
+                    itemLight = weaponLights.avaibleLights[RarityEnum.Rare];
                     break;
                 case(RarityEnum.Epic):
+                    ItemSellCost = (int)(ItemBuyCost * weaponLights.costPercentagesOfFullPrice[RarityEnum.Epic]);
+                    itemLight = weaponLights.avaibleLights[RarityEnum.Epic];
                     break;
                 case(RarityEnum.Legendary):
-                    ItemSellCost = (int)(ItemBuyCost * 0.4);
+                    ItemSellCost = (int)(ItemBuyCost * weaponLights.costPercentagesOfFullPrice[RarityEnum.Legendary]);
+                    itemLight = weaponLights.avaibleLights[RarityEnum.Legendary];
                     break;
                 default:
                     ItemSellCost = (int)(ItemBuyCost * 0.1);
@@ -52,15 +62,15 @@ namespace Inventory.Model
             }  
            
         }
-        
-        [field: SerializeField] public bool IsStackable { get; set; }
-        public int ID => GetInstanceID();
 
-        [field: SerializeField] public int MaxStackSize { get; set; } = 1;
-
-        [Title("Item Components")]
+        [Title("Weapon Lights")] public WeaponRarityParametersSO weaponLights;
+        [Title("Item Components")][ReadOnly]
         public Light2D itemLight;
         
+        [Title("Stackable Params"), VerticalGroup("Stack")]
+        [field: SerializeField][VerticalGroup("Stack")] public bool IsStackable { get; set; }
+        [field: SerializeField] public int MaxStackSize { get; set; } = 1;
+        [field: SerializeField] public Sprite ItemImage { get; set; }
         public void SetItemLight()
         {
             switch (itemRarity)
@@ -82,9 +92,6 @@ namespace Inventory.Model
                     break;
             }  
         }
-        [field: SerializeField] public Sprite ItemImage { get; set; }
-        
-
         [field: SerializeField] public List<ItemParameter> DefaultParametersList { get; set; }
 
 
