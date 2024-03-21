@@ -6,6 +6,7 @@ using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.TraderScene;
 using Unity.VisualScripting;
 using UnityEngine;
+using App.Scripts.MixedScenes.Inventory.Controller;
 
 [CreateAssetMenu(fileName = "Tradable_", menuName = "Trade")]
 public class TradableItemSO : ItemSO, IDestroyableItem, IItemAction
@@ -26,7 +27,7 @@ public class TradableItemSO : ItemSO, IDestroyableItem, IItemAction
         if (playerMoney.CanAffordReduceMoney(Cost)) // тут тоже, наверное, нужно количество
         {
             Debug.Log("Player can afford it");
-            if (character.GetComponent<TestTradingPlayerController>().TryAddItem(ItemSO)) // сюда нужно будет количество передавать
+            if (character.GetComponent<InventoryController>().TryAddItem(ItemSO)) // сюда нужно будет количество передавать
             {
                 playerMoney.TryReduceMoney(Cost);
                 return true;

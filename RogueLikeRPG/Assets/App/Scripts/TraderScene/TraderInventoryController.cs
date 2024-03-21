@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using App.Scripts.AllScenes.Interfaces;
+using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.MixedScenes.Inventory.UI;
@@ -114,7 +115,7 @@ namespace App.Scripts.TraderScene
             if (playerMoney.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Player can afford it");
-                if (player.GetComponent<TestTradingPlayerController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
+                if (player.GetComponent<InventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
                     playerMoney.TryReduceMoney(itemSO.ItemBuyCost);
                     return true;
@@ -196,6 +197,15 @@ namespace App.Scripts.TraderScene
             }
 
             return sb.ToString();
+        }
+
+        public bool TryAddItem(ItemSO item)
+        {
+            int reminder = inventoryData.AddItem(item, 1);// потом тут нужно будет сделать так, чтобы пользователь мог выбирать количество предметов для покупки
+            if (reminder == 0)
+                return true;
+            else
+                return false;
         }
 
         public void Interact() // мб реализовать в отдельном скрипте

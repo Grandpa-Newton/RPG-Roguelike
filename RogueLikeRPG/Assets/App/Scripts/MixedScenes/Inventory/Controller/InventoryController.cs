@@ -8,6 +8,8 @@ using App.Scripts.MixedScenes.Inventory.UI;
 using UnityEngine;
 using Inventory.Model;
 using UnityEngine.Serialization;
+using App.Scripts.AllScenes.Interfaces;
+using App.Scripts.TraderScene;
 
 namespace App.Scripts.MixedScenes.Inventory.Controller
 {
@@ -21,6 +23,8 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
 
         [SerializeField] private AudioClip dropClip;
         [SerializeField] private AudioSource audioSource;
+
+        [SerializeField] private GameObject _trader;
 
         private void Start()
         {
@@ -91,7 +95,58 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             if (destroyableItem != null)
             {
                 inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
-                inventoryUI.AddAction("Sell", () => Debug.Log("Sell"));
+            }
+
+            if(_trader != null)
+            {
+                inventoryUI.AddAction("Sell", () => SellItem(inventoryItem, itemIndex));
+            }
+        }
+
+
+        private void SellItem(InventoryItem inventoryItem, int itemIndex)
+        {
+            if (TrySellItem(inventoryItem))
+            {
+                IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
+                if (destroyableItem != null)
+                {
+                    inventoryData.RemoveItem(itemIndex, 1);
+                }
+                //audioSource.PlayOneShot(itemAction.itemActionSound);
+                audioSource.PlayOneShot(dropClip); // тут мб другой звук
+                if (inventoryData.GetItemAt(itemIndex).IsEmpty)
+                    inventoryUI.ResetSelection();
+            }
+        }
+
+        private bool TrySellItem(InventoryItem inventoryItem)
+        {
+            var itemSO = inventoryItem.item;
+
+            Debug.Log("Sell Cost = " + itemSO.ItemBuyCost);
+
+
+            var traderMoney = _trader.GetComponent<Money>();
+
+            if (traderMoney.CanAffordReduceMoney(itemSO.ItemSellCost)) // тут тоже, наверное, нужно количество
+            {
+                Debug.Log("Trader can afford it");
+                if (_trader.GetComponent<TraderInventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
+                {
+                    traderMoney.TryReduceMoney(itemSO.ItemSellCost);
+                    return true;
+                }
+                else
+                {
+                    Debug.Log("Trader doesn't have enough space in inventory");
+                    return false;
+                }
+            }
+            else
+            {
+                Debug.Log("Trader can't afford it.");
+                return false;
             }
         }
 
@@ -173,6 +228,11 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
         }
 
+        public void SetTraderObject(GameObject trader)
+        {
+            _trader = trader;
+        }
+
         public void Update()
         {
             if (Input.GetKeyDown(KeyCode.Tab))
@@ -191,6 +251,15 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                     inventoryUI.Hide();
                 }
             }
+        }
+
+        public bool TryAddItem(ItemSO item)
+        {
+            int reminder = inventoryData.AddItem(item, 1);// потом тут нужно будет сделать так, чтобы пользователь мог выбирать количество предметов для покупки
+            if (reminder == 0)
+                return true;
+            else
+                return false;
         }
 
     }
