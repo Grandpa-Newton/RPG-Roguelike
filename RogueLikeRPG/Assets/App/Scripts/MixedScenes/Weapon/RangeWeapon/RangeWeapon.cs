@@ -6,11 +6,11 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
 {
     public class RangeWeapon : Weapon
     {
-        [SerializeField] private RangeWeaponSO _rangeWeaponData;
+        [SerializeField] private RangeWeaponSO rangeWeaponData;
 
-        [SerializeField] private SwitchWeaponBetweenRangeAndMelee _switchWeaponBetweenRangeAndMelee;
+        [SerializeField] private SwitchWeaponBetweenRangeAndMelee switchWeaponBetweenRangeAndMelee;
 
-        private float _timeToNextShot = 0;
+        private float _timeToNextShot;
         private PlayerInputActions _playerInputActions;
         [SerializeField] private Transform shootPoint;
         [SerializeField] private Transform bulletsContainer;
@@ -32,7 +32,7 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
 
         public RangeWeapon(RangeWeaponSO data)
         {
-            _rangeWeaponData = data;
+            rangeWeaponData = data;
         }
 
         private void Update()
@@ -40,36 +40,25 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
             DealDamage();
         }
 
-        private void SetActivePlayerHands()
-        {
-            if (!_rangeWeaponData)
-            {
-                //set active true;
-            }
-            else
-            {
-            }
-        }
-
         public override void DealDamage()
         {
-            if (!_rangeWeaponData)
+            if (!rangeWeaponData)
             {
-                _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(false);
+                switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(false);
                 return;
             }
 
             _timeToNextShot += Time.deltaTime;
-            if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextShot > _rangeWeaponData.attackRate)
+            if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextShot > rangeWeaponData.attackRate)
             {
                 Bullet bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
                 if (bullet)
                 {
-                    audioSource.PlayOneShot(_rangeWeaponData.weaponAttackSound);
+                    audioSource.PlayOneShot(rangeWeaponData.weaponAttackSound);
                     SetBulletParameters(bullet);
 
                     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-                    rb.AddForce(_aimTransform.right * _rangeWeaponData.bulletSpeed, ForceMode2D.Impulse);
+                    rb.AddForce(_aimTransform.right * rangeWeaponData.bulletSpeed, ForceMode2D.Impulse);
                 }
 
                 _timeToNextShot = 0f;
@@ -84,16 +73,16 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
                 return;
             }
             
-            _rangeWeaponData = (RangeWeaponSO)rangeWeaponSo;
-            _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
-            GetComponent<SpriteRenderer>().sprite = _rangeWeaponData.ItemImage;
-            GetComponent<AudioSource>().PlayOneShot(_rangeWeaponData.weaponEquipSound);
+            rangeWeaponData = (RangeWeaponSO)rangeWeaponSo;
+            switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
+            GetComponent<SpriteRenderer>().sprite = rangeWeaponData.ItemImage;
+            GetComponent<AudioSource>().PlayOneShot(rangeWeaponData.weaponEquipSound);
         }
 
         private void SetBulletParameters(Bullet bullet)
         {
-            bullet.SetRangeWeaponSO(_rangeWeaponData);
-            bullet.SetBulletSO(_rangeWeaponData.bulletSO);
+            bullet.SetRangeWeaponSO(rangeWeaponData);
+            bullet.SetBulletSO(rangeWeaponData.bulletSO);
             bullet.SetRangeWeapon(this);
             bullet.transform.SetParent(bulletsContainer, true);
 

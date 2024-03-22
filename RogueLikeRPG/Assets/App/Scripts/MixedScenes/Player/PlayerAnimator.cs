@@ -41,14 +41,11 @@ namespace App.Scripts.MixedScenes.Player
 
         private void Player_OnPlayerMovement(Vector2 movementInputVector, Vector2 worldMouseVectorPosition)
         {
-            if (Input.GetKeyDown(KeyCode.Z) && _isWalking)
+            if (Input.GetKeyDown(KeyCode.Space) && _isWalking)
             {
-                Debug.Log("z is Pressed");
                 _playerAnimator.SetBool(IsRolling, true);
                 _isRolling = true;
                 OnPlayerRolling?.Invoke(_isRolling);
-
-                // Используем вектор движения вместо вектора мыши
 
                 _playerAnimator.SetFloat(Horizontal, movementInputVector.x);
                 _playerAnimator.SetFloat(Vertical, movementInputVector.y);

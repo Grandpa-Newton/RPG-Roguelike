@@ -14,7 +14,6 @@ namespace App.Scripts.MixedScenes.Player.Control
         private PlayerInputActions _playerInputActions;
         private Camera _camera;
 
-        [SerializeField] private GameObject currentPickedWeapon;
         [SerializeField] private float speed = 5;
 
         private bool _isMoving;
@@ -129,11 +128,10 @@ namespace App.Scripts.MixedScenes.Player.Control
             _isRolling = isRolling;
             if (_isRolling)
             {
-                Debug.Log("Disable invoke!");
                 SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsDisable();
                 Vector2 velocity = _rigidbody2D.velocity;
                 _rollDirection = velocity.normalized;
-                _rollSpeed = velocity.magnitude;
+                _rollSpeed = velocity.magnitude * 1.2f;
             }
         }
 
