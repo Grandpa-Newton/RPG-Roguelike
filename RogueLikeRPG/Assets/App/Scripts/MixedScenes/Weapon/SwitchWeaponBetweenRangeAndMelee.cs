@@ -1,3 +1,5 @@
+using System;
+using App.Scripts.MixedScenes.Player;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Weapon
@@ -5,6 +7,8 @@ namespace App.Scripts.MixedScenes.Weapon
     public class SwitchWeaponBetweenRangeAndMelee : MonoBehaviour
     {
         public static SwitchWeaponBetweenRangeAndMelee Instance { get; private set; }
+        
+        [SerializeField]private float swapReloadTime = 0.5f;
         [SerializeField] private Transform meleeWeapon;
         [SerializeField] private Transform rangeWeapon;
 
@@ -13,12 +17,19 @@ namespace App.Scripts.MixedScenes.Weapon
         [SerializeField] private GameObject currentPickedWeapon;
         
         private bool isMeleeWeapon = true;
-
+        private bool isRolling;
+        private float timerToSwapWeapon = 0f;
         private void Awake()
         {
             Instance = this;
+            PlayerAnimator.OnPlayerRolling += SetRollingState;
         }
-    
+
+        private void SetRollingState(bool isRolling)
+        {
+            this.isRolling = isRolling;
+        }
+
         private void Start()
         {
             meleeWeapon.gameObject.SetActive(true);
@@ -28,7 +39,8 @@ namespace App.Scripts.MixedScenes.Weapon
 
         private void Update()
         {
-            if (Input.GetAxis("Mouse ScrollWheel") != 0)
+            timerToSwapWeapon += Time.deltaTime;
+            if (Input.GetAxis("Mouse ScrollWheel") != 0 && !isRolling && timerToSwapWeapon > swapReloadTime)
             {
                 isMeleeWeapon = !isMeleeWeapon;
                 if (isMeleeWeapon)
@@ -41,6 +53,8 @@ namespace App.Scripts.MixedScenes.Weapon
                     PlayerCurrentWeaponUI.Instance.IncreaseRangeWeaponScale();
                     SetActiveRangeWeapon();
                 }
+
+                timerToSwapWeapon = 0f;
             }
         }
 
@@ -79,6 +93,11 @@ namespace App.Scripts.MixedScenes.Weapon
             {
                 hand.SetActive(isActive);
             }
+        }
+
+        private void OnDestroy()
+        {
+            PlayerAnimator.OnPlayerRolling -= SetRollingState;
         }
     }
 }

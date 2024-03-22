@@ -1157,12 +1157,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7abf1a7ebd8aec94caf9a6b62d8a1525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeWeaponUI: {fileID: 3967440002552469818}
-  meleeBackgroundImage: {fileID: 2124228297895796907}
-  meleeWeaponIcon: {fileID: 5334638421451792317}
-  rangeWeaponUI: {fileID: 1010310703652118791}
-  rangeBackgroundImage: {fileID: 3924982823934949042}
-  rangeWeaponIcon: {fileID: 7341759925384722527}
+  meleeWeaponUI: {fileID: 321026787663190187}
+  meleeBackgroundImage: {fileID: 4156810057027607554}
+  meleeWeaponIcon: {fileID: 3973934437510562555}
+  rangeWeaponUI: {fileID: 3388378415229987931}
+  rangeBackgroundImage: {fileID: 1861411177141808057}
+  rangeWeaponIcon: {fileID: 2196914434425693495}
 --- !u!1 &3924982823934949042
 GameObject:
   m_ObjectHideFlags: 0

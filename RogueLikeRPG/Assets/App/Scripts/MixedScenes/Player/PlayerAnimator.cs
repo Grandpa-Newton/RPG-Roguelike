@@ -7,12 +7,12 @@ namespace App.Scripts.MixedScenes.Player
     public class PlayerAnimator : MonoBehaviour
     {
         private PlayerController _playerController;
+        private Animator _playerAnimator;
 
         public delegate void RollingAction(bool isRolling);
 
         public static event RollingAction OnPlayerRolling;
 
-        private Animator _playerAnimator;
 
         private bool _isWalking;
         private bool _isRolling;
@@ -33,7 +33,6 @@ namespace App.Scripts.MixedScenes.Player
         {
             if (!_isRolling)
             {
-                SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsEnable();
                 Vector2 movementMouse = new Vector2(worldMouseVectorPosition.x, worldMouseVectorPosition.y).normalized;
 
                 _playerAnimator.SetFloat(Horizontal, movementMouse.x);
@@ -56,7 +55,6 @@ namespace App.Scripts.MixedScenes.Player
 
             if (!_isRolling)
             {
-                SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsEnable();
                 if (movementInputVector.x != 0 || movementInputVector.y != 0)
                 {
                     if (!_isWalking)
@@ -81,8 +79,9 @@ namespace App.Scripts.MixedScenes.Player
             if (_playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Roll") &&
                 _playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0)
             {
-                _playerAnimator.SetBool(IsRolling, false);
                 _isRolling = false;
+                _playerAnimator.SetBool(IsRolling, _isRolling);
+                SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsEnable();
                 OnPlayerRolling?.Invoke(_isRolling);
             }
         }
@@ -90,6 +89,7 @@ namespace App.Scripts.MixedScenes.Player
         private void OnDestroy()
         {
             _playerController.OnPlayerMovement -= Player_OnPlayerMovement;
+            _playerController.OnPlayerMouseMovement -= Player_OnPlayerMouseMovement;
         }
     }
 }

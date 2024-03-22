@@ -8,62 +8,51 @@ using UnityEngine.UI;
 public class PlayerCurrentWeaponUI : MonoBehaviour
 {
     public static PlayerCurrentWeaponUI Instance { get; set; }
-    [SerializeField] private GameObject meleeWeaponUI;
-    [SerializeField] private GameObject meleeBackgroundImage;
-    [SerializeField] private GameObject meleeWeaponIcon;
-    [SerializeField] private GameObject rangeWeaponUI;
-    [SerializeField] private GameObject rangeBackgroundImage;
-    [SerializeField] private GameObject rangeWeaponIcon;
+    [SerializeField] private Image meleeWeaponUI;
+    [SerializeField] private Image meleeBackgroundImage;
+    [SerializeField] private Image meleeWeaponIcon;
+    [SerializeField] private Image rangeWeaponUI;
+    [SerializeField] private Image rangeBackgroundImage;
+    [SerializeField] private Image rangeWeaponIcon;
 
-    private Image _meleeWeaponSpriteRenderer;
-    private Image _rangeWeaponSpriteRenderer;
-    // Start is called before the first frame update
     private void Awake()
     {
         Instance = this;
-        _meleeWeaponSpriteRenderer = meleeWeaponIcon.GetComponent<Image>();
-        _rangeWeaponSpriteRenderer = rangeWeaponIcon.GetComponent<Image>();
     }
 
     public void IncreaseMeleeWeaponScale()
     {
         meleeWeaponUI.transform.DOScale(1.2f, 0.5f);
-        
-        meleeWeaponUI.GetComponent<Image>().DOFade(1f, 0.5f);
-        meleeBackgroundImage.GetComponent<Image>().DOFade(1f, 0.5f);
-        meleeWeaponIcon.GetComponent<Image>().DOFade(1f, 0.5f);
+        meleeWeaponUI.DOFade(1f, 0.5f);
+        meleeBackgroundImage.DOFade(1f, 0.5f);
+        meleeWeaponIcon.DOFade(1f, 0.5f);
             
         rangeWeaponUI.transform.DOScale(0.8f, 0.5f);
-        
-        rangeWeaponUI.GetComponent<Image>().DOFade(0.5f, 0.5f);
-        rangeBackgroundImage.GetComponent<Image>().DOFade(0.5f, 0.5f);
-        rangeWeaponIcon.GetComponent<Image>().DOFade(0.5f, 0.5f);
+        rangeWeaponUI.DOFade(0.5f, 0.5f);
+        rangeBackgroundImage.DOFade(0.5f, 0.5f);
+        rangeWeaponIcon.DOFade(0.5f, 0.5f);
     }
+
     public void IncreaseRangeWeaponScale()
     {
         meleeWeaponUI.transform.DOScale(0.8f, 0.5f);
-        
-        meleeWeaponUI.GetComponent<Image>().DOFade(0.5f, 0.5f);
-        meleeBackgroundImage.GetComponent<Image>().DOFade(0.5f, 0.5f);
-        meleeWeaponIcon.GetComponent<Image>().DOFade(0.5f, 0.5f);
+        meleeWeaponUI.DOFade(0.5f, 0.5f);
+        meleeBackgroundImage.DOFade(0.5f, 0.5f);
+        meleeWeaponIcon.DOFade(0.5f, 0.5f);
             
         rangeWeaponUI.transform.DOScale(1.2f, 0.5f);
-        
-        rangeWeaponUI.GetComponent<Image>().DOFade(1f, 0.5f);
-        rangeBackgroundImage.GetComponent<Image>().DOFade(1f, 0.5f);
-        rangeWeaponIcon.GetComponent<Image>().DOFade(1f, 0.5f);
+        rangeWeaponUI.DOFade(1f, 0.5f);
+        rangeBackgroundImage.DOFade(1f, 0.5f);
+        rangeWeaponIcon.DOFade(1f, 0.5f);
     }
+
     public void SetMeleeWeaponIcon(Sprite meleeSprite)
     {
-        _meleeWeaponSpriteRenderer.sprite = meleeSprite;
+        meleeWeaponIcon.sprite = meleeSprite;
     }
+
     public void SetRangeWeaponIcon(Sprite rangeSprite)
     {
-        _rangeWeaponSpriteRenderer.sprite = rangeSprite;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        rangeWeaponIcon.sprite = rangeSprite;
     }
 }
