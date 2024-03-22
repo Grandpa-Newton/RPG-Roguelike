@@ -9,7 +9,9 @@ namespace App.Scripts.MixedScenes.Weapon
         [SerializeField] private Transform rangeWeapon;
 
         [SerializeField] private GameObject[] hands;
-
+        
+        [SerializeField] private GameObject currentPickedWeapon;
+        
         private bool isMeleeWeapon = true;
 
         private void Awake()
@@ -31,13 +33,11 @@ namespace App.Scripts.MixedScenes.Weapon
                 isMeleeWeapon = !isMeleeWeapon;
                 if (isMeleeWeapon)
                 {
-                    meleeWeapon.gameObject.SetActive(true);
-                    rangeWeapon.gameObject.SetActive(false);
+                    SetActiveMeleeWeapon();
                 }
                 else
                 {
-                    meleeWeapon.gameObject.SetActive(false);
-                    rangeWeapon.gameObject.SetActive(true);
+                    SetActiveRangeWeapon();
                 }
             }
         }
@@ -46,13 +46,27 @@ namespace App.Scripts.MixedScenes.Weapon
         {
             meleeWeapon.gameObject.SetActive(true);
             rangeWeapon.gameObject.SetActive(false);
+            currentPickedWeapon = meleeWeapon.gameObject;
         }
         public void SetActiveRangeWeapon()
         {
             meleeWeapon.gameObject.SetActive(false);
             rangeWeapon.gameObject.SetActive(true);
+            currentPickedWeapon = rangeWeapon.gameObject;
         }
 
+        public void WeaponAndHandsDisable()
+        {
+            currentPickedWeapon.SetActive(false);
+            PlayerHandsVisible(false);
+        }
+        public void WeaponAndHandsEnable()
+        {
+            currentPickedWeapon.SetActive(true);
+            PlayerHandsVisible(true);
+        }
+        
+        
         public bool GetWeaponState()
         {
             return isMeleeWeapon;

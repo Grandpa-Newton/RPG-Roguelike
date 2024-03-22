@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e1be0e61555c379479bc69fe96baa46b
+guid: 73017e199446b03428180e81281f973b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,19 +81,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -123,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Roll_Right_Down_0
+      name: Player_Roll_Top_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77448fac3c4f5f34d8ed8daf45b9643a
-      internalID: -536902347
+      spriteID: 1dff59052c99ddf4eacdbfbbf05ac08e
+      internalID: 738639318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Roll_Right_Down_1
+      name: Player_Roll_Top_1
       rect:
         serializedVersion: 2
         x: 32
@@ -158,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af86565882401c34fb33b0fe4d6de8c6
-      internalID: -1825352227
+      spriteID: ad13665a3d81448448a61e2a35b69c19
+      internalID: 68872422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Roll_Right_Down_2
+      name: Player_Roll_Top_2
       rect:
         serializedVersion: 2
         x: 64
@@ -179,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa19b6bfc00eeff4c986430a38a94d2f
-      internalID: 935285424
+      spriteID: c1946f12cfb5de241820b6fcb69e66f3
+      internalID: 1592662390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Roll_Right_Down_3
+      name: Player_Roll_Top_3
       rect:
         serializedVersion: 2
         x: 96
@@ -200,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9e6fa9a71224d64d95d622849fa5351
-      internalID: -562938450
+      spriteID: 8f1e516e2fa00af40b9d67b85585fce6
+      internalID: 1517112319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Roll_Right_Down_4
+      name: Player_Roll_Top_4
       rect:
         serializedVersion: 2
         x: 128
@@ -221,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52e5daeec907ac643837d8f0293d87bd
-      internalID: 879425920
+      spriteID: bce243913fc43a542a596e7308af3750
+      internalID: -383679658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Roll_Right_Down_5
+      name: Player_Roll_Top_5
       rect:
         serializedVersion: 2
         x: 160
@@ -242,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9fafffd65a2208468d2de987ec260af
-      internalID: -368015997
+      spriteID: 5844cb4f24eea4e4bb60d42d44b5d205
+      internalID: 872374824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Roll_Right_Down_6
+      name: Player_Roll_Top_6
       rect:
         serializedVersion: 2
         x: 192
@@ -263,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d30d5cfc85b2d1488f4a4a6359f4d12
-      internalID: 1176344772
+      spriteID: 759f6d136fc03cc4c940d034b27e756b
+      internalID: 713426058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Roll_Right_Down_7
+      name: Player_Roll_Top_7
       rect:
         serializedVersion: 2
         x: 224
@@ -284,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85b3f6cf8afe308459bb97deb21c0c79
-      internalID: -22133270
+      spriteID: dae4d32cb8b334a458b37232e47a8649
+      internalID: 1033277981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Roll_Right_Down_8
+      name: Player_Roll_Top_8
       rect:
         serializedVersion: 2
         x: 256
@@ -305,14 +292,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5edbb0d6ccd0eb54692e783ef61555ed
-      internalID: 679769980
+      spriteID: e35e3b18558716a4c8a404dcbd37345e
+      internalID: -320684220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Roll_Right_Down_9
+      name: Player_Roll_Top_9
       rect:
         serializedVersion: 2
         x: 288
@@ -326,8 +313,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d0195d2cccee544ea6bb3873be37bf7
-      internalID: -382238787
+      spriteID: 1f115f1302540984ba3aeab6d7a66799
+      internalID: -373476137
       vertices: []
       indices: 
       edges: []
@@ -343,16 +330,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_Roll_Right_Down_0: -536902347
-      Player_Roll_Right_Down_1: -1825352227
-      Player_Roll_Right_Down_2: 935285424
-      Player_Roll_Right_Down_3: -562938450
-      Player_Roll_Right_Down_4: 879425920
-      Player_Roll_Right_Down_5: -368015997
-      Player_Roll_Right_Down_6: 1176344772
-      Player_Roll_Right_Down_7: -22133270
-      Player_Roll_Right_Down_8: 679769980
-      Player_Roll_Right_Down_9: -382238787
+      Player_Roll_Top_0: 738639318
+      Player_Roll_Top_1: 68872422
+      Player_Roll_Top_2: 1592662390
+      Player_Roll_Top_3: 1517112319
+      Player_Roll_Top_4: -383679658
+      Player_Roll_Top_5: 872374824
+      Player_Roll_Top_6: 713426058
+      Player_Roll_Top_7: 1033277981
+      Player_Roll_Top_8: -320684220
+      Player_Roll_Top_9: -373476137
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

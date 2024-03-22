@@ -75,6 +75,7 @@ MonoBehaviour:
   hands:
   - {fileID: 4639642764309313730}
   - {fileID: 7867582400366363649}
+  currentPickedWeapon: {fileID: 8045914415567815399}
 --- !u!1 &1766668649823358690
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,9 +440,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dac791410eb57348925e6eceb49980e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPickedWeapon: {fileID: 8045914415567815399}
   speed: 5
-  dashDistance: 100
-  dashDuration: 0.4
 --- !u!114 &2671509649919419075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,8 +497,8 @@ MonoBehaviour:
   initialItems: []
   dropClip: {fileID: 8300000, guid: c66a4a1db6099e34ca14a09e09c6ec26, type: 3}
   audioSource: {fileID: 5958824334006302602}
-  _trader: {fileID: 0}
-  _money: {fileID: 0}
+  trader: {fileID: 0}
+  money: {fileID: 0}
 --- !u!114 &7442927163657405319
 MonoBehaviour:
   m_ObjectHideFlags: 0
