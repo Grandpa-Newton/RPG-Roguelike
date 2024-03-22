@@ -128,7 +128,7 @@ namespace App.Scripts.MixedScenes.Player.Control
             _isRolling = isRolling;
             if (_isRolling)
             {
-                SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsDisable();
+                
                 Vector2 velocity = _rigidbody2D.velocity;
                 _rollDirection = velocity.normalized;
                 _rollSpeed = velocity.magnitude * 1.2f;
@@ -139,7 +139,7 @@ namespace App.Scripts.MixedScenes.Player.Control
         {
             if (!_isRolling)
             {
-                SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsEnable();
+                
                 _rigidbody2D.velocity = _inputVector.normalized * CalculateSpeed();
             }
             else

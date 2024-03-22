@@ -33,10 +33,12 @@ namespace App.Scripts.MixedScenes.Weapon
                 isMeleeWeapon = !isMeleeWeapon;
                 if (isMeleeWeapon)
                 {
+                    PlayerCurrentWeaponUI.Instance.IncreaseMeleeWeaponScale();
                     SetActiveMeleeWeapon();
                 }
                 else
                 {
+                    PlayerCurrentWeaponUI.Instance.IncreaseRangeWeaponScale();
                     SetActiveRangeWeapon();
                 }
             }

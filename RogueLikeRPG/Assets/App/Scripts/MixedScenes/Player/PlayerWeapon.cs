@@ -25,7 +25,9 @@ namespace App.Scripts.MixedScenes.Player
             }
             
             currentWeaponsSO.EquipMeleeWeapon = weaponItemSO;
-            this.itemCurrentState = new List<ItemParameter>(itemState); 
+            PlayerCurrentWeaponUI.Instance.IncreaseMeleeWeaponScale();
+            PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(weaponItemSO.ItemImage);
+            itemCurrentState = new List<ItemParameter>(itemState); 
             ModifyParameters();
         }
         public void SetRangeWeapon(WeaponItemSO weaponItemSO, List<ItemParameter> itemState)
@@ -35,8 +37,10 @@ namespace App.Scripts.MixedScenes.Player
                 inventoryData.AddItem(currentWeaponsSO.EquipRangeWeapon, 1, itemCurrentState);
             }
             
-            this.currentWeaponsSO.EquipRangeWeapon = weaponItemSO;
-            this.itemCurrentState = new List<ItemParameter>(itemState); 
+            currentWeaponsSO.EquipRangeWeapon = weaponItemSO;
+            PlayerCurrentWeaponUI.Instance.IncreaseRangeWeaponScale();
+            PlayerCurrentWeaponUI.Instance.SetRangeWeaponIcon(weaponItemSO.ItemImage);
+            itemCurrentState = new List<ItemParameter>(itemState); 
             ModifyParameters();
         }
         private void ModifyParameters()

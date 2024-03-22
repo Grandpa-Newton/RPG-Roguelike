@@ -1,4 +1,5 @@
 using App.Scripts.MixedScenes.Player.Control;
+using App.Scripts.MixedScenes.Weapon;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Player
@@ -32,6 +33,7 @@ namespace App.Scripts.MixedScenes.Player
         {
             if (!_isRolling)
             {
+                SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsEnable();
                 Vector2 movementMouse = new Vector2(worldMouseVectorPosition.x, worldMouseVectorPosition.y).normalized;
 
                 _playerAnimator.SetFloat(Horizontal, movementMouse.x);
@@ -43,6 +45,7 @@ namespace App.Scripts.MixedScenes.Player
         {
             if (Input.GetKeyDown(KeyCode.Space) && _isWalking)
             {
+                SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsDisable();
                 _playerAnimator.SetBool(IsRolling, true);
                 _isRolling = true;
                 OnPlayerRolling?.Invoke(_isRolling);
@@ -53,13 +56,13 @@ namespace App.Scripts.MixedScenes.Player
 
             if (!_isRolling)
             {
+                SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsEnable();
                 if (movementInputVector.x != 0 || movementInputVector.y != 0)
                 {
                     if (!_isWalking)
                     {
                         _isWalking = true;
                         _playerAnimator.SetBool(IsMoving, _isWalking);
-                        Debug.Log("Is Walking!");
                     }
                 }
                 else
