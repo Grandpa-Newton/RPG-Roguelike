@@ -70,12 +70,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fefee3b761a05246b7c69eb1532cf83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapReloadTime: 0.5
   meleeWeapon: {fileID: 4408722407902706080}
   rangeWeapon: {fileID: 1110256157436861220}
   hands:
   - {fileID: 4639642764309313730}
   - {fileID: 7867582400366363649}
   currentPickedWeapon: {fileID: 8045914415567815399}
+  currentWeaponsSO: {fileID: 11400000, guid: 96e88bf987a79b44e84297db21166217, type: 2}
 --- !u!1 &1766668649823358690
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,9 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fffc786f76fa9f4da6f13f9fa09f64a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meleeWeaponData: {fileID: 0}
+  meleeWeaponData: {fileID: 0}
   _animator: {fileID: 3778373216131434755}
-  _switchWeaponBetweenRangeAndMelee: {fileID: 7668164817745744458}
+  switchWeaponBetweenRangeAndMelee: {fileID: 7668164817745744458}
+  _playerWeapon: {fileID: 7152533395521013163}
+  _currentWeaponsSO: {fileID: 11400000, guid: 96e88bf987a79b44e84297db21166217, type: 2}
 --- !u!61 &6464694192455862215
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1010,6 +1014,8 @@ MonoBehaviour:
   shootPoint: {fileID: 2133715077729565275}
   bulletsContainer: {fileID: 931827921514768830}
   bulletPrefab: {fileID: 9027614786788320636, guid: e07bc0491c57868499d299ac5e1cfdb5, type: 3}
+  _playerWeapon: {fileID: 7152533395521013163}
+  _currentWeaponsSO: {fileID: 11400000, guid: 96e88bf987a79b44e84297db21166217, type: 2}
   audioSource: {fileID: 3949150848456275677}
 --- !u!82 &3949150848456275677
 AudioSource:

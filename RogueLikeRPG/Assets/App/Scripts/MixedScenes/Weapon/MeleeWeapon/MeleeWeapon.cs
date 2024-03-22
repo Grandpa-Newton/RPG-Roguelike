@@ -1,16 +1,19 @@
 using System.Collections;
 using App.Scripts.DungeonScene.Enemy;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.MixedScenes.Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
 {
     public class MeleeWeapon : Weapon
     {
-        [SerializeField] private MeleeWeaponSO _meleeWeaponData;
+        [SerializeField] private MeleeWeaponSO meleeWeaponData;
         [SerializeField] private Animator _animator;
-        [SerializeField] private SwitchWeaponBetweenRangeAndMelee _switchWeaponBetweenRangeAndMelee;
+        [SerializeField] private SwitchWeaponBetweenRangeAndMelee switchWeaponBetweenRangeAndMelee;
         private PlayerInputActions _playerInputActions;
+        [SerializeField] private CurrentWeaponsSO _currentWeaponsSO;
 
         private float _timeToNextAttack = 0;
         private Vector2 _defaultPosition;
@@ -18,7 +21,7 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
 
         public MeleeWeapon(MeleeWeaponSO data)
         {
-            _meleeWeaponData = data;
+            meleeWeaponData = data;
         }
 
         private void Awake()
@@ -29,22 +32,30 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
         private void Start()
         {
             _playerInputActions = InputManager.Instance.PlayerInputActions;
+
+            if (_currentWeaponsSO.EquipMeleeWeapon)
+            {
+                meleeWeaponData = (MeleeWeaponSO)_currentWeaponsSO.EquipMeleeWeapon;
+                SetWeapon(meleeWeaponData);
+                PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(meleeWeaponData.ItemImage);
+            }
         }
 
         private void Update()
         {
             DealDamage();
         }
+
         public override void DealDamage()
         {
-            if (!_meleeWeaponData)
+            if (!meleeWeaponData)
             {
-                _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(false);
+                switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(false);
                 return;
             }
-        
+
             _timeToNextAttack += Time.deltaTime;
-            if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextAttack > _meleeWeaponData.attackRate)
+            if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextAttack > meleeWeaponData.attackRate)
             {
                 _animator.SetTrigger("Shoot");
                 _timeToNextAttack = 0;
@@ -56,7 +67,7 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
 
         IEnumerator WaitToNextAttack()
         {
-            yield return new WaitForSeconds(_meleeWeaponData.attackRate);
+            yield return new WaitForSeconds(meleeWeaponData.attackRate);
         }
 
         public override void SetWeapon(ItemSO meleeWeaponSo)
@@ -67,16 +78,16 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
                 return;
             }
 
-            _meleeWeaponData = (MeleeWeaponSO)meleeWeaponSo;
-            _switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
-            GetComponent<SpriteRenderer>().sprite = _meleeWeaponData.ItemImage;
+            meleeWeaponData = (MeleeWeaponSO)meleeWeaponSo;
+            switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
+            GetComponent<SpriteRenderer>().sprite = meleeWeaponData.ItemImage;
         }
-    
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.TryGetComponent(out Enemy enemy))
             {
-                enemy.TakeDamage(_meleeWeaponData.damage);
+                enemy.TakeDamage(meleeWeaponData.damage);
             }
         }
     }

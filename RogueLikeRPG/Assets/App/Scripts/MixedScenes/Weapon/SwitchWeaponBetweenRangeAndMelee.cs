@@ -7,18 +7,20 @@ namespace App.Scripts.MixedScenes.Weapon
     public class SwitchWeaponBetweenRangeAndMelee : MonoBehaviour
     {
         public static SwitchWeaponBetweenRangeAndMelee Instance { get; private set; }
-        
-        [SerializeField]private float swapReloadTime = 0.5f;
+
+        [SerializeField] private float swapReloadTime = 0.5f;
         [SerializeField] private Transform meleeWeapon;
         [SerializeField] private Transform rangeWeapon;
 
         [SerializeField] private GameObject[] hands;
-        
+
         [SerializeField] private GameObject currentPickedWeapon;
-        
+        [SerializeField] private CurrentWeaponsSO currentWeaponsSO;
+
         private bool isMeleeWeapon = true;
         private bool isRolling;
         private float timerToSwapWeapon = 0f;
+
         private void Awake()
         {
             Instance = this;
@@ -32,6 +34,12 @@ namespace App.Scripts.MixedScenes.Weapon
 
         private void Start()
         {
+            if (currentWeaponsSO.EquipMeleeWeapon)
+                PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(currentWeaponsSO.EquipMeleeWeapon.ItemImage);
+            if (currentWeaponsSO.EquipRangeWeapon)
+                PlayerCurrentWeaponUI.Instance.SetRangeWeaponIcon(currentWeaponsSO.EquipRangeWeapon.ItemImage);
+
+
             meleeWeapon.gameObject.SetActive(true);
             rangeWeapon.gameObject.SetActive(false);
             PlayerHandsVisible(false);
@@ -64,6 +72,7 @@ namespace App.Scripts.MixedScenes.Weapon
             rangeWeapon.gameObject.SetActive(false);
             currentPickedWeapon = meleeWeapon.gameObject;
         }
+
         public void SetActiveRangeWeapon()
         {
             meleeWeapon.gameObject.SetActive(false);
@@ -76,17 +85,19 @@ namespace App.Scripts.MixedScenes.Weapon
             currentPickedWeapon.SetActive(false);
             PlayerHandsVisible(false);
         }
+
         public void WeaponAndHandsEnable()
         {
             currentPickedWeapon.SetActive(true);
             PlayerHandsVisible(true);
         }
-        
-        
+
+
         public bool GetWeaponState()
         {
             return isMeleeWeapon;
         }
+
         public void PlayerHandsVisible(bool isActive)
         {
             foreach (var hand in hands)

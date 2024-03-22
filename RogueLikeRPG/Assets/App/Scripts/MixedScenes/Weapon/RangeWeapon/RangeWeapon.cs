@@ -1,5 +1,6 @@
 using System;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.MixedScenes.Player;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
@@ -16,9 +17,15 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
         [SerializeField] private Transform bulletsContainer;
         [SerializeField] private Bullet bulletPrefab;
         private Transform _aimTransform;
+        [SerializeField] private CurrentWeaponsSO _currentWeaponsSO;
 
         [SerializeField] private AudioSource audioSource;
         public event Action OnProportiesSet;
+
+        public RangeWeapon(RangeWeaponSO data)
+        {
+            rangeWeaponData = data;
+        }
 
         private void Awake()
         {
@@ -28,12 +35,15 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
         private void Start()
         {
             _playerInputActions = InputManager.Instance.PlayerInputActions;
+
+            if (_currentWeaponsSO.EquipRangeWeapon)
+            {
+                rangeWeaponData = (RangeWeaponSO)_currentWeaponsSO.EquipRangeWeapon;
+                SetWeapon(rangeWeaponData);
+                PlayerCurrentWeaponUI.Instance.SetRangeWeaponIcon(rangeWeaponData.ItemImage);
+            }
         }
 
-        public RangeWeapon(RangeWeaponSO data)
-        {
-            rangeWeaponData = data;
-        }
 
         private void Update()
         {
@@ -72,7 +82,7 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
                 Debug.LogError("RangeWeaponSO IS NULL");
                 return;
             }
-            
+
             rangeWeaponData = (RangeWeaponSO)rangeWeaponSo;
             switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
             GetComponent<SpriteRenderer>().sprite = rangeWeaponData.ItemImage;

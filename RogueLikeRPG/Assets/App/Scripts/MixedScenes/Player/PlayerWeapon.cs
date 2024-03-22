@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using App.Scripts.DungeonScene.Items;
 using App.Scripts.MixedScenes.Inventory.Model;
@@ -8,6 +9,7 @@ namespace App.Scripts.MixedScenes.Player
 {
     public class PlayerWeapon : MonoBehaviour
     {
+        public static PlayerWeapon Instance { get; private set; }
         [Header("Current Weapons")]
         [SerializeField] private CurrentWeaponsSO currentWeaponsSO;
         
@@ -16,6 +18,12 @@ namespace App.Scripts.MixedScenes.Player
 
         [Header("Inventory")]
         [SerializeField] private InventorySO inventoryData;
+
+        public void Awake()
+        {
+            Instance = this;
+        }
+        
         
         public void SetMeleeWeapon(WeaponItemSO weaponItemSO, List<ItemParameter> itemState)
         {

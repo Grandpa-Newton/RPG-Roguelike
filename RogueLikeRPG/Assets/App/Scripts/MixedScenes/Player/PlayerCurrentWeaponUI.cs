@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class PlayerCurrentWeaponUI : MonoBehaviour
 {
-    public static PlayerCurrentWeaponUI Instance { get; set; }
+    public static PlayerCurrentWeaponUI Instance { get; private set; }
+    
     [SerializeField] private Image meleeWeaponUI;
     [SerializeField] private Image meleeBackgroundImage;
     [SerializeField] private Image meleeWeaponIcon;

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CurrentWeapons_Player
   m_EditorClassIdentifier: 
   EquipMeleeWeapon: {fileID: 0}
-  EquipRangeWeapon: {fileID: 0}
+  EquipRangeWeapon: {fileID: 11400000, guid: 78756698a331de7439b3d0d7619cc86b, type: 2}

@@ -11,13 +11,12 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
         public override bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
             PlayerWeapon weaponSystem = character.GetComponent<PlayerWeapon>();
-            Weapon weapon = null;
         
             SwitchWeaponBetweenRangeAndMelee.Instance.SetActiveMeleeWeapon();
-            weapon = GameObject.Find("MeleeWeapon").GetComponent<MeleeWeapon>();
+            Weapon weapon = GameObject.Find("MeleeWeapon").GetComponent<MeleeWeapon>();
             if (weaponSystem != null)
             {
-                weaponSystem.SetMeleeWeapon(this, itemState == null ? DefaultParametersList : itemState);
+                weaponSystem.SetMeleeWeapon(this, itemState ?? DefaultParametersList);
                 weapon.SetWeapon(this);
             }
 
