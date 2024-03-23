@@ -6,14 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/App/Scenes/MapVariants/MapScene_01.unity
-    guid: 152bd0537c30bef408de5dcea11b1f0d
-  - enabled: 1
     path: Assets/App/Scenes/CellsLevelVariants/EasyLevelGenerateScene.unity
     guid: da7e6fd998c90254a83bdb51ef166086
   - enabled: 1
-    path: Assets/App/Scenes/MapVariants/FirstLevelMap_01.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/App/Scenes/MainMenuScene.unity
+    guid: 6d5f7638207fb9b47a9ea129b52f47a4
+  - enabled: 1
+    path: Assets/App/Scenes/MapVariants/MapScene_01.unity
+    guid: 152bd0537c30bef408de5dcea11b1f0d
+  - enabled: 1
+    path: Assets/App/Scenes/MapVariants/MapScene_02.unity
+    guid: b874e3670dcf4094cafbcb185677dbf9
   - enabled: 1
     path: Assets/App/Scenes/NewFitchesTest.unity
     guid: 395734568e7717e4db573f45b7d6fe4b

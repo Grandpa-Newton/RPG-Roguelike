@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8191
 --- !u!225 &1440562323799144214
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1618,7 +1618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f92ac2897bb7bb48af52609078a33ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiCellDescriptionSo: {fileID: 11400000, guid: cb5a59732002fad4dadc9897fa77ddca, type: 2}
+  fadeInCellDescription: {fileID: 0}
   levelName: {fileID: 2784092791392049056}
   levelDifficulty: {fileID: 2451077206838108720}
   difficultyColor: {fileID: 3192152500609040621}
