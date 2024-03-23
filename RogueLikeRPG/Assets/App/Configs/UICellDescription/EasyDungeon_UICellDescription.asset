@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f9ad1ed91c72744b88db45b39c62a6, type: 3}
   m_Name: EasyDungeon_UICellDescription
   m_EditorClassIdentifier: 
+  levelName: Dungeon
+  levelDifficulty: Easy
+  difficultyColor: {r: 0.3925382, g: 0.7075472, b: 0.27033645, a: 0}
+  enemyListOnLevel: []
+  illustrationImage: {fileID: 21300000, guid: 2c1ec2d4102b5a44d97ca83af0b5b9a7, type: 3}
+  levelDescription: 

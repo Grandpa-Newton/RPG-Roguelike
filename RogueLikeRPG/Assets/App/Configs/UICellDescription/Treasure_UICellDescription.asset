@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f9ad1ed91c72744b88db45b39c62a6, type: 3}
   m_Name: Treasure_UICellDescription
   m_EditorClassIdentifier: 
+  levelName: Treasure
+  levelDifficulty: Safely
+  difficultyColor: {r: 0.7735849, g: 0.5205833, b: 0.22258809, a: 0}
+  enemyListOnLevel: []
+  illustrationImage: {fileID: 21300000, guid: 1ba6a1ca946eb4d4ea897ef518f22dc9, type: 3}
+  levelDescription: There is something interesting here
