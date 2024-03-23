@@ -629,7 +629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.size
@@ -745,7 +745,7 @@ Transform:
   m_GameObject: {fileID: 409302365}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.971, y: 0.976, z: 0}
+  m_LocalPosition: {x: 5, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -779,7 +779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.size
@@ -1200,7 +1200,7 @@ Transform:
   m_GameObject: {fileID: 540948262}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.008, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1343,7 +1343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.size
@@ -1498,7 +1498,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 71e9940217d48524c9c9b6f14304aa18, type: 2}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.data[0]
@@ -1677,8 +1677,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4843b40543ced524fb23828db03fafa9, type: 2}
   - {fileID: 11400000, guid: 47b3eeb1b0652dd48971b654fda08f76, type: 2}
   lowerBorder: -10
-  gridWidth: 15
-  gridHeight: 25
+  gridWidth: 18
+  gridHeight: 40
 --- !u!4 &736938239
 Transform:
   m_ObjectHideFlags: 0
@@ -1754,7 +1754,7 @@ Transform:
   m_GameObject: {fileID: 769379668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: -0.01, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1778,7 +1778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.size
@@ -2125,7 +2125,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 71e9940217d48524c9c9b6f14304aa18, type: 2}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.data[0]
@@ -2134,7 +2134,11 @@ PrefabInstance:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.data[0].WayPoints.Array.data[1]
       value: 
-      objectReference: {fileID: 769379668}
+      objectReference: {fileID: 540948262}
+    - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+      propertyPath: Paths.Array.data[0].WayPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 409302365}
     - target: {fileID: 1924240950571133862, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2335,7 +2339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.size
@@ -2875,7 +2879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.size
@@ -2984,7 +2988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.size
@@ -4349,7 +4353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.size
@@ -4458,7 +4462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.size
@@ -4567,7 +4571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.size
@@ -4787,7 +4791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: Paths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.size
