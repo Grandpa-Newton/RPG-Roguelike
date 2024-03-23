@@ -3201,6 +3201,34 @@ PrefabInstance:
       propertyPath: m_Navigation.m_Mode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2254641987173871452, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254641987173871452, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254641987173871452, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1834678995}
+    - target: {fileID: 2254641987173871452, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254641987173871452, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ConfirmCell_performed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254641987173871452, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: App.Scripts.MixedScenes.Player.Control.MapPlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254641987173871452, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3187945095760142204, guid: d389f609e66bc2d4aa220bfb3260abef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3745,6 +3773,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
+--- !u!114 &1834678995 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3837420956897708726, guid: cc9eab7e40483bf458d38264ade5cf89, type: 3}
+  m_PrefabInstance: {fileID: 969436897452272857}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763f1362f9839cd46a5dd132cb528bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1979621470 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6987083260137727135, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
