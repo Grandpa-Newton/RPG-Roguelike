@@ -31,13 +31,17 @@ namespace App.Scripts.MapScene.UI
             levelDescription.text = uiCellDescriptionSo.levelDescription;*/
 
             MapPlayerController.Instance.OnChangingSelectingCell += Instance_OnChangingSelectingCell;
-            MapPlayerController.Instance.OnDeselectCells += Instance_OnDeselectCells;
+            MapPlayerController.Instance.OnSelectingCell += Instance_OnSelectingCell; ;
+        }
+
+        private void Instance_OnSelectingCell()
+        {
+            fadeInCellDescription.FadeOutM();
+            MapPlayerController.Instance.OnChangingSelectingCell -= Instance_OnChangingSelectingCell;
         }
 
         private void Instance_OnDeselectCells()
         {
-            fadeInCellDescription.FadeOutM();
-            MapPlayerController.Instance.OnChangingSelectingCell -= Instance_OnChangingSelectingCell;
         }
 
         private void Instance_OnChangingSelectingCell()
