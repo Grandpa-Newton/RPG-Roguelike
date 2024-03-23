@@ -84,10 +84,10 @@ namespace App.Scripts.MapScene.Cells
         protected void ConfigureObjectStart()
         {
             ChangeCellType();
-            if (!_isPassed) 
+            /*if (!_isPassed) 
             {
                 _cellIcon.ChangeSprite(CellData.OriginalSprite);
-            }
+            }*/
         }
 
         public void SetCellData(CellSO cellData)
