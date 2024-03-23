@@ -35,13 +35,19 @@ namespace App.Scripts.MixedScenes.Weapon
         private void Start()
         {
             if (currentWeaponsSO.EquipMeleeWeapon)
+            {
                 PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(currentWeaponsSO.EquipMeleeWeapon.ItemImage);
+            }
+
             if (currentWeaponsSO.EquipRangeWeapon)
+            {
                 PlayerCurrentWeaponUI.Instance.SetRangeWeaponIcon(currentWeaponsSO.EquipRangeWeapon.ItemImage);
+            }
 
 
             meleeWeapon.gameObject.SetActive(true);
             rangeWeapon.gameObject.SetActive(false);
+            PlayerCurrentWeaponUI.Instance.IncreaseMeleeWeaponScale();
             PlayerHandsVisible(false);
         }
 
