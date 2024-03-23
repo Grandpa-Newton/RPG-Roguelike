@@ -16,14 +16,19 @@ public class FadeInCellDescription : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        /*if (Input.GetKeyDown(KeyCode.J))
         {
             FadeInM();
-        }
+        }*/
     }
 
-    private void FadeInM()
+    public void FadeInM()
     {
         canvasGroup.DOFade(1, 1);
+    }
+
+    public void FadeOutM()
+    {
+        canvasGroup.DOFade(0, 1);
     }
 }

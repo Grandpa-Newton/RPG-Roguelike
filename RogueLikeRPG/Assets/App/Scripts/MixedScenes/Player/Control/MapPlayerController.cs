@@ -21,6 +21,8 @@ namespace App.Scripts.MixedScenes.Player.Control
 
         public event Action OnSelectingCell; // после выбора клетки
 
+        public event Action OnChangingSelectingCell;
+
 
         [SerializeField] private float _speed;
         [SerializeField] private GameObject _camera;
@@ -70,6 +72,8 @@ namespace App.Scripts.MixedScenes.Player.Control
                 {
                     CameraMover.Instance.ClickedCellTransform = _followObject; // если Selecting Cell обращается в ноль, то камера фокусируется на followObject (игрок) 
                 }
+
+                OnChangingSelectingCell?.Invoke();
             }
         }
 
@@ -190,8 +194,8 @@ namespace App.Scripts.MixedScenes.Player.Control
         private void SelectCell()
         {
             if (!_isMoving && SelectingCell != null &&
-                SelectingCell.gameObject.TryGetComponent(out _interactingCell) && 
-                _interactingCell.CellType == CellType.Selecting)
+                SelectingCell.gameObject.TryGetComponent(out _interactingCell)
+                 && _interactingCell.CellType == CellType.Selecting)
             {
                 OnDeselectCells?.Invoke();
 

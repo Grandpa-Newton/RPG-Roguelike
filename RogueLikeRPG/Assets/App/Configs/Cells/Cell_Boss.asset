@@ -16,3 +16,4 @@ MonoBehaviour:
   CellColor: {r: 0.46226418, g: 0.008961357, b: 0, a: 1}
   OriginalSprite: {fileID: -2021304744, guid: 5f0a9a1a95e73b64aa2ebac2fe08f01a, type: 3}
   NextSprite: {fileID: 0}
+  CellDescriptionData: {fileID: 11400000, guid: 6bfd053ab66b0fd49a79c884d83bf80e, type: 2}

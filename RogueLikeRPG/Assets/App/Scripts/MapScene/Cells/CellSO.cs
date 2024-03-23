@@ -12,5 +12,7 @@ namespace App.Scripts.MapScene.Cells
         public Sprite OriginalSprite; // спрайт, который применяет при создании
 
         public Sprite NextSprite; // спрайт, который используется после прохождения данного уровня
+
+        public UICellDescriptionSO CellDescriptionData;
     }
 }
