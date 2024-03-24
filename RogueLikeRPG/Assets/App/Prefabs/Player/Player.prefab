@@ -1559,7 +1559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314406969451076668, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowOrHideInventory
+      value: CloseInventory
       objectReference: {fileID: 0}
     - target: {fileID: 6314406969451076668, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

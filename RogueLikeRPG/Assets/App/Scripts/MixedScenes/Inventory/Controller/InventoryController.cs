@@ -227,14 +227,13 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
 
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                ShowOrHideInventory();
-            }
+            ShowOrHideInventory();
         }
 
-        public void ShowOrHideInventory()
+        private void ShowOrHideInventory()
         {
+            if (!Input.GetKeyDown(KeyCode.Tab)) return;
+            
             if (inventoryUI.isActiveAndEnabled == false)
             {
                 inventoryUI.Show();
@@ -248,6 +247,11 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             {
                 inventoryUI.Hide();
             }
+        }
+
+        public void CloseInventory()
+        {
+            inventoryUI.Hide();
         }
 
         public bool TryAddItem(ItemSO item)
