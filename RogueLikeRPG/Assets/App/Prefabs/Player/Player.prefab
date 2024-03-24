@@ -76,7 +76,7 @@ MonoBehaviour:
   hands:
   - {fileID: 4639642764309313730}
   - {fileID: 7867582400366363649}
-  currentPickedWeapon: {fileID: 8045914415567815399}
+  currentPickedWeapon: {fileID: 0}
   currentWeaponsSO: {fileID: 11400000, guid: 96e88bf987a79b44e84297db21166217, type: 2}
 --- !u!1 &1766668649823358690
 GameObject:

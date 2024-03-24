@@ -40,7 +40,6 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
             {
                 rangeWeaponData = (RangeWeaponSO)_currentWeaponsSO.EquipRangeWeapon;
                 SetWeapon(rangeWeaponData);
-                PlayerCurrentWeaponUI.Instance.SetRangeWeaponIcon(rangeWeaponData.ItemImage);
             }
         }
 
@@ -54,7 +53,6 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
         {
             if (!rangeWeaponData)
             {
-                switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(false);
                 return;
             }
 

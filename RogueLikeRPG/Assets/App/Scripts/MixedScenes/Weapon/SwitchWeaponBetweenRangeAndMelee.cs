@@ -34,25 +34,46 @@ namespace App.Scripts.MixedScenes.Weapon
 
         private void Start()
         {
+            if (!currentWeaponsSO.EquipRangeWeapon && !currentWeaponsSO.EquipMeleeWeapon)
+            {
+                PlayerHandsVisible(false);
+                return;
+            }
+
             if (currentWeaponsSO.EquipMeleeWeapon)
             {
                 PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(currentWeaponsSO.EquipMeleeWeapon.ItemImage);
+                meleeWeapon.gameObject.SetActive(true);
+                rangeWeapon.gameObject.SetActive(false);
+                currentPickedWeapon = meleeWeapon.gameObject;
+                PlayerCurrentWeaponUI.Instance.IncreaseMeleeWeaponScale();
             }
 
             if (currentWeaponsSO.EquipRangeWeapon)
             {
                 PlayerCurrentWeaponUI.Instance.SetRangeWeaponIcon(currentWeaponsSO.EquipRangeWeapon.ItemImage);
+                if (!currentWeaponsSO.EquipMeleeWeapon)
+                {
+                    meleeWeapon.gameObject.SetActive(false);
+                    rangeWeapon.gameObject.SetActive(true);
+                    currentPickedWeapon = rangeWeapon.gameObject;
+                    PlayerCurrentWeaponUI.Instance.IncreaseRangeWeaponScale();
+                }
             }
-
-
-            meleeWeapon.gameObject.SetActive(true);
-            rangeWeapon.gameObject.SetActive(false);
-            PlayerCurrentWeaponUI.Instance.IncreaseMeleeWeaponScale();
-            PlayerHandsVisible(false);
         }
 
         private void Update()
         {
+            SwapWeapon();
+        }
+
+        private void SwapWeapon()
+        {
+            if (!currentWeaponsSO.EquipMeleeWeapon || !currentWeaponsSO.EquipRangeWeapon)
+            {
+                return;
+            }
+
             timerToSwapWeapon += Time.deltaTime;
             if (Input.GetAxis("Mouse ScrollWheel") != 0 && !isRolling && timerToSwapWeapon > swapReloadTime)
             {
@@ -76,24 +97,40 @@ namespace App.Scripts.MixedScenes.Weapon
         {
             meleeWeapon.gameObject.SetActive(true);
             rangeWeapon.gameObject.SetActive(false);
+            
             currentPickedWeapon = meleeWeapon.gameObject;
+            
+            if (!currentWeaponsSO.EquipMeleeWeapon)
+            {
+                PlayerHandsVisible(true);
+            }
         }
 
         public void SetActiveRangeWeapon()
         {
-            meleeWeapon.gameObject.SetActive(false);
             rangeWeapon.gameObject.SetActive(true);
+            meleeWeapon.gameObject.SetActive(false);
+            
             currentPickedWeapon = rangeWeapon.gameObject;
+            
+            if (!currentWeaponsSO.EquipRangeWeapon)
+            {
+                PlayerHandsVisible(true);
+            }
         }
 
         public void WeaponAndHandsDisable()
         {
+            if (!currentPickedWeapon) return;
+            
             currentPickedWeapon.SetActive(false);
             PlayerHandsVisible(false);
         }
 
         public void WeaponAndHandsEnable()
         {
+            if (!currentPickedWeapon) return;
+            
             currentPickedWeapon.SetActive(true);
             PlayerHandsVisible(true);
         }

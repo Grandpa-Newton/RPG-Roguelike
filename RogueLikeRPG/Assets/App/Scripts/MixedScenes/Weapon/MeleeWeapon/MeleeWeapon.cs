@@ -37,7 +37,6 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
             {
                 meleeWeaponData = (MeleeWeaponSO)_currentWeaponsSO.EquipMeleeWeapon;
                 SetWeapon(meleeWeaponData);
-                PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(meleeWeaponData.ItemImage);
             }
         }
 
@@ -50,7 +49,6 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
         {
             if (!meleeWeaponData)
             {
-                switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(false);
                 return;
             }
 

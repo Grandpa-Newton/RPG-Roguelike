@@ -45,8 +45,8 @@ namespace App.Scripts.MixedScenes.Player
             if (Input.GetKeyDown(KeyCode.Space) && _isWalking)
             {
                 SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsDisable();
-                _playerAnimator.SetBool(IsRolling, true);
                 _isRolling = true;
+                _playerAnimator.SetBool(IsRolling, _isRolling);
                 OnPlayerRolling?.Invoke(_isRolling);
 
                 _playerAnimator.SetFloat(Horizontal, movementInputVector.x);
