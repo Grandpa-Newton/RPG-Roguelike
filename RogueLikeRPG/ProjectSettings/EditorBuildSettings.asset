@@ -27,6 +27,6 @@ EditorBuildSettings:
     path: Assets/App/Scenes/CellsLevelVariants/TreasureScene.unity
     guid: 011b2c0f80246b4438b8a9dc2f53c7a4
   - enabled: 1
-    path: Assets/App/Scenes/TradingSystemTest.unity
+    path: Assets/App/Scenes/CellsLevelVariants/TradingSystemTest.unity
     guid: 5770116295f8f2e4c98a82e193ec00b0
   m_configObjects: {}
