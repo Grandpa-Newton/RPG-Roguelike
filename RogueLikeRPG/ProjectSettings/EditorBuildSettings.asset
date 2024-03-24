@@ -18,15 +18,12 @@ EditorBuildSettings:
     path: Assets/App/Scenes/MapVariants/MapScene_02.unity
     guid: b874e3670dcf4094cafbcb185677dbf9
   - enabled: 1
-    path: Assets/App/Scenes/NewFitchesTest.unity
-    guid: 395734568e7717e4db573f45b7d6fe4b
-  - enabled: 1
     path: Assets/App/Scenes/MapVariants/LevelLoadingScreen.unity
     guid: d126a3a3d41ec7d409c64ef58bdb62b3
   - enabled: 1
     path: Assets/App/Scenes/CellsLevelVariants/TreasureScene.unity
     guid: 011b2c0f80246b4438b8a9dc2f53c7a4
   - enabled: 1
-    path: Assets/App/Scenes/CellsLevelVariants/TradingSystemTest.unity
+    path: Assets/App/Scenes/CellsLevelVariants/TraderShopScene.unity
     guid: 5770116295f8f2e4c98a82e193ec00b0
   m_configObjects: {}
