@@ -269,6 +269,8 @@ MonoBehaviour:
   CellId: 
   levelIconGameObject: {fileID: 2235679985839032448}
   NeighborsCells: []
+  PossibleCellData:
+  - {fileID: 11400000, guid: d3f566123372c604a8c77565793b2435, type: 2}
   _cellType: 1
   Paths: []
 --- !u!58 &8627574416287204945

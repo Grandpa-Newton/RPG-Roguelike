@@ -33,6 +33,7 @@ namespace App.Scripts.AllScenes.UI
         IEnumerator ExitAfterAnimation(string sceneToLoad)
         {
             yield return new WaitWhile(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f);
+            ShowPortalInteractButtonUI.SceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(sceneToLoad);
         }
 

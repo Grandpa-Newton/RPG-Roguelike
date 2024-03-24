@@ -4166,6 +4166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartCell
       objectReference: {fileID: 0}
+    - target: {fileID: 4109324407322925649, guid: 5d735ad17fee50944bdbe5c8b6e341da, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8195689664513202287, guid: 5d735ad17fee50944bdbe5c8b6e341da, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

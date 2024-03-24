@@ -17,6 +17,8 @@ public class ShowPortalInteractButtonUI : MonoBehaviour, IInteractAction
     [SerializeField] private string sceneName; 
     [SerializeField] private Canvas uiCanvas;
 
+    public static string SceneName;
+
     private void Start()
     {
         if (TryGetComponent(out _animator))
@@ -56,7 +58,7 @@ public class ShowPortalInteractButtonUI : MonoBehaviour, IInteractAction
             if (_animator && animationName.IsNullOrWhitespace())
             {
                 _animator.SetBool(animationName, _isInteractPressed);
-                SceneManager.LoadScene(sceneName);
+                SceneManager.LoadScene(SceneName);
             }
         }
     }
