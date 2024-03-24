@@ -55,17 +55,17 @@ public class MapLoader : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (string.IsNullOrEmpty(CurrentCellId)) // если клетка для спавна не задана, то берётся та, которая указывается в _spawnCell
-        {
-            CurrentCellId = _spawnCell.GetComponent<BaseCell>().CellId;
-        }
-
         //StartPanelLoadTransition.gameObject.SetActive(true);
 
         
     }
     private void Start()
     {
+
+        if (string.IsNullOrEmpty(CurrentCellId)) // если клетка для спавна не задана, то берётся та, которая указывается в _spawnCell
+        {
+            CurrentCellId = _spawnCell.GetComponent<BaseCell>().CellId;
+        }
         if (!WasSpawned)
         {
             GenerateCellsType();
@@ -187,6 +187,15 @@ public class MapLoader : MonoBehaviour
         BaseCell[] cells = UnityEngine.Object.FindObjectsOfType<BaseCell>();
 
         GameObject currentCell = null;
+
+        /*foreach (var item in cells)
+        {
+            Debug.LogError("CellID = " + item.CellId);
+        }
+
+        Debug.LogError("Current Cell Id = " + CurrentCellId);*/
+
+
 
         currentCell = cells.Where(c => c.CellId == CurrentCellId).FirstOrDefault().gameObject;
 

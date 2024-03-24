@@ -76,6 +76,7 @@ namespace App.Scripts.MapScene.Cells
         protected void ConfigureObject()
         {
             CellId = name + transform.position.ToString();
+            Debug.Log(CellId);
             _renderer = GetComponent<Renderer>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _cellIcon = levelIconGameObject.GetComponent<CellIcon>();
