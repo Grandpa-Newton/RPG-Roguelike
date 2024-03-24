@@ -501,7 +501,7 @@ MonoBehaviour:
   dropClip: {fileID: 8300000, guid: c66a4a1db6099e34ca14a09e09c6ec26, type: 3}
   audioSource: {fileID: 5958824334006302602}
   trader: {fileID: 0}
-  money: {fileID: 0}
+  money: {fileID: -8975176193684933671}
 --- !u!114 &7442927163657405319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1255,7 +1255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2467408428500612340, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2919180654212271142, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1535,11 +1535,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6163423160917566078, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6163423160917566078, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6163423160917566078, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
       propertyPath: m_AnchorMin.y

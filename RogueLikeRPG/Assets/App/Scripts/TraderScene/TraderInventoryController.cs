@@ -204,7 +204,8 @@ namespace App.Scripts.TraderScene
 
         public bool TryAddItem(ItemSO item)
         {
-            int reminder = inventoryData.AddItem(item, 1);// потом тут нужно будет сделать так, чтобы пользователь мог выбирать количество предметов для покупки
+            int reminder = inventoryData.AddItem(item, 1); // потом тут нужно будет сделать так, чтобы пользователь мог выбирать количество предметов для покупки
+            
             if (reminder == 0)
                 return true;
             else
