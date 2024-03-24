@@ -14,7 +14,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         [SerializeField] private UIInventoryPage inventoryUI;
 
         [SerializeField] private InventorySO inventoryData;
-        
+
         public List<InventoryItem> initialItems = new List<InventoryItem>();
 
         [SerializeField] private AudioClip dropClip;
@@ -47,6 +47,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                     inventoryData.AddItem(item);
                 }
             }
+
             inventoryData.OnInventoryUpdated += UpdateInventoryUI;
         }
 
@@ -89,7 +90,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                 inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
             }
 
-            if(trader != null)
+            if (trader != null)
             {
                 inventoryUI.AddAction("Sell", () => SellItem(inventoryItem, itemIndex));
             }
@@ -105,6 +106,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                 {
                     inventoryData.RemoveItem(itemIndex, 1);
                 }
+
                 if (inventoryData.GetItemAt(itemIndex).IsEmpty)
                     inventoryUI.ResetSelection();
             }
@@ -122,7 +124,8 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             if (traderMoney.CanAffordReduceMoney(itemSO.ItemSellCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Trader can afford it");
-                if (trader.GetComponent<TraderInventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
+                if (trader.GetComponent<TraderInventoryController>()
+                    .TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
                     traderMoney.TryReduceMoney(itemSO.ItemSellCost);
                     money.AddMoney(itemSO.ItemSellCost);
@@ -143,7 +146,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
 
         private void DropItem(int itemIndex, int quantity)
         {
-            inventoryData.RemoveItem(itemIndex, quantity);  
+            inventoryData.RemoveItem(itemIndex, quantity);
             inventoryUI.ResetSelection();
             audioSource.PlayOneShot(dropClip);
         }
@@ -165,7 +168,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             {
                 itemAction.PerformAction(gameObject, inventoryItem.itemState);
                 inventoryUI.ResetSelection();
-                if(inventoryData.GetItemAt(itemIndex).IsEmpty)
+                if (inventoryData.GetItemAt(itemIndex).IsEmpty)
                     inventoryUI.ResetSelection();
             }
         }
@@ -226,30 +229,36 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                if (inventoryUI.isActiveAndEnabled == false)
-                {
-                    inventoryUI.Show();
+                ShowOrHideInventory();
+            }
+        }
 
-                    foreach (var item in inventoryData.GetCurrentInventoryState())
-                    {
-                        inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
-                    }
-                }
-                else
+        public void ShowOrHideInventory()
+        {
+            if (inventoryUI.isActiveAndEnabled == false)
+            {
+                inventoryUI.Show();
+
+                foreach (var item in inventoryData.GetCurrentInventoryState())
                 {
-                    inventoryUI.Hide();
+                    inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
                 }
+            }
+            else
+            {
+                inventoryUI.Hide();
             }
         }
 
         public bool TryAddItem(ItemSO item)
         {
-            int reminder = inventoryData.AddItem(item, 1);// потом тут нужно будет сделать так, чтобы пользователь мог выбирать количество предметов для покупки
+            int reminder =
+                inventoryData.AddItem(item,
+                    1); // потом тут нужно будет сделать так, чтобы пользователь мог выбирать количество предметов для покупки
             if (reminder == 0)
                 return true;
             else
                 return false;
         }
-
     }
 }
