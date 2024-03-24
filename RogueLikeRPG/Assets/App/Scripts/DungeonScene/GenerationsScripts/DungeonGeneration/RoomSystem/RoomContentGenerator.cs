@@ -12,6 +12,7 @@ public class RoomContentGenerator : MonoBehaviour
 {
     [SerializeField] private RoomGenerator[] enemyRooms;
     [SerializeField] private RoomGenerator playerRoom;
+    [SerializeField] private RoomGenerator exitRoom;
 
     List<GameObject> spawnedObjects = new List<GameObject>();
 
@@ -65,6 +66,7 @@ public class RoomContentGenerator : MonoBehaviour
         spawnedObjects.Clear();
 
         SelectPlayerSpawnPoint(dungeonData);
+        SelectExitSpawnPoint(dungeonData);
         SelectEnemySpawnPoints(dungeonData);
         
         foreach (GameObject item in spawnedObjects)
@@ -74,6 +76,23 @@ public class RoomContentGenerator : MonoBehaviour
         }
     }
 
+    private void SelectExitSpawnPoint(DungeonData dungeonData)
+    {
+        int randomRoomIndex = UnityEngine.Random.Range(0, dungeonData.roomsDictionary.Count);
+        Vector2Int playerSpawnPoint = dungeonData.roomsDictionary.Keys.ElementAt(randomRoomIndex);
+        
+        Vector2Int roomIndex = dungeonData.roomsDictionary.Keys.ElementAt(randomRoomIndex);
+        
+        List<GameObject> placedPrefabs = exitRoom.ProcessRoom(
+            playerSpawnPoint,
+            dungeonData.roomsDictionary.Values.ElementAt(randomRoomIndex),
+            dungeonData.GetRoomFloorWithoutCorridors(roomIndex)
+        );
+        
+        spawnedObjects.AddRange(placedPrefabs);
+        
+        dungeonData.roomsDictionary.Remove(playerSpawnPoint);
+    }
     private void SelectPlayerSpawnPoint(DungeonData dungeonData)
     {
         int randomRoomIndex = UnityEngine.Random.Range(0, dungeonData.roomsDictionary.Count);
