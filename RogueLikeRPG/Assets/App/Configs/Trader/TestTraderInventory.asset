@@ -13,31 +13,13 @@ MonoBehaviour:
   m_Name: TestTraderInventory
   m_EditorClassIdentifier: 
   inventoryItems:
-  - quantity: 2
+  - quantity: 4
     item: {fileID: 11400000, guid: 4e3c1e44673a8c74dbcafa6adc0fc4c5, type: 2}
     itemState: []
-  - quantity: 0
-    item: {fileID: 0}
+  - quantity: 1
+    item: {fileID: 11400000, guid: 46b6e0fcf21e257489ead109c7fff2f4, type: 2}
     itemState: []
-  - quantity: 0
-    item: {fileID: 0}
+  - quantity: 1
+    item: {fileID: 11400000, guid: 78756698a331de7439b3d0d7619cc86b, type: 2}
     itemState: []
-  - quantity: 0
-    item: {fileID: 0}
-    itemState: []
-  - quantity: 0
-    item: {fileID: 0}
-    itemState: []
-  - quantity: 0
-    item: {fileID: 0}
-    itemState: []
-  - quantity: 0
-    item: {fileID: 0}
-    itemState: []
-  - quantity: 0
-    item: {fileID: 0}
-    itemState: []
-  - quantity: 0
-    item: {fileID: 0}
-    itemState: []
-  <Size>k__BackingField: 10
+  <Size>k__BackingField: 3

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6049996250637389803}
   - component: {fileID: 1413864846789238679}
   - component: {fileID: 7393292991519112444}
+  - component: {fileID: -5183441725241236895}
   m_Layer: 11
   m_Name: PickItem_Coin
   m_TagString: Untagged
@@ -394,3 +395,15 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &-5183441725241236895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2172642507834302927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb1bd76e767d8f42b26cf2665b1616a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
