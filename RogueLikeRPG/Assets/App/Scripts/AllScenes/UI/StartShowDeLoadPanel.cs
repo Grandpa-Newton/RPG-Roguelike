@@ -34,6 +34,7 @@ namespace App.Scripts.AllScenes.UI
         {
             yield return new WaitWhile(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f);
             ShowPortalInteractButtonUI.SceneName = SceneManager.GetActiveScene().name;
+            SceneLoader.NEXT_SCENE_TO_LOAD = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(sceneToLoad);
         }
 
