@@ -165,9 +165,3 @@ namespace App.Scripts.MixedScenes.Player.Control
         }
     }
 }
-
-// [SerializeField] private VisualEffect vfxRenderer;
-/*private void VFXRenderer()
-{
-    vfxRenderer.SetVector3("ColliderPos", transform.position);
-}*/
