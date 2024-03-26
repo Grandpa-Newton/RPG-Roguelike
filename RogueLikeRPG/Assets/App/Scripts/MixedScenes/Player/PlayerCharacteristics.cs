@@ -1,22 +1,48 @@
 using System;
+using App.Scripts.MixedScenes.Player.Interface;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Player
 {
-    public class PlayerCharacteristics : MonoBehaviour, IHealth
+    public class PlayerCharacteristics : IHealth,IMove
     {
+        private Rigidbody2D _rigidbody2D;
+        private Vector2 _moveDirection;
+        private Vector2 _rollDirection;
         public float maxHealth { get; private set; }
         public FloatValueSO currentHealth { get; private set; }
         
-        public event Action OnHealthReduce;
+        public float moveSpeed { get; private set; }
+        public float rollSpeed { get; private set; }
+
+        public bool isMoving { get; private set; }
+        public bool isRolling { get; private set; }
+        
+        public event Action OnPlayerHealthReduce;
+        public event Action OnPlayerIncreaseHealth;
+        public event Action OnPlayerDie;
+
+        public PlayerCharacteristics(Rigidbody2D rigidbody2D)
+        {
+            _rigidbody2D = rigidbody2D;
+            //InitializeHealth();
+        }
         
         public void IncreaseHealth(int healthToIncrease)
         {
+            OnPlayerIncreaseHealth?.Invoke();
             int health = Mathf.RoundToInt(currentHealth.CurrentValue * maxHealth);
             int val = health + healthToIncrease;
             currentHealth.CurrentValue = val > maxHealth ? 1 : val / maxHealth;
         }
-
+        private PlayerInputActions _playerInputActions;
+        private Vector2 GetMovementInputVector(PlayerInputActions playerInputActions)
+        {
+            _playerInputActions = playerInputActions;
+            Vector2 input = _playerInputActions.Player.Movement.ReadValue<Vector2>();
+            isMoving = input.magnitude > 0;
+            return input;
+        }
         public void IncreaseMaxHealth(int maxHealthToIncrease)
         {
             maxHealth = maxHealthToIncrease;
@@ -24,16 +50,18 @@ namespace App.Scripts.MixedScenes.Player
 
         public void ReduceHealth(int healthToReduce)
         {
-            OnHealthReduce?.Invoke();
+            OnPlayerHealthReduce?.Invoke();
             currentHealth.CurrentValue -= healthToReduce / maxHealth;
             if (currentHealth.CurrentValue <= 0)
             {
+                
                 Die();
             }
         }
 
         public void Die()
         {
+            OnPlayerDie?.Invoke();
             currentHealth.CurrentValue = 1;
         }
 
@@ -44,6 +72,39 @@ namespace App.Scripts.MixedScenes.Player
                 currentHealth.CurrentValue = 1;
                 currentHealth.IsInitialized = true;
             }
+        }
+
+        public void Move(Vector2 moveDirection)
+        {
+            if (!isRolling)
+            {
+                
+                _rigidbody2D.velocity = moveDirection.normalized * CalculateSpeed();
+            }
+            else
+            {
+                _rigidbody2D.velocity = _rollDirection * rollSpeed;
+            }
+        }
+
+        public void Roll(Vector2 rollDirection, bool isRoll)
+        {
+            _rollDirection = rollDirection;
+            isRolling = isRoll;
+            if (isRolling)
+            {
+                _rigidbody2D.velocity = _rollDirection * rollSpeed;
+            }
+        }
+        
+        private float CalculateSpeed()
+        {
+            if (isMoving)
+            {
+                return moveSpeed;
+            }
+
+            return 0;
         }
     }
 }
