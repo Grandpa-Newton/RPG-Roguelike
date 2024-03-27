@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class PlayerHealth : IHealth
 {
-    public float maxHealth { get; private set; }
-    public FloatValueSO playerHealth { get; }
+    public int maxHealth { get; private set; }
+    public CharacteristicValueSO playerHealth { get; }
         
     public event Action OnPlayerHealthReduce;
     public event Action OnPlayerIncreaseHealth;
     public event Action<int> OnPlayerIncreaseMaxHealth;
     public event Action OnPlayerDie;
 
-    public PlayerHealth(FloatValueSO playerHealth)
+    public PlayerHealth(CharacteristicValueSO playerHealth)
     {
         this.playerHealth = playerHealth;
     }
@@ -22,7 +22,7 @@ public class PlayerHealth : IHealth
     {
         int health = Mathf.RoundToInt(playerHealth.CurrentValue * maxHealth);
         int val = health + healthToIncrease;
-        playerHealth.CurrentValue = val > maxHealth ? 1 : val / maxHealth;
+        playerHealth.CurrentValue = val > maxHealth ? playerHealth.MaxValue : val / maxHealth;
         OnPlayerIncreaseHealth?.Invoke();
     }
     [Button]

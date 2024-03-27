@@ -9,8 +9,8 @@ namespace App.Scripts.MixedScenes.Player
         private Rigidbody2D _rigidbody2D;
         private Vector2 _moveDirection;
         private Vector2 _rollDirection;
-        public float maxHealth { get; private set; }
-        public FloatValueSO playerHealth { get; private set; }
+        public int maxHealth { get; private set; }
+        public CharacteristicValueSO playerHealth { get; private set; }
         
         public float moveSpeed { get; private set; }
         public float rollSpeed { get; private set; }

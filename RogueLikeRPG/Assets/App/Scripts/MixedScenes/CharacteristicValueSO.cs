@@ -5,12 +5,12 @@ using UnityEngine.Serialization;
 namespace App.Scripts.MixedScenes
 {
     [CreateAssetMenu(menuName ="Data/FloatData")]
-    public class FloatValueSO : ScriptableObject
+    public class CharacteristicValueSO : ScriptableObject
     {
-        [SerializeField] private float currentValue;
+        [SerializeField] private int currentValue;
 
-        [SerializeField] private float _maxValue;
-        public float CurrentValue
+        [SerializeField] private int _maxValue;
+        public int CurrentValue
         {
             get => currentValue;
             set
@@ -21,7 +21,7 @@ namespace App.Scripts.MixedScenes
 
         }
     
-        public float MaxValue
+        public int MaxValue
         {
             get => _maxValue;
             set

@@ -2,6 +2,8 @@ using System;
 using App.Scripts.MixedScenes.Weapon;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 // ReSharper disable Unity.InefficientPropertyAccess
 
 namespace App.Scripts.MixedScenes.Player.Control
@@ -12,7 +14,7 @@ namespace App.Scripts.MixedScenes.Player.Control
         private Health _health;
         
         public PlayerHealth playerHealth { get; private set; }
-        [SerializeField] private FloatValueSO floatValue;
+        [FormerlySerializedAs("floatValue")] [SerializeField] private CharacteristicValueSO characteristicValue;
         
         private Rigidbody2D _rigidbody2D;
         private PlayerInputActions _playerInputActions;
@@ -50,7 +52,7 @@ namespace App.Scripts.MixedScenes.Player.Control
                 EnablePlayerComponents();
             }
             
-            playerHealth = new PlayerHealth(floatValue);
+            playerHealth = new PlayerHealth(characteristicValue);
             
             _health = GetComponent<Health>();
             PlayerAnimator.OnPlayerRolling += SetRollingState;

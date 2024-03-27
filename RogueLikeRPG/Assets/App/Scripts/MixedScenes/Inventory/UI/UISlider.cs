@@ -17,11 +17,11 @@ namespace App.Scripts.MixedScenes.Inventory.UI
         [SerializeField] private RectTransform healthTextTransform;
         [SerializeField] private Image sliderImage;
 
-        [SerializeField] private FloatValueSO floatValue;
+        [FormerlySerializedAs("floatValue")] [SerializeField] private CharacteristicValueSO characteristicValue;
         
         private void Start()
         {
-            _playerHealth = new PlayerHealth(floatValue);
+            _playerHealth = new PlayerHealth(characteristicValue);
             _playerHealth.OnPlayerIncreaseMaxHealth += UpdateHealthBarSize;
             SetValue();
         }
@@ -31,8 +31,8 @@ namespace App.Scripts.MixedScenes.Inventory.UI
             if (Input.GetKeyDown(KeyCode.V))
             {
                 //floatValue.CurrentValue += 0.1f;
-                floatValue.MaxValue += 0.1f;
-                floatValue.CurrentValue += 0.1f;
+                characteristicValue.MaxValue += 10;
+                characteristicValue.CurrentValue += 10;
                 SetValue();
                 UpdateHealthBarSize(IncreaseHealthBarWidthAtTime);
             }
@@ -40,9 +40,9 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 
         private void SetValue()
         {
-            sliderImage.fillAmount = Mathf.Clamp01(floatValue.CurrentValue / floatValue.MaxValue);
+            sliderImage.fillAmount = Mathf.Clamp01(characteristicValue.CurrentValue / (float)characteristicValue.MaxValue);
             healthText.text =
-                $" {Mathf.RoundToInt(floatValue.CurrentValue)} / {Mathf.RoundToInt(floatValue.MaxValue)}";
+                $" {Mathf.RoundToInt(characteristicValue.CurrentValue)} / {Mathf.RoundToInt(characteristicValue.MaxValue)}";
 
         }
 
@@ -60,12 +60,12 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 
         private void OnEnable()
         {
-            floatValue.OnValueChange += SetValue;
+            characteristicValue.OnValueChange += SetValue;
         }
 
         private void OnDisable()
         {
-            floatValue.OnValueChange -= SetValue;
+            characteristicValue.OnValueChange -= SetValue;
         }
     }
 }

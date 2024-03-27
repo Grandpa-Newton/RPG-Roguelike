@@ -11,7 +11,7 @@ namespace App.Scripts.DungeonScene.Enemy
     public class Enemy : MonoBehaviour, IDamageable
     {
         private PlayerHealth _playerHealth;
-        [SerializeField] private FloatValueSO _floatValueSO;
+        [FormerlySerializedAs("_floatValueSO")] [SerializeField] private CharacteristicValueSO characteristicValueSO;
         
         [SerializeField] private EnemySO enemySo;
         [SerializeField] private LayerMask hittable;
@@ -30,7 +30,7 @@ namespace App.Scripts.DungeonScene.Enemy
 
         private void Start()
         {
-            _playerHealth = new PlayerHealth(_floatValueSO);
+            _playerHealth = new PlayerHealth(characteristicValueSO);
             InitializeStatsFromSO();
             _player = FindObjectOfType<Player>();
         }

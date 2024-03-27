@@ -14,5 +14,6 @@ namespace App.Scripts.MixedScenes.Inventory.Model.StatsModifiers
                 health.AddHealth((int)val);
             }
         }
+        
     }
 }

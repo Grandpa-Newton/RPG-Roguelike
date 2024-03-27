@@ -6,8 +6,8 @@ namespace App.Scripts.MixedScenes.Player
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] private float maxHealth = 100f;
-        [SerializeField] private FloatValueSO currentHealth;
+        [SerializeField] private int maxHealth = 100;
+        [SerializeField] private CharacteristicValueSO currentHealth;
 
         public event Action OnHealthReduce;
         
@@ -38,7 +38,7 @@ namespace App.Scripts.MixedScenes.Player
         private void Die()
         {
             Debug.Log("Died");
-            currentHealth.CurrentValue = 0.5f;
+            currentHealth.CurrentValue = 50;
         }
 
     
