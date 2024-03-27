@@ -29,7 +29,7 @@ public class ShowPortalInteractButtonUI : MonoBehaviour, IInteractAction
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerController>() && !_isInteractPressed)
+        if (other.GetComponent<Player>() && !_isInteractPressed)
         {
             _isInsideTrigger = true;
             uiCanvas.gameObject.SetActive(true);
@@ -38,7 +38,7 @@ public class ShowPortalInteractButtonUI : MonoBehaviour, IInteractAction
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerController>() && !_isInteractPressed)
+        if (other.GetComponent<Player>() && !_isInteractPressed)
         {
             _isInsideTrigger = false;
             uiCanvas.gameObject.SetActive(false);

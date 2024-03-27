@@ -7,8 +7,7 @@ namespace App.Scripts.MixedScenes
     [CreateAssetMenu(menuName ="Data/FloatData")]
     public class FloatValueSO : ScriptableObject
     {
-        [FormerlySerializedAs("_value")] [SerializeField]
-        private float currentValue;
+        [SerializeField] private float currentValue;
 
         [SerializeField] private float _maxValue;
         public float CurrentValue
@@ -17,7 +16,7 @@ namespace App.Scripts.MixedScenes
             set
             {
                 currentValue = value;
-                OnValueChange?.Invoke(currentValue);
+                OnValueChange?.Invoke();
             }
 
         }
@@ -28,13 +27,13 @@ namespace App.Scripts.MixedScenes
             set
             {
                 _maxValue = value;
-                OnValueChange?.Invoke(_maxValue);
+                OnValueChange?.Invoke();
             }
 
         }
 
         public bool IsInitialized;
-        public event Action<float> OnValueChange;
+        public event Action OnValueChange;
 
     }
 }

@@ -4,7 +4,7 @@ using DG.Tweening;
 
 namespace App.Scripts.MixedScenes.Player
 {
-    public class Health
+    public class Health : MonoBehaviour
     {
         [SerializeField] private float maxHealth = 100f;
         [SerializeField] private FloatValueSO currentHealth;
@@ -38,7 +38,7 @@ namespace App.Scripts.MixedScenes.Player
         private void Die()
         {
             Debug.Log("Died");
-            currentHealth.CurrentValue = 1;
+            currentHealth.CurrentValue = 0.5f;
         }
 
     

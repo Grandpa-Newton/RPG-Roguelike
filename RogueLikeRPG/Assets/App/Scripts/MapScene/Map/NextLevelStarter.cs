@@ -13,11 +13,11 @@ public class NextLevelStarter : MonoBehaviour
 {
     public Transform Player;
     [SerializeField] private GameObject panel;
-    private PlayerController _playerController;
+    private Player _player;
     [SerializeField] private StartShowDeLoadPanel _startShowDeLoadPanel;
     private void Awake()
     {
-        _playerController = Player.GetComponent<PlayerController>();
+        _player = Player.GetComponent<Player>();
     }
 
     public void InCurrentCell() // когда игрок дошёл до новой клетки (мб поменять название)
@@ -47,7 +47,7 @@ public class NextLevelStarter : MonoBehaviour
         //StartCoroutine(WaitAMinute());
         //SceneManager.LoadScene(cell.CellData.SceneToLoad); // мб лучше сделать sceneToLoad не пабликом, а вызывать как-то событием / методом
         // (теперь через SO сделано - не уверен)
-        _playerController.enabled = true;
+        _player.enabled = true;
         /* LoadTransition.Instance.gameObject.SetActive(true);
         LoadTransition.Instance.nextLevelStarter = this; */
 

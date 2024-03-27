@@ -6,7 +6,7 @@ namespace App.Scripts.MixedScenes.Player
 {
     public class PlayerAnimator : MonoBehaviour
     {
-        private PlayerController _playerController;
+        private Control.Player _player;
         private Animator _playerAnimator;
 
         public delegate void RollingAction(bool isRolling);
@@ -23,10 +23,10 @@ namespace App.Scripts.MixedScenes.Player
 
         private void Awake()
         {
-            _playerController = GetComponent<PlayerController>();
+            _player = GetComponent<Control.Player>();
             _playerAnimator = GetComponent<Animator>();
-            _playerController.OnPlayerMovement += Player_OnPlayerMovement;
-            _playerController.OnPlayerMouseMovement += Player_OnPlayerMouseMovement;
+            _player.OnPlayerMovement += Player_OnPlayerMovement;
+            _player.OnPlayerMouseMovement += Player_OnPlayerMouseMovement;
         }
 
         private void Player_OnPlayerMouseMovement(Vector2 movementInputVector, Vector2 worldMouseVectorPosition)
@@ -88,8 +88,8 @@ namespace App.Scripts.MixedScenes.Player
 
         private void OnDestroy()
         {
-            _playerController.OnPlayerMovement -= Player_OnPlayerMovement;
-            _playerController.OnPlayerMouseMovement -= Player_OnPlayerMouseMovement;
+            _player.OnPlayerMovement -= Player_OnPlayerMovement;
+            _player.OnPlayerMouseMovement -= Player_OnPlayerMouseMovement;
         }
     }
 }

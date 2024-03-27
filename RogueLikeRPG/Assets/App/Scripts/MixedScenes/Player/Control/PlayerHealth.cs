@@ -1,41 +1,44 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using App.Scripts.MixedScenes;
 using App.Scripts.MixedScenes.Player.Interface;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class PlayerHealth : IHealth
 {
     public float maxHealth { get; private set; }
-    public FloatValueSO currentHealth { get; }
+    public FloatValueSO playerHealth { get; }
         
     public event Action OnPlayerHealthReduce;
     public event Action OnPlayerIncreaseHealth;
+    public event Action<int> OnPlayerIncreaseMaxHealth;
     public event Action OnPlayerDie;
 
-    public PlayerHealth(FloatValueSO currentHealth)
+    public PlayerHealth(FloatValueSO playerHealth)
     {
-        this.currentHealth = currentHealth;
+        this.playerHealth = playerHealth;
     }
     public void IncreaseHealth(int healthToIncrease)
     {
-        int health = Mathf.RoundToInt(currentHealth.CurrentValue * maxHealth);
+        int health = Mathf.RoundToInt(playerHealth.CurrentValue * maxHealth);
         int val = health + healthToIncrease;
-        currentHealth.CurrentValue = val > maxHealth ? 1 : val / maxHealth;
+        playerHealth.CurrentValue = val > maxHealth ? 1 : val / maxHealth;
         OnPlayerIncreaseHealth?.Invoke();
     }
-    
+    [Button]
     public void IncreaseMaxHealth(int maxHealthToIncrease)
     {
         maxHealth = maxHealthToIncrease;
+        OnPlayerIncreaseMaxHealth?.Invoke(maxHealthToIncrease);
     }
 
     public void ReduceHealth(int healthToReduce)
     {
-        currentHealth.CurrentValue -= healthToReduce / maxHealth;
         OnPlayerHealthReduce?.Invoke();
-        if (currentHealth.CurrentValue <= 0)
+        playerHealth.CurrentValue -= healthToReduce;
+        Debug.Log(playerHealth.CurrentValue + "-=" + healthToReduce + "/" + playerHealth.MaxValue);
+        Debug.Log(playerHealth.CurrentValue);
+        if (playerHealth.CurrentValue <= 0)
         {
             Die();
         }
@@ -44,15 +47,15 @@ public class PlayerHealth : IHealth
     public void Die()
     {
         OnPlayerDie?.Invoke();
-        currentHealth.CurrentValue = 1;
+        playerHealth.CurrentValue = playerHealth.MaxValue;
     }
     
     public void InitializeHealth()
     {
-        if (!currentHealth.IsInitialized)
+        if (!playerHealth.IsInitialized)
         {
-            currentHealth.CurrentValue = 1;
-            currentHealth.IsInitialized = true;
+            playerHealth.CurrentValue = playerHealth.MaxValue;
+            playerHealth.IsInitialized = true;
         }
     }
     

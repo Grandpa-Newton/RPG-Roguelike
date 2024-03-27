@@ -6,10 +6,14 @@ using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Player.Control
 {
-    public class PlayerController : MonoBehaviour
+    public class Player : MonoBehaviour
     {
         private CinemachineVirtualCamera _virtualCamera;
-        private Health _playerHealth;
+        private Health _health;
+        
+        public PlayerHealth playerHealth { get; private set; }
+        [SerializeField] private FloatValueSO floatValue;
+        
         private Rigidbody2D _rigidbody2D;
         private PlayerInputActions _playerInputActions;
         private Camera _camera;
@@ -33,7 +37,7 @@ namespace App.Scripts.MixedScenes.Player.Control
         private Vector2 _worldMousePos;
         private Vector2 _inputVector;
         private Vector2 _rollDirection;
-        
+      //  [SerializeField] private FloatValueSO floatValue;
     
         void Awake() {
             if (FindObjectsOfType(GetType()).Length > 1)
@@ -46,11 +50,11 @@ namespace App.Scripts.MixedScenes.Player.Control
                 EnablePlayerComponents();
             }
             
-          
+            playerHealth = new PlayerHealth(floatValue);
             
-            _playerHealth = GetComponent<Health>();
+            _health = GetComponent<Health>();
             PlayerAnimator.OnPlayerRolling += SetRollingState;
-            _playerHealth.OnHealthReduce += OnPlayerHealthReduce;
+            _health.OnHealthReduce += OnPlayerHealthReduce;
         }
 
         private void Start()
@@ -160,7 +164,7 @@ namespace App.Scripts.MixedScenes.Player.Control
 
         private void OnDestroy()
         {
-            _playerHealth.OnHealthReduce -= OnPlayerHealthReduce;
+            _health.OnHealthReduce -= OnPlayerHealthReduce;
             PlayerAnimator.OnPlayerRolling -= SetRollingState;
         }
     }

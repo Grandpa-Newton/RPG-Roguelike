@@ -80,7 +80,7 @@ namespace App.Scripts.TreasureScene
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.GetComponent<PlayerController>() && !_isChestOpened)
+            if (other.GetComponent<Player>() && !_isChestOpened)
             {
                 _isInsideTrigger = true;
                 uiCanvas.gameObject.SetActive(true);
@@ -89,7 +89,7 @@ namespace App.Scripts.TreasureScene
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.GetComponent<PlayerController>() && !_isChestOpened)
+            if (other.GetComponent<Player>() && !_isChestOpened)
             {
                 _isInsideTrigger = false;
                 uiCanvas.gameObject.SetActive(false);

@@ -2,7 +2,7 @@ namespace App.Scripts.MixedScenes.Player.Interface
 {
     public interface IHealth {
         public float maxHealth { get; }
-        public FloatValueSO currentHealth { get; }
+        public FloatValueSO playerHealth { get; }
 
 
         public void IncreaseHealth(int healthToIncrease);

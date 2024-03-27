@@ -10,7 +10,7 @@ namespace App.Scripts.MixedScenes.Player
         private Vector2 _moveDirection;
         private Vector2 _rollDirection;
         public float maxHealth { get; private set; }
-        public FloatValueSO currentHealth { get; private set; }
+        public FloatValueSO playerHealth { get; private set; }
         
         public float moveSpeed { get; private set; }
         public float rollSpeed { get; private set; }
@@ -31,9 +31,9 @@ namespace App.Scripts.MixedScenes.Player
         public void IncreaseHealth(int healthToIncrease)
         {
             OnPlayerIncreaseHealth?.Invoke();
-            int health = Mathf.RoundToInt(currentHealth.CurrentValue * maxHealth);
+            int health = Mathf.RoundToInt(playerHealth.CurrentValue * maxHealth);
             int val = health + healthToIncrease;
-            currentHealth.CurrentValue = val > maxHealth ? 1 : val / maxHealth;
+            playerHealth.CurrentValue = val > maxHealth ? 1 : val / maxHealth;
         }
         private PlayerInputActions _playerInputActions;
         private Vector2 GetMovementInputVector(PlayerInputActions playerInputActions)
@@ -51,8 +51,8 @@ namespace App.Scripts.MixedScenes.Player
         public void ReduceHealth(int healthToReduce)
         {
             OnPlayerHealthReduce?.Invoke();
-            currentHealth.CurrentValue -= healthToReduce / maxHealth;
-            if (currentHealth.CurrentValue <= 0)
+            playerHealth.CurrentValue -= healthToReduce / maxHealth;
+            if (playerHealth.CurrentValue <= 0)
             {
                 
                 Die();
@@ -62,15 +62,15 @@ namespace App.Scripts.MixedScenes.Player
         public void Die()
         {
             OnPlayerDie?.Invoke();
-            currentHealth.CurrentValue = 1;
+            playerHealth.CurrentValue = 1;
         }
 
         public void InitializeHealth()
         {
-            if (!currentHealth.IsInitialized)
+            if (!playerHealth.IsInitialized)
             {
-                currentHealth.CurrentValue = 1;
-                currentHealth.IsInitialized = true;
+                playerHealth.CurrentValue = 1;
+                playerHealth.IsInitialized = true;
             }
         }
 

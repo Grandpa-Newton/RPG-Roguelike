@@ -8,7 +8,7 @@ namespace App.Scripts.DungeonScene.Enemy
     public class EnemyAI : MonoBehaviour
     {
         [SerializeField] private float distanceToPlayer;
-        private PlayerController player;
+        private Player player;
         private NavMeshAgent _agent;
         public event Action<Vector2> OnEnemyMovement;
         void Start()
@@ -16,14 +16,14 @@ namespace App.Scripts.DungeonScene.Enemy
             _agent = GetComponent<NavMeshAgent>();
             _agent.updateRotation = false;
             _agent.updateUpAxis = false;
-            player = FindObjectOfType<PlayerController>();
+            player = FindObjectOfType<Player>();
         }
 
         void Update()
         { 
             if (!player)
             {
-                player = FindObjectOfType<PlayerController>();
+                player = FindObjectOfType<Player>();
             }
 
             if (player != null && _agent.isOnNavMesh)
