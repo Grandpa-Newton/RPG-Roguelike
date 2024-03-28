@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryItems:
   - quantity: 1
-    item: {fileID: 11400000, guid: 46b6e0fcf21e257489ead109c7fff2f4, type: 2}
-    itemState: []
-  - quantity: 1
     item: {fileID: 11400000, guid: 426e420d98bdda74a9c4a89530b4780e, type: 2}
     itemState: []
-  - quantity: 3
+  - quantity: 1
+    item: {fileID: 11400000, guid: 7aeec6ee42ee95e4292fb3e8e3d40a11, type: 2}
+    itemState: []
+  - quantity: 25
     item: {fileID: 11400000, guid: 4e3c1e44673a8c74dbcafa6adc0fc4c5, type: 2}
     itemState: []
   - quantity: 0
