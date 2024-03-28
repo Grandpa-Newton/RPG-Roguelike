@@ -4,20 +4,20 @@ using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Player
 {
-    public class PlayerCharacteristics : IHealth,IMove
+    public class PlayerCharacteristics : IHealth, IMove
     {
         private Rigidbody2D _rigidbody2D;
         private Vector2 _moveDirection;
         private Vector2 _rollDirection;
         public int maxHealth { get; private set; }
         public CharacteristicValueSO playerHealth { get; private set; }
-        
+
         public float moveSpeed { get; private set; }
         public float rollSpeed { get; private set; }
 
         public bool isMoving { get; private set; }
         public bool isRolling { get; private set; }
-        
+
         public event Action OnPlayerHealthReduce;
         public event Action OnPlayerIncreaseHealth;
         public event Action OnPlayerDie;
@@ -27,7 +27,7 @@ namespace App.Scripts.MixedScenes.Player
             _rigidbody2D = rigidbody2D;
             //InitializeHealth();
         }
-        
+
         public void IncreaseHealth(int healthToIncrease)
         {
             OnPlayerIncreaseHealth?.Invoke();
@@ -35,7 +35,9 @@ namespace App.Scripts.MixedScenes.Player
             int val = health + healthToIncrease;
             playerHealth.CurrentValue = val > maxHealth ? 1 : val / maxHealth;
         }
+
         private PlayerInputActions _playerInputActions;
+
         private Vector2 GetMovementInputVector(PlayerInputActions playerInputActions)
         {
             _playerInputActions = playerInputActions;
@@ -43,6 +45,7 @@ namespace App.Scripts.MixedScenes.Player
             isMoving = input.magnitude > 0;
             return input;
         }
+
         public void IncreaseMaxHealth(int maxHealthToIncrease)
         {
             maxHealth = maxHealthToIncrease;
@@ -54,7 +57,6 @@ namespace App.Scripts.MixedScenes.Player
             playerHealth.CurrentValue -= healthToReduce / maxHealth;
             if (playerHealth.CurrentValue <= 0)
             {
-                
                 Die();
             }
         }
@@ -74,12 +76,11 @@ namespace App.Scripts.MixedScenes.Player
             }
         }
 
-        public void Move(Vector2 moveDirection)
+        public void Move()
         {
             if (!isRolling)
             {
-                
-                _rigidbody2D.velocity = moveDirection.normalized * CalculateSpeed();
+                _rigidbody2D.velocity = _moveDirection.normalized * CalculateSpeed();
             }
             else
             {
@@ -87,16 +88,17 @@ namespace App.Scripts.MixedScenes.Player
             }
         }
 
-        public void Roll(Vector2 rollDirection, bool isRoll)
+        public void Roll(bool isRoll)
         {
-            _rollDirection = rollDirection;
             isRolling = isRoll;
             if (isRolling)
             {
-                _rigidbody2D.velocity = _rollDirection * rollSpeed;
+                Vector2 velocity = _rigidbody2D.velocity;
+                _rollDirection = velocity.normalized;
+                rollSpeed = velocity.magnitude * 1.2f;
             }
         }
-        
+
         private float CalculateSpeed()
         {
             if (isMoving)

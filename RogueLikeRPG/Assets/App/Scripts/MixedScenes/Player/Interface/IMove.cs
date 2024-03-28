@@ -9,7 +9,8 @@ namespace App.Scripts.MixedScenes.Player.Interface
         public bool isMoving { get; }
         public bool isRolling { get; }
         
-        public void Move(Vector2 moveDirection);
-        public void Roll(Vector2 rollDirection, bool isRoll);
+        public void Move();
+        public void Roll(bool isRoll);
+        
     }
 }

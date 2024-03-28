@@ -457,6 +457,14 @@ PrefabInstance:
       propertyPath: health
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2041086282780521163, guid: f71dd553f0cd0474990b07d033332877, type: 3}
+      propertyPath: enemySo
+      value: 
+      objectReference: {fileID: 11400000, guid: fffc18ed88bc71b4bb7e0f44a3ae4bc1, type: 2}
+    - target: {fileID: 2041086282780521163, guid: f71dd553f0cd0474990b07d033332877, type: 3}
+      propertyPath: characteristicValueSO
+      value: 
+      objectReference: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
     - target: {fileID: 7505457568582106909, guid: f71dd553f0cd0474990b07d033332877, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.6397672
@@ -887,6 +895,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4524324115122470558, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4741150954170117911, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1103,6 +1115,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8807091535373032333, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9028192533143532110, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1154,8 +1170,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4306722505127858314, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 616834583}
   m_SourcePrefab: {fileID: 100100000, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+--- !u!1 &616834582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4306722505127858314, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+  m_PrefabInstance: {fileID: 616834581}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &616834583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616834582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c6c7f6724afde46b1b1cf15fcad517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthCharacteristicSO: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
 --- !u!1001 &792546215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1164,6 +1201,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2041086282780521163, guid: f71dd553f0cd0474990b07d033332877, type: 3}
+      propertyPath: enemySo
+      value: 
+      objectReference: {fileID: 11400000, guid: fffc18ed88bc71b4bb7e0f44a3ae4bc1, type: 2}
+    - target: {fileID: 2041086282780521163, guid: f71dd553f0cd0474990b07d033332877, type: 3}
+      propertyPath: characteristicValueSO
+      value: 
+      objectReference: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
     - target: {fileID: 7505457568582106909, guid: f71dd553f0cd0474990b07d033332877, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.157156

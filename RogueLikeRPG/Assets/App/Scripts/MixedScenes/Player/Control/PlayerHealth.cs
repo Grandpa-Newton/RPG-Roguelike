@@ -58,5 +58,9 @@ public class PlayerHealth : IHealth
             playerHealth.IsInitialized = true;
         }
     }
-    
+
+    public void Dispose()
+    {
+        
+    }
 }

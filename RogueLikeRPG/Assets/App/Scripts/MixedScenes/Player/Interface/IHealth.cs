@@ -10,6 +10,6 @@ namespace App.Scripts.MixedScenes.Player.Interface
         public void ReduceHealth(int healthToReduce);
         public void Die();
         public void InitializeHealth();
-    
+        
     }
 }
