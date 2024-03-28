@@ -230,7 +230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &342406855
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1193,6 +1193,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthCharacteristicSO: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
+  playerAnimator: {fileID: 616834593}
+--- !u!95 &616834593 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2018821293375233273, guid: ceeb346e2d4ec714f88599320796043b, type: 3}
+  m_PrefabInstance: {fileID: 616834581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &792546215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1277,7 +1283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &835861162
 AudioSource:
   m_ObjectHideFlags: 0
