@@ -101,7 +101,7 @@ public class PlayerMovement : IMove
         }
     }
 
-    public Vector2 GetMovementInputVector()
+    private Vector2 GetMovementInputVector()
     {
         Vector2 movementVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
 
@@ -110,7 +110,7 @@ public class PlayerMovement : IMove
         return movementVector;
     }
 
-    public Vector2 GetPointerInputVector()
+    private Vector2 GetPointerInputVector()
     {
         _mouseDirection = _playerInputActions.Player.PointerPosition.ReadValue<Vector2>();
         _mouseWorldPosition = (_camera.ScreenToViewportPoint(_mouseDirection) -
