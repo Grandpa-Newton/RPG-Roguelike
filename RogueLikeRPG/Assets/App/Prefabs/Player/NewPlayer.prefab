@@ -178,7 +178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeWeaponData: {fileID: 0}
   _animator: {fileID: 3778373216131434755}
-  switchWeaponBetweenRangeAndMelee: {fileID: 7668164817745744458}
   _currentWeaponsSO: {fileID: 11400000, guid: 96e88bf987a79b44e84297db21166217, type: 2}
 --- !u!61 &6464694192455862215
 BoxCollider2D:
@@ -269,17 +268,13 @@ GameObject:
   - component: {fileID: 4159857717505111935}
   - component: {fileID: 1610640700938836702}
   - component: {fileID: 2018821293375233273}
-  - component: {fileID: 8807091535373032333}
-  - component: {fileID: 2671509649919419075}
-  - component: {fileID: 2191871537133175800}
-  - component: {fileID: 4524324115122470558}
+  - component: {fileID: 605953387419170232}
   - component: {fileID: 7490865900675531576}
   - component: {fileID: 7442927163657405319}
-  - component: {fileID: 7152533395521013163}
   - component: {fileID: 5958824334006302602}
   - component: {fileID: -8975176193684933671}
   m_Layer: 8
-  m_Name: Player
+  m_Name: NewPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,7 +427,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8807091535373032333
+--- !u!114 &605953387419170232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -441,49 +436,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 4306722505127858314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dac791410eb57348925e6eceb49980e, type: 3}
+  m_Script: {fileID: 11500000, guid: 19c6c7f6724afde46b1b1cf15fcad517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characteristicValue: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
-  speed: 5
---- !u!114 &2671509649919419075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4306722505127858314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08a270b04f490394588048741ea012dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2191871537133175800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4306722505127858314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 331f90a4334505742ae48486998ab3e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4524324115122470558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4306722505127858314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d31d633575c34d84faf9aad0ee71a6c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
+  healthCharacteristicSO: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
+  playerAnimator: {fileID: 2018821293375233273}
+  currentWeaponsSO: {fileID: 11400000, guid: 96e88bf987a79b44e84297db21166217, type: 2}
+  inventorySO: {fileID: 11400000, guid: f37c1c10a167764469f0bb4cb1b8b5b2, type: 2}
+  parametersToModify: []
+  itemCurrentState: []
+  aimTransform: {fileID: 6743381972759492382}
+  meleeWeapon: {fileID: 4408722407902706080}
+  rangeWeapon: {fileID: 1110256157436861220}
+  hands:
+  - {fileID: 4639642764309313730}
+  - {fileID: 7867582400366363649}
 --- !u!114 &7490865900675531576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,22 +482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed1592670cfff34587723a599a8e545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryData: {fileID: 11400000, guid: f37c1c10a167764469f0bb4cb1b8b5b2, type: 2}
---- !u!114 &7152533395521013163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4306722505127858314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93f3240b4f394584d9b245431b575eb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWeaponsSO: {fileID: 11400000, guid: 96e88bf987a79b44e84297db21166217, type: 2}
-  parametersToModify: []
-  itemCurrentState: []
   inventoryData: {fileID: 11400000, guid: f37c1c10a167764469f0bb4cb1b8b5b2, type: 2}
 --- !u!82 &5958824334006302602
 AudioSource:
@@ -1024,7 +975,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeWeaponData: {fileID: 0}
-  switchWeaponBetweenRangeAndMelee: {fileID: 7668164817745744458}
   shootPoint: {fileID: 2133715077729565275}
   bulletsContainer: {fileID: 931827921514768830}
   bulletPrefab: {fileID: 9027614786788320636, guid: e07bc0491c57868499d299ac5e1cfdb5, type: 3}

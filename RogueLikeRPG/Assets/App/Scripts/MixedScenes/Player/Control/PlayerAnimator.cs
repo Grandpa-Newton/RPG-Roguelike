@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using App.Scripts.MixedScenes.Weapon;
 using UnityEngine;
 
-public class PlayerAnim
+public class PlayerAnimator
 {
     private PlayerController _playerController;
     private PlayerMovement _playerMovement;
@@ -21,7 +21,7 @@ public class PlayerAnim
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     private static readonly int IsRolling = Animator.StringToHash("IsRolling");
 
-    public PlayerAnim(PlayerController playerController, Animator animator, PlayerMovement playerMovement)
+    public PlayerAnimator(PlayerController playerController, Animator animator, PlayerMovement playerMovement)
     {
         _playerController = playerController;
         _animator = animator;
@@ -35,7 +35,7 @@ public class PlayerAnim
     {
         if (Input.GetKeyDown(KeyCode.Space) && _isWalking)
         {
-            SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsDisable();
+            SwitchWeaponBetweenRaM.Instance.WeaponAndHandsDisable();
             _isRolling = true;
             _animator.SetBool(IsRolling, _isRolling);
             OnPlayerRolling?.Invoke(_isRolling);
@@ -48,44 +48,40 @@ public class PlayerAnim
         {
             if (movementInputVector.x != 0 || movementInputVector.y != 0)
             {
-                if (!_isWalking)
-                {
-                    _isWalking = true;
-                    _animator.SetBool(IsMoving, _isWalking);
-                }
+                if (_isWalking) return;
+                
+                _isWalking = true;
+                _animator.SetBool(IsMoving, _isWalking);
             }
             else
             {
-                if (_isWalking)
-                {
-                    _isWalking = false;
-                    _animator.SetBool(IsMoving, _isWalking);
-                }
+                if (!_isWalking) return;
+                
+                _isWalking = false;
+                _animator.SetBool(IsMoving, _isWalking);
             }
         }
     }
 
     private void Player_OnPlayerMouseMovement(Vector2 movementInputVector, Vector2 worldMouseVectorPosition)
     {
-        if (!_isRolling)
-        {
-            Vector2 movementMouse = new Vector2(worldMouseVectorPosition.x, worldMouseVectorPosition.y).normalized;
+        if (_isRolling) return;
+        
+        Vector2 movementMouse = new Vector2(worldMouseVectorPosition.x, worldMouseVectorPosition.y).normalized;
 
-            _animator.SetFloat(Horizontal, movementMouse.x);
-            _animator.SetFloat(Vertical, movementMouse.y);
-        }
+        _animator.SetFloat(Horizontal, movementMouse.x);
+        _animator.SetFloat(Vertical, movementMouse.y);
     }
 
     public void CheckRollEnd()
     {
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Roll") &&
-            _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0)
-        {
-            _isRolling = false;
-            _animator.SetBool(IsRolling, _isRolling);
-            SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsEnable();
-            OnPlayerRolling?.Invoke(_isRolling);
-        }
+        var animator = _animator.GetCurrentAnimatorStateInfo(0);
+        if (!animator.IsName("Roll") || !(animator.normalizedTime >= 1.0)) return;
+        
+        _isRolling = false;
+        _animator.SetBool(IsRolling, _isRolling);
+        SwitchWeaponBetweenRaM.Instance.WeaponAndHandsEnable();
+        OnPlayerRolling?.Invoke(_isRolling);
     }
 
     public void Dispose()

@@ -11,7 +11,6 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
     {
         [SerializeField] private MeleeWeaponSO meleeWeaponData;
         [SerializeField] private Animator _animator;
-        [SerializeField] private SwitchWeaponBetweenRangeAndMelee switchWeaponBetweenRangeAndMelee;
         private PlayerInputActions _playerInputActions;
         [SerializeField] private CurrentWeaponsSO _currentWeaponsSO;
 
@@ -77,7 +76,7 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
             }
 
             meleeWeaponData = (MeleeWeaponSO)meleeWeaponSo;
-            switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
+            SwitchWeaponBetweenRaM.Instance.PlayerHandsVisible(true);
             GetComponent<SpriteRenderer>().sprite = meleeWeaponData.ItemImage;
         }
 

@@ -35,7 +35,7 @@ public class PlayerMovement : IMove
         _rigidbody2D = rigidbody2D;
         _playerInputActions = playerInputActions;
         _camera = camera;
-        PlayerAnim.OnPlayerRolling += Roll;
+        PlayerAnimator.OnPlayerRolling += Roll;
     }
 
     public void SetVirtualCamera(CinemachineVirtualCamera virtualCamera, Transform followTarget)
@@ -131,6 +131,6 @@ public class PlayerMovement : IMove
 
     public void Dispose()
     {
-        PlayerAnim.OnPlayerRolling -= Roll;
+        PlayerAnimator.OnPlayerRolling -= Roll;
     }
 }

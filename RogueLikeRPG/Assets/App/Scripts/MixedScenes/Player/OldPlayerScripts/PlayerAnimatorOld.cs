@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Player
 {
-    public class PlayerAnimator : MonoBehaviour
+    public class PlayerAnimatorOld : MonoBehaviour
     {
         private Control.Player _player;
         private Animator _playerAnimator;

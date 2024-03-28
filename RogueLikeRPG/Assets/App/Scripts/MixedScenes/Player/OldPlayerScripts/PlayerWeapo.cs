@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Player
 {
-    public class PlayerWeapon : MonoBehaviour
+    public class PlayerWeapo : MonoBehaviour
     {
-        public static PlayerWeapon Instance { get; private set; }
+        public static PlayerWeapo Instance { get; private set; }
         [Header("Current Weapons")]
         [SerializeField] private CurrentWeaponsSO currentWeaponsSO;
         

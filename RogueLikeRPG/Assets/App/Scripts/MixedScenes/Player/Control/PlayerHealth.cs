@@ -22,6 +22,7 @@ public class PlayerHealth : IHealth
     {
         int health = Mathf.RoundToInt(playerHealth.CurrentValue * maxHealth);
         int val = health + healthToIncrease;
+        
         playerHealth.CurrentValue = val > maxHealth ? playerHealth.MaxValue : val / maxHealth;
         OnPlayerIncreaseHealth?.Invoke();
     }
@@ -52,11 +53,10 @@ public class PlayerHealth : IHealth
     
     public void InitializeHealth()
     {
-        if (!playerHealth.IsInitialized)
-        {
-            playerHealth.CurrentValue = playerHealth.MaxValue;
-            playerHealth.IsInitialized = true;
-        }
+        if (playerHealth.IsInitialized) return;
+        
+        playerHealth.CurrentValue = playerHealth.MaxValue;
+        playerHealth.IsInitialized = true;
     }
 
     public void Dispose()

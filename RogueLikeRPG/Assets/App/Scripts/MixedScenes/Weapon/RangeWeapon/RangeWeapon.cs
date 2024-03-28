@@ -7,9 +7,10 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
 {
     public class RangeWeapon : Weapon
     {
+        private PlayerWeapon _playerWeapon;
+        
         [SerializeField] private RangeWeaponSO rangeWeaponData;
-
-        [SerializeField] private SwitchWeaponBetweenRangeAndMelee switchWeaponBetweenRangeAndMelee;
+        
 
         private float _timeToNextShot;
         private PlayerInputActions _playerInputActions;
@@ -81,8 +82,16 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
                 return;
             }
 
-            rangeWeaponData = (RangeWeaponSO)rangeWeaponSo;
-            switchWeaponBetweenRangeAndMelee.PlayerHandsVisible(true);
+            RangeWeaponSO rangeWeapon = rangeWeaponSo as RangeWeaponSO;
+            if (!rangeWeapon)
+            {
+                Debug.LogError("ItemSO is not a RangeWeaponSO");
+                return;
+            }
+            
+            rangeWeaponData = rangeWeapon;
+            
+            SwitchWeaponBetweenRaM.Instance.PlayerHandsVisible(true);
             GetComponent<SpriteRenderer>().sprite = rangeWeaponData.ItemImage;
             GetComponent<AudioSource>().PlayOneShot(rangeWeaponData.weaponEquipSound);
         }

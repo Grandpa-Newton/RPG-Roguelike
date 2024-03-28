@@ -24,7 +24,7 @@ namespace App.Scripts.MixedScenes.Weapon
         private void Awake()
         {
             Instance = this;
-            PlayerAnimator.OnPlayerRolling += SetRollingState;
+            PlayerAnimatorOld.OnPlayerRolling += SetRollingState;
         }
 
         private void SetRollingState(bool isRolling)
@@ -151,7 +151,7 @@ namespace App.Scripts.MixedScenes.Weapon
 
         private void OnDestroy()
         {
-            PlayerAnimator.OnPlayerRolling -= SetRollingState;
+            PlayerAnimatorOld.OnPlayerRolling -= SetRollingState;
         }
     }
 }

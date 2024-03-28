@@ -55,7 +55,7 @@ namespace App.Scripts.MixedScenes.Player.Control
             playerHealth = new PlayerHealth(characteristicValue);
             
             _health = GetComponent<Health>();
-            PlayerAnimator.OnPlayerRolling += SetRollingState;
+            PlayerAnimatorOld.OnPlayerRolling += SetRollingState;
             _health.OnHealthReduce += OnPlayerHealthReduce;
         }
 
@@ -167,7 +167,7 @@ namespace App.Scripts.MixedScenes.Player.Control
         private void OnDestroy()
         {
             _health.OnHealthReduce -= OnPlayerHealthReduce;
-            PlayerAnimator.OnPlayerRolling -= SetRollingState;
+            PlayerAnimatorOld.OnPlayerRolling -= SetRollingState;
         }
     }
 }

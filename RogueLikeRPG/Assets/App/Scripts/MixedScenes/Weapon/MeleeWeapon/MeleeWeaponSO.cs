@@ -12,7 +12,8 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
         {
             PlayerWeapon weaponSystem = character.GetComponent<PlayerWeapon>();
         
-            SwitchWeaponBetweenRangeAndMelee.Instance.SetActiveMeleeWeapon();
+            SwitchWeaponBetweenRaM.Instance.SetActiveMeleeWeapon();
+            //Weapon weapon1 = new MeleeWeapon();
             Weapon weapon = GameObject.Find("MeleeWeapon").GetComponent<MeleeWeapon>();
             if (weaponSystem != null)
             {
