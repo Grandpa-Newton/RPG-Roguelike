@@ -4,8 +4,11 @@ using App.Scripts.DungeonScene.Items;
 using App.Scripts.MixedScenes;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Player;
+using App.Scripts.MixedScenes.Weapon.MeleeWeapon;
+using App.Scripts.MixedScenes.Weapon.RangeWeapon;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,7 +27,9 @@ public class PlayerController : MonoBehaviour
     private PlayerAimWeaponRotation _playerAimWeaponRotation;
     private SwitchWeaponBetweenRaM _switchWeaponBetweenRaM;
     private PlayerWeapon _playerWeapon;
-
+    private MeleeWeapon _meleeWeapon;
+    
+    
     [SerializeField] private CharacteristicValueSO healthCharacteristicSO;
     [SerializeField] private Animator playerAnimator;
 
@@ -39,6 +44,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform rangeWeapon;
     [SerializeField] private GameObject[] hands;
 
+    [SerializeField] private Animator meleeWeaponAnimator;
+    [SerializeField] private SpriteRenderer meleeWeaponSpriteRenderer;
+    
+    [SerializeField] private SpriteRenderer rangeWeaponSpriteRenderer;
+    [SerializeField] private AudioSource rangeWeaponAudioSource;
+    
     private Camera _camera;
     private Rigidbody2D _rigidbody2D;
     private PlayerInputActions _playerInputActions;
@@ -58,11 +69,15 @@ public class PlayerController : MonoBehaviour
 
         _playerAnimator = new PlayerAnimator(this, playerAnimator, _playerMovement);
 
-        _playerWeapon = new PlayerWeapon(currentWeaponsSO, inventorySO, parametersToModify, itemCurrentState);
+        PlayerWeapon.Instance.Initialize(currentWeaponsSO,inventorySO,parametersToModify,itemCurrentState);
 
         _playerAimWeaponRotation = new PlayerAimWeaponRotation(_playerInputActions, aimTransform);
 
         SwitchWeaponBetweenRaM.Instance.Initialize(meleeWeapon, rangeWeapon, hands, currentWeaponsSO);
+        MeleeWeapon.Instance.Initialize(currentWeaponsSO,_playerInputActions,meleeWeaponSpriteRenderer,meleeWeaponAnimator);
+        RangeWeapon.Instance.Initialize(currentWeaponsSO,_playerInputActions,rangeWeaponSpriteRenderer,aimTransform,rangeWeaponAudioSource);
+        
+        SwitchWeaponBetweenRaM.Instance.CheckAvailableWeapons();
     }
 
     private void Start()
@@ -125,6 +140,8 @@ public class PlayerController : MonoBehaviour
         GetPlayerState();
         _playerAimWeaponRotation.HandsRotationAroundAim(transform);
         SwitchWeaponBetweenRaM.Instance.SwapWeapon();
+        
+        
     }
 
     private void FixedUpdate()
@@ -137,6 +154,6 @@ public class PlayerController : MonoBehaviour
         _playerHealth.Dispose();
         _playerMovement.Dispose();
         _playerAnimator.Dispose();
-        _switchWeaponBetweenRaM.Dispose();
+        SwitchWeaponBetweenRaM.Instance.Dispose();
     }
 }

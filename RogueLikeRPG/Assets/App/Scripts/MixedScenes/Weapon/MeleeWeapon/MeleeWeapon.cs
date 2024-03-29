@@ -1,70 +1,79 @@
-using System.Collections;
 using App.Scripts.DungeonScene.Enemy;
 using App.Scripts.DungeonScene.Items;
-using App.Scripts.MixedScenes.Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
 {
     public class MeleeWeapon : Weapon
     {
-        [SerializeField] private MeleeWeaponSO meleeWeaponData;
-        [SerializeField] private Animator _animator;
+        private static MeleeWeapon _instance;
+
+        public static MeleeWeapon Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new MeleeWeapon();
+                }
+
+                return _instance;
+            }
+        }
+
+        private MeleeWeaponSO _meleeWeaponSO;
+        private CurrentWeaponsSO _currentWeaponsSO;
+        private SpriteRenderer _spriteRenderer;
+
+        private Animator _animator;
         private PlayerInputActions _playerInputActions;
-        [SerializeField] private CurrentWeaponsSO _currentWeaponsSO;
 
         private float _timeToNextAttack = 0;
         private Vector2 _defaultPosition;
         private Vector2 _currentPointPosition;
 
-        public MeleeWeapon(MeleeWeaponSO data)
+
+        public void Initialize(CurrentWeaponsSO currentWeaponsSO,
+            PlayerInputActions playerInputActions, SpriteRenderer spriteRenderer, Animator animator)
         {
-            meleeWeaponData = data;
+            _currentWeaponsSO = currentWeaponsSO;
+            _playerInputActions = playerInputActions;
+            _spriteRenderer = spriteRenderer;
+            _animator = animator;
+
+            TryEquipMeleeWeapon();
         }
 
-        private void Awake()
+
+        private void TryEquipMeleeWeapon()
         {
-            //_playerInputActions = InputManager.Instance.PlayerInputActions;
+            if (!_currentWeaponsSO.EquipMeleeWeapon) return;
+
+            _meleeWeaponSO = (MeleeWeaponSO)_currentWeaponsSO.EquipMeleeWeapon;
+            SetWeapon(_meleeWeaponSO);
         }
 
-        private void Start()
-        {
-            _playerInputActions = InputManager.Instance.PlayerInputActions;
 
-            if (_currentWeaponsSO.EquipMeleeWeapon)
-            {
-                meleeWeaponData = (MeleeWeaponSO)_currentWeaponsSO.EquipMeleeWeapon;
-                SetWeapon(meleeWeaponData);
-            }
-        }
-
-        private void Update()
+        public override void DealDamage(float deltaTime)
         {
-            DealDamage();
-        }
-
-        public override void DealDamage()
-        {
-            if (!meleeWeaponData)
+            if (!_meleeWeaponSO)
             {
                 return;
             }
 
-            _timeToNextAttack += Time.deltaTime;
-            if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextAttack > meleeWeaponData.attackRate)
+            _timeToNextAttack += deltaTime;
+            if (_playerInputActions.Player.Attack.IsPressed() && _timeToNextAttack > _meleeWeaponSO.attackRate)
             {
                 _animator.SetTrigger("Shoot");
                 _timeToNextAttack = 0;
-                StartCoroutine(WaitToNextAttack());
-                // _rb.AddForce(_aimTransform.position * _forceMultiplier, ForceMode2D.Impulse);
+                WaitToNextAttack();
                 _animator.SetTrigger("Idle");
             }
         }
 
-        IEnumerator WaitToNextAttack()
+        private void WaitToNextAttack()
         {
-            yield return new WaitForSeconds(meleeWeaponData.attackRate);
+            _timeToNextAttack = _meleeWeaponSO.attackRate;
         }
 
         public override void SetWeapon(ItemSO meleeWeaponSo)
@@ -75,16 +84,16 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
                 return;
             }
 
-            meleeWeaponData = (MeleeWeaponSO)meleeWeaponSo;
+            _meleeWeaponSO = (MeleeWeaponSO)meleeWeaponSo;
             SwitchWeaponBetweenRaM.Instance.PlayerHandsVisible(true);
-            GetComponent<SpriteRenderer>().sprite = meleeWeaponData.ItemImage;
+            _spriteRenderer.sprite = _meleeWeaponSO.ItemImage;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.TryGetComponent(out Enemy enemy))
             {
-                enemy.TakeDamage(meleeWeaponData.damage);
+                enemy.TakeDamage(_meleeWeaponSO.damage);
             }
         }
     }

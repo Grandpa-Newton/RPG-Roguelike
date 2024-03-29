@@ -10,16 +10,10 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
     {
         public override bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
-            PlayerWeapon weaponSystem = character.GetComponent<PlayerWeapon>();
-        
             SwitchWeaponBetweenRaM.Instance.SetActiveMeleeWeapon();
-            //Weapon weapon1 = new MeleeWeapon();
-            Weapon weapon = GameObject.Find("MeleeWeapon").GetComponent<MeleeWeapon>();
-            if (weaponSystem != null)
-            {
-                weaponSystem.SetMeleeWeapon(this, itemState ?? DefaultParametersList);
-                weapon.SetWeapon(this);
-            }
+
+            PlayerWeapon.Instance.SetMeleeWeapon(this, itemState ?? DefaultParametersList);
+            MeleeWeapon.Instance.SetWeapon(this);
 
             return false;
         }

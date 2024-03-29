@@ -19,7 +19,7 @@ public class SwitchWeaponBetweenRaM
         }
     }
 
-    private float _swapReloadTime = 0.5f;
+    private const float SwapReloadTime = 0.5f;
     private Transform _meleeWeapon;
     private Transform _rangeWeapon;
 
@@ -38,8 +38,6 @@ public class SwitchWeaponBetweenRaM
         _rangeWeapon = rangeWeapon;
         _hands = hands;
         _currentWeaponsSO = currentWeaponsSO;
-
-        CheckAvailableWeapons();
         
         PlayerAnimator.OnPlayerRolling += SetRollState;
     }
@@ -47,7 +45,7 @@ public class SwitchWeaponBetweenRaM
     {
         _isRolling = isRolling;
     }
-    private void CheckAvailableWeapons()
+    public void CheckAvailableWeapons()
     {
         if (!_currentWeaponsSO.EquipRangeWeapon && !_currentWeaponsSO.EquipMeleeWeapon)
         {
@@ -84,7 +82,7 @@ public class SwitchWeaponBetweenRaM
         }
 
         _timerToSwapWeapon += Time.deltaTime;
-        if (Input.GetAxis("Mouse ScrollWheel") != 0 && !_isRolling && _timerToSwapWeapon > _swapReloadTime)
+        if (Input.GetAxis("Mouse ScrollWheel") != 0 && !_isRolling && _timerToSwapWeapon > SwapReloadTime)
         {
             _isMeleeWeapon = !_isMeleeWeapon;
             if (_isMeleeWeapon)

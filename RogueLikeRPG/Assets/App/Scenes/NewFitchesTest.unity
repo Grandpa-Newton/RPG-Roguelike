@@ -1194,6 +1194,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthCharacteristicSO: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
   playerAnimator: {fileID: 616834593}
+  currentWeaponsSO: {fileID: 0}
+  inventorySO: {fileID: 0}
+  parametersToModify: []
+  itemCurrentState: []
+  aimTransform: {fileID: 0}
+  meleeWeapon: {fileID: 0}
+  rangeWeapon: {fileID: 0}
+  hands: []
 --- !u!95 &616834593 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2018821293375233273, guid: ceeb346e2d4ec714f88599320796043b, type: 3}

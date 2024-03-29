@@ -9,13 +9,29 @@ namespace App.Scripts.MixedScenes.Player
 {
     public class PlayerWeapon
     {
+        private static PlayerWeapon _instance;
+
+        public static PlayerWeapon Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new PlayerWeapon();
+                }
+
+                return _instance;
+            }
+        }
+        
+        
         private CurrentWeaponsSO _currentWeaponsSO;
         private InventorySO _inventorySO;
         
         private List<ItemParameter> _parametersToModify;
         private List<ItemParameter> _itemCurrentState;
 
-        public PlayerWeapon(CurrentWeaponsSO currentWeaponsSO, InventorySO inventorySO, 
+        public void Initialize(CurrentWeaponsSO currentWeaponsSO, InventorySO inventorySO, 
             List<ItemParameter> parametersToModify, List<ItemParameter> itemCurrentState)
         {
             _currentWeaponsSO = currentWeaponsSO;
@@ -23,7 +39,6 @@ namespace App.Scripts.MixedScenes.Player
             _parametersToModify = parametersToModify;
             _itemCurrentState = itemCurrentState;
         }
-        
         public void SetMeleeWeapon(WeaponItemSO weaponItemSO, List<ItemParameter> itemState)
         {
             if (_currentWeaponsSO.EquipMeleeWeapon != null)

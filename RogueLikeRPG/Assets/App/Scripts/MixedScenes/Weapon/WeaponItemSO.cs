@@ -25,7 +25,7 @@ namespace App.Scripts.MixedScenes.Weapon
         public AudioClip itemActionSound { get; }
         
 
-        public abstract bool PerformAction(GameObject character, List<ItemParameter> itemState = null);
+        public abstract bool PerformAction(GameObject characterÿ, List<ItemParameter> itemState = null);
     }
 
     public enum WeaponRarityEnum
