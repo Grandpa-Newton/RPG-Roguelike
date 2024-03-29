@@ -22,16 +22,16 @@ public class PlayerCurrentWeaponUI
             return _instance;
         }
     }
-    
-   [SerializeField] private Image _meleeWeaponUI;
-    [SerializeField] private Image _meleeBackgroundImage;
-    [SerializeField] private Image _meleeWeaponIcon;
-    [SerializeField] private Image _rangeWeaponUI;
-    [SerializeField] private Image _rangeBackgroundImage;
-    [SerializeField] private Image _rangeWeaponIcon;
+
+    private Image _meleeWeaponUI;
+    private Image _meleeBackgroundImage;
+    private Image _meleeWeaponIcon;
+    private Image _rangeWeaponUI;
+    private Image _rangeBackgroundImage;
+    private Image _rangeWeaponIcon;
 
     public void Initialize(Image meleeWeaponUI, Image meleeBackgroundImage, Image meleeWeaponIcon,
-        Image rangeWeaponUI, Image rangeBackgroundImage, Image rangeWeaponIcon )
+        Image rangeWeaponUI, Image rangeBackgroundImage, Image rangeWeaponIcon)
     {
         _meleeWeaponUI = meleeWeaponUI;
         _meleeBackgroundImage = meleeBackgroundImage;
@@ -40,19 +40,14 @@ public class PlayerCurrentWeaponUI
         _rangeBackgroundImage = rangeBackgroundImage;
         _rangeWeaponIcon = rangeWeaponIcon;
     }
-    
-    /*private void Awake()
-    {
-        Instance = this;
-    }*/
-    
+
     public void IncreaseMeleeWeaponScale()
     {
         _meleeWeaponUI.transform.DOScale(1.2f, 0.5f);
         _meleeWeaponUI.DOFade(1f, 0.5f);
         _meleeBackgroundImage.DOFade(1f, 0.5f);
         _meleeWeaponIcon.DOFade(1f, 0.5f);
-            
+
         _rangeWeaponUI.transform.DOScale(0.8f, 0.5f);
         _rangeWeaponUI.DOFade(0.5f, 0.5f);
         _rangeBackgroundImage.DOFade(0.5f, 0.5f);
@@ -65,7 +60,7 @@ public class PlayerCurrentWeaponUI
         _meleeWeaponUI.DOFade(0.5f, 0.5f);
         _meleeBackgroundImage.DOFade(0.5f, 0.5f);
         _meleeWeaponIcon.DOFade(0.5f, 0.5f);
-            
+
         _rangeWeaponUI.transform.DOScale(1.2f, 0.5f);
         _rangeWeaponUI.DOFade(1f, 0.5f);
         _rangeBackgroundImage.DOFade(1f, 0.5f);
