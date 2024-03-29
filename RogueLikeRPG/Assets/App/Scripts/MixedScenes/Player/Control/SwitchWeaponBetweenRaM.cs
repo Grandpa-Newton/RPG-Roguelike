@@ -55,6 +55,8 @@ public class SwitchWeaponBetweenRaM
 
         if (_currentWeaponsSO.EquipMeleeWeapon)
         {
+            Debug.Log(_currentWeaponsSO.EquipMeleeWeapon != null);
+            Debug.Log(_currentWeaponsSO.EquipMeleeWeapon.ItemImage);
             PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(_currentWeaponsSO.EquipMeleeWeapon.ItemImage);
             _meleeWeapon.gameObject.SetActive(true);
             _rangeWeapon.gameObject.SetActive(false);
@@ -64,6 +66,8 @@ public class SwitchWeaponBetweenRaM
 
         if (_currentWeaponsSO.EquipRangeWeapon)
         {
+            Debug.Log(_currentWeaponsSO.EquipRangeWeapon != null);
+            Debug.Log(_currentWeaponsSO.EquipRangeWeapon.ItemImage);
             PlayerCurrentWeaponUI.Instance.SetRangeWeaponIcon(_currentWeaponsSO.EquipRangeWeapon.ItemImage);
             if (!_currentWeaponsSO.EquipMeleeWeapon)
             {
