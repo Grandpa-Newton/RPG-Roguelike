@@ -119,7 +119,7 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
 
             _rangeWeaponSO = rangeWeapon;
 
-            SwitchWeaponBetweenRaM.Instance.PlayerHandsVisible(true);
+            SwitchWeaponBetweenRangeAndMelee.Instance.PlayerHandsVisible(true);
             _spriteRenderer.sprite = _rangeWeaponSO.ItemImage;
             _audioSource.PlayOneShot(_rangeWeaponSO.weaponEquipSound);
         }

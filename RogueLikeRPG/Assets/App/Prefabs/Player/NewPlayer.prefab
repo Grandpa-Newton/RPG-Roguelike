@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6743381972759492382}
   - component: {fileID: 3778373216131434755}
-  - component: {fileID: 7668164817745744458}
   m_Layer: 0
   m_Name: Aim
   m_TagString: Untagged
@@ -58,26 +57,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7668164817745744458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265495603417711777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fefee3b761a05246b7c69eb1532cf83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swapReloadTime: 0.5
-  meleeWeapon: {fileID: 4408722407902706080}
-  rangeWeapon: {fileID: 1110256157436861220}
-  hands:
-  - {fileID: 4639642764309313730}
-  - {fileID: 7867582400366363649}
-  currentPickedWeapon: {fileID: 0}
-  currentWeaponsSO: {fileID: 11400000, guid: 96e88bf987a79b44e84297db21166217, type: 2}
 --- !u!1 &1766668649823358690
 GameObject:
   m_ObjectHideFlags: 0

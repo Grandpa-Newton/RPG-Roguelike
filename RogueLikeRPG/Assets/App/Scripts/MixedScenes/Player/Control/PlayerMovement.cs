@@ -55,7 +55,14 @@ public class PlayerMovement : IMove
 
     public void Idle()
     {
-        _rigidbody2D.velocity = new Vector2(0f, 0f);
+        if (!isRolling)
+        { 
+            _rigidbody2D.velocity = _moveDirection.normalized * CalculateSpeed();
+        }
+        else
+        {
+            _rigidbody2D.velocity = _rollDirection * rollSpeed;
+        }
     }
 
     public void Move()

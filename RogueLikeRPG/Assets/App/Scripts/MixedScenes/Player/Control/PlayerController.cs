@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth _playerHealth;
     private PlayerMovement _playerMovement;
     private PlayerAimWeaponRotation _playerAimWeaponRotation;
-    private SwitchWeaponBetweenRaM _switchWeaponBetweenRaM;
+    private SwitchWeaponBetweenRangeAndMelee _switchWeaponBetweenRangeAndMelee;
     private PlayerWeapon _playerWeapon;
     private MeleeWeapon _meleeWeapon;
 
@@ -84,13 +84,13 @@ public class PlayerController : MonoBehaviour
 
         _playerAimWeaponRotation = new PlayerAimWeaponRotation(_playerInputActions, aimTransform);
 
-        SwitchWeaponBetweenRaM.Instance.Initialize(meleeWeapon, rangeWeapon, hands, currentWeaponsSO);
+        SwitchWeaponBetweenRangeAndMelee.Instance.Initialize(meleeWeapon, rangeWeapon, hands, currentWeaponsSO);
         MeleeWeapon.Instance.Initialize(currentWeaponsSO, _playerInputActions, meleeWeaponSpriteRenderer,
             meleeWeaponAnimator);
         RangeWeapon.Instance.Initialize(currentWeaponsSO, _playerInputActions, rangeWeaponSpriteRenderer, aimTransform,
             rangeWeaponAudioSource);
 
-        SwitchWeaponBetweenRaM.Instance.CheckAvailableWeapons();
+        SwitchWeaponBetweenRangeAndMelee.Instance.CheckAvailableWeapons();
     }
 
     private void Start()
@@ -134,6 +134,7 @@ public class PlayerController : MonoBehaviour
 
         _playerAnimator.CheckRollEnd();
 
+
         if (_playerInputActions.Player.Roll.triggered)
         {
             _playerState = PlayerState.Roll;
@@ -152,7 +153,7 @@ public class PlayerController : MonoBehaviour
     {
         GetPlayerState();
         _playerAimWeaponRotation.HandsRotationAroundAim(transform);
-        SwitchWeaponBetweenRaM.Instance.SwapWeapon();
+        SwitchWeaponBetweenRangeAndMelee.Instance.SwapWeapon();
     }
 
     private void FixedUpdate()
@@ -165,6 +166,6 @@ public class PlayerController : MonoBehaviour
         _playerHealth.Dispose();
         _playerMovement.Dispose();
         _playerAnimator.Dispose();
-        SwitchWeaponBetweenRaM.Instance.Dispose();
+        SwitchWeaponBetweenRangeAndMelee.Instance.Dispose();
     }
 }

@@ -10,7 +10,7 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
     {
         public override bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
-            SwitchWeaponBetweenRaM.Instance.SetActiveMeleeWeapon();
+            SwitchWeaponBetweenRangeAndMelee.Instance.SetActiveMeleeWeapon();
 
             PlayerWeapon.Instance.SetMeleeWeapon(this, itemState ?? DefaultParametersList);
             MeleeWeapon.Instance.SetWeapon(this);

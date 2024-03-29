@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Weapon
 {
-    public class SwitchWeaponBetweenRangeAndMelee : MonoBehaviour
+    public class SwitchWeaponBetween : MonoBehaviour
     {
-        public static SwitchWeaponBetweenRangeAndMelee Instance { get; private set; }
+        public static SwitchWeaponBetween Instance { get; private set; }
 
         [SerializeField] private float swapReloadTime = 0.5f;
         [SerializeField] private Transform meleeWeapon;

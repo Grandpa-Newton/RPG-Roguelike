@@ -85,7 +85,7 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
             }
 
             _meleeWeaponSO = (MeleeWeaponSO)meleeWeaponSo;
-            SwitchWeaponBetweenRaM.Instance.PlayerHandsVisible(true);
+            SwitchWeaponBetweenRangeAndMelee.Instance.PlayerHandsVisible(true);
             _spriteRenderer.sprite = _meleeWeaponSO.ItemImage;
         }
 

@@ -18,7 +18,7 @@ public class SafelyZoneWithoutWeapon : MonoBehaviour
             Debug.Log("Player found");
         }
         
-        SwitchWeaponBetweenRaM.Instance.WeaponAndHandsDisable();
+        SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsDisable();
     }
     
     

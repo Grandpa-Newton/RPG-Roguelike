@@ -27,7 +27,7 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
 
         public override bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
-            SwitchWeaponBetweenRaM.Instance.SetActiveRangeWeapon();
+            SwitchWeaponBetweenRangeAndMelee.Instance.SetActiveRangeWeapon();
             PlayerWeapon.Instance.SetRangeWeapon(this,itemState ?? DefaultParametersList);
             RangeWeapon.Instance.SetWeapon(this);
             return false;

@@ -35,7 +35,7 @@ public class PlayerAnimator
     {
         if (Input.GetKeyDown(KeyCode.Space) && _isWalking)
         {
-            SwitchWeaponBetweenRaM.Instance.WeaponAndHandsDisable();
+            SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsDisable();
             _isRolling = true;
             _animator.SetBool(IsRolling, _isRolling);
             OnPlayerRolling?.Invoke(_isRolling);
@@ -80,7 +80,7 @@ public class PlayerAnimator
         
         _isRolling = false;
         _animator.SetBool(IsRolling, _isRolling);
-        SwitchWeaponBetweenRaM.Instance.WeaponAndHandsEnable();
+        SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsEnable();
         OnPlayerRolling?.Invoke(_isRolling);
     }
 

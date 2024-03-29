@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwitchWeaponBetweenRaM
+public class SwitchWeaponBetweenRangeAndMelee
 {
-    private static SwitchWeaponBetweenRaM _instance;
+    private static SwitchWeaponBetweenRangeAndMelee _instance;
 
-    public static SwitchWeaponBetweenRaM Instance
+    public static SwitchWeaponBetweenRangeAndMelee Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = new SwitchWeaponBetweenRaM();
+                _instance = new SwitchWeaponBetweenRangeAndMelee();
             }
 
             return _instance;
