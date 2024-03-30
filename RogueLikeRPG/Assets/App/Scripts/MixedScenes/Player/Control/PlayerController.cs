@@ -63,6 +63,9 @@ public class PlayerController : MonoBehaviour
     private PlayerInputActions _playerInputActions;
     private CinemachineVirtualCamera _virtualCamera;
 
+    public event Action HandleHitEnemy;
+    
+    
     private void Awake()
     {
         InitializeComponents();
@@ -85,12 +88,14 @@ public class PlayerController : MonoBehaviour
         _playerAimWeaponRotation = new PlayerAimWeaponRotation(_playerInputActions, aimTransform);
 
         SwitchWeaponBetweenRangeAndMelee.Instance.Initialize(meleeWeapon, rangeWeapon, hands, currentWeaponsSO);
+        
         MeleeWeapon.Instance.Initialize(currentWeaponsSO, _playerInputActions, meleeWeaponSpriteRenderer,
             meleeWeaponAnimator);
         RangeWeapon.Instance.Initialize(currentWeaponsSO, _playerInputActions, rangeWeaponSpriteRenderer, aimTransform,
             rangeWeaponAudioSource);
 
         SwitchWeaponBetweenRangeAndMelee.Instance.CheckAvailableWeapons();
+        
     }
 
     private void Start()
@@ -135,7 +140,7 @@ public class PlayerController : MonoBehaviour
         _playerAnimator.CheckRollEnd();
 
 
-        if (_playerInputActions.Player.Roll.triggered)
+        if (_playerInputActions.Player.Roll.triggered && playerMovementVector != Vector2.zero)
         {
             _playerState = PlayerState.Roll;
         }
@@ -154,6 +159,7 @@ public class PlayerController : MonoBehaviour
         GetPlayerState();
         _playerAimWeaponRotation.HandsRotationAroundAim(transform);
         SwitchWeaponBetweenRangeAndMelee.Instance.SwapWeapon();
+        MeleeWeapon.Instance.DealDamage(Time.deltaTime);
     }
 
     private void FixedUpdate()
@@ -168,4 +174,6 @@ public class PlayerController : MonoBehaviour
         _playerAnimator.Dispose();
         SwitchWeaponBetweenRangeAndMelee.Instance.Dispose();
     }
+    
+    
 }

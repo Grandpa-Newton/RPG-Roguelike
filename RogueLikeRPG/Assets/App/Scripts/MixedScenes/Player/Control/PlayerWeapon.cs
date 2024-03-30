@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using App.Scripts.DungeonScene.Items;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Weapon;
+using App.Scripts.MixedScenes.Weapon.MeleeWeapon;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Player
@@ -47,6 +48,7 @@ namespace App.Scripts.MixedScenes.Player
             }
             
             _currentWeaponsSO.EquipMeleeWeapon = weaponItemSO;
+            MeleeWeaponTrigger.Instance.SetMeleeWeaponSO((MeleeWeaponSO)_currentWeaponsSO.EquipMeleeWeapon);
             PlayerCurrentWeaponUI.Instance.IncreaseMeleeWeaponScale();
             PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(weaponItemSO.ItemImage);
             _itemCurrentState = new List<ItemParameter>(itemState); 

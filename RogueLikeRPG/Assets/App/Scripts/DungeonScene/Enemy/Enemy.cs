@@ -1,3 +1,4 @@
+using System;
 using App.Scripts.AllScenes.Interfaces;
 using App.Scripts.MixedScenes;
 using App.Scripts.MixedScenes.Player;
@@ -11,7 +12,7 @@ namespace App.Scripts.DungeonScene.Enemy
     public class Enemy : MonoBehaviour, IDamageable
     {
         private PlayerHealth _playerHealth;
-        [FormerlySerializedAs("_floatValueSO")] [SerializeField] private CharacteristicValueSO characteristicValueSO;
+        [SerializeField] private CharacteristicValueSO characteristicValueSO;
         
         [SerializeField] private EnemySO enemySo;
         [SerializeField] private LayerMask hittable;
@@ -55,6 +56,8 @@ namespace App.Scripts.DungeonScene.Enemy
                 }
             }
         }
+
+ 
 
         private void InitializeStatsFromSO()
         {
