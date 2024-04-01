@@ -29,6 +29,7 @@ namespace App.Scripts.TraderScene
             }
             if (Input.GetKeyDown(KeyCode.T))
             {
+                Debug.Log("T Interact");
                 _traderInteractable = GetInteractableObject();
                 if(_traderInteractable != null)
                 {

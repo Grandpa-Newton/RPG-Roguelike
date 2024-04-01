@@ -2,29 +2,35 @@ using System.Collections.Generic;
 using System.Text;
 using App.Scripts.AllScenes.Interfaces;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.MixedScenes;
 using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.MixedScenes.Inventory.UI;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 namespace App.Scripts.TraderScene
 {
     public class TraderInventoryController : MonoBehaviour, IInteractable
     {
+        private Money money;
+        
         [SerializeField] private UIInventoryPage inventoryUI;
 
         [SerializeField] private InventorySO inventoryData;
 
-        public List<InventoryItem> initialItems = new List<InventoryItem>();
+        public List<InventoryItem> initialItems = new();
 
         [SerializeField] private AudioClip dropClip;
         [SerializeField] private AudioSource audioSource;
 
         [SerializeField] private GameObject player;
+        [SerializeField] private IntValueSO currentMoney;
 
-        [SerializeField] private Money _money;
+        private void Awake()
+        {
+            money = new Money(currentMoney);
+        }
 
         private void Start()
         {
@@ -120,7 +126,7 @@ namespace App.Scripts.TraderScene
                 if (player.GetComponent<InventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
                     playerMoney.TryReduceMoney(itemSO.ItemBuyCost);
-                    _money.AddMoney(itemSO.ItemBuyCost);
+                    money.AddMoney(itemSO.ItemBuyCost);
                     return true;
                 }
                 else

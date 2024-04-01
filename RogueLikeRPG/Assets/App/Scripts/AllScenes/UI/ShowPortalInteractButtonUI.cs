@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using App.Scripts.AllScenes.Interfaces;
 using App.Scripts.MixedScenes.Player.Control;
 using Sirenix.Utilities;
@@ -29,7 +26,7 @@ public class ShowPortalInteractButtonUI : MonoBehaviour, IInteractAction
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Player>() && !_isInteractPressed)
+        if (other.GetComponent<PlayerController>() && !_isInteractPressed)
         {
             _isInsideTrigger = true;
             uiCanvas.gameObject.SetActive(true);
@@ -38,7 +35,7 @@ public class ShowPortalInteractButtonUI : MonoBehaviour, IInteractAction
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<Player>() && !_isInteractPressed)
+        if (other.GetComponent<PlayerController>() && !_isInteractPressed)
         {
             _isInsideTrigger = false;
             uiCanvas.gameObject.SetActive(false);

@@ -13,11 +13,11 @@ public class NextLevelStarter : MonoBehaviour
 {
     public Transform Player;
     [SerializeField] private GameObject panel;
-    private Player _player;
+    private PlayerController _player;
     [SerializeField] private StartShowDeLoadPanel _startShowDeLoadPanel;
     private void Awake()
     {
-        _player = Player.GetComponent<Player>();
+        _player = Player.GetComponent<PlayerController>();
     }
 
     public void InCurrentCell() // когда игрок дошёл до новой клетки (мб поменять название)

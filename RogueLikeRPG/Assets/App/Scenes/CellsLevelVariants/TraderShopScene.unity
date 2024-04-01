@@ -926,8 +926,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.5999999, y: 0.3998499, z: 0}
-    m_Extent: {x: 8.600599, y: 5.90055, z: 0}
+    m_Center: {x: -0.6005502, y: 0.40015006, z: 0}
+    m_Extent: {x: 8.5997505, y: 5.90055, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.86
@@ -2330,6 +2330,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &554533343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1265495603417711777, guid: 8b80df64c2e1c724eaad32edea644bea, type: 3}
+  m_PrefabInstance: {fileID: 403759817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &581364207
 GameObject:
   m_ObjectHideFlags: 0
@@ -18519,7 +18524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be106197634397149b9e074759bd5429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerWeapon: {fileID: 0}
+  playerWeapon: {fileID: 554533343}
 --- !u!4 &1679739619
 Transform:
   m_ObjectHideFlags: 0
@@ -22350,6 +22355,10 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2274472299843368763, guid: e985d175563a1a64e884744a17e546be, type: 3}
+      propertyPath: currentMoney
+      value: 
+      objectReference: {fileID: 11400000, guid: bfcbc4c011e134f468ac774949a796c7, type: 2}
     - target: {fileID: 2504733149219860817, guid: e985d175563a1a64e884744a17e546be, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
