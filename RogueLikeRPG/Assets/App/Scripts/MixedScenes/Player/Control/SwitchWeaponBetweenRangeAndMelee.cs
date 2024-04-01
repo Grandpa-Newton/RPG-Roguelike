@@ -23,7 +23,7 @@ public class SwitchWeaponBetweenRangeAndMelee
     private Transform _meleeWeapon;
     private Transform _rangeWeapon;
 
-    private GameObject[] _hands;
+    private Transform[] _hands;
 
     private GameObject _currentPickedWeapon;
     private CurrentWeaponsSO _currentWeaponsSO;
@@ -38,7 +38,7 @@ public class SwitchWeaponBetweenRangeAndMelee
     {
         return _isMeleeWeapon;
     }
-    public void Initialize(PlayerController playerController, Transform meleeWeapon, Transform rangeWeapon,GameObject[] hands, CurrentWeaponsSO currentWeaponsSO)
+    public void Initialize(PlayerController playerController, Transform meleeWeapon, Transform rangeWeapon,Transform[] hands, CurrentWeaponsSO currentWeaponsSO)
     {
         _meleeWeapon = meleeWeapon;
         _rangeWeapon = rangeWeapon;
@@ -152,7 +152,7 @@ public class SwitchWeaponBetweenRangeAndMelee
     {
         foreach (var hand in _hands)
         {
-            hand.SetActive(isActive);
+            hand.gameObject.SetActive(isActive);
         }
     }
 

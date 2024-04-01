@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using App.Scripts.MixedScenes.Inventory.Model;
@@ -6,23 +7,32 @@ using App.Scripts.MixedScenes.Inventory.UI;
 using UnityEngine;
 using App.Scripts.DungeonScene.Items;
 using App.Scripts.TraderScene;
+using Sirenix.OdinInspector;
 
 namespace App.Scripts.MixedScenes.Inventory.Controller
 {
     public class InventoryController : MonoBehaviour
     {
+        private Money money;
+         
+        [Title("Inventory Components")]
         [SerializeField] private UIInventoryPage inventoryUI;
-
         [SerializeField] private InventorySO inventoryData;
 
-        public List<InventoryItem> initialItems = new List<InventoryItem>();
-
+        public List<InventoryItem> initialItems = new();
+        
+        [Title("Audio Sources")]
         [SerializeField] private AudioClip dropClip;
         [SerializeField] private AudioSource audioSource;
 
+        [Title("Trading System")]
         [SerializeField] private GameObject trader;
+        [SerializeField] private IntValueSO currentMoney;
 
-        [SerializeField] private Money money;
+        private void Awake()
+        {
+            money = new Money(currentMoney);
+        }
 
         private void Start()
         {

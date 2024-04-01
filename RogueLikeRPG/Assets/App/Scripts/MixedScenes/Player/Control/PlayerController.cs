@@ -7,6 +7,7 @@ using App.Scripts.MixedScenes.Player;
 using App.Scripts.MixedScenes.Weapon.MeleeWeapon;
 using App.Scripts.MixedScenes.Weapon.RangeWeapon;
 using Cinemachine;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -19,38 +20,51 @@ public class PlayerController : MonoBehaviour
         Move,
         Roll,
     }
-
     private PlayerState _playerState;
 
-    private PlayerAnimator _playerAnimator;
     private PlayerHealth _playerHealth;
+    private PlayerWeapon _playerWeapon;
     private PlayerMovement _playerMovement;
+    
+    private PlayerAnimator _playerAnimator;
+    
     private PlayerAimWeaponRotation _playerAimWeaponRotation;
     private SwitchWeaponBetweenRangeAndMelee _switchWeaponBetweenRangeAndMelee;
-    private PlayerWeapon _playerWeapon;
-    private MeleeWeapon _meleeWeapon;
 
+    private Camera _camera;
+    private Rigidbody2D _rigidbody2D;
+    private PlayerInputActions _playerInputActions;
+    private CinemachineVirtualCamera _virtualCamera;
 
+    
+    [Title("Player Stats")] [LabelText("Health Characteristic")]
     [SerializeField] private CharacteristicValueSO healthCharacteristicSO;
-    [SerializeField] private Animator playerAnimator;
 
+    [Title("Player Transforms")]
+    [SerializeField] private Transform aimTransform;
+    [SerializeField] private Transform meleeWeapon;
+    [SerializeField] private Transform rangeWeapon;
+    [SerializeField] private Transform[] hands;
+
+    [Title("Animators")]
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Animator aimAnimator;
+    
+    [Title("Weapon Components")]
     [SerializeField] private CurrentWeaponsSO currentWeaponsSO;
     [SerializeField] private InventorySO inventorySO;
     [SerializeField] private List<ItemParameter> parametersToModify;
     [SerializeField] private List<ItemParameter> itemCurrentState;
-
-    [SerializeField] private Transform aimTransform;
-
-    [SerializeField] private Transform meleeWeapon;
-    [SerializeField] private Transform rangeWeapon;
-    [SerializeField] private GameObject[] hands;
-
-    [SerializeField] private Animator meleeWeaponAnimator;
-    [SerializeField] private SpriteRenderer meleeWeaponSpriteRenderer;
-
-    [SerializeField] private SpriteRenderer rangeWeaponSpriteRenderer;
+    
+    [Title("Audio Sources")]
+    [SerializeField] private AudioSource meleeWeaponAudioSource;
     [SerializeField] private AudioSource rangeWeaponAudioSource;
-
+    
+    [Title("Weapons Sprite Renderer Component")]
+    [SerializeField] private SpriteRenderer meleeWeaponSpriteRenderer;
+    [SerializeField] private SpriteRenderer rangeWeaponSpriteRenderer;
+    
+    [Title("Current Weapon UI")]
     [SerializeField] private Image meleeWeaponUI;
     [SerializeField] private Image meleeBackgroundImage;
     [SerializeField] private Image meleeWeaponIcon;
@@ -58,19 +72,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image rangeBackgroundImage;
     [SerializeField] private Image rangeWeaponIcon;
 
+    [Title("Bullet Components")]
     [SerializeField] private Bullet bulletPrefab;
-
-    private Camera _camera;
-    private Rigidbody2D _rigidbody2D;
-    private PlayerInputActions _playerInputActions;
-    private CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] private BulletFactory bulletFactory;
 
     private void Awake()
     {
         InitializeComponents();
-
-        /*
-        _playerHealth = new PlayerHealth(healthCharacteristicSO);*/
 
         PlayerHealth.Instance.Initialize(healthCharacteristicSO);
         
@@ -80,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
         _playerMovement.SetVirtualCamera(_virtualCamera, transform);
 
-        _playerAnimator = new PlayerAnimator(this, playerAnimator, _playerMovement);
+        _playerAnimator = new PlayerAnimator(playerAnimator, _playerMovement);
 
         PlayerAnimator.OnPlayerRolling += GetPlayerRollState;
         
@@ -94,7 +102,7 @@ public class PlayerController : MonoBehaviour
         SwitchWeaponBetweenRangeAndMelee.Instance.Initialize(this,meleeWeapon, rangeWeapon, hands, currentWeaponsSO);
 
         MeleeWeapon.Instance.Initialize(currentWeaponsSO, _playerInputActions, meleeWeaponSpriteRenderer,
-            meleeWeaponAnimator);
+            aimAnimator,meleeWeaponAudioSource);
         RangeWeapon.Instance.Initialize(currentWeaponsSO, bulletPrefab, _playerInputActions, rangeWeaponSpriteRenderer,
             aimTransform,
             rangeWeaponAudioSource);
@@ -148,7 +156,7 @@ public class PlayerController : MonoBehaviour
 
         _playerMovement.GetPlayerInputs();
 
-        _playerAnimator.CheckRollEnd();
+        _playerAnimator.RollEndAction();
 
 
         if (_isRolling)
@@ -164,8 +172,6 @@ public class PlayerController : MonoBehaviour
             _playerState = PlayerState.Idle;
         }
     }
-
-    [SerializeField] private BulletFactory bulletFactory;
     private void Update()
     {
         GetPlayerState();

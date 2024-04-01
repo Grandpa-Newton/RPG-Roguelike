@@ -10,6 +10,7 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
         public static MeleeWeapon Instance => _instance ??= new MeleeWeapon();
 
         private Animator _animator;
+        private AudioSource _audioSource;
         private MeleeWeaponSO _meleeWeaponSO;
         private SpriteRenderer _spriteRenderer;
         private CurrentWeaponsSO _currentWeaponsSO;
@@ -25,13 +26,14 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
         private static readonly int Idle = Animator.StringToHash("Idle");
 
         public void Initialize(CurrentWeaponsSO currentWeaponsSO,
-            PlayerInputActions playerInputActions, SpriteRenderer spriteRenderer, Animator animator)
+            PlayerInputActions playerInputActions, SpriteRenderer spriteRenderer, Animator animator,AudioSource audioSource)
         {
             _currentWeaponsSO = currentWeaponsSO;
             _playerInputActions = playerInputActions;
             _spriteRenderer = spriteRenderer;
             _animator = animator;
-
+            _audioSource = audioSource;
+            
             TryEquipMeleeWeapon();
         }
 

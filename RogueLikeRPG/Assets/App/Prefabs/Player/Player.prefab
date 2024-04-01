@@ -239,7 +239,6 @@ GameObject:
   - component: {fileID: 7442927163657405319}
   - component: {fileID: 7152533395521013163}
   - component: {fileID: 5958824334006302602}
-  - component: {fileID: -8975176193684933671}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -464,7 +463,7 @@ MonoBehaviour:
   dropClip: {fileID: 8300000, guid: c66a4a1db6099e34ca14a09e09c6ec26, type: 3}
   audioSource: {fileID: 5958824334006302602}
   trader: {fileID: 0}
-  money: {fileID: -8975176193684933671}
+  currentMoney: {fileID: 0}
 --- !u!114 &7442927163657405319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,19 +589,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-8975176193684933671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4306722505127858314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8041c497b3f62d9429a74def4399b71b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentMoney: {fileID: 11400000, guid: 30a51a99d3f65364e938509f4723ad9c, type: 2}
 --- !u!1 &4639642764309313730
 GameObject:
   m_ObjectHideFlags: 0

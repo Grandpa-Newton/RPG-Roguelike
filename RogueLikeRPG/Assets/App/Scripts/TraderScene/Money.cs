@@ -3,10 +3,14 @@ using UnityEngine;
 
 namespace App.Scripts.TraderScene
 {
-    public class Money : MonoBehaviour
+    public class Money 
     {
-        [SerializeField] private IntValueSO currentMoney;
+        private readonly IntValueSO currentMoney;
 
+        public Money(IntValueSO currentMoney)
+        {
+            this.currentMoney = currentMoney;
+        }
         public void AddMoney(int moneyBoost)
         {
             currentMoney.Value += moneyBoost;

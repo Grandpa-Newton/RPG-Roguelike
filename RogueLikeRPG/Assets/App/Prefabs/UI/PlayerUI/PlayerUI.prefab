@@ -3088,9 +3088,9 @@ GameObject:
   - component: {fileID: 3727142862133503298}
   - component: {fileID: 6748499861679121502}
   - component: {fileID: 480855144817639702}
+  - component: {fileID: 8352090702976022470}
   - component: {fileID: 8184781100864319816}
   - component: {fileID: 2347943991539803308}
-  - component: {fileID: 8352090702976022470}
   m_Layer: 5
   m_Name: PlayerMoneyUI
   m_TagString: Untagged
@@ -3156,6 +3156,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &8352090702976022470
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6364189575024654171}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &8184781100864319816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3185,18 +3197,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intValueSO: {fileID: 11400000, guid: 30a51a99d3f65364e938509f4723ad9c, type: 2}
   timeToHide: 2
---- !u!225 &8352090702976022470
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6364189575024654171}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &6473299153275271276
 GameObject:
   m_ObjectHideFlags: 0

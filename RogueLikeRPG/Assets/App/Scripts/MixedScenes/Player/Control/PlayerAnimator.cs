@@ -21,9 +21,8 @@ public class PlayerAnimator
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     private static readonly int IsRolling = Animator.StringToHash("IsRolling");
 
-    public PlayerAnimator(PlayerController playerController, Animator animator, PlayerMovement playerMovement)
+    public PlayerAnimator( Animator animator, PlayerMovement playerMovement)
     {
-        _playerController = playerController;
         _animator = animator;
         _playerMovement = playerMovement;
         _playerMovement.OnPlayerMovement += Player_OnPlayerMovement;
@@ -73,7 +72,7 @@ public class PlayerAnimator
         _animator.SetFloat(Vertical, movementMouse.y);
     }
 
-    public void CheckRollEnd()
+    public void RollEndAction()
     {
         var animator = _animator.GetCurrentAnimatorStateInfo(0);
         if (!animator.IsName("Roll") || !(animator.normalizedTime >= 1.0)) return;
