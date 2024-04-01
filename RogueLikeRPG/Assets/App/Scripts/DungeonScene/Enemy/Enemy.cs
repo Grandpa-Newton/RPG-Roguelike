@@ -26,14 +26,11 @@ namespace App.Scripts.DungeonScene.Enemy
 
         [SerializeField] private float knockbackDuration;
         [SerializeField] private float knockbackPower;
-    
-        private Player _player;
 
         private void Start()
         {
             _playerHealth = new PlayerHealth(/*characteristicValueSO*/);
             InitializeStatsFromSO();
-            _player = FindObjectOfType<Player>();
         }
 
         public void TakeDamage(float damage)
@@ -50,9 +47,9 @@ namespace App.Scripts.DungeonScene.Enemy
         {
             if ((hittable & 1 << other.gameObject.layer) != 0)
             {
-                if (other.gameObject.TryGetComponent(out Player player))
+                if (other.gameObject.TryGetComponent(out PlayerController player))
                 {
-                    player.playerHealth.ReduceHealth(enemySo.damage);
+                    PlayerHealth.Instance.ReduceHealth(enemySo.damage);
                 }
             }
         }

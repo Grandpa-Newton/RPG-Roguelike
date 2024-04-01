@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDestroy()
     {
-        _playerHealth.Dispose();
+        PlayerHealth.Instance.Dispose();
         _playerMovement.Dispose();
         _playerAnimator.Dispose();
         SwitchWeaponBetweenRangeAndMelee.Instance.Dispose();
