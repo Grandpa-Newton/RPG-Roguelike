@@ -9,7 +9,7 @@ namespace App.Scripts.MixedScenes.Inventory.Model.ItemParameters
     [CreateAssetMenu]
     public class EdibleItemSO : ItemSO, IDestroyableItem, IItemAction
     {
-        [SerializeField] private List<ModifierData> modifierData = new List<ModifierData>();
+        [SerializeField] private List<ModifierData> modifierData = new();
         public string ActionName => "Consume";
         [field: SerializeField] public AudioClip itemActionSound { get; private set; }
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)

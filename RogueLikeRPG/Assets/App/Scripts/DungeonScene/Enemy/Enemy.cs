@@ -31,7 +31,7 @@ namespace App.Scripts.DungeonScene.Enemy
 
         private void Start()
         {
-            _playerHealth = new PlayerHealth(characteristicValueSO);
+            _playerHealth = new PlayerHealth(/*characteristicValueSO*/);
             InitializeStatsFromSO();
             _player = FindObjectOfType<Player>();
         }

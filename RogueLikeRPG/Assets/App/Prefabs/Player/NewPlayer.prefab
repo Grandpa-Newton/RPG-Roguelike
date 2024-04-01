@@ -438,6 +438,8 @@ MonoBehaviour:
   rangeWeaponUI: {fileID: 5065706039084699498}
   rangeBackgroundImage: {fileID: 8114922893557172360}
   rangeWeaponIcon: {fileID: 8590038990467139078}
+  bulletPrefab: {fileID: 9027614786788320636, guid: e07bc0491c57868499d299ac5e1cfdb5, type: 3}
+  bulletFactory: {fileID: 107522487888908059}
 --- !u!114 &7490865900675531576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -873,6 +875,7 @@ GameObject:
   - component: {fileID: 1110256157436861220}
   - component: {fileID: 7499437923072878225}
   - component: {fileID: 3949150848456275677}
+  - component: {fileID: 107522487888908059}
   m_Layer: 0
   m_Name: RangeWeapon
   m_TagString: Untagged
@@ -1044,6 +1047,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &107522487888908059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8045914415567815399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c68c5d26a7f50842943fdbbc8253311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletsContainer: {fileID: 931827921514768830}
+  shootPoint: {fileID: 2133715077729565275}
+  rangeWeaponSO: {fileID: 11400000, guid: 46b6e0fcf21e257489ead109c7fff2f4, type: 2}
 --- !u!1001 &7586578533004321585
 PrefabInstance:
   m_ObjectHideFlags: 0

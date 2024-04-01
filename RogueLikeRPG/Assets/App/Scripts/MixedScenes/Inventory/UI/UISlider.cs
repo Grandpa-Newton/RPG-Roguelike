@@ -21,9 +21,15 @@ namespace App.Scripts.MixedScenes.Inventory.UI
         
         private void Start()
         {
-            _playerHealth = new PlayerHealth(characteristicValue);
+            _playerHealth = new PlayerHealth(/*characteristicValue*/);
+            _playerHealth.OnPlayerIncreaseHealth += OnPlayerHealthIncreaseUI;
             _playerHealth.OnPlayerIncreaseMaxHealth += UpdateHealthBarSize;
             SetValue();
+        }
+
+        private void OnPlayerHealthIncreaseUI()
+        {
+            healthText.text = $" {Mathf.RoundToInt(characteristicValue.CurrentValue)} / {Mathf.RoundToInt(characteristicValue.MaxValue)}";
         }
 
         private void Update()

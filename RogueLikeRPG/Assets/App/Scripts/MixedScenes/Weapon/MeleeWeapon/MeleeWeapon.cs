@@ -1,41 +1,23 @@
-using System;
-using App.Scripts.DungeonScene.Enemy;
 using App.Scripts.DungeonScene.Items;
-using Unity.VisualScripting;
 using UnityEngine;
+
 
 namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
 {
     public class MeleeWeapon : Weapon
     {
         private static MeleeWeapon _instance;
-
-        public static MeleeWeapon Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new MeleeWeapon();
-                }
-
-                return _instance;
-            }
-        }
-
-        public event Action<Enemy> OnHitEnemy;
-        
-        private MeleeWeaponSO _meleeWeaponSO;
-        private CurrentWeaponsSO _currentWeaponsSO;
-        private SpriteRenderer _spriteRenderer;
+        public static MeleeWeapon Instance => _instance ??= new MeleeWeapon();
 
         private Animator _animator;
+        private MeleeWeaponSO _meleeWeaponSO;
+        private SpriteRenderer _spriteRenderer;
+        private CurrentWeaponsSO _currentWeaponsSO;
         private PlayerInputActions _playerInputActions;
 
-        private Vector2 _defaultPosition;
         private Vector2 _currentPointPosition;
-        
-        
+        private Vector2 _defaultPosition;
+
         private float _attackTimer;
         private bool _isAttacking;
 
@@ -53,7 +35,6 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
             TryEquipMeleeWeapon();
         }
 
-
         private void TryEquipMeleeWeapon()
         {
             if (!_currentWeaponsSO.EquipMeleeWeapon) return;
@@ -61,19 +42,18 @@ namespace App.Scripts.MixedScenes.Weapon.MeleeWeapon
             _meleeWeaponSO = (MeleeWeaponSO)_currentWeaponsSO.EquipMeleeWeapon;
             SetWeapon(_meleeWeaponSO);
         }
-        
-      
 
-        public override void DealDamage(float deltaTime)
+        public void Attack()
         {
             if (!_meleeWeaponSO)
             {
                 return;
             }
 
-            _attackTimer += deltaTime;
+            _attackTimer += Time.deltaTime;
             if (_playerInputActions.Player.Attack.IsPressed() && !_isAttacking)
             {
+                Debug.Log("Bonk@!");
                 _isAttacking = true;
                 _animator.SetTrigger(Shoot);
                 _attackTimer = 0;

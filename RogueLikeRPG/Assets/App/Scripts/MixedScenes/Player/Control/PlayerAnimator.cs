@@ -82,6 +82,7 @@ public class PlayerAnimator
         _animator.SetBool(IsRolling, _isRolling);
         SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsEnable();
         OnPlayerRolling?.Invoke(_isRolling);
+        
     }
 
     public void Dispose()

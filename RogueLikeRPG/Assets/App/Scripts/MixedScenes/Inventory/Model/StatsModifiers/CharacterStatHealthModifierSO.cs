@@ -8,9 +8,8 @@ namespace App.Scripts.MixedScenes.Inventory.Model.StatsModifiers
     {
         public override void AffectCharacter(object character, float val)
         { 
-            PlayerHealth playerHealth = character as PlayerHealth;
+            PlayerHealth.Instance.IncreaseHealth((int) val);
             
-            playerHealth?.IncreaseHealth((int)val);
         }
         
     }

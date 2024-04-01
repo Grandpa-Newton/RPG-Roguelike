@@ -58,20 +58,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image rangeBackgroundImage;
     [SerializeField] private Image rangeWeaponIcon;
 
+    [SerializeField] private Bullet bulletPrefab;
+
     private Camera _camera;
     private Rigidbody2D _rigidbody2D;
     private PlayerInputActions _playerInputActions;
     private CinemachineVirtualCamera _virtualCamera;
 
-    public event Action HandleHitEnemy;
-    
-    
     private void Awake()
     {
         InitializeComponents();
 
-        _playerHealth = new PlayerHealth(healthCharacteristicSO);
+        /*
+        _playerHealth = new PlayerHealth(healthCharacteristicSO);*/
 
+        PlayerHealth.Instance.Initialize(healthCharacteristicSO);
+        
         _playerMovement = new PlayerMovement(_rigidbody2D, _playerInputActions, _camera);
 
         _virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
@@ -80,6 +82,8 @@ public class PlayerController : MonoBehaviour
 
         _playerAnimator = new PlayerAnimator(this, playerAnimator, _playerMovement);
 
+        PlayerAnimator.OnPlayerRolling += GetPlayerRollState;
+        
         PlayerCurrentWeaponUI.Instance.Initialize(meleeWeaponUI, meleeBackgroundImage, meleeWeaponIcon,
             rangeWeaponUI, rangeBackgroundImage, rangeWeaponIcon);
 
@@ -87,15 +91,22 @@ public class PlayerController : MonoBehaviour
 
         _playerAimWeaponRotation = new PlayerAimWeaponRotation(_playerInputActions, aimTransform);
 
-        SwitchWeaponBetweenRangeAndMelee.Instance.Initialize(meleeWeapon, rangeWeapon, hands, currentWeaponsSO);
-        
+        SwitchWeaponBetweenRangeAndMelee.Instance.Initialize(this,meleeWeapon, rangeWeapon, hands, currentWeaponsSO);
+
         MeleeWeapon.Instance.Initialize(currentWeaponsSO, _playerInputActions, meleeWeaponSpriteRenderer,
             meleeWeaponAnimator);
-        RangeWeapon.Instance.Initialize(currentWeaponsSO, _playerInputActions, rangeWeaponSpriteRenderer, aimTransform,
+        RangeWeapon.Instance.Initialize(currentWeaponsSO, bulletPrefab, _playerInputActions, rangeWeaponSpriteRenderer,
+            aimTransform,
             rangeWeaponAudioSource);
 
         SwitchWeaponBetweenRangeAndMelee.Instance.CheckAvailableWeapons();
-        
+    }
+
+    private bool _isRolling;
+
+    private void GetPlayerRollState(bool isRolling)
+    {
+        _isRolling = isRolling;
     }
 
     private void Start()
@@ -140,7 +151,7 @@ public class PlayerController : MonoBehaviour
         _playerAnimator.CheckRollEnd();
 
 
-        if (_playerInputActions.Player.Roll.triggered && playerMovementVector != Vector2.zero)
+        if (_isRolling)
         {
             _playerState = PlayerState.Roll;
         }
@@ -154,14 +165,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    [SerializeField] private BulletFactory bulletFactory;
     private void Update()
     {
         GetPlayerState();
         _playerAimWeaponRotation.HandsRotationAroundAim(transform);
         SwitchWeaponBetweenRangeAndMelee.Instance.SwapWeapon();
-        MeleeWeapon.Instance.DealDamage(Time.deltaTime);
+        HandleCombat();
+
     }
 
+    private void HandleCombat()
+    {
+        if (_isRolling) return;
+        
+        if (SwitchWeaponBetweenRangeAndMelee.Instance.CheckCurrentPickedMeleeWeapon() )
+        {
+            MeleeWeapon.Instance.Attack();
+        }
+        else 
+        {
+            RangeWeapon.Instance.Shoot(bulletFactory);
+        }
+    }
     private void FixedUpdate()
     {
         PlayerStateChanger();
@@ -174,6 +200,4 @@ public class PlayerController : MonoBehaviour
         _playerAnimator.Dispose();
         SwitchWeaponBetweenRangeAndMelee.Instance.Dispose();
     }
-    
-    
 }

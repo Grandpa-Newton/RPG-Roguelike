@@ -52,7 +52,7 @@ namespace App.Scripts.MixedScenes.Player.Control
                 EnablePlayerComponents();
             }
             
-            playerHealth = new PlayerHealth(characteristicValue);
+            playerHealth = new PlayerHealth(/*characteristicValue*/);
             
             _health = GetComponent<Health>();
             PlayerAnimatorOld.OnPlayerRolling += SetRollingState;

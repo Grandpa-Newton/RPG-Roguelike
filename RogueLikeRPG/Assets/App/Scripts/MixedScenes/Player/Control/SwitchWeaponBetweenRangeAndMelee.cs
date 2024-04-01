@@ -32,14 +32,21 @@ public class SwitchWeaponBetweenRangeAndMelee
     private bool _isRolling;
     private float _timerToSwapWeapon = 0f;
 
-    public void Initialize(Transform meleeWeapon, Transform rangeWeapon,GameObject[] hands, CurrentWeaponsSO currentWeaponsSO)
+    private PlayerController _playerController;
+    
+    public bool CheckCurrentPickedMeleeWeapon()
+    {
+        return _isMeleeWeapon;
+    }
+    public void Initialize(PlayerController playerController, Transform meleeWeapon, Transform rangeWeapon,GameObject[] hands, CurrentWeaponsSO currentWeaponsSO)
     {
         _meleeWeapon = meleeWeapon;
         _rangeWeapon = rangeWeapon;
         _hands = hands;
         _currentWeaponsSO = currentWeaponsSO;
-        
+        _playerController = playerController;
         PlayerAnimator.OnPlayerRolling += SetRollState;
+        
     }
     private void SetRollState(bool isRolling)
     {
