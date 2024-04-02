@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using App.Scripts.MixedScenes.Weapon;
+using App.Scripts.GameScenes.Player;
 using UnityEngine;
 
 public class SafelyZoneWithoutWeapon : MonoBehaviour

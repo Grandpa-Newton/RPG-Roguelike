@@ -1,4 +1,9 @@
+using System;
 using App.Scripts.AllScenes.Interfaces;
+using App.Scripts.GameScenes.Player;
+using App.Scripts.GameScenes.Player.Components;
+using App.Scripts.GameScenes.Player.EditableValues;
+using App.Scripts.MixedScenes;
 using App.Scripts.MixedScenes.Player;
 using App.Scripts.MixedScenes.Player.Control;
 using UnityEngine;
@@ -9,8 +14,10 @@ namespace App.Scripts.DungeonScene.Enemy
 {
     public class Enemy : MonoBehaviour, IDamageable
     {
-    
-        [FormerlySerializedAs("enemySO")] [SerializeField] private EnemySO enemySo;
+        private PlayerHealth _playerHealth;
+        [SerializeField] private CharacteristicValueSO characteristicValueSO;
+        
+        [SerializeField] private EnemySO enemySo;
         [SerializeField] private LayerMask hittable;
         [SerializeField] private NavMeshAgent navMeshAgent;
         private Vector2 _moveDirection;
@@ -22,13 +29,11 @@ namespace App.Scripts.DungeonScene.Enemy
 
         [SerializeField] private float knockbackDuration;
         [SerializeField] private float knockbackPower;
-    
-        private PlayerController _player;
 
         private void Start()
         {
+            _playerHealth = new PlayerHealth(/*characteristicValueSO*/);
             InitializeStatsFromSO();
-            _player = FindObjectOfType<PlayerController>();
         }
 
         public void TakeDamage(float damage)
@@ -45,12 +50,14 @@ namespace App.Scripts.DungeonScene.Enemy
         {
             if ((hittable & 1 << other.gameObject.layer) != 0)
             {
-                if (other.gameObject.TryGetComponent(out Health healthComponent))
+                if (other.gameObject.TryGetComponent(out PlayerController player))
                 {
-                    healthComponent.Reduce(enemySo.damage);
+                    PlayerHealth.Instance.ReduceHealth(enemySo.damage);
                 }
             }
         }
+
+ 
 
         private void InitializeStatsFromSO()
         {

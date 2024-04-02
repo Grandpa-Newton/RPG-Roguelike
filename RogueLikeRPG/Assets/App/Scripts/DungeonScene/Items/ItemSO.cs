@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using App.Scripts.GameScenes.Weapon;
 using App.Scripts.MixedScenes.Inventory.UI.ItemParameters;
-using App.Scripts.MixedScenes.Weapon;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;

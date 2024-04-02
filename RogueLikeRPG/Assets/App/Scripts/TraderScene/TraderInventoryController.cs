@@ -2,30 +2,31 @@ using System.Collections.Generic;
 using System.Text;
 using App.Scripts.AllScenes.Interfaces;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.GameScenes.Player.EditableValues;
+using App.Scripts.MixedScenes;
 using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.MixedScenes.Inventory.UI;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 namespace App.Scripts.TraderScene
 {
     public class TraderInventoryController : MonoBehaviour, IInteractable
     {
+        
         [SerializeField] private UIInventoryPage inventoryUI;
 
         [SerializeField] private InventorySO inventoryData;
 
-        public List<InventoryItem> initialItems = new List<InventoryItem>();
+        public List<InventoryItem> initialItems = new();
 
         [SerializeField] private AudioClip dropClip;
         [SerializeField] private AudioSource audioSource;
 
         [SerializeField] private GameObject player;
-
-        [SerializeField] private Money _money;
-
+        [SerializeField] private ChangeableValueSO currentMoney;
+        
         private void Start()
         {
             PrepareUI();
@@ -112,15 +113,15 @@ namespace App.Scripts.TraderScene
             Debug.Log("Sell Cost = " + itemSO.ItemBuyCost);
 
 
-            var playerMoney = player.GetComponent<Money>();
+            
 
-            if (playerMoney.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
+            if (TraderMoney.Instance.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Player can afford it");
                 if (player.GetComponent<InventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
-                    playerMoney.TryReduceMoney(itemSO.ItemBuyCost);
-                    _money.AddMoney(itemSO.ItemBuyCost);
+                    TraderMoney.Instance.TryReduceMoney(itemSO.ItemBuyCost);
+                    TraderMoney.Instance.AddMoney(itemSO.ItemBuyCost);
                     return true;
                 }
                 else

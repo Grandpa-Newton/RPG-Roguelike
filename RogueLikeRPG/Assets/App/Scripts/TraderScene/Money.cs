@@ -1,42 +1,15 @@
+using App.Scripts.GameScenes.Player.EditableValues;
 using App.Scripts.MixedScenes;
 using UnityEngine;
 
 namespace App.Scripts.TraderScene
 {
-    public class Money : MonoBehaviour
+    public abstract class Money
     {
-        [SerializeField] private IntValueSO currentMoney;
-
-        public void AddMoney(int moneyBoost)
-        {
-            currentMoney.Value += moneyBoost;
-        }
-
-        public bool CanAffordReduceMoney(int reducingMoney)
-        {
-
-            if (currentMoney.Value >= reducingMoney)
-            {
-                return true;
-            }
-            else
-            {
-                Debug.Log("Ну нет столько денег!");
-                return false;
-            }
-        }
-
-        public bool TryReduceMoney(int reducingMoney)
-        {
-            if(currentMoney.Value >= reducingMoney)
-            {
-                currentMoney.Value -= reducingMoney;
-                return true;
-            }
-            else
-            {
-                throw new System.Exception("Player cannot afford this!!");
-            }
-        }
+        protected ChangeableValueSO _currentMoney;
+        public abstract void Initialize(ChangeableValueSO currentMoney);
+        public abstract void AddMoney(int moneyBoost);
+        public abstract bool CanAffordReduceMoney(int reducingMoney);
+        public abstract bool TryReduceMoney(int reducingMoney);
     }
 }
