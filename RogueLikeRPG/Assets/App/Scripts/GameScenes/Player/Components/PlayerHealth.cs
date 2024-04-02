@@ -43,8 +43,6 @@ namespace App.Scripts.GameScenes.Player.Components
         {
             OnPlayerHealthReduce?.Invoke();
             playerHealth.CurrentValue -= healthToReduce;
-            Debug.Log(playerHealth.CurrentValue + "-=" + healthToReduce + "/" + playerHealth.MaxValue);
-            Debug.Log(playerHealth.CurrentValue);
             if (playerHealth.CurrentValue <= 0)
             {
                 Die();
