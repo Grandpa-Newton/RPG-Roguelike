@@ -25,12 +25,7 @@ namespace App.Scripts.TraderScene
 
         [SerializeField] private GameObject player;
         [SerializeField] private IntValueSO currentMoney;
-
-        private void Awake()
-        {
-            
-        }
-
+        
         private void Start()
         {
             PrepareUI();
@@ -119,13 +114,13 @@ namespace App.Scripts.TraderScene
 
             
 
-            if (PlayerMoney.Instance.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
+            if (TraderMoney.Instance.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Player can afford it");
                 if (player.GetComponent<InventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
-                    PlayerMoney.Instance.TryReduceMoney(itemSO.ItemBuyCost);
-                    PlayerMoney.Instance.AddMoney(itemSO.ItemBuyCost);
+                    TraderMoney.Instance.TryReduceMoney(itemSO.ItemBuyCost);
+                    TraderMoney.Instance.AddMoney(itemSO.ItemBuyCost);
                     return true;
                 }
                 else

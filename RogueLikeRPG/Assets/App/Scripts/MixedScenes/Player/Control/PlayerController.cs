@@ -111,8 +111,6 @@ public class PlayerController : MonoBehaviour
             rangeWeaponAudioSource);
 
         SwitchWeaponBetweenRangeAndMelee.Instance.CheckAvailableWeapons();
-        
-        PlayerMoney.Instance.Initialize(playerMoney);
     }
 
     private bool _isRolling;

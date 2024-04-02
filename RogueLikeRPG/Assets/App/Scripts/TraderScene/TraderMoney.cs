@@ -1,20 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
 using App.Scripts.MixedScenes;
 using App.Scripts.TraderScene;
 using UnityEngine;
 
-public class PlayerMoney : Money
+public class TraderMoney : Money
 {
-    private static PlayerMoney _instance;
-    public static PlayerMoney Instance => _instance ??= new PlayerMoney();
-
+    private static TraderMoney _instance;
+    public static TraderMoney Instance => _instance ??= new TraderMoney();
+    
     public override void Initialize(IntValueSO currentMoney)
     {
         _currentMoney = currentMoney;
     }
     public override void AddMoney(int moneyBoost)
     {
-        Debug.Log(_currentMoney);
-        Debug.Log(_currentMoney.CurrentValue);
         _currentMoney.CurrentValue += moneyBoost;
     }
 
