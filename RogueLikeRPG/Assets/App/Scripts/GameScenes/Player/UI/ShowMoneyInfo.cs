@@ -1,13 +1,15 @@
 using System.Collections;
 using App.Scripts.GameScenes.Player.EditableValues;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.GameScenes.Player.UI
 {
     public class ShowMoneyInfo : MonoBehaviour
     { 
-        [SerializeField] private ChangeableValueSO changeableValueSO;
+        [LabelText("Player Money")][SerializeField] private ChangeableValueSO playerMoney;
         [SerializeField] private float timeToHide;
 
         private CanvasGroup _canvasGroup;
@@ -16,7 +18,7 @@ namespace App.Scripts.GameScenes.Player.UI
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
-            changeableValueSO.OnValueChange += ShowMoneyInformation;
+            playerMoney.OnValueChange += ShowMoneyInformation;
             _canvasGroup.alpha = 0;
         }
 
@@ -45,7 +47,7 @@ namespace App.Scripts.GameScenes.Player.UI
 
         private void OnDestroy()
         {
-            changeableValueSO.OnValueChange -= ShowMoneyInformation;
+            playerMoney.OnValueChange -= ShowMoneyInformation;
         }
     }
 }

@@ -8,7 +8,7 @@ public class SpawnPlayer : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     void Start()
     {
-        GameObject playerObject = Instantiate(playerPrefab, transform.position - new Vector3(0, 8, 0), Quaternion.identity);
+        GameObject playerObject = Instantiate(playerPrefab, transform.position, Quaternion.identity);
 
     }
 
