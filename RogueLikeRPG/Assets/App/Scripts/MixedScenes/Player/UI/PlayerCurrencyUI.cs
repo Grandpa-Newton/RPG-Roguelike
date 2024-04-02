@@ -4,21 +4,22 @@ using System.Collections.Generic;
 using App.Scripts.MixedScenes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerCurrencyUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text currentCurrency;
     [SerializeField] private GameObject moneyPanel;
-    [SerializeField] private IntValueSO _intValueSO; 
+    [FormerlySerializedAs("_intValueSO")] [SerializeField] private ChangeableValueSO changeableValueSO; 
     
     private void Awake()
     {
-        _intValueSO.OnValueChange += UpdatePlayerCurrentCurrency;
+        changeableValueSO.OnValueChange += UpdatePlayerCurrentCurrency;
     }
 
     private void Start()
     {
-        UpdatePlayerCurrentCurrency(_intValueSO.CurrentValue);
+        UpdatePlayerCurrentCurrency(changeableValueSO.CurrentValue);
     }
 
     private void UpdatePlayerCurrentCurrency(int money)

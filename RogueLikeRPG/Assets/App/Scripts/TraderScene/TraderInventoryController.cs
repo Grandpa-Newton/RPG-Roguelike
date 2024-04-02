@@ -24,7 +24,7 @@ namespace App.Scripts.TraderScene
         [SerializeField] private AudioSource audioSource;
 
         [SerializeField] private GameObject player;
-        [SerializeField] private IntValueSO currentMoney;
+        [SerializeField] private ChangeableValueSO currentMoney;
         
         private void Start()
         {

@@ -26,7 +26,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
 
         [Title("Trading System")]
         [SerializeField] private GameObject trader;
-        [SerializeField] private IntValueSO currentMoney;
+        [SerializeField] private ChangeableValueSO traderMoney;
 
         private void Start()
         {

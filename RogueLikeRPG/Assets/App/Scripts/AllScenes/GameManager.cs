@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private IntValueSO playerMoneySO;
-    [SerializeField] private IntValueSO traderMoneySO;
+    [SerializeField] private ChangeableValueSO playerMoneySO;
+    [SerializeField] private ChangeableValueSO traderMoneySO;
     private void Awake()
     {
         PlayerMoney.Instance.Initialize(playerMoneySO);

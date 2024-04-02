@@ -9,7 +9,7 @@ public class TraderMoney : Money
     private static TraderMoney _instance;
     public static TraderMoney Instance => _instance ??= new TraderMoney();
     
-    public override void Initialize(IntValueSO currentMoney)
+    public override void Initialize(ChangeableValueSO currentMoney)
     {
         _currentMoney = currentMoney;
     }

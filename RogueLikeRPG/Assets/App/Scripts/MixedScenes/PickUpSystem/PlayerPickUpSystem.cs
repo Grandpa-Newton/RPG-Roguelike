@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace App.Scripts.MixedScenes.PickUpSystem
 {
-    public class PickUpSystem : MonoBehaviour
+    public class PlayerPickUpSystem : MonoBehaviour
     {
         [SerializeField] private InventorySO inventoryData;
         private void OnTriggerEnter2D(Collider2D other)

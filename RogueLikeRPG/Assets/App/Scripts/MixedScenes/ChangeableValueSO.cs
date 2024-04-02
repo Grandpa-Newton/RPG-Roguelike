@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 namespace App.Scripts.MixedScenes
 {
     [CreateAssetMenu(menuName = "Data/IntData")]
-    public class IntValueSO : ScriptableObject
+    public class ChangeableValueSO : ScriptableObject
     {
        [SerializeField] private int currentValue;
 

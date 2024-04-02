@@ -7,7 +7,7 @@ public class PlayerMoney : Money
     private static PlayerMoney _instance;
     public static PlayerMoney Instance => _instance ??= new PlayerMoney();
 
-    public override void Initialize(IntValueSO currentMoney)
+    public override void Initialize(ChangeableValueSO currentMoney)
     {
         _currentMoney = currentMoney;
     }

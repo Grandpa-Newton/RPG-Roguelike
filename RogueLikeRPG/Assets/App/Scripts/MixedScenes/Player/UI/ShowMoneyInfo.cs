@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using App.Scripts.MixedScenes;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 public class ShowMoneyInfo : MonoBehaviour
 {
-    [SerializeField] private IntValueSO intValueSO;
+    [FormerlySerializedAs("intValueSO")] [SerializeField] private ChangeableValueSO changeableValueSO;
     [SerializeField] private float timeToHide;
 
     private CanvasGroup _canvasGroup;
@@ -16,7 +17,7 @@ public class ShowMoneyInfo : MonoBehaviour
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
-        intValueSO.OnValueChange += ShowMoneyInformation;
+        changeableValueSO.OnValueChange += ShowMoneyInformation;
         _canvasGroup.alpha = 0;
     }
 
@@ -45,6 +46,6 @@ public class ShowMoneyInfo : MonoBehaviour
 
     private void OnDestroy()
     {
-        intValueSO.OnValueChange -= ShowMoneyInformation;
+        changeableValueSO.OnValueChange -= ShowMoneyInformation;
     }
 }

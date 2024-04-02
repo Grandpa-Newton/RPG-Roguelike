@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BulletFactory bulletFactory;
     
     [Title("Money Components")]
-    [SerializeField] private IntValueSO playerMoney;
+    [SerializeField] private ChangeableValueSO playerMoney;
 
     private void Awake()
     {

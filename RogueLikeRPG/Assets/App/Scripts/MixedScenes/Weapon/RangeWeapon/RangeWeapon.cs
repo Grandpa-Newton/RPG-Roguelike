@@ -60,7 +60,7 @@ namespace App.Scripts.MixedScenes.Weapon.RangeWeapon
                 _timeToNextShot = 0f;
             }
         }
-
+        
         public override void SetWeapon(ItemSO rangeWeaponSo)
         {
             if (!rangeWeaponSo)
