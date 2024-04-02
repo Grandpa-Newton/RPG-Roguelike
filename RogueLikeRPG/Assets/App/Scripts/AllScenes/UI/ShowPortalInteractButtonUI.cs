@@ -1,5 +1,5 @@
 using App.Scripts.AllScenes.Interfaces;
-using App.Scripts.MixedScenes.Player.Control;
+using App.Scripts.GameScenes.Player;
 using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;

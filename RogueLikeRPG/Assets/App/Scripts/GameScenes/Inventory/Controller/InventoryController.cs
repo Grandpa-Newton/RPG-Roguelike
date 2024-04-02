@@ -1,36 +1,44 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
-using App.Scripts.AllScenes.Interfaces;
-using App.Scripts.DungeonScene.Items;
-using App.Scripts.GameScenes.Player.EditableValues;
-using App.Scripts.MixedScenes;
-using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.MixedScenes.Inventory.UI;
 using UnityEngine;
+using App.Scripts.DungeonScene.Items;
+using App.Scripts.GameScenes.Player.Components;
+using App.Scripts.GameScenes.Player.EditableValues;
+using App.Scripts.TraderScene;
+using Sirenix.OdinInspector;
 
-namespace App.Scripts.TraderScene
+namespace App.Scripts.MixedScenes.Inventory.Controller
 {
-    public class TraderInventoryController : MonoBehaviour, IInteractable
+    public class InventoryController : MonoBehaviour
     {
-        
+         
+        [Title("Inventory Components")]
         [SerializeField] private UIInventoryPage inventoryUI;
-
         [SerializeField] private InventorySO inventoryData;
 
         public List<InventoryItem> initialItems = new();
-
+        
+        [Title("Audio Sources")]
         [SerializeField] private AudioClip dropClip;
         [SerializeField] private AudioSource audioSource;
 
-        [SerializeField] private GameObject player;
-        [SerializeField] private ChangeableValueSO currentMoney;
-        
+        [Title("Trading System")]
+        [SerializeField] private GameObject trader;
+        [SerializeField] private ChangeableValueSO traderMoney;
+
         private void Start()
         {
             PrepareUI();
             PrepareInventoryData();
+        }
+
+        private void OnDisable()
+        {
+            UnSubscribeEvent();
         }
 
         private void PrepareInventoryData()
@@ -45,6 +53,7 @@ namespace App.Scripts.TraderScene
                     inventoryData.AddItem(item);
                 }
             }
+
             inventoryData.OnInventoryUpdated += UpdateInventoryUI;
         }
 
@@ -75,20 +84,24 @@ namespace App.Scripts.TraderScene
                 return;
 
             IItemAction itemAction = inventoryItem.item as IItemAction;
-            /*if (itemAction != null)
+            if (itemAction != null)
             {
+                inventoryUI.ShowItemAction(itemIndex);
                 inventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
-            }*/
+            }
 
             IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
             if (destroyableItem != null)
             {
-                inventoryUI.ShowItemAction(itemIndex);
-                inventoryUI.AddAction("Buy", () => SellItem(inventoryItem, itemIndex));
+                inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
             }
 
-            /**/
+            if (trader != null)
+            {
+                inventoryUI.AddAction("Sell", () => SellItem(inventoryItem, itemIndex));
+            }
         }
+
 
         private void SellItem(InventoryItem inventoryItem, int itemIndex)
         {
@@ -99,8 +112,7 @@ namespace App.Scripts.TraderScene
                 {
                     inventoryData.RemoveItem(itemIndex, 1);
                 }
-                //audioSource.PlayOneShot(itemAction.itemActionSound);
-                audioSource.PlayOneShot(dropClip); // С‚СѓС‚ РјР± РґСЂСѓРіРѕР№ Р·РІСѓРє
+
                 if (inventoryData.GetItemAt(itemIndex).IsEmpty)
                     inventoryUI.ResetSelection();
             }
@@ -115,26 +127,34 @@ namespace App.Scripts.TraderScene
 
             
 
-            if (TraderMoney.Instance.CanAffordReduceMoney(itemSO.ItemBuyCost)) // С‚СѓС‚ С‚РѕР¶Рµ, РЅР°РІРµСЂРЅРѕРµ, РЅСѓР¶РЅРѕ РєРѕР»РёС‡РµСЃС‚РІРѕ
+            if (PlayerMoney.Instance.CanAffordReduceMoney(itemSO.ItemSellCost)) // тут тоже, наверное, нужно количество
             {
-                Debug.Log("Player can afford it");
-                if (player.GetComponent<InventoryController>().TryAddItem(itemSO)) // СЃСЋРґР° РЅСѓР¶РЅРѕ Р±СѓРґРµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРµСЂРµРґР°РІР°С‚СЊ
+                Debug.Log("Trader can afford it");
+                if (trader.GetComponent<TraderInventoryController>()
+                    .TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
-                    TraderMoney.Instance.TryReduceMoney(itemSO.ItemBuyCost);
-                    TraderMoney.Instance.AddMoney(itemSO.ItemBuyCost);
+                    PlayerMoney.Instance.TryReduceMoney(itemSO.ItemSellCost);
+                    PlayerMoney.Instance.AddMoney(itemSO.ItemSellCost);
                     return true;
                 }
                 else
                 {
-                    Debug.Log("Player doesn't have enough space in inventory");
+                    Debug.Log("Trader doesn't have enough space in inventory");
                     return false;
                 }
             }
             else
             {
-                Debug.Log("Player can't afford it.");
+                Debug.Log("Trader can't afford it.");
                 return false;
             }
+        }
+
+        private void DropItem(int itemIndex, int quantity)
+        {
+            inventoryData.RemoveItem(itemIndex, quantity);
+            inventoryUI.ResetSelection();
+            audioSource.PlayOneShot(dropClip);
         }
 
         public void PerformAction(int itemIndex)
@@ -143,21 +163,19 @@ namespace App.Scripts.TraderScene
             if (inventoryItem.IsEmpty)
                 return;
 
+            IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
+            if (destroyableItem != null)
+            {
+                inventoryData.RemoveItem(itemIndex, 1);
+            }
+
             IItemAction itemAction = inventoryItem.item as IItemAction;
             if (itemAction != null)
             {
-            
-                if (itemAction.PerformAction(player, inventoryItem.itemState))
-                {
-                    IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
-                    if (destroyableItem != null)
-                    {
-                        inventoryData.RemoveItem(itemIndex, 1);
-                    }
-                    audioSource.PlayOneShot(itemAction.itemActionSound);
-                    if (inventoryData.GetItemAt(itemIndex).IsEmpty)
-                        inventoryUI.ResetSelection();
-                }
+                itemAction.PerformAction(gameObject, inventoryItem.itemState);
+                inventoryUI.ResetSelection();
+                if (inventoryData.GetItemAt(itemIndex).IsEmpty)
+                    inventoryUI.ResetSelection();
             }
         }
 
@@ -203,18 +221,25 @@ namespace App.Scripts.TraderScene
             return sb.ToString();
         }
 
-        public bool TryAddItem(ItemSO item)
+        public void UnSubscribeEvent()
         {
-            int reminder = inventoryData.AddItem(item, 1); // РїРѕС‚РѕРј С‚СѓС‚ РЅСѓР¶РЅРѕ Р±СѓРґРµС‚ СЃРґРµР»Р°С‚СЊ С‚Р°Рє, С‡С‚РѕР±С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РјРѕРі РІС‹Р±РёСЂР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРґРјРµС‚РѕРІ РґР»СЏ РїРѕРєСѓРїРєРё
-            
-            if (reminder == 0)
-                return true;
-            else
-                return false;
+            inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
         }
 
-        public void Interact() // РјР± СЂРµР°Р»РёР·РѕРІР°С‚СЊ РІ РѕС‚РґРµР»СЊРЅРѕРј СЃРєСЂРёРїС‚Рµ
+        public void SetTraderObject(GameObject trader)
         {
+            this.trader = trader;
+        }
+
+        public void Update()
+        {
+            ShowOrHideInventory();
+        }
+
+        private void ShowOrHideInventory()
+        {
+            if (!Input.GetKeyDown(KeyCode.Tab)) return;
+            
             if (inventoryUI.isActiveAndEnabled == false)
             {
                 inventoryUI.Show();
@@ -228,6 +253,22 @@ namespace App.Scripts.TraderScene
             {
                 inventoryUI.Hide();
             }
+        }
+
+        public void CloseInventory()
+        {
+            inventoryUI.Hide();
+        }
+
+        public bool TryAddItem(ItemSO item)
+        {
+            int reminder =
+                inventoryData.AddItem(item,
+                    1); // потом тут нужно будет сделать так, чтобы пользователь мог выбирать количество предметов для покупки
+            if (reminder == 0)
+                return true;
+            else
+                return false;
         }
     }
 }

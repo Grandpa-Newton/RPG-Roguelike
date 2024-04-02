@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.GameScenes.Player.EditableValues;
 using App.Scripts.MixedScenes;
 using App.Scripts.TraderScene;
 using UnityEngine;

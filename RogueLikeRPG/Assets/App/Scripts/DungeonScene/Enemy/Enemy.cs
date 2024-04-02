@@ -1,5 +1,8 @@
 using System;
 using App.Scripts.AllScenes.Interfaces;
+using App.Scripts.GameScenes.Player;
+using App.Scripts.GameScenes.Player.Components;
+using App.Scripts.GameScenes.Player.EditableValues;
 using App.Scripts.MixedScenes;
 using App.Scripts.MixedScenes.Player;
 using App.Scripts.MixedScenes.Player.Control;

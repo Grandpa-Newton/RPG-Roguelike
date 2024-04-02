@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using App.Scripts.AllScenes.UI;
+using App.Scripts.GameScenes.Player;
 using App.Scripts.MapScene.Cells;
 using App.Scripts.MixedScenes.Player.Control;
 using UnityEngine.SceneManagement;
