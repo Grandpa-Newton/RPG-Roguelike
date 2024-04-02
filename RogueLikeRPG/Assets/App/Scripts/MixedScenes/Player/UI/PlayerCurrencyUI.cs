@@ -18,7 +18,7 @@ public class PlayerCurrencyUI : MonoBehaviour
 
     private void Start()
     {
-        UpdatePlayerCurrentCurrency(_intValueSO.Value);
+        UpdatePlayerCurrentCurrency(_intValueSO.CurrentValue);
     }
 
     private void UpdatePlayerCurrentCurrency(int money)

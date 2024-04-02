@@ -1,36 +1,37 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.MixedScenes.Player
 {
     public class Health : MonoBehaviour
     {
         [SerializeField] private int maxHealth = 100;
-        [SerializeField] private CharacteristicValueSO currentHealth;
+        [SerializeField] private CharacteristicValueSO playerHealthSO;
 
         public event Action OnHealthReduce;
         
         private void Start()
         {
-            if (!currentHealth.IsInitialized)
+            if (!playerHealthSO.IsInitialized)
             {
-                currentHealth.CurrentValue = 1;
-                currentHealth.IsInitialized = true;
+                playerHealthSO.CurrentValue = playerHealthSO.MaxValue;
+                playerHealthSO.IsInitialized = true;
             }
         }
         public void AddHealth(int healthBoost)
         {
-            int health = Mathf.RoundToInt(currentHealth.CurrentValue * maxHealth);
+            int health = Mathf.RoundToInt(playerHealthSO.CurrentValue * maxHealth);
             int val = health + healthBoost;
-            currentHealth.CurrentValue = val > maxHealth ? 1 : val / maxHealth;
+            playerHealthSO.CurrentValue = val > maxHealth ? 1 : val / maxHealth;
         }
 
         public void Reduce(int damage)
         {
             OnHealthReduce?.Invoke();
-            currentHealth.CurrentValue -= damage / maxHealth;
-            if (currentHealth.CurrentValue <= 0)
+            playerHealthSO.CurrentValue -= damage / maxHealth;
+            if (playerHealthSO.CurrentValue <= 0)
             {
                 Die();
             }
@@ -38,7 +39,7 @@ namespace App.Scripts.MixedScenes.Player
         private void Die()
         {
             Debug.Log("Died");
-            currentHealth.CurrentValue = 50;
+            playerHealthSO.CurrentValue = 50;
         }
 
     

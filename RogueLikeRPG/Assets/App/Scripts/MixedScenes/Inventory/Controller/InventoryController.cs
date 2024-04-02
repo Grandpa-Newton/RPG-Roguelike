@@ -13,7 +13,6 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
 {
     public class InventoryController : MonoBehaviour
     {
-        private Money money;
          
         [Title("Inventory Components")]
         [SerializeField] private UIInventoryPage inventoryUI;
@@ -28,11 +27,6 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         [Title("Trading System")]
         [SerializeField] private GameObject trader;
         [SerializeField] private IntValueSO currentMoney;
-
-        private void Awake()
-        {
-            money = new Money(currentMoney);
-        }
 
         private void Start()
         {
@@ -129,16 +123,16 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             Debug.Log("Sell Cost = " + itemSO.ItemBuyCost);
 
 
-            var traderMoney = trader.GetComponent<Money>();
+            
 
-            if (traderMoney.CanAffordReduceMoney(itemSO.ItemSellCost)) // тут тоже, наверное, нужно количество
+            if (PlayerMoney.Instance.CanAffordReduceMoney(itemSO.ItemSellCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Trader can afford it");
                 if (trader.GetComponent<TraderInventoryController>()
                     .TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
-                    traderMoney.TryReduceMoney(itemSO.ItemSellCost);
-                    money.AddMoney(itemSO.ItemSellCost);
+                    PlayerMoney.Instance.TryReduceMoney(itemSO.ItemSellCost);
+                    PlayerMoney.Instance.AddMoney(itemSO.ItemSellCost);
                     return true;
                 }
                 else

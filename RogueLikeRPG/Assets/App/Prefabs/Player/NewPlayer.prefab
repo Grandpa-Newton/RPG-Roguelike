@@ -633,6 +633,7 @@ MonoBehaviour:
   rangeWeaponIcon: {fileID: 8590038990467139078}
   bulletPrefab: {fileID: 9027614786788320636, guid: e07bc0491c57868499d299ac5e1cfdb5, type: 3}
   bulletFactory: {fileID: 107522487888908059}
+  playerMoney: {fileID: 11400000, guid: 30a51a99d3f65364e938509f4723ad9c, type: 2}
 --- !u!114 &7490865900675531576
 MonoBehaviour:
   m_ObjectHideFlags: 0

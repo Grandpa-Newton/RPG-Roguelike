@@ -13,7 +13,6 @@ namespace App.Scripts.TraderScene
 {
     public class TraderInventoryController : MonoBehaviour, IInteractable
     {
-        private Money money;
         
         [SerializeField] private UIInventoryPage inventoryUI;
 
@@ -29,7 +28,7 @@ namespace App.Scripts.TraderScene
 
         private void Awake()
         {
-            money = new Money(currentMoney);
+            
         }
 
         private void Start()
@@ -118,15 +117,15 @@ namespace App.Scripts.TraderScene
             Debug.Log("Sell Cost = " + itemSO.ItemBuyCost);
 
 
-            var playerMoney = player.GetComponent<Money>();
+            
 
-            if (playerMoney.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
+            if (PlayerMoney.Instance.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Player can afford it");
                 if (player.GetComponent<InventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
-                    playerMoney.TryReduceMoney(itemSO.ItemBuyCost);
-                    money.AddMoney(itemSO.ItemBuyCost);
+                    PlayerMoney.Instance.TryReduceMoney(itemSO.ItemBuyCost);
+                    PlayerMoney.Instance.AddMoney(itemSO.ItemBuyCost);
                     return true;
                 }
                 else

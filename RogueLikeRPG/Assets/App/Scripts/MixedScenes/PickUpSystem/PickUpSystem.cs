@@ -7,7 +7,6 @@ namespace App.Scripts.MixedScenes.PickUpSystem
     public class PickUpSystem : MonoBehaviour
     {
         [SerializeField] private InventorySO inventoryData;
-
         private void OnTriggerEnter2D(Collider2D other)
         {
             ItemPickable item = other.GetComponent<ItemPickable>();
@@ -15,7 +14,7 @@ namespace App.Scripts.MixedScenes.PickUpSystem
             {
                 if(other.GetComponent<Coin>() != null)
                 {
-                    GetComponent<Money>().AddMoney(1);
+                    PlayerMoney.Instance.AddMoney(1);
                     item.DestroyItem();
                     return;
                 }

@@ -3,23 +3,31 @@ using UnityEngine;
 
 namespace App.Scripts.TraderScene
 {
-    public class Money 
+    public class Money1 
     {
-        private readonly IntValueSO currentMoney;
+        private static Money1 _instance;
+        public static Money1 Instance => _instance ??= new Money1();
+        
+        private IntValueSO _currentMoney;
 
-        public Money(IntValueSO currentMoney)
+        /*public Money(IntValueSO currentMoney)
         {
             this.currentMoney = currentMoney;
+        }*/
+
+        public void Initialize(IntValueSO currentMoney)
+        {
+            _currentMoney = currentMoney;
         }
         public void AddMoney(int moneyBoost)
         {
-            currentMoney.Value += moneyBoost;
+            _currentMoney.CurrentValue += moneyBoost;
         }
 
         public bool CanAffordReduceMoney(int reducingMoney)
         {
 
-            if (currentMoney.Value >= reducingMoney)
+            if (_currentMoney.CurrentValue >= reducingMoney)
             {
                 return true;
             }
@@ -32,9 +40,9 @@ namespace App.Scripts.TraderScene
 
         public bool TryReduceMoney(int reducingMoney)
         {
-            if(currentMoney.Value >= reducingMoney)
+            if(_currentMoney.CurrentValue >= reducingMoney)
             {
-                currentMoney.Value -= reducingMoney;
+                _currentMoney.CurrentValue -= reducingMoney;
                 return true;
             }
             else

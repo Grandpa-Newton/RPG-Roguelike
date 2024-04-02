@@ -1,21 +1,21 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.MixedScenes
 {
     [CreateAssetMenu(menuName = "Data/IntData")]
     public class IntValueSO : ScriptableObject
     {
-        [SerializeField]
-        private int _value;
+       [SerializeField] private int currentValue;
 
-        public int Value
+        public int CurrentValue
         {
-            get => _value;
+            get => currentValue;
             set
             {
-                _value = value;
-                OnValueChange?.Invoke(_value);
+                currentValue = value;
+                OnValueChange?.Invoke(currentValue);
             }
 
         }

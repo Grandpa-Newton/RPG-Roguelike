@@ -8,18 +8,7 @@
     {
         private static PlayerHealth _instance;
 
-        public static PlayerHealth Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new PlayerHealth();
-                }
-
-                return _instance;
-            }
-        }
+        public static PlayerHealth Instance => _instance ??= new PlayerHealth();
         public int maxHealth { get; private set; }
         public CharacteristicValueSO playerHealth { get; private set; }
             
@@ -32,10 +21,7 @@
         {
             this.playerHealth = playerHealth;
         }
-        /*public PlayerHealth(CharacteristicValueSO playerHealth)
-        {
-            this.playerHealth = playerHealth;
-        }*/
+        
         public void IncreaseHealth(int healthToIncrease)
         {
             int val = playerHealth.CurrentValue + healthToIncrease;

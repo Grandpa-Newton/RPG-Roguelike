@@ -9,7 +9,6 @@ using App.Scripts.MixedScenes.Weapon.RangeWeapon;
 using Cinemachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -25,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth _playerHealth;
     private PlayerWeapon _playerWeapon;
     private PlayerMovement _playerMovement;
+    private PlayerMoney _playerMoney;
     
     private PlayerAnimator _playerAnimator;
     
@@ -75,6 +75,9 @@ public class PlayerController : MonoBehaviour
     [Title("Bullet Components")]
     [SerializeField] private Bullet bulletPrefab;
     [SerializeField] private BulletFactory bulletFactory;
+    
+    [Title("Money Components")]
+    [SerializeField] private IntValueSO playerMoney;
 
     private void Awake()
     {
@@ -108,6 +111,8 @@ public class PlayerController : MonoBehaviour
             rangeWeaponAudioSource);
 
         SwitchWeaponBetweenRangeAndMelee.Instance.CheckAvailableWeapons();
+        
+        PlayerMoney.Instance.Initialize(playerMoney);
     }
 
     private bool _isRolling;
