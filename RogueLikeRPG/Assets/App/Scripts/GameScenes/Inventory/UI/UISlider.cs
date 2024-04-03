@@ -11,7 +11,6 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 {
     public class UISlider : MonoBehaviour
     {
-        private PlayerHealth _playerHealth;
         private const int IncreaseHealthBarWidthAtTime = 50;
         [SerializeField] private RectTransform maxHealthBar;
         [SerializeField] private RectTransform currentHealthBar;
@@ -23,9 +22,8 @@ namespace App.Scripts.MixedScenes.Inventory.UI
         
         private void Start()
         {
-            _playerHealth = new PlayerHealth(/*characteristicValue*/);
-            _playerHealth.OnPlayerIncreaseHealth += OnPlayerHealthIncreaseUI;
-            _playerHealth.OnPlayerIncreaseMaxHealth += UpdateHealthBarSize;
+            PlayerHealth.Instance.OnPlayerIncreaseHealth += OnPlayerHealthIncreaseUI;
+            PlayerHealth.Instance.OnPlayerIncreaseMaxHealth += UpdateHealthBarSize;
             SetValue();
         }
 

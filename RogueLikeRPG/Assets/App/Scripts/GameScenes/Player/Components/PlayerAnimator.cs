@@ -19,6 +19,7 @@ namespace App.Scripts.GameScenes.Player.Components
         private static readonly int Vertical = Animator.StringToHash("Vertical");
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
         private static readonly int IsRolling = Animator.StringToHash("IsRolling");
+        private static readonly int IsDead = Animator.StringToHash("IsDead");
 
         public PlayerAnimator( Animator animator, PlayerMovement playerMovement)
         {
@@ -26,6 +27,12 @@ namespace App.Scripts.GameScenes.Player.Components
             _playerMovement = playerMovement;
             _playerMovement.OnPlayerMovement += Player_OnPlayerMovement;
             _playerMovement.OnPlayerMouseMovement += Player_OnPlayerMouseMovement;
+            PlayerHealth.Instance.OnPlayerDie += Player_OnPlayerDie;
+        }
+
+        private void Player_OnPlayerDie()
+        {
+            _animator.SetTrigger(IsDead);
         }
 
 

@@ -14,7 +14,6 @@ namespace App.Scripts.DungeonScene.Enemy
 {
     public class Enemy : MonoBehaviour, IDamageable
     {
-        private PlayerHealth _playerHealth;
         [SerializeField] private CharacteristicValueSO characteristicValueSO;
         
         [SerializeField] private EnemySO enemySo;
@@ -32,7 +31,6 @@ namespace App.Scripts.DungeonScene.Enemy
 
         private void Start()
         {
-            _playerHealth = new PlayerHealth(/*characteristicValueSO*/);
             InitializeStatsFromSO();
         }
 
