@@ -127,13 +127,13 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
 
             
 
-            if (PlayerMoney.Instance.CanAffordReduceMoney(itemSO.ItemSellCost)) // тут тоже, наверное, нужно количество
+            if (TraderMoney.Instance.CanAffordReduceMoney(itemSO.ItemSellCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Trader can afford it");
                 if (trader.GetComponent<TraderInventoryController>()
                     .TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
-                    PlayerMoney.Instance.TryReduceMoney(itemSO.ItemSellCost);
+                    TraderMoney.Instance.TryReduceMoney(itemSO.ItemSellCost);
                     PlayerMoney.Instance.AddMoney(itemSO.ItemSellCost);
                     return true;
                 }

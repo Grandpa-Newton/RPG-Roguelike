@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using App.Scripts.AllScenes.Interfaces;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.GameScenes.Player.EditableValues;
 using App.Scripts.MixedScenes;
 using App.Scripts.MixedScenes.Inventory.Controller;
@@ -100,7 +101,7 @@ namespace App.Scripts.TraderScene
                     inventoryData.RemoveItem(itemIndex, 1);
                 }
                 //audioSource.PlayOneShot(itemAction.itemActionSound);
-                audioSource.PlayOneShot(dropClip); // тут мб другой звук
+                //audioSource.PlayOneShot(dropClip); // тут мб другой звук
                 if (inventoryData.GetItemAt(itemIndex).IsEmpty)
                     inventoryUI.ResetSelection();
             }
@@ -115,12 +116,12 @@ namespace App.Scripts.TraderScene
 
             
 
-            if (TraderMoney.Instance.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
+            if (PlayerMoney.Instance.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Player can afford it");
                 if (player.GetComponent<InventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
-                    TraderMoney.Instance.TryReduceMoney(itemSO.ItemBuyCost);
+                    PlayerMoney.Instance.TryReduceMoney(itemSO.ItemBuyCost);
                     TraderMoney.Instance.AddMoney(itemSO.ItemBuyCost);
                     return true;
                 }
@@ -213,10 +214,11 @@ namespace App.Scripts.TraderScene
                 return false;
         }
 
-        public void Interact() // мб реализовать в отдельном скрипте
+        public void Interact(GameObject player) // мб реализовать в отдельном скрипте
         {
             if (inventoryUI.isActiveAndEnabled == false)
             {
+                this.player = player;
                 inventoryUI.Show();
 
                 foreach (var item in inventoryData.GetCurrentInventoryState())
@@ -226,6 +228,7 @@ namespace App.Scripts.TraderScene
             }
             else
             {
+                this.player = null;
                 inventoryUI.Hide();
             }
         }

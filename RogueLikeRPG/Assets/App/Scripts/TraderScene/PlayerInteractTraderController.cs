@@ -33,7 +33,7 @@ namespace App.Scripts.TraderScene
                 _traderInteractable = GetInteractableObject();
                 if(_traderInteractable != null)
                 {
-                    _traderInteractable.Interact();
+                    _traderInteractable.Interact(gameObject);
                 }
             }
         }
