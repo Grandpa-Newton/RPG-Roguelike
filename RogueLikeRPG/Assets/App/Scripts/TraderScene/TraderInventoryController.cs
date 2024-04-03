@@ -34,6 +34,16 @@ namespace App.Scripts.TraderScene
             PrepareInventoryData();
         }
 
+
+        private void OnDestroy()
+        {
+            UnSubscribeEvent();
+        }
+
+        public void UnSubscribeEvent()
+        {
+            inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
+        }
         private void PrepareInventoryData()
         {
             if (inventoryData.inventoryItems == null || inventoryData.inventoryItems.Count == 0)

@@ -36,7 +36,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             PrepareInventoryData();
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             UnSubscribeEvent();
         }

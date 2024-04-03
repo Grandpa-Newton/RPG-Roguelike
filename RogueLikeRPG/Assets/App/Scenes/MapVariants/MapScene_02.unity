@@ -2261,7 +2261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.data[0]
@@ -2278,7 +2278,7 @@ PrefabInstance:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 566470084d824964b9088a3729423e40, type: 2}
+      objectReference: {fileID: 11400000, guid: 92ca02ce81e5c9b4eb984e697ee92689, type: 2}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.data[1]
       value: 
@@ -2511,7 +2511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: NeighborsCells.Array.data[0]
@@ -2524,7 +2524,7 @@ PrefabInstance:
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 27975d923420dd041aa66fc7dbf12524, type: 2}
+      objectReference: {fileID: 11400000, guid: 92ca02ce81e5c9b4eb984e697ee92689, type: 2}
     - target: {fileID: 1152794364375760253, guid: 5b27a6e62c00f0a42b78e2792f525795, type: 3}
       propertyPath: PossibleCellData.Array.data[1]
       value: 
