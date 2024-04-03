@@ -150,6 +150,7 @@ MonoBehaviour:
   dropClip: {fileID: 0}
   audioSource: {fileID: 0}
   player: {fileID: 0}
+  currentMoney: {fileID: 0}
 --- !u!1001 &4036516078776970631
 PrefabInstance:
   m_ObjectHideFlags: 0
