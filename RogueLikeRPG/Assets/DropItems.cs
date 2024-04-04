@@ -52,6 +52,10 @@ public class DropItems : MonoBehaviour
    }
    private void SpawnWeapon()
    {
+      if (Random.Range(1, 10) != 1)
+      {
+         return;
+      }
       int randomIndex = Random.Range(0, enemyContent.weapons.Count);
       WeaponItemSO weapon = enemyContent.weapons[randomIndex];
 

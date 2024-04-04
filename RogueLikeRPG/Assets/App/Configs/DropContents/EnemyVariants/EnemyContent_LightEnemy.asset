@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - {fileID: 11400000, guid: 9bb95734ed411d24ea3426002081577d, type: 2}
-  coinsToSpawn: {x: 3, y: 7}
-  radiusToSpawn: {x: 0.42372882, y: 0.9887005}
-  timeToSpawnNextCoin: 0.2
+  coinsToSpawn: {x: 1, y: 5}
+  radiusToSpawn: {x: 0.5084746, y: 0.5084746}
+  timeToSpawnNextCoin: 0.1
