@@ -12,7 +12,7 @@ public class WeaponRarityStarsUI : MonoBehaviour
 {
     public static WeaponRarityStarsUI Instance { get; private set; }
 
-    [SerializeField] private CanvasGroup weaponCanvas;
+    
     [SerializeField] private Image[] imageStars;
     [SerializeField] private Sprite inActiveStar;
     [SerializeField] private Sprite ActiveStar;
@@ -25,10 +25,6 @@ public class WeaponRarityStarsUI : MonoBehaviour
         {
             Instance = this;
         }
-    }
-
-    void Start()
-    {
     }
 
     public void SetActiveWeaponStarsByRarity(WeaponItemSO weapon)
@@ -50,22 +46,7 @@ public class WeaponRarityStarsUI : MonoBehaviour
         }
 
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.GetComponent<PlayerController>())
-        {
-            weaponCanvas.DOFade(1,0.5f);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.GetComponent<PlayerController>())
-        {
-            weaponCanvas.DOFade(0,0.5f);
-        }
-    }
+    
 
     // Update is called once per frame
     void Update()
