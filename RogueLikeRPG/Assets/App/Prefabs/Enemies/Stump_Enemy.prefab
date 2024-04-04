@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 8731844088725542135}
   - component: {fileID: 1499494188331055411}
   - component: {fileID: -7542860867426099602}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stump_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc223a4a919b7d40a6512ee44d1aa61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floatValueSO: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
+  characteristicValueSO: {fileID: 0}
   enemySo: {fileID: 11400000, guid: fffc18ed88bc71b4bb7e0f44a3ae4bc1, type: 2}
   hittable:
     serializedVersion: 2

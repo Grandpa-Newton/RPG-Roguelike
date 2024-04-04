@@ -10,13 +10,14 @@ namespace App.Scripts.GameScenes.Weapon.Bullet
         private BulletSO _bulletSo;
         private SpriteRenderer _spriteRenderer;
         private RangeWeaponSO _rangeWeaponSo;
-    
+
         private RangeWeapon.RangeWeapon _rangeWeapon;
-    
+        [SerializeField] private LayerMask layerMask;
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
+
         private void Start()
         {
             StartCoroutine(DestroyBullet());
@@ -36,33 +37,33 @@ namespace App.Scripts.GameScenes.Weapon.Bullet
         {
             return _bulletSo;
         }
+
         public void SetBulletSO(BulletSO bulletSO)
         {
             _bulletSo = bulletSO;
             _spriteRenderer.sprite = bulletSO.departingBulletSprite;
-  
         }
 
         public void SetRangeWeaponSO(RangeWeaponSO rangeWeaponSO)
         {
             _rangeWeaponSo = rangeWeaponSO;
         }
-    
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            IDamageable damageable = other.GetComponent<IDamageable>();
-            if (damageable != null)
+            if ((layerMask.value & (1 << other.gameObject.layer)) != 0)
             {
-                damageable.TakeDamage(_rangeWeaponSo.damage);
-                Destroy(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
+                IDamageable damageable = other.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(_rangeWeaponSo.damage);
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
         }
-   
-
-
     }
 }

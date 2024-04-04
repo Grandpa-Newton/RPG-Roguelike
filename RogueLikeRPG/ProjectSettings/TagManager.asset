@@ -26,9 +26,9 @@ TagManager:
   - Wall
   - Item
   - Bullet
-  - 
-  - 
-  - 
+  - Money
+  - Enemy
+  - Environment
   - 
   - 
   - 

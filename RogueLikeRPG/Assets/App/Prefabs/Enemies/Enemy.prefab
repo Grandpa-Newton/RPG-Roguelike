@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 2420243736242984210}
   - component: {fileID: 2041086282780521163}
   - component: {fileID: 594636548161279586}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -239,7 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc223a4a919b7d40a6512ee44d1aa61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySO: {fileID: 11400000, guid: fffc18ed88bc71b4bb7e0f44a3ae4bc1, type: 2}
+  characteristicValueSO: {fileID: 0}
+  enemySo: {fileID: 0}
   hittable:
     serializedVersion: 2
     m_Bits: 256
