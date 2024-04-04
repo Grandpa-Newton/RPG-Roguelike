@@ -63,6 +63,7 @@ namespace App.Scripts.TreasureScene
             WeaponItemSO weapon = chestContent.weapons[randomIndex];
 
             ItemPickable spawnedItem = Instantiate(weapon.weaponPickablePrefab, transform.position, Quaternion.identity);
+            WeaponRarityStarsUI.Instance.SetActiveWeaponStarsByRarity(weapon);
             spawnedItem.InitializeWeapon(weapon);
             spawnedItem.transform.DOMove(new Vector3(-0.5f, 2.5f, 0f), 0.5f);
         }
