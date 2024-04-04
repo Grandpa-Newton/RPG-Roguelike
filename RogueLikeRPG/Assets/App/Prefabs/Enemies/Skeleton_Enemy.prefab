@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8209023055204886712}
   - component: {fileID: 2814990710555416692}
   - component: {fileID: -8258616387561111273}
+  - component: {fileID: 8763232266693567940}
   m_Layer: 14
   m_Name: Skeleton_Enemy
   m_TagString: Untagged
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characteristicValueSO: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
+  enemyGFX: {fileID: 443306463054503695}
   enemySo: {fileID: 11400000, guid: fffc18ed88bc71b4bb7e0f44a3ae4bc1, type: 2}
   hittable:
     serializedVersion: 2
@@ -191,6 +193,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a8e4d18410d5c44b2c12727cfaa0eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8763232266693567940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687997395514756573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc6cbf3a783d71541970c6cc44f63ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyContent: {fileID: 11400000, guid: ebe4c10abef3f09468f2dcc01957f7b6, type: 2}
+  coin: {fileID: 5010212156195702267, guid: 1320a6efbc1d6344ba2f6a55a047e441, type: 3}
 --- !u!1 &1704055689279324346
 GameObject:
   m_ObjectHideFlags: 0

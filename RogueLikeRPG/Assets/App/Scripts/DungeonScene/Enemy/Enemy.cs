@@ -15,7 +15,8 @@ namespace App.Scripts.DungeonScene.Enemy
     public class Enemy : MonoBehaviour, IDamageable
     {
         [SerializeField] private CharacteristicValueSO characteristicValueSO;
-        
+
+        [SerializeField] private SpriteRenderer enemyGFX;
         [SerializeField] private EnemySO enemySo;
         [SerializeField] private LayerMask hittable;
         [SerializeField] private NavMeshAgent navMeshAgent;
@@ -29,6 +30,8 @@ namespace App.Scripts.DungeonScene.Enemy
         [SerializeField] private float knockbackDuration;
         [SerializeField] private float knockbackPower;
 
+        public event Action OnEnemyDie;
+        
         private void Start()
         {
             InitializeStatsFromSO();
@@ -39,7 +42,11 @@ namespace App.Scripts.DungeonScene.Enemy
             health -= damage;
             if (health <= 0)
             {
-                Destroy(gameObject);
+                OnEnemyDie?.Invoke();
+                enemyGFX.GetComponent<SpriteRenderer>().enabled = false;
+                GetComponent<CapsuleCollider2D>().enabled = false;
+                
+                //Destroy(gameObject);
             }
         }
     

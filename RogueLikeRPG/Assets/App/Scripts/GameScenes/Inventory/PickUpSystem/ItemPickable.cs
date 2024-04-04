@@ -42,7 +42,7 @@ namespace App.Scripts.MixedScenes.PickUpSystem
          light2D.pointLightInnerRadius = this.InventoryItem.itemLight.pointLightInnerRadius;
          light2D.pointLightOuterRadius = this.InventoryItem.itemLight.pointLightOuterRadius;
          light2D.falloffIntensity = this.InventoryItem.itemLight.falloffIntensity;
-
+         Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
          GetComponent<SpriteRenderer>().sprite = this.InventoryItem.ItemImage;
       }
 
