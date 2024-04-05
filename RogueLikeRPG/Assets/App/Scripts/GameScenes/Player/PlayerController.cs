@@ -10,6 +10,7 @@ using App.Scripts.GameScenes.Weapon.MeleeWeapon;
 using App.Scripts.GameScenes.Weapon.RangeWeapon;
 using App.Scripts.MixedScenes.Inventory.Model;
 using Cinemachine;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,6 +41,7 @@ namespace App.Scripts.GameScenes.Player
         private Rigidbody2D _rigidbody2D;
         private PlayerInputActions _playerInputActions;
         private CinemachineVirtualCamera _virtualCamera;
+        private CinemachineBasicMultiChannelPerlin _virtualCameraNoise;
 
     
         [Title("Player Stats")] [LabelText("Health Characteristic")]
@@ -81,6 +83,7 @@ namespace App.Scripts.GameScenes.Player
         [SerializeField] private Bullet bulletPrefab;
         [SerializeField] private BulletFactory bulletFactory;
 
+        
         private void Awake()
         {
             InitializeComponents();
@@ -90,7 +93,7 @@ namespace App.Scripts.GameScenes.Player
             _playerMovement = new PlayerMovement(_rigidbody2D, _playerInputActions, _camera);
 
             _virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
-
+            _virtualCameraNoise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             _playerMovement.SetVirtualCamera(_virtualCamera, transform);
 
             _playerAnimator = new PlayerAnimator(playerAnimator, _playerMovement);
@@ -226,6 +229,7 @@ namespace App.Scripts.GameScenes.Player
             else 
             {
                 RangeWeapon.Instance.Shoot(bulletFactory);
+                _virtualCamera.VirtualCameraGameObject.transform.DOShakePosition(0.5f, 10);
             }
         }
         private void FixedUpdate()

@@ -5902,14 +5902,14 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 20
+  m_VerticalDamping: 20
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 1.18
-  m_DeadZoneHeight: 1.15
-  m_SoftZoneWidth: 1.51
-  m_SoftZoneHeight: 2
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
+  m_SoftZoneWidth: 0.8
+  m_SoftZoneHeight: 0.8
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -6037,9 +6037,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1110256157436861220, guid: 8b80df64c2e1c724eaad32edea644bea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133715077729565275, guid: 8b80df64c2e1c724eaad32edea644bea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4306722505127858314, guid: 8b80df64c2e1c724eaad32edea644bea, type: 3}
       propertyPath: m_Name
       value: NewPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4408722407902706080, guid: 8b80df64c2e1c724eaad32edea644bea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743381972759492382, guid: 8b80df64c2e1c724eaad32edea644bea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 6859056762106329805, guid: 8b80df64c2e1c724eaad32edea644bea, type: 3}
       propertyPath: m_AnchorMax.y
