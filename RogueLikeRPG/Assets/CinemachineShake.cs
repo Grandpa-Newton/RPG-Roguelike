@@ -9,15 +9,13 @@ using UnityEngine;
 public class CinemachineShake : MonoBehaviour
 {
     public static CinemachineShake Instance { get; private set; }
-
-    [SerializeField] private WeaponItemSO currentWeaponSO;
     
     private CinemachineVirtualCamera _cinemachineVirtualCamera;
     private float shakeTimer;
     private float startIntensity;
     private float shakeTimerTotal;
 
-    void Awake()
+    private void Awake()
     {
         if (!Instance)
         {
@@ -36,10 +34,12 @@ public class CinemachineShake : MonoBehaviour
         CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
             _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = currentWeaponSO.shakeIntensity;
-        startIntensity = currentWeaponSO.shakeIntensity;
-        shakeTimerTotal = currentWeaponSO.shakeTime;
-        shakeTimer = currentWeaponSO.shakeTime;
+        WeaponItemSO currentPlayerWeapon = PlayerCurrentWeapon.Instance.CurrentPlayerWeapon;
+        
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = currentPlayerWeapon.shakeIntensity;
+        startIntensity = currentPlayerWeapon.shakeIntensity;
+        shakeTimerTotal = currentPlayerWeapon.shakeTime;
+        shakeTimer = currentPlayerWeapon.shakeTime;
     }
 
     public void Update()

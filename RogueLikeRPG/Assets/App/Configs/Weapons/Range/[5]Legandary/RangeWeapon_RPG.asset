@@ -26,10 +26,10 @@ MonoBehaviour:
   weaponPickablePrefab: {fileID: 5010212156195702267, guid: e27714494baa16b4faa22e5b565d50c3, type: 3}
   attackRate: 0.6
   damage: 15
-  weaponAttackSound: {fileID: 0}
-  weaponEquipSound: {fileID: 0}
-  shakeIntensity: 6
-  shakeTime: 0.2
+  weaponAttackSound: {fileID: 8300000, guid: 7f8313da4c181a84aa5c766f9d8cc86a, type: 3}
+  weaponEquipSound: {fileID: 8300000, guid: c29f6e23c986e1d4eb3a9b6e8c9476d9, type: 3}
+  shakeIntensity: 15
+  shakeTime: 0.6
   magSize: 5
   reloadTime: 5
   bulletSO: {fileID: 11400000, guid: 33a6a0692a2d18f43a562d5d1a0acbf5, type: 2}
