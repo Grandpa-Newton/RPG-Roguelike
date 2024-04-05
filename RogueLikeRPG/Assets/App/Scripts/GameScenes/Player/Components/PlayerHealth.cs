@@ -20,9 +20,9 @@ namespace App.Scripts.GameScenes.Player.Components
         public event Action<int> OnPlayerIncreaseMaxHealth;
         public event Action OnPlayerDie;
 
-        public void Initialize(CharacteristicValueSO playerHealth)
+        public void Initialize(CharacteristicValueSO health)
         {
-            this.playerHealth = playerHealth;
+            this.playerHealth = health;
         }
         
         public void IncreaseHealth(int healthToIncrease)
@@ -32,7 +32,6 @@ namespace App.Scripts.GameScenes.Player.Components
             playerHealth.CurrentValue = val > playerHealth.MaxValue ? playerHealth.MaxValue : val;
             //OnPlayerIncreaseHealth?.Invoke();
         }
-        [Button]
         public void IncreaseMaxHealth(int maxHealthToIncrease)
         {
             maxHealth = maxHealthToIncrease;

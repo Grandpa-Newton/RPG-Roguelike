@@ -365,11 +365,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 544306638396680700}
+  - {fileID: 3430832293039317094}
   - {fileID: 7689258479891330253}
   - {fileID: 6743381972759492382}
+  - {fileID: 544306638396680700}
   - {fileID: 931827921514768830}
-  - {fileID: 3430832293039317094}
   - {fileID: 8567561442396849483}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 8192
 --- !u!1 &4639642764309313730
 GameObject:
   m_ObjectHideFlags: 0
