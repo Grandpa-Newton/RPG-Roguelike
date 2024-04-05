@@ -28,6 +28,8 @@ MonoBehaviour:
   damage: 3
   weaponAttackSound: {fileID: 8300000, guid: f8aa65d0deceec4498bad125d3f6291c, type: 3}
   weaponEquipSound: {fileID: 0}
+  shakeIntensity: 3
+  shakeTime: 0.1
   magSize: 30
   reloadTime: 1
   bulletSO: {fileID: 11400000, guid: 0311434ce9393b34fa3451687eec3ff5, type: 2}

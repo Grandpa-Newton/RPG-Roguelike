@@ -11,6 +11,7 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
     {
         public override bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
+            PlayerCurrentWeapon.Instance.SetPlayerCurrentWeapon(this);
             SwitchWeaponBetweenRangeAndMelee.Instance.SetActiveMeleeWeapon();
 
             PlayerWeapon.Instance.SetMeleeWeapon(this, itemState ?? DefaultParametersList);

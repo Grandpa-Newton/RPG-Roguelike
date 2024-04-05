@@ -22,19 +22,15 @@ namespace App.Scripts.GameScenes.Weapon
         [Title("Audio")]
         [LabelText("Attack/Shoot Sound")]public AudioClip weaponAttackSound;
         [LabelText("Equip Sound")]public AudioClip weaponEquipSound;
+        
+        [Title("Camera Shake Params")]
+        [Range(0, 100)][SerializeField] public float shakeIntensity;
+        [Range(0, 1)][SerializeField] public float shakeTime;
+        
         public AudioClip itemActionSound { get; }
         
 
         public abstract bool PerformAction(GameObject characterÿ, List<ItemParameter> itemState = null);
-    }
-
-    public enum WeaponRarityEnum
-    {
-        Common = 1,
-        Uncommon,
-        Rare,
-        Epic,
-        Legendary
     }
     
 }

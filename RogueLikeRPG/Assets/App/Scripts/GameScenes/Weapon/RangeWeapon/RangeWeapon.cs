@@ -12,7 +12,6 @@ namespace App.Scripts.GameScenes.Weapon.RangeWeapon
         public static RangeWeapon Instance => _instance ??= new RangeWeapon();
 
         private RangeWeaponSO _rangeWeaponSO;
-        private CurrentWeaponsSO _currentWeaponsSO;
         private SpriteRenderer _spriteRenderer;
 
         private PlayerInputActions _playerInputActions;
@@ -25,9 +24,8 @@ namespace App.Scripts.GameScenes.Weapon.RangeWeapon
         private float _timeToNextShot;
         private Bullet.Bullet _bulletPrefab;
 
-        public void Initialize(CurrentWeaponsSO currentWeaponsSO,Bullet.Bullet bulletPrefab, PlayerInputActions playerInputActions,SpriteRenderer spriteRenderer, Transform aimTransform, AudioSource audioSource)
+        public void Initialize(Bullet.Bullet bulletPrefab, PlayerInputActions playerInputActions,SpriteRenderer spriteRenderer, Transform aimTransform, AudioSource audioSource)
         {
-            _currentWeaponsSO = currentWeaponsSO;
             _bulletPrefab = bulletPrefab;
             _playerInputActions = playerInputActions;
             _spriteRenderer = spriteRenderer;
@@ -38,17 +36,16 @@ namespace App.Scripts.GameScenes.Weapon.RangeWeapon
 
         private void TryEquipRangeWeapon()
         {
-            if (!_currentWeaponsSO.EquipRangeWeapon) return;
+            if (!PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedRangeWeapon) return;
             
-            _rangeWeaponSO = (RangeWeaponSO)_currentWeaponsSO.EquipRangeWeapon;
+            _rangeWeaponSO = PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedRangeWeapon;
             SetWeapon(_rangeWeaponSO);
         }
-
+        
         public void Shoot(BulletFactory bulletFactory)
         {
             if (!_rangeWeaponSO)
             {
-                Debug.Log(_rangeWeaponSO == null);
                 return;
             }
 

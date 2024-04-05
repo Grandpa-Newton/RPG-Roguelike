@@ -1,6 +1,8 @@
+using System;
 using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.GameScenes.Player.UI;
-using App.Scripts.GameScenes.Weapon;
+using App.Scripts.GameScenes.Weapon.MeleeWeapon;
+using App.Scripts.GameScenes.Weapon.RangeWeapon;
 using UnityEngine;
 
 namespace App.Scripts.GameScenes.Player
@@ -8,19 +10,7 @@ namespace App.Scripts.GameScenes.Player
     public class SwitchWeaponBetweenRangeAndMelee
     {
         private static SwitchWeaponBetweenRangeAndMelee _instance;
-
-        public static SwitchWeaponBetweenRangeAndMelee Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new SwitchWeaponBetweenRangeAndMelee();
-                }
-
-                return _instance;
-            }
-        }
+        public static SwitchWeaponBetweenRangeAndMelee Instance => _instance ??= new SwitchWeaponBetweenRangeAndMelee();
 
         private const float SwapReloadTime = 0.5f;
         private Transform _meleeWeapon;
@@ -29,54 +19,62 @@ namespace App.Scripts.GameScenes.Player
         private Transform[] _hands;
 
         private GameObject _currentPickedWeapon;
-        private CurrentWeaponsSO _currentWeaponsSO;
 
         private bool _isMeleeWeapon = true;
         private bool _isRolling;
-        private float _timerToSwapWeapon = 0f;
+        private float _timerToSwapWeapon;
 
-        private PlayerController _playerController;
-    
+        public event Action<bool> OnPlayerSwapWeapon;
+
         public bool CheckCurrentPickedMeleeWeapon()
         {
             return _isMeleeWeapon;
         }
-        public void Initialize(PlayerController playerController, Transform meleeWeapon, Transform rangeWeapon,Transform[] hands, CurrentWeaponsSO currentWeaponsSO)
+
+        public void Initialize(Transform meleeWeapon, Transform rangeWeapon, Transform[] hands)
         {
             _meleeWeapon = meleeWeapon;
             _rangeWeapon = rangeWeapon;
             _hands = hands;
-            _currentWeaponsSO = currentWeaponsSO;
-            _playerController = playerController;
             PlayerAnimator.OnPlayerRolling += SetRollState;
-        
         }
+
         private void SetRollState(bool isRolling)
         {
             _isRolling = isRolling;
         }
+
         public void CheckAvailableWeapons()
         {
-            if (!_currentWeaponsSO.EquipRangeWeapon && !_currentWeaponsSO.EquipMeleeWeapon)
+            MeleeWeaponSO meleeWeaponSO =
+                PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon;
+            RangeWeaponSO rangeWeaponSO =
+                PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedRangeWeapon;
+
+            if (!meleeWeaponSO && !rangeWeaponSO)
             {
                 PlayerHandsVisible(false);
                 return;
             }
 
-            if (_currentWeaponsSO.EquipMeleeWeapon)
+            if (meleeWeaponSO)
             {
-                PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(_currentWeaponsSO.EquipMeleeWeapon.ItemImage);
+                _isMeleeWeapon = true;
+                OnPlayerSwapWeapon?.Invoke(_isMeleeWeapon);
+                PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(meleeWeaponSO.ItemImage);
                 _meleeWeapon.gameObject.SetActive(true);
                 _rangeWeapon.gameObject.SetActive(false);
                 _currentPickedWeapon = _meleeWeapon.gameObject;
                 PlayerCurrentWeaponUI.Instance.IncreaseMeleeWeaponScale();
             }
 
-            if (_currentWeaponsSO.EquipRangeWeapon)
+            if (rangeWeaponSO)
             {
-                PlayerCurrentWeaponUI.Instance.SetRangeWeaponIcon(_currentWeaponsSO.EquipRangeWeapon.ItemImage);
-                if (!_currentWeaponsSO.EquipMeleeWeapon)
+                PlayerCurrentWeaponUI.Instance.SetRangeWeaponIcon(rangeWeaponSO.ItemImage);
+                if (!meleeWeaponSO)
                 {
+                    _isMeleeWeapon = false;
+                    OnPlayerSwapWeapon?.Invoke(_isMeleeWeapon);
                     _rangeWeapon.gameObject.SetActive(true);
                     _meleeWeapon.gameObject.SetActive(false);
                     _currentPickedWeapon = _rangeWeapon.gameObject;
@@ -84,9 +82,15 @@ namespace App.Scripts.GameScenes.Player
                 }
             }
         }
+
         public void SwapWeapon()
         {
-            if (!_currentWeaponsSO.EquipMeleeWeapon || !_currentWeaponsSO.EquipRangeWeapon)
+            MeleeWeaponSO meleeWeaponSO =
+                PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon;
+            RangeWeaponSO rangeWeaponSO =
+                PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedRangeWeapon;
+
+            if (!meleeWeaponSO || !rangeWeaponSO)
             {
                 return;
             }
@@ -95,6 +99,7 @@ namespace App.Scripts.GameScenes.Player
             if (Input.GetAxis("Mouse ScrollWheel") != 0 && !_isRolling && _timerToSwapWeapon > SwapReloadTime)
             {
                 _isMeleeWeapon = !_isMeleeWeapon;
+                OnPlayerSwapWeapon?.Invoke(_isMeleeWeapon);
                 if (_isMeleeWeapon)
                 {
                     PlayerCurrentWeaponUI.Instance.IncreaseMeleeWeaponScale();
@@ -109,14 +114,17 @@ namespace App.Scripts.GameScenes.Player
                 _timerToSwapWeapon = 0f;
             }
         }
+
         public void SetActiveMeleeWeapon()
         {
+            MeleeWeaponSO meleeWeaponSO =
+                PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon;
             _meleeWeapon.gameObject.SetActive(true);
             _rangeWeapon.gameObject.SetActive(false);
-            
+
             _currentPickedWeapon = _meleeWeapon.gameObject;
-            
-            if (!_currentWeaponsSO.EquipMeleeWeapon)
+
+            if (!meleeWeaponSO)
             {
                 PlayerHandsVisible(true);
             }
@@ -124,21 +132,24 @@ namespace App.Scripts.GameScenes.Player
 
         public void SetActiveRangeWeapon()
         {
+            RangeWeaponSO rangeWeaponSO =
+                PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedRangeWeapon;
+
             _rangeWeapon.gameObject.SetActive(true);
             _meleeWeapon.gameObject.SetActive(false);
-            
+
             _currentPickedWeapon = _rangeWeapon.gameObject;
-            
-            if (!_currentWeaponsSO.EquipRangeWeapon)
+
+            if (!rangeWeaponSO)
             {
                 PlayerHandsVisible(true);
             }
         }
-    
+
         public void WeaponAndHandsDisable()
         {
             if (!_currentPickedWeapon) return;
-            
+
             _currentPickedWeapon.SetActive(false);
             PlayerHandsVisible(false);
         }
@@ -146,11 +157,11 @@ namespace App.Scripts.GameScenes.Player
         public void WeaponAndHandsEnable()
         {
             if (!_currentPickedWeapon) return;
-            
+
             _currentPickedWeapon.SetActive(true);
             PlayerHandsVisible(true);
         }
-    
+
         public void PlayerHandsVisible(bool isActive)
         {
             foreach (var hand in _hands)

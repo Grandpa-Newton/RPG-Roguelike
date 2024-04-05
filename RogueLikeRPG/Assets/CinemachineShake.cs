@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using App.Scripts.GameScenes.Weapon;
 using Cinemachine;
 using UnityEngine;
 
@@ -9,8 +10,7 @@ public class CinemachineShake : MonoBehaviour
 {
     public static CinemachineShake Instance { get; private set; }
 
-    [SerializeField] private float intensity;
-    [SerializeField] private float time;
+    [SerializeField] private WeaponItemSO currentWeaponSO;
     
     private CinemachineVirtualCamera _cinemachineVirtualCamera;
     private float shakeTimer;
@@ -36,10 +36,10 @@ public class CinemachineShake : MonoBehaviour
         CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
             _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
-        startIntensity = intensity;
-        shakeTimerTotal = time;
-        shakeTimer = time;
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = currentWeaponSO.shakeIntensity;
+        startIntensity = currentWeaponSO.shakeIntensity;
+        shakeTimerTotal = currentWeaponSO.shakeTime;
+        shakeTimer = currentWeaponSO.shakeTime;
     }
 
     public void Update()

@@ -2,7 +2,6 @@ using System.Collections;
 using App.Scripts.GameScenes.Player;
 using App.Scripts.GameScenes.Weapon;
 using App.Scripts.MixedScenes.PickUpSystem;
-using App.Scripts.MixedScenes.Player.Control;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;

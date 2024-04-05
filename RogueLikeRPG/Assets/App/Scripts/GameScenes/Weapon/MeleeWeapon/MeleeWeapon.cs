@@ -13,7 +13,6 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
         private AudioSource _audioSource;
         private MeleeWeaponSO _meleeWeaponSO;
         private SpriteRenderer _spriteRenderer;
-        private CurrentWeaponsSO _currentWeaponsSO;
         private PlayerInputActions _playerInputActions;
 
         private Vector2 _currentPointPosition;
@@ -25,10 +24,8 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
         private static readonly int Shoot = Animator.StringToHash("Shoot");
         private static readonly int Idle = Animator.StringToHash("Idle");
 
-        public void Initialize(CurrentWeaponsSO currentWeaponsSO,
-            PlayerInputActions playerInputActions, SpriteRenderer spriteRenderer, Animator animator,AudioSource audioSource)
+        public void Initialize(PlayerInputActions playerInputActions, SpriteRenderer spriteRenderer, Animator animator,AudioSource audioSource)
         {
-            _currentWeaponsSO = currentWeaponsSO;
             _playerInputActions = playerInputActions;
             _spriteRenderer = spriteRenderer;
             _animator = animator;
@@ -39,9 +36,9 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
 
         private void TryEquipMeleeWeapon()
         {
-            if (!_currentWeaponsSO.EquipMeleeWeapon) return;
+            if (!PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon) return;
 
-            _meleeWeaponSO = (MeleeWeaponSO)_currentWeaponsSO.EquipMeleeWeapon;
+            _meleeWeaponSO = PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon;
             SetWeapon(_meleeWeaponSO);
         }
 

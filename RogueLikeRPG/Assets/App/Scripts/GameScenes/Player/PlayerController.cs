@@ -41,7 +41,6 @@ namespace App.Scripts.GameScenes.Player
         private Rigidbody2D _rigidbody2D;
         private PlayerInputActions _playerInputActions;
         private CinemachineVirtualCamera _virtualCamera;
-        private CinemachineBasicMultiChannelPerlin _virtualCameraNoise;
 
     
         [Title("Player Stats")] [LabelText("Health Characteristic")]
@@ -58,6 +57,7 @@ namespace App.Scripts.GameScenes.Player
         [SerializeField] private Animator aimAnimator;
     
         [Title("Weapon Components")]
+        private WeaponItemSO currentPlayerWeaponSO;
         [SerializeField] private CurrentWeaponsSO currentWeaponsSO;
         [SerializeField] private InventorySO inventorySO;
         [SerializeField] private List<ItemParameter> parametersToModify;
@@ -93,7 +93,6 @@ namespace App.Scripts.GameScenes.Player
             _playerMovement = new PlayerMovement(_rigidbody2D, _playerInputActions, _camera);
 
             _virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
-            _virtualCameraNoise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             _playerMovement.SetVirtualCamera(_virtualCamera, transform);
 
             _playerAnimator = new PlayerAnimator(playerAnimator, _playerMovement);
@@ -103,47 +102,21 @@ namespace App.Scripts.GameScenes.Player
             PlayerCurrentWeaponUI.Instance.Initialize(meleeWeaponUI, meleeBackgroundImage, meleeWeaponIcon,
                 rangeWeaponUI, rangeBackgroundImage, rangeWeaponIcon);
 
-            PlayerWeapon.Instance.Initialize(currentWeaponsSO, inventorySO, parametersToModify, itemCurrentState);
+            PlayerWeapon.Instance.Initialize(inventorySO, parametersToModify, itemCurrentState);
 
             _playerAimWeaponRotation = new PlayerAimWeaponRotation(_playerInputActions, aimTransform);
 
-            SwitchWeaponBetweenRangeAndMelee.Instance.Initialize(this,meleeWeapon, rangeWeapon, hands, currentWeaponsSO);
+            SwitchWeaponBetweenRangeAndMelee.Instance.Initialize(meleeWeapon, rangeWeapon, hands);
+            
+            PlayerCurrentWeapon.Instance.Initialize(currentPlayerWeaponSO,currentWeaponsSO);
 
-            MeleeWeapon.Instance.Initialize(currentWeaponsSO, _playerInputActions, meleeWeaponSpriteRenderer,
+            MeleeWeapon.Instance.Initialize(_playerInputActions, meleeWeaponSpriteRenderer,
                 aimAnimator,meleeWeaponAudioSource);
-            RangeWeapon.Instance.Initialize(currentWeaponsSO, bulletPrefab, _playerInputActions, rangeWeaponSpriteRenderer,
+            RangeWeapon.Instance.Initialize(bulletPrefab, _playerInputActions, rangeWeaponSpriteRenderer,
                 aimTransform,
                 rangeWeaponAudioSource);
-
-            SwitchWeaponBetweenRangeAndMelee.Instance.CheckAvailableWeapons();InitializeComponents();
-
-            PlayerHealth.Instance.Initialize(healthCharacteristicSO);
-        
-            _playerMovement = new PlayerMovement(_rigidbody2D, _playerInputActions, _camera);
-
-            _virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
-
-            _playerMovement.SetVirtualCamera(_virtualCamera, transform);
-
-            _playerAnimator = new PlayerAnimator(playerAnimator, _playerMovement);
-
-            PlayerAnimator.OnPlayerRolling += GetPlayerRollState;
-        
-            PlayerCurrentWeaponUI.Instance.Initialize(meleeWeaponUI, meleeBackgroundImage, meleeWeaponIcon,
-                rangeWeaponUI, rangeBackgroundImage, rangeWeaponIcon);
-
-            PlayerWeapon.Instance.Initialize(currentWeaponsSO, inventorySO, parametersToModify, itemCurrentState);
-
-            _playerAimWeaponRotation = new PlayerAimWeaponRotation(_playerInputActions, aimTransform);
-
-            SwitchWeaponBetweenRangeAndMelee.Instance.Initialize(this,meleeWeapon, rangeWeapon, hands, currentWeaponsSO);
-
-            MeleeWeapon.Instance.Initialize(currentWeaponsSO, _playerInputActions, meleeWeaponSpriteRenderer,
-                aimAnimator,meleeWeaponAudioSource);
-            RangeWeapon.Instance.Initialize(currentWeaponsSO, bulletPrefab, _playerInputActions, rangeWeaponSpriteRenderer,
-                aimTransform,
-                rangeWeaponAudioSource);
-
+            
+            
             SwitchWeaponBetweenRangeAndMelee.Instance.CheckAvailableWeapons();
         }
 
@@ -211,6 +184,7 @@ namespace App.Scripts.GameScenes.Player
         }
         private void Update()
         {
+            Debug.Log(PlayerCurrentWeapon.Instance.CurrentPlayerWeapon);
             GetPlayerState();
             _playerAimWeaponRotation.HandsRotationAroundAim(transform);
             SwitchWeaponBetweenRangeAndMelee.Instance.SwapWeapon();
@@ -222,14 +196,15 @@ namespace App.Scripts.GameScenes.Player
         {
             if (_isRolling) return;
         
-            if (SwitchWeaponBetweenRangeAndMelee.Instance.CheckCurrentPickedMeleeWeapon() )
+            if (PlayerCurrentWeapon.Instance.CurrentPlayerWeapon as MeleeWeaponSO)
             {
+                Debug.Log("Meleey");
                 MeleeWeapon.Instance.Attack();
             }
-            else 
+            if (PlayerCurrentWeapon.Instance.CurrentPlayerWeapon as RangeWeaponSO)
             {
+                Debug.Log("Dalniy");
                 RangeWeapon.Instance.Shoot(bulletFactory);
-                _virtualCamera.VirtualCameraGameObject.transform.DOShakePosition(0.5f, 10);
             }
         }
         private void FixedUpdate()
