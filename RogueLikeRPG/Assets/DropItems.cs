@@ -13,6 +13,7 @@ public class DropItems : MonoBehaviour
    [SerializeField] private EnemyContentSO enemyContent;
    [SerializeField] private ItemPickable coin;
    private Enemy _enemy;
+   private WeaponRarityStarsUI weaponRarityStarsUI;
 
    private void Awake()
    {
@@ -52,7 +53,7 @@ public class DropItems : MonoBehaviour
    }
    private void SpawnWeapon()
    {
-      if (Random.Range(1, 10) != 1)
+      if (Random.Range(1, 10) == 1)
       {
          return;
       }
@@ -60,7 +61,8 @@ public class DropItems : MonoBehaviour
       WeaponItemSO weapon = enemyContent.weapons[randomIndex];
 
       ItemPickable spawnedItem = Instantiate(weapon.weaponPickablePrefab, transform.position, Quaternion.identity);
-      WeaponRarityStarsUI.Instance.SetActiveWeaponStarsByRarity(weapon);
+      weaponRarityStarsUI = spawnedItem.GetComponent<WeaponRarityStarsUI>();
+      weaponRarityStarsUI.SetActiveWeaponStarsByRarity(weapon);
       spawnedItem.InitializeWeapon(weapon);
       spawnedItem.transform.DOMove(transform.position + new Vector3(0,0.5f,0), 0.5f);
    }

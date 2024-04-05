@@ -57,6 +57,7 @@ namespace App.Scripts.GameScenes.Weapon.RangeWeapon
             {
                 Debug.Log("Bang!");
                 bulletFactory.CreateBullet(_bulletPrefab, _rangeWeaponSO, _audioSource, _aimTransform);
+                CinemachineShake.Instance.ShakeCamera();
                 _timeToNextShot = 0f;
             }
         }

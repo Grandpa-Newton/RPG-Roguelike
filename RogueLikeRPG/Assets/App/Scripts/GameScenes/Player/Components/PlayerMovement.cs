@@ -45,7 +45,7 @@ namespace App.Scripts.GameScenes.Player.Components
             if (_virtualCamera != null)
             {
                 _virtualCamera.Follow = followTarget;
-                _virtualCamera.LookAt = followTarget;
+                //_virtualCamera.LookAt = followTarget;
             }
             else
             {

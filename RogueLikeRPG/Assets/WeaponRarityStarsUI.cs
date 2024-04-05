@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class WeaponRarityStarsUI : MonoBehaviour
 {
-    public static WeaponRarityStarsUI Instance { get; private set; }
+    //public static WeaponRarityStarsUI Instance { get; private set; }
 
     
     [SerializeField] private Image[] imageStars;
@@ -19,13 +19,13 @@ public class WeaponRarityStarsUI : MonoBehaviour
     private static readonly int IsActive = Animator.StringToHash("IsActive");
     [SerializeField] private TMP_Text weaponName;
 
-    private void Awake()
+    /*private void Awake()
     {
         if (!Instance)
         {
             Instance = this;
         }
-    }
+    }*/
 
     public void SetActiveWeaponStarsByRarity(WeaponItemSO weapon)
     {

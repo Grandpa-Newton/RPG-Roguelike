@@ -14,6 +14,8 @@ namespace App.Scripts.TreasureScene
         [SerializeField] private ChestContentSO chestContent;
         [SerializeField] private Canvas uiCanvas;
         [SerializeField] private ItemPickable coin;
+
+        private WeaponRarityStarsUI weaponRarityStarsUI;
         private Animator _animator;
 
         private bool _isChestOpened = false;
@@ -63,7 +65,8 @@ namespace App.Scripts.TreasureScene
             WeaponItemSO weapon = chestContent.weapons[randomIndex];
 
             ItemPickable spawnedItem = Instantiate(weapon.weaponPickablePrefab, transform.position, Quaternion.identity);
-            WeaponRarityStarsUI.Instance.SetActiveWeaponStarsByRarity(weapon);
+            weaponRarityStarsUI = spawnedItem.GetComponent<WeaponRarityStarsUI>();
+            weaponRarityStarsUI.SetActiveWeaponStarsByRarity(weapon);
             spawnedItem.InitializeWeapon(weapon);
             spawnedItem.transform.DOMove(new Vector3(-0.5f, 2.5f, 0f), 0.5f);
         }
