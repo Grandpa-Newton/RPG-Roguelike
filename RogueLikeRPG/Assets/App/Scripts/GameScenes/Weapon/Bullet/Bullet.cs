@@ -11,9 +11,10 @@ namespace App.Scripts.GameScenes.Weapon.Bullet
         private SpriteRenderer _spriteRenderer;
         private RangeWeaponSO _rangeWeaponSo;
         [SerializeField] private ParticleSystem explosiveParticle;
-        
+
         private RangeWeapon.RangeWeapon _rangeWeapon;
         [SerializeField] private LayerMask layerMask;
+
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -52,10 +53,9 @@ namespace App.Scripts.GameScenes.Weapon.Bullet
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log(other.gameObject.name);
-            Instantiate(explosiveParticle,transform.position,Quaternion.identity);
             if ((layerMask.value & (1 << other.gameObject.layer)) != 0)
             {
+                Instantiate(explosiveParticle, transform.position, Quaternion.identity);
                 IDamageable damageable = other.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
