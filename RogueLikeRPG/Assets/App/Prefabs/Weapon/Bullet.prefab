@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7311c03882c03714cbbba266b4fb4c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosiveParticle: {fileID: 6449233060191240383, guid: 1a6c339dfa86d1c4494e06c10b62ec57, type: 3}
   layerMask:
     serializedVersion: 2
     m_Bits: 50176
