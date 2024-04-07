@@ -8,7 +8,9 @@ using App.Scripts.GameScenes.Weapon;
 using App.Scripts.GameScenes.Weapon.Bullet;
 using App.Scripts.GameScenes.Weapon.MeleeWeapon;
 using App.Scripts.GameScenes.Weapon.RangeWeapon;
+using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
+using App.Scripts.MixedScenes.Inventory.UI;
 using Cinemachine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
@@ -59,7 +61,6 @@ namespace App.Scripts.GameScenes.Player
         [Title("Weapon Components")]
         private WeaponItemSO currentPlayerWeaponSO;
         [SerializeField] private CurrentWeaponsSO currentWeaponsSO;
-        [SerializeField] private InventorySO inventorySO;
         [SerializeField] private List<ItemParameter> parametersToModify;
         [SerializeField] private List<ItemParameter> itemCurrentState;
     
@@ -82,6 +83,13 @@ namespace App.Scripts.GameScenes.Player
         [Title("Bullet Components")]
         [SerializeField] private Bullet bulletPrefab;
         [SerializeField] private BulletFactory bulletFactory;
+
+        [Title("Inventory")] 
+        [SerializeField] private UIInventoryPage uiInventoryPage;
+        [SerializeField] private InventorySO inventorySO;
+        [SerializeField] private List<InventoryItem> inventoryItems;
+        [SerializeField] private AudioClip inventoryOpenClip;
+        [SerializeField] private AudioSource inventoryAudioSource;
 
         
         private void Awake()
@@ -116,8 +124,9 @@ namespace App.Scripts.GameScenes.Player
                 aimTransform,
                 rangeWeaponAudioSource);
             
-            
             SwitchWeaponBetweenRangeAndMelee.Instance.CheckAvailableWeapons();
+            
+            InventoryController.Instance.Initialize(uiInventoryPage,inventorySO,inventoryItems,inventoryOpenClip,inventoryAudioSource);
         }
 
         private bool _isRolling;
@@ -189,7 +198,7 @@ namespace App.Scripts.GameScenes.Player
             _playerAimWeaponRotation.HandsRotationAroundAim(transform);
             SwitchWeaponBetweenRangeAndMelee.Instance.SwapWeapon();
             HandleCombat();
-
+            InventoryController.Instance.ShowOrHideInventory();
         }
 
         private void HandleCombat()
