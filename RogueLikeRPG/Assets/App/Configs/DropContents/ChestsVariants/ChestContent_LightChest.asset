@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 46b6e0fcf21e257489ead109c7fff2f4, type: 2}
   - {fileID: 11400000, guid: 78756698a331de7439b3d0d7619cc86b, type: 2}
   - {fileID: 11400000, guid: 7aeec6ee42ee95e4292fb3e8e3d40a11, type: 2}
+  - {fileID: 11400000, guid: a55532500365e19428014c7c188d684e, type: 2}
   coinsToSpawn: {x: 15, y: 25}
   radiusToSpawn: {x: 1.4923079, y: 3.013986}
   timeToSpawnNextCoin: 0.15

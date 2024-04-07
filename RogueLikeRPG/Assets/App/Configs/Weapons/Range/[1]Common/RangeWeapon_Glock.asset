@@ -12,7 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e45e062a3fe28b4d9515e98ae3f2b04, type: 3}
   m_Name: RangeWeapon_Glock
   m_EditorClassIdentifier: 
-  fireRate: 0.125
+  itemName: Glock
+  description: PIW
+  weaponRarityParameters: {fileID: 11400000, guid: 459e712b7aaec2f418b2f6179911d9b9, type: 2}
+  itemRarity: 1
+  <ItemBuyCost>k__BackingField: 5
+  itemSellCost: 4
+  itemLight: {fileID: 3398957582011760077, guid: 8ed02da84a5ff5143bc46479092a93e9, type: 3}
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <ItemImage>k__BackingField: {fileID: -1631740447, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
+  <DefaultParametersList>k__BackingField: []
+  weaponPickablePrefab: {fileID: 5010212156195702267, guid: e27714494baa16b4faa22e5b565d50c3, type: 3}
+  attackRate: 0.3
   damage: 2
-  bullet: {fileID: 9027614786788320636, guid: e07bc0491c57868499d299ac5e1cfdb5, type: 3}
-  weaponSprite: {fileID: -1631740447, guid: e61f319abe4f898488ea67f19e4b0a60, type: 3}
+  weaponAttackSound: {fileID: 8300000, guid: 4cd2583d1248fa54baf2877e783f67a6, type: 3}
+  weaponEquipSound: {fileID: 8300000, guid: c29f6e23c986e1d4eb3a9b6e8c9476d9, type: 3}
+  shakeIntensity: 2
+  shakeTime: 0.1
+  magSize: 20
+  reloadTime: 1.5
+  bulletSO: {fileID: 11400000, guid: 9fcf69ce998c54a46bb09440a691bf13, type: 2}
+  bulletSpeed: 20
