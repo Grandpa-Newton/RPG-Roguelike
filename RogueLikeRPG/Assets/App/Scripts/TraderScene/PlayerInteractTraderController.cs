@@ -10,7 +10,7 @@ namespace App.Scripts.TraderScene
 
         private GameObject _traderGameObject;
 
-        [SerializeField] private InventoryController _inventoryController;
+        private InventoryController _inventoryController;
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.O))
@@ -18,12 +18,12 @@ namespace App.Scripts.TraderScene
                 _traderInteractable = GetInteractableObject();
                 if (_traderInteractable != null)
                 {
-                    _inventoryController.SetTraderObject(_traderGameObject);
+                    InventoryController.Instance.SetTraderObject(_traderGameObject);
                     Debug.Log("Trader found!");
                 }
                 else
                 {
-                    _inventoryController.SetTraderObject(null);
+                    InventoryController.Instance.SetTraderObject(null);
                     Debug.Log("Trader not found!");
                 }
             }

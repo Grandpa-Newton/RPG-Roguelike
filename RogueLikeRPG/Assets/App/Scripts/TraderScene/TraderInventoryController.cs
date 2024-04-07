@@ -13,92 +13,88 @@ using UnityEngine;
 
 namespace App.Scripts.TraderScene
 {
-    public class TraderInventoryController : MonoBehaviour, IInteractable
+    public class TraderInventoryController : IInteractable
     {
-        
-        [SerializeField] private UIInventoryPage inventoryUI;
+        private static TraderInventoryController _instance;
+        public static TraderInventoryController Instance => _instance ??= new TraderInventoryController();
 
-        [SerializeField] private InventorySO inventoryData;
+        private UIInventoryPage _inventoryUI;
 
-        public List<InventoryItem> initialItems = new();
+        private InventorySO _inventoryData;
 
-        [SerializeField] private AudioClip dropClip;
-        [SerializeField] private AudioSource audioSource;
+        private List<InventoryItem> _initialItems = new();
 
-        [SerializeField] private GameObject player;
-        [SerializeField] private ChangeableValueSO currentMoney;
-        
-        private void Start()
+        private AudioClip _dropClip;
+        private AudioSource _audioSource;
+
+        private GameObject player;
+
+        public void Initialize(UIInventoryPage inventoryUI, InventorySO inventoryData, List<InventoryItem> initialItems,
+            AudioClip dropClip, AudioSource audioSource) 
         {
+            _inventoryUI = inventoryUI;
+            _inventoryData = inventoryData;
+            _initialItems = initialItems;
+            _dropClip = dropClip;
+            _audioSource = audioSource;
+            
             PrepareUI();
             PrepareInventoryData();
         }
 
-
-        private void OnDestroy()
+        public void Dispose()
         {
-            UnSubscribeEvent();
-        }
-
-        public void UnSubscribeEvent()
-        {
-            inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
+            _inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
         }
         private void PrepareInventoryData()
         {
-            if (inventoryData.inventoryItems == null || inventoryData.inventoryItems.Count == 0)
+            if (_inventoryData.inventoryItems == null || _inventoryData.inventoryItems.Count == 0)
             {
-                inventoryData.Initialize();
-                foreach (InventoryItem item in initialItems)
+                _inventoryData.Initialize();
+                foreach (InventoryItem item in _initialItems)
                 {
                     if (item.IsEmpty)
                         continue;
-                    inventoryData.AddItem(item);
+                    _inventoryData.AddItem(item);
                 }
             }
-            inventoryData.OnInventoryUpdated += UpdateInventoryUI;
+
+            _inventoryData.OnInventoryUpdated += UpdateInventoryUI;
         }
 
         private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
         {
-            inventoryUI.ResetAllItems();
+            _inventoryUI.ResetAllItems();
             foreach (var item in inventoryState)
             {
-                inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
+                _inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
             }
         }
 
         private void PrepareUI()
         {
-            inventoryUI.Show();
-            inventoryUI.Hide();
-            inventoryUI.InitializeInventoryUI(inventoryData.Size);
-            this.inventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
-            this.inventoryUI.OnSwapItems += HandleSwapItems;
-            this.inventoryUI.OnStartDragging += HandleDragging;
-            this.inventoryUI.OnItemActionRequested += HandleItemActionRequested;
+            _inventoryUI.Show();
+            _inventoryUI.Hide();
+            _inventoryUI.InitializeInventoryUI(_inventoryData.Size);
+            this._inventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
+            this._inventoryUI.OnSwapItems += HandleSwapItems;
+            this._inventoryUI.OnStartDragging += HandleDragging;
+            this._inventoryUI.OnItemActionRequested += HandleItemActionRequested;
         }
 
         private void HandleItemActionRequested(int itemIndex)
         {
-            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+            InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
             if (inventoryItem.IsEmpty)
                 return;
-
-            IItemAction itemAction = inventoryItem.item as IItemAction;
-            /*if (itemAction != null)
-            {
-                inventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
-            }*/
 
             IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
             if (destroyableItem != null)
             {
-                inventoryUI.ShowItemAction(itemIndex);
-                inventoryUI.AddAction("Buy", () => SellItem(inventoryItem, itemIndex));
+                _inventoryUI.ShowItemAction(itemIndex);
+                _inventoryUI.AddAction("Buy", () => SellItem(inventoryItem, itemIndex));
             }
 
-            /**/
         }
 
         private void SellItem(InventoryItem inventoryItem, int itemIndex)
@@ -108,12 +104,13 @@ namespace App.Scripts.TraderScene
                 IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
                 if (destroyableItem != null)
                 {
-                    inventoryData.RemoveItem(itemIndex, 1);
+                    _inventoryData.RemoveItem(itemIndex, 1);
                 }
+
                 //audioSource.PlayOneShot(itemAction.itemActionSound);
                 //audioSource.PlayOneShot(dropClip); // тут мб другой звук
-                if (inventoryData.GetItemAt(itemIndex).IsEmpty)
-                    inventoryUI.ResetSelection();
+                if (_inventoryData.GetItemAt(itemIndex).IsEmpty)
+                    _inventoryUI.ResetSelection();
             }
         }
 
@@ -124,12 +121,10 @@ namespace App.Scripts.TraderScene
             Debug.Log("Sell Cost = " + itemSO.ItemBuyCost);
 
 
-            
-
             if (PlayerMoney.Instance.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Player can afford it");
-                if (player.GetComponent<InventoryController>().TryAddItem(itemSO)) // сюда нужно будет количество передавать
+                if (InventoryController.Instance.TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
                     PlayerMoney.Instance.TryReduceMoney(itemSO.ItemBuyCost);
                     TraderMoney.Instance.AddMoney(itemSO.ItemBuyCost);
@@ -147,56 +142,32 @@ namespace App.Scripts.TraderScene
                 return false;
             }
         }
-
-        public void PerformAction(int itemIndex)
-        {
-            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
-            if (inventoryItem.IsEmpty)
-                return;
-
-            IItemAction itemAction = inventoryItem.item as IItemAction;
-            if (itemAction != null)
-            {
-            
-                if (itemAction.PerformAction(player, inventoryItem.itemState))
-                {
-                    IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
-                    if (destroyableItem != null)
-                    {
-                        inventoryData.RemoveItem(itemIndex, 1);
-                    }
-                    audioSource.PlayOneShot(itemAction.itemActionSound);
-                    if (inventoryData.GetItemAt(itemIndex).IsEmpty)
-                        inventoryUI.ResetSelection();
-                }
-            }
-        }
-
+        
         private void HandleDragging(int itemIndex)
         {
-            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+            InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
             if (inventoryItem.IsEmpty)
                 return;
-            inventoryUI.CreateDraggedItem(inventoryItem.item.ItemImage, inventoryItem.quantity);
+            _inventoryUI.CreateDraggedItem(inventoryItem.item.ItemImage, inventoryItem.quantity);
         }
 
         private void HandleSwapItems(int itemIndex1, int itemIndex2)
         {
-            inventoryData.SwapItems(itemIndex1, itemIndex2);
+            _inventoryData.SwapItems(itemIndex1, itemIndex2);
         }
 
         private void HandleDescriptionRequest(int itemIndex)
         {
-            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+            InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
             if (inventoryItem.IsEmpty)
             {
-                inventoryUI.ResetSelection();
+                _inventoryUI.ResetSelection();
                 return;
             }
 
             ItemSO item = inventoryItem.item;
             string description = PrepareDescription(inventoryItem);
-            inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, description);
+            _inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, description);
         }
 
         private string PrepareDescription(InventoryItem inventoryItem)
@@ -216,8 +187,10 @@ namespace App.Scripts.TraderScene
 
         public bool TryAddItem(ItemSO item)
         {
-            int reminder = inventoryData.AddItem(item, 1); // потом тут нужно будет сделать так, чтобы пользователь мог выбирать количество предметов для покупки
-            
+            int reminder =
+                _inventoryData.AddItem(item,
+                    1); // потом тут нужно будет сделать так, чтобы пользователь мог выбирать количество предметов для покупки
+
             if (reminder == 0)
                 return true;
             else
@@ -226,20 +199,20 @@ namespace App.Scripts.TraderScene
 
         public void Interact(GameObject player) // мб реализовать в отдельном скрипте
         {
-            if (inventoryUI.isActiveAndEnabled == false)
+            if (_inventoryUI.isActiveAndEnabled == false)
             {
                 this.player = player;
-                inventoryUI.Show();
+                _inventoryUI.Show();
 
-                foreach (var item in inventoryData.GetCurrentInventoryState())
+                foreach (var item in _inventoryData.GetCurrentInventoryState())
                 {
-                    inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
+                    _inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
                 }
             }
             else
             {
                 this.player = null;
-                inventoryUI.Hide();
+                _inventoryUI.Hide();
             }
         }
     }

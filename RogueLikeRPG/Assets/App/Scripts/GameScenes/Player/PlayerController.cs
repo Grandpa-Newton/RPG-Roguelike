@@ -227,6 +227,7 @@ namespace App.Scripts.GameScenes.Player
             _playerMovement.Dispose();
             _playerAnimator.Dispose();
             SwitchWeaponBetweenRangeAndMelee.Instance.Dispose();
+            InventoryController.Instance.Dispose();
         }
     }
 }
