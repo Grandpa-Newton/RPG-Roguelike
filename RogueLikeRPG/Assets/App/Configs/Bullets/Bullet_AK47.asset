@@ -15,5 +15,4 @@ MonoBehaviour:
   lifeTime: 3
   distance: 15
   departingBulletSprite: {fileID: 21300000, guid: 62e88a30504be3541b1f11664067885d, type: 3}
-  trailRenderer: {fileID: 8092561460582941276, guid: 59134b84d2275134cbd3af18e2ec5cda, type: 3}
-  bulletTrailParticle: {fileID: 6449233060191240383, guid: 0da22f2b31cf799469e97f1970f43ffa, type: 3}
+  explosiveParticle: {fileID: 19800014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}

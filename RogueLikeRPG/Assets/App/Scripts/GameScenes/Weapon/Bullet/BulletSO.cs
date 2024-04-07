@@ -8,7 +8,6 @@ namespace App.Scripts.GameScenes.Weapon.Bullet
         public float lifeTime;
         public float distance;
         public Sprite departingBulletSprite;
-        public TrailRenderer trailRenderer;
-        //public ParticleSystem bulletTrailParticle;
+        public ParticleSystem explosiveParticle;
     }
 }

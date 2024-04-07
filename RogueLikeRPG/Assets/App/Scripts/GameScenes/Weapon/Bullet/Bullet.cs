@@ -10,7 +10,7 @@ namespace App.Scripts.GameScenes.Weapon.Bullet
         private BulletSO _bulletSo;
         private SpriteRenderer _spriteRenderer;
         private RangeWeaponSO _rangeWeaponSo;
-        [SerializeField] private ParticleSystem explosiveParticle;
+        
 
         private RangeWeapon.RangeWeapon _rangeWeapon;
         [SerializeField] private LayerMask layerMask;
@@ -55,7 +55,7 @@ namespace App.Scripts.GameScenes.Weapon.Bullet
         {
             if ((layerMask.value & (1 << other.gameObject.layer)) != 0)
             {
-                Instantiate(explosiveParticle, transform.position, Quaternion.identity);
+                Instantiate(_bulletSo.explosiveParticle, transform.position, Quaternion.identity);
                 IDamageable damageable = other.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
