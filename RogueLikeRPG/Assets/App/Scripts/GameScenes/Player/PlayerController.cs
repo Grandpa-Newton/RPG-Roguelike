@@ -94,6 +94,7 @@ namespace App.Scripts.GameScenes.Player
         
         private void Awake()
         {
+            
             InitializeComponents();
 
             PlayerHealth.Instance.Initialize(healthCharacteristicSO);

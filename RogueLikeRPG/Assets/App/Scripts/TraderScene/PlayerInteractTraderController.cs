@@ -37,7 +37,8 @@ namespace App.Scripts.TraderScene
                 }
             }
         }
-
+        
+        
         private IInteractable GetInteractableObject()
         {
 

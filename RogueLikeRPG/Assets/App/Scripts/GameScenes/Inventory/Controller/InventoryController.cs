@@ -151,8 +151,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             if (TraderMoney.Instance.CanAffordReduceMoney(itemSO.ItemSellCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Trader can afford it");
-                if (trader.GetComponent<TraderInventoryController>()
-                    .TryAddItem(itemSO)) // сюда нужно будет количество передавать
+                if (TraderInventoryController.Instance.TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
                     TraderMoney.Instance.TryReduceMoney(itemSO.ItemSellCost);
                     PlayerMoney.Instance.AddMoney(itemSO.ItemSellCost);
