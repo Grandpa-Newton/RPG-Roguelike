@@ -28,19 +28,10 @@ public class TraderFindingPlayer : MonoBehaviour, IInteractable
     {
         if (other.GetComponent<PlayerController>() && !_inventoryUI.isActiveAndEnabled)
         {
-            _traderInteractable = GetInteractableObject();
-            if (_traderInteractable != null)
-            {
-                Debug.Log(gameObject + " !! ! ! !!! ");
-                InventoryController.Instance.SetTraderObject(gameObject);
-                Debug.Log("Trader found!");
-
-                _traderInteractable.Interact(gameObject);
-            }
-
-            {
-                _inventoryUI.Show();
-            }
+            InventoryController.Instance.SetTraderObject(gameObject);
+            Debug.Log("Trader found!");
+            Interact(gameObject);
+            _inventoryUI.Show();
         }
     }
 

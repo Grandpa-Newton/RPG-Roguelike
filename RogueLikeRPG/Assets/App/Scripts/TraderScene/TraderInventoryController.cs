@@ -167,7 +167,7 @@ namespace App.Scripts.TraderScene
 
             ItemSO item = inventoryItem.item;
             string description = PrepareDescription(inventoryItem);
-            _inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, description);
+            _inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.itemName, description);
         }
 
         private string PrepareDescription(InventoryItem inventoryItem)

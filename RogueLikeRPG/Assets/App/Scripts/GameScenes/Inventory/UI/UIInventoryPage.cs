@@ -160,7 +160,7 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 
         public void UpdateDescription(int itemIndex, Sprite itemImage, string itemName, string description)
         {
-            itemDescription.SetDescription(itemImage, name, description);
+            itemDescription.SetDescription(itemImage, itemName, description);
             DeselectAllItems();
             listOfUIItems[itemIndex].Select();
         }

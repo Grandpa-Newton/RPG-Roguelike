@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d692c150b86669442b49c809a824717d, type: 3}
   m_Name: TraderMoneyData
   m_EditorClassIdentifier: 
-  currentValue: 49
+  currentValue: 2000
   IsInitialized: 0
