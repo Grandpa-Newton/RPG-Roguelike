@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08071d3b948375b479a007b6a0edb240, type: 3}
-  m_Name: TestTraderInventory
+  m_Name: TraderInventory
   m_EditorClassIdentifier: 
   inventoryItems:
   - quantity: 2

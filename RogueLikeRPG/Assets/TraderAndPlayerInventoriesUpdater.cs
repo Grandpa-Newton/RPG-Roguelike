@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using App.Scripts.AllScenes.Interfaces;
 using App.Scripts.GameScenes.Player;
 using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
@@ -6,7 +7,7 @@ using App.Scripts.MixedScenes.Inventory.UI;
 using App.Scripts.TraderScene;
 using UnityEngine;
 
-public class TraderController : MonoBehaviour
+public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
 {
     [SerializeField] private UIInventoryPage traderInventoryUI;
     [SerializeField] private UIInventoryPage playerInventoryUI;
@@ -25,6 +26,7 @@ public class TraderController : MonoBehaviour
     private void OnDestroy()
     {
         TraderInventoryController.Instance.Dispose();
+        PlayerInventoryController.Instance.Dispose();
     }
     
     private void OnTriggerEnter2D(Collider2D other)

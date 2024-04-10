@@ -126,8 +126,6 @@ namespace App.Scripts.GameScenes.Player
                 rangeWeaponAudioSource);
             
             SwitchWeaponBetweenRangeAndMelee.Instance.CheckAvailableWeapons();
-            
-            InventoryController.Instance.Initialize(uiInventoryPage,inventorySO,inventoryItems,inventoryOpenClip,inventoryAudioSource);
         }
 
         private bool _isRolling;
@@ -199,7 +197,7 @@ namespace App.Scripts.GameScenes.Player
             _playerAimWeaponRotation.HandsRotationAroundAim(transform);
             SwitchWeaponBetweenRangeAndMelee.Instance.SwapWeapon();
             HandleCombat();
-            InventoryController.Instance.ShowOrHideInventory();
+            PlayerInventoryController.Instance.ShowOrHideInventory();
         }
 
         private void HandleCombat()
@@ -228,7 +226,7 @@ namespace App.Scripts.GameScenes.Player
             _playerMovement.Dispose();
             _playerAnimator.Dispose();
             SwitchWeaponBetweenRangeAndMelee.Instance.Dispose();
-            InventoryController.Instance.Dispose();
+            PlayerInventoryController.Instance.Dispose();
         }
     }
 }

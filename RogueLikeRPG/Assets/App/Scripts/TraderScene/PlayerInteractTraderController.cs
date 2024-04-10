@@ -10,7 +10,7 @@ namespace App.Scripts.TraderScene
 
         private GameObject _traderGameObject;
 
-        private InventoryController _inventoryController;
+        private PlayerInventoryController _playerInventoryController;
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.O))
@@ -18,12 +18,12 @@ namespace App.Scripts.TraderScene
                 _traderInteractable = GetInteractableObject();
                 if (_traderInteractable != null)
                 {
-                    InventoryController.Instance.SetTraderObject(_traderGameObject);
+                    PlayerInventoryController.Instance.SetTraderObject(_traderGameObject);
                     Debug.Log("Trader found!");
                 }
                 else
                 {
-                    InventoryController.Instance.SetTraderObject(null);
+                    PlayerInventoryController.Instance.SetTraderObject(null);
                     Debug.Log("Trader not found!");
                 }
             }

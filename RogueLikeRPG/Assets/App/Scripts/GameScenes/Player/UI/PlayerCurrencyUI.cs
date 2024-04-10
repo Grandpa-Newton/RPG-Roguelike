@@ -9,7 +9,7 @@ namespace App.Scripts.GameScenes.Player.UI
     {
         [SerializeField] private TMP_Text currentCurrency;
         [SerializeField] private GameObject moneyPanel;
-        [FormerlySerializedAs("_intValueSO")] [SerializeField] private ChangeableValueSO changeableValueSO; 
+        [SerializeField] private ChangeableValueSO changeableValueSO; 
     
         private void Awake()
         {

@@ -27,7 +27,7 @@ public class TradableItemSO : ItemSO, IDestroyableItem, IItemAction
         if (PlayerMoney.Instance.CanAffordReduceMoney(Cost)) // тут тоже, наверное, нужно количество
         {
             Debug.Log("Player can afford it");
-            if (character.GetComponent<InventoryController>().TryAddItem(ItemSO)) // сюда нужно будет количество передавать
+            if (character.GetComponent<PlayerInventoryController>().TryAddItem(ItemSO)) // сюда нужно будет количество передавать
             {
                 PlayerMoney.Instance.TryReduceMoney(Cost);
                 return true;
