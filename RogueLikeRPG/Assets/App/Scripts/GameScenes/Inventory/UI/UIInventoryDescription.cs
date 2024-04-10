@@ -6,7 +6,6 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 {
     public class UIInventoryDescription : MonoBehaviour
     {
-        [SerializeField] private Image itemImage;
         [SerializeField] private TMP_Text title;
         [SerializeField] private TMP_Text description;
 
@@ -17,17 +16,14 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 
         public void ResetDescription()
         {
-            this.itemImage.gameObject.SetActive(false);
-            this.title.text = "";
-            this.description.text = "";
+            title.text = "";
+            description.text = "";
         }
 
         public void SetDescription(Sprite sprite, string itemName, string itemDescription)
         {
-            this.itemImage.gameObject.SetActive(true);
-            this.itemImage.sprite = sprite;
-            this.title.text = itemName;
-            this.description.text = itemDescription;
+            title.text = itemName;
+            description.text = itemDescription;
         }
     
     }

@@ -12,7 +12,6 @@ using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.UI;
 using Cinemachine;
-using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -126,6 +125,8 @@ namespace App.Scripts.GameScenes.Player
                 rangeWeaponAudioSource);
             
             SwitchWeaponBetweenRangeAndMelee.Instance.CheckAvailableWeapons();
+            
+            
         }
 
         private bool _isRolling;
@@ -199,7 +200,6 @@ namespace App.Scripts.GameScenes.Player
             HandleCombat();
             PlayerInventoryController.Instance.ShowOrHideInventory();
         }
-
         private void HandleCombat()
         {
             if (_isRolling) return;

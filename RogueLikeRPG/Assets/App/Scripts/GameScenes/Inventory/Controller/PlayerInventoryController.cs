@@ -20,10 +20,13 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         public static PlayerInventoryController Instance => _instance ??= new PlayerInventoryController();
         
         private GameObject _trader;
+        private bool _isTrading;
 
+        
+        
         public void ShowOrHideInventory()
         {
-            if (!Input.GetKeyDown(KeyCode.Tab)) return;
+            if (!Input.GetKeyDown(KeyCode.Tab) && !_isTrading) return;
             
             if (_inventoryUI.isActiveAndEnabled == false)
             {
@@ -49,6 +52,12 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             _inventoryUI.OnSwapItems += HandleSwapItems;
             _inventoryUI.OnStartDragging += HandleDragging;
             _inventoryUI.OnItemActionRequested += HandleItemActionRequested;
+            TraderAndPlayerInventoriesUpdater.Instance.OnPlayerTrading += OnPlayerTrading;
+        }
+
+        private void OnPlayerTrading(bool isTrading)
+        {
+            _isTrading = isTrading;
         }
 
         protected override void HandleItemActionRequested(int itemIndex)

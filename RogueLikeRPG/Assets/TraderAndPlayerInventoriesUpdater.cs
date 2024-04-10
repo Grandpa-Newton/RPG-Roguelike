@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using App.Scripts.AllScenes.Interfaces;
 using App.Scripts.GameScenes.Player;
@@ -5,10 +6,13 @@ using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.UI;
 using App.Scripts.TraderScene;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
 {
+    public static TraderAndPlayerInventoriesUpdater Instance { get; private set; }
+    
     [SerializeField] private UIInventoryPage traderInventoryUI;
     [SerializeField] private UIInventoryPage playerInventoryUI;
     [SerializeField] private InventorySO traderInventoryData;
@@ -17,8 +21,11 @@ public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
     [SerializeField] private AudioClip dropClip;
     [SerializeField] private AudioSource audioSource;
 
+    public event Action<bool> OnPlayerTrading;
+    
     private void Awake()
     {
+        Instance = this;    
         TraderInventoryController.Instance.Initialize(traderInventoryUI, traderInventoryData, initialItems, dropClip, audioSource);
         PlayerInventoryController.Instance.Initialize(playerInventoryUI, playerInventoryData, initialItems, dropClip, audioSource);
     }
@@ -33,6 +40,7 @@ public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>() && !traderInventoryUI.isActiveAndEnabled)
         {
+            OnPlayerTrading?.Invoke(true);
             PlayerInventoryController.Instance.SetTraderObject(gameObject);
             Debug.Log("Trader found!");
             Interact();
@@ -44,6 +52,7 @@ public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>() && traderInventoryUI.isActiveAndEnabled)
         {
+            OnPlayerTrading?.Invoke(false);
             traderInventoryUI.Hide();
             playerInventoryUI.Hide();
             PlayerInventoryController.Instance.SetTraderObject(null);
