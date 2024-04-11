@@ -673,6 +673,7 @@ GameObject:
   - component: {fileID: 1412538698097721430}
   - component: {fileID: 5917678328204681865}
   - component: {fileID: 4181433674075120614}
+  - component: {fileID: 4453588542097487554}
   m_Layer: 5
   m_Name: TraderUI
   m_TagString: Untagged
@@ -797,6 +798,18 @@ MonoBehaviour:
   currentCurrency: {fileID: 8088037843391964989}
   moneyPanel: {fileID: 8851570728314233951}
   changeableValueSO: {fileID: 11400000, guid: bfcbc4c011e134f468ac774949a796c7, type: 2}
+--- !u!225 &4453588542097487554
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2568252092870758961}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2609634644265262432
 GameObject:
   m_ObjectHideFlags: 0

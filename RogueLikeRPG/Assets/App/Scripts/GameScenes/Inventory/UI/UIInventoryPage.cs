@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using App.Scripts.MixedScenes.Inventory.Controller;
+using DG.Tweening;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Inventory.UI
@@ -17,6 +18,7 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 
         private int currantlyDraggedItemIndex = -1;
 
+        private CanvasGroup _canvasGroup;
 
         public event Action<int> OnDescriptionRequested;
         public event Action<int> OnItemActionRequested;
@@ -32,6 +34,11 @@ namespace App.Scripts.MixedScenes.Inventory.UI
             Hide();
             mouseFollower.Toggle(false);
             itemDescription.ResetDescription();
+        }
+
+        private void Start()
+        {
+            _canvasGroup = GetComponent<CanvasGroup>();
         }
 
         public void InitializeInventoryUI(int inventorySize)
@@ -117,11 +124,6 @@ namespace App.Scripts.MixedScenes.Inventory.UI
             currantlyDraggedItemIndex = -1;
         }
 
-        public void Show()
-        {
-            gameObject.SetActive(true);
-            ResetSelection();
-        }
 
         public void ResetSelection()
         {
@@ -151,10 +153,15 @@ namespace App.Scripts.MixedScenes.Inventory.UI
             actionPanel.Toggle(false);
         }
 
+        public void Show()
+        {
+            _canvasGroup.DOFade(1, 0.5f);
+            ResetSelection();
+        }
         public void Hide()
         {
             actionPanel.Toggle(false);
-            gameObject.SetActive(false);
+            _canvasGroup.DOFade(0, 0.5f);
             ResetDraggedItem();
         }
 

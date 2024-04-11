@@ -6,13 +6,12 @@ using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.UI;
 using App.Scripts.TraderScene;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
 {
     public static TraderAndPlayerInventoriesUpdater Instance { get; private set; }
-    
+
     [SerializeField] private UIInventoryPage traderInventoryUI;
     [SerializeField] private UIInventoryPage playerInventoryUI;
     [SerializeField] private InventorySO traderInventoryData;
@@ -22,62 +21,91 @@ public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
 
     public event Action<bool> OnPlayerTrading;
-    
+    public event Action<bool> OnInventoryOpen;
+
     private void Awake()
     {
-        Instance = this;    
-        TraderInventoryController.Instance.Initialize(traderInventoryUI, traderInventoryData, initialItems, dropClip, audioSource);
-        PlayerInventoryController.Instance.Initialize(playerInventoryUI, playerInventoryData, initialItems, dropClip, audioSource);
+        Instance = this;
+        TraderInventoryController.Instance.Initialize(traderInventoryUI, traderInventoryData, initialItems, dropClip,
+            audioSource);
+        PlayerInventoryController.Instance.Initialize(playerInventoryUI, playerInventoryData, initialItems, dropClip,
+            audioSource);
     }
 
-    private void OnDestroy()
+    private bool _isStartTrading;
+    private bool _isInteracting;
+
+    private void Update()
     {
-        TraderInventoryController.Instance.Dispose();
-        PlayerInventoryController.Instance.Dispose();
+        TradingProcess();
+    }
+
+    private void TradingProcess()
+    {
+        if (!_isStartTrading || !Input.GetKeyDown(KeyCode.E)) return;
+        
+        if (_isInteracting)
+        {
+            EndInteract();
+        }
+        else
+        {
+            StartInteract();
+        }
+        _isInteracting = !_isInteracting;
     }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerController>() && !traderInventoryUI.isActiveAndEnabled)
+        if (other.GetComponent<PlayerController>())
         {
-            OnPlayerTrading?.Invoke(true);
-            PlayerInventoryController.Instance.SetTraderObject(gameObject);
-            Debug.Log("Trader found!");
-            Interact();
-            traderInventoryUI.Show();
-            playerInventoryUI.Show();
+            _isStartTrading = true;
         }
     }
+
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerController>() && traderInventoryUI.isActiveAndEnabled)
+        if (other.GetComponent<PlayerController>())
         {
-            OnPlayerTrading?.Invoke(false);
-            traderInventoryUI.Hide();
-            playerInventoryUI.Hide();
-            PlayerInventoryController.Instance.SetTraderObject(null);
-            Debug.Log("Trader not found!");
+            _isStartTrading = false;
+            EndInteract();
         }
     }
-    private void Interact()
+
+    private void StartInteract()
     {
-        if (traderInventoryUI.isActiveAndEnabled == false)
+        Debug.Log("Trader found!");
+        
+        OnPlayerTrading?.Invoke(true);
+        PlayerInventoryController.Instance.SetTraderObject(gameObject);
+        
+        traderInventoryUI.Show();
+        playerInventoryUI.Show();
+        foreach (var item in traderInventoryData.GetCurrentInventoryState())
         {
-            traderInventoryUI.Show();
-            playerInventoryUI.Show();
-            foreach (var item in traderInventoryData.GetCurrentInventoryState())
-            {
-                traderInventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
-            }
-            foreach (var item in playerInventoryData.GetCurrentInventoryState())
-            {
-                playerInventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
-            }
+            traderInventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
         }
-        else
+
+        foreach (var item in playerInventoryData.GetCurrentInventoryState())
         {
-            traderInventoryUI.Hide();
-            playerInventoryUI.Hide();
+            playerInventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
         }
+    }
+
+    private void EndInteract()
+    {
+        Debug.Log("Trader not found!");
+        
+        OnPlayerTrading?.Invoke(false);
+        traderInventoryUI.Hide();
+        playerInventoryUI.Hide();
+        PlayerInventoryController.Instance.SetTraderObject(null);
+        OnInventoryOpen?.Invoke(false);
+    }
+    
+    private void OnDestroy()
+    {
+        TraderInventoryController.Instance.Dispose();
+        PlayerInventoryController.Instance.Dispose();
     }
 }

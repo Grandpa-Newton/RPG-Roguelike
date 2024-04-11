@@ -1262,6 +1262,7 @@ GameObject:
   - component: {fileID: 8477809845173193646}
   - component: {fileID: 4699813698389039693}
   - component: {fileID: 5426165092824552396}
+  - component: {fileID: 5323802530321551911}
   m_Layer: 5
   m_Name: PlayerUI
   m_TagString: Untagged
@@ -1386,6 +1387,18 @@ MonoBehaviour:
   currentCurrency: {fileID: 4144885832227245806}
   moneyPanel: {fileID: 139455024984438590}
   changeableValueSO: {fileID: 11400000, guid: 30a51a99d3f65364e938509f4723ad9c, type: 2}
+--- !u!225 &5323802530321551911
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5699256538190399921}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5895177746809273867
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,14 +21,15 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         
         private GameObject _trader;
         private bool _isTrading;
-
         
-        
+        private bool _isOpen;
         public void ShowOrHideInventory()
         {
-            if (!Input.GetKeyDown(KeyCode.Tab) && !_isTrading) return;
-            
-            if (_inventoryUI.isActiveAndEnabled == false)
+            if (!Input.GetKeyDown(KeyCode.Tab)) return;
+            if (_isTrading) return; 
+
+            Debug.Log(_inventoryUI.isActiveAndEnabled);
+            if (!_isOpen)
             {
                 _inventoryUI.Show();
 
@@ -41,18 +42,27 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             {
                 _inventoryUI.Hide();
             }
+            _isOpen = !_isOpen; 
         }
+
+
         
         protected override void PrepareUI()
         {
             _inventoryUI.Show();
-            _inventoryUI.Hide();
             _inventoryUI.InitializeInventoryUI(_inventoryData.Size);
             _inventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
             _inventoryUI.OnSwapItems += HandleSwapItems;
             _inventoryUI.OnStartDragging += HandleDragging;
             _inventoryUI.OnItemActionRequested += HandleItemActionRequested;
             TraderAndPlayerInventoriesUpdater.Instance.OnPlayerTrading += OnPlayerTrading;
+            TraderAndPlayerInventoriesUpdater.Instance.OnInventoryOpen += OnInventoryOpen;
+            _inventoryUI.Hide();
+        }
+
+        private void OnInventoryOpen(bool isOpen)
+        {
+            _isOpen = isOpen;
         }
 
         private void OnPlayerTrading(bool isTrading)
