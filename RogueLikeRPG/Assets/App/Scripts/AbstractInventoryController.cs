@@ -1,12 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using App.Scripts.AllScenes.Interfaces;
 using App.Scripts.DungeonScene.Items;
 using App.Scripts.MixedScenes.Inventory.Model;
-using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.MixedScenes.Inventory.UI;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class AbstractInventoryController
@@ -27,7 +23,7 @@ public class AbstractInventoryController
         _initialItems = initialItems;
         _dropClip = dropClip;
         _audioSource = audioSource;
-            
+        
         PrepareUI();
         PrepareInventoryData();
     }

@@ -151,6 +151,7 @@ MonoBehaviour:
   initialItems: []
   dropClip: {fileID: 8300000, guid: c66a4a1db6099e34ca14a09e09c6ec26, type: 3}
   audioSource: {fileID: 0}
+  canvas: {fileID: 2858208603862459880}
 --- !u!1001 &3813507463342125526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -165,7 +166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3597417428203509815, guid: 92122260b5959d348b8823d34842804a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5998371968384970161, guid: 92122260b5959d348b8823d34842804a, type: 3}
       propertyPath: m_Pivot.x
@@ -260,6 +261,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92122260b5959d348b8823d34842804a, type: 3}
+--- !u!223 &2858208603862459880 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1388842897123644478, guid: 92122260b5959d348b8823d34842804a, type: 3}
+  m_PrefabInstance: {fileID: 3813507463342125526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7481098362640522343 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5998371968384970161, guid: 92122260b5959d348b8823d34842804a, type: 3}

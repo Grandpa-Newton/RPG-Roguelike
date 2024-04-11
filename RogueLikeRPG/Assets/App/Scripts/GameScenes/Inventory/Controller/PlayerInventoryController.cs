@@ -19,7 +19,6 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         private static PlayerInventoryController _instance;
         public static PlayerInventoryController Instance => _instance ??= new PlayerInventoryController();
         
-        private GameObject _trader;
         private bool _isTrading;
         
         private bool _isOpen;
@@ -28,7 +27,6 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             if (!Input.GetKeyDown(KeyCode.Tab)) return;
             if (_isTrading) return; 
 
-            Debug.Log(_inventoryUI.isActiveAndEnabled);
             if (!_isOpen)
             {
                 _inventoryUI.Show();
@@ -89,7 +87,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                 _inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
             }
 
-            if (_trader != null)
+            if (_isTrading)
             {
                 _inventoryUI.AddAction("Sell", () => SellItem(inventoryItem, itemIndex));
             }
@@ -162,11 +160,6 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                 if (_inventoryData.GetItemAt(itemIndex).IsEmpty)
                     _inventoryUI.ResetSelection();
             }
-        }
-
-        public void SetTraderObject(GameObject trader)
-        {
-            this._trader = trader;
         }
     }
 }
