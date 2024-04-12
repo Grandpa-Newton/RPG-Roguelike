@@ -14,7 +14,7 @@ namespace App.Scripts.MixedScenes.Player.Controller
             ItemPickable item = other.GetComponent<ItemPickable>();
             if (item != null)
             {
-                if(other.GetComponent<Coin>() != null)
+                if(item.ItemType == ItemType.Coin)
                 {
                     PlayerMoney.Instance.AddMoney(1);
                     item.DestroyItem();

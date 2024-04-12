@@ -6,10 +6,17 @@ using UnityEngine.Rendering.Universal;
 
 namespace App.Scripts.MixedScenes.PickUpSystem
 {
+   public enum ItemType
+   {
+      Coin,
+      Food,
+      
+   }
    public class ItemPickable : MonoBehaviour
    {
       [field: SerializeField] public ItemSO InventoryItem { get; private set; }
       [field: SerializeField] public int Quantity { get; set; } = 1;
+      [field: SerializeField] public ItemType ItemType { get; private set; }
       [SerializeField] private AudioClip audioSourceOnPick; 
       private AudioSource _audioSource;
       [SerializeField] private float duration = 0.3f;
