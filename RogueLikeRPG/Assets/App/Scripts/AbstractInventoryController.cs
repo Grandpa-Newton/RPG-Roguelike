@@ -26,6 +26,15 @@ public class AbstractInventoryController
         
         PrepareUI();
         PrepareInventoryData();
+        UpdateInventoryItems();
+    }
+
+    private void UpdateInventoryItems()
+    {
+        foreach (var item in _inventoryData.GetCurrentInventoryState())
+        {
+            _inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
+        }   
     }
     protected virtual void PrepareUI()
     {
@@ -39,17 +48,6 @@ public class AbstractInventoryController
     }
     private void PrepareInventoryData()
     {
-        if (_inventoryData.inventoryItems == null || _inventoryData.inventoryItems.Count == 0)
-        {
-            _inventoryData.Initialize();
-            foreach (InventoryItem item in _initialItems)
-            {
-                if (item.IsEmpty)
-                    continue;
-                _inventoryData.AddItem(item);
-            }
-        }
-
         _inventoryData.OnInventoryUpdated += UpdateInventoryUI;
     }
     
@@ -63,8 +61,7 @@ public class AbstractInventoryController
         }
 
         ItemSO item = inventoryItem.item;
-        string description = PrepareDescription(inventoryItem);
-        _inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.itemName, description);
+        _inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.itemName, item.description);
     }
     protected void HandleSwapItems(int itemIndex1, int itemIndex2)
     {
@@ -81,30 +78,10 @@ public class AbstractInventoryController
     {
         Debug.LogError("Abstract HandleItemActionRequested run");
     }
-    
-    private string PrepareDescription(InventoryItem inventoryItem)
-    {
-        StringBuilder sb = new StringBuilder();
-        sb.Append(inventoryItem.item.description);
-        sb.AppendLine();
-        for (int i = 0; i < inventoryItem.itemState.Count; i++)
-        {
-            sb.Append(
-                $"{inventoryItem.itemState[i].itemParameter.ParameterName} : " +
-                $"{inventoryItem.itemState[i].value} / {inventoryItem.item.DefaultParametersList[i].value}");
-        }
-
-        return sb.ToString();
-    }
     public bool TryAddItem(ItemSO item)
     {
-        int reminder =
-            _inventoryData.AddItem(item,
-                1); // потом тут нужно будет сделать так, чтобы пользователь мог выбирать количество предметов для покупки
-        if (reminder == 0)
-            return true;
-        else
-            return false;
+        int reminder = _inventoryData.AddItem(item, 1); 
+        return reminder == 0;
     }
     public void Dispose()
     {
@@ -114,9 +91,6 @@ public class AbstractInventoryController
     private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
     {
         _inventoryUI.ResetAllItems();
-        foreach (var item in inventoryState)
-        {
-            _inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
-        }
+        UpdateInventoryItems();
     }
 }

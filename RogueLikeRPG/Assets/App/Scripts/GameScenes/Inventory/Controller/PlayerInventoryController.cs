@@ -30,11 +30,6 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             if (!_isOpen)
             {
                 _inventoryUI.Show();
-
-                foreach (var item in _inventoryData.GetCurrentInventoryState())
-                {
-                    _inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
-                }
             }
             else
             {
@@ -48,6 +43,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         protected override void PrepareUI()
         {
             _inventoryUI.Show();
+            _inventoryUI.Hide();
             _inventoryUI.InitializeInventoryUI(_inventoryData.Size);
             _inventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
             _inventoryUI.OnSwapItems += HandleSwapItems;
@@ -55,7 +51,11 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             _inventoryUI.OnItemActionRequested += HandleItemActionRequested;
             TraderAndPlayerInventoriesUpdater.Instance.OnPlayerTrading += OnPlayerTrading;
             TraderAndPlayerInventoriesUpdater.Instance.OnInventoryOpen += OnInventoryOpen;
-            _inventoryUI.Hide();
+            
+            foreach (var item in _inventoryData.GetCurrentInventoryState())
+            {
+                _inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
+            }
         }
 
         private void OnInventoryOpen(bool isOpen)

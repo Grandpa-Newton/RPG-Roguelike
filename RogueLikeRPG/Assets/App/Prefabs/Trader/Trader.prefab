@@ -151,7 +151,7 @@ MonoBehaviour:
   initialItems: []
   dropClip: {fileID: 8300000, guid: c66a4a1db6099e34ca14a09e09c6ec26, type: 3}
   audioSource: {fileID: 0}
-  canvas: {fileID: 2858208603862459880}
+  interactHelper: {fileID: 2858208603862459880}
 --- !u!1001 &3813507463342125526
 PrefabInstance:
   m_ObjectHideFlags: 0

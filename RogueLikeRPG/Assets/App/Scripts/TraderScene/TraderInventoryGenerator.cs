@@ -11,21 +11,24 @@ using UnityEngine.Rendering.Universal;
 public class TraderInventoryGenerator : SerializedMonoBehaviour
 {
     [SerializeField] private InventorySO traderInventory;
+    
+    [SerializeField]
+    private List<ItemAppearingProbability> itemsAppearingProbabilities = new List<ItemAppearingProbability>();
 
-    //[ShowInInspector][OdinSerialize] public Dictionary<ItemSO, float> itemsAppearingProbabilities = new Dictionary<ItemSO, float>();
-
-    [SerializeField] private List<ItemAppearingProbability> itemsAppearingProbabilities = new List<ItemAppearingProbability>();
     private void Awake()
     {
-        traderInventory.Initialize();
+        GenerateSellableItems();
+    }
 
+    private void GenerateSellableItems()
+    {
         System.Random random = new System.Random();
 
         foreach (var item in itemsAppearingProbabilities)
         {
             float probability = (float)random.NextDouble();
 
-            if(probability < item.Probability)
+            if (probability < item.Probability)
             {
                 int quantity = random.Next(1, item.MaxValue + 1);
                 traderInventory.AddItem(item.Item, quantity);
@@ -34,7 +37,7 @@ public class TraderInventoryGenerator : SerializedMonoBehaviour
     }
 
     [Serializable]
-    public class ItemAppearingProbability // отдельный класс для того, чтобы сделать список списков
+    public class ItemAppearingProbability 
     {
         public ItemSO Item;
         public float Probability;

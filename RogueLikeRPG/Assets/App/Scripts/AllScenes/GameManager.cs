@@ -12,5 +12,6 @@ public class GameManager : MonoBehaviour
         PlayerMoney.Instance.Initialize(playerMoneySO);
         TraderMoney.Instance.Initialize(traderMoneySO);
         
+        
     }
 }

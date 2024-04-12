@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using App.Scripts.MixedScenes.Inventory.Controller;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.MixedScenes.Inventory.UI
 {
@@ -11,7 +12,7 @@ namespace App.Scripts.MixedScenes.Inventory.UI
         [SerializeField] private UIInventoryItem itemPrefab;
         [SerializeField] private RectTransform contentPanel;
 
-        [SerializeField] private UIInventoryDescription itemDescription;
+        [FormerlySerializedAs("itemDescription")] [SerializeField] private UIInventoryDescription itemInformation;
         [SerializeField] private MouseFollower mouseFollower;
 
         private List<UIInventoryItem> listOfUIItems = new List<UIInventoryItem>();
@@ -30,10 +31,8 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 
         private void Awake()
         {
-            var a = gameObject;
-            Hide();
             mouseFollower.Toggle(false);
-            itemDescription.ResetDescription();
+            itemInformation.ResetDescription();
         }
 
         private void Start()
@@ -62,10 +61,6 @@ namespace App.Scripts.MixedScenes.Inventory.UI
             if (index == -1)
                 return;
             OnItemActionRequested?.Invoke(index);
-        }
-
-        private void HandleItemActionRequest(UIInventoryItem obj)
-        {
         }
 
         public void UpdateData(int itemIndex, Sprite itemImage, int itemQuantity)
@@ -127,7 +122,7 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 
         public void ResetSelection()
         {
-            itemDescription.ResetDescription();
+            itemInformation.ResetDescription();
             DeselectAllItems();
         }
 
@@ -165,22 +160,16 @@ namespace App.Scripts.MixedScenes.Inventory.UI
             ResetDraggedItem();
         }
 
-        public void UpdateDescription(int itemIndex, Sprite itemImage, string itemName, string description)
+        public void UpdateDescription(int itemIndex, Sprite itemImage, string itemName, string itemDescription)
         {
-            itemDescription.SetDescription(itemImage, itemName, description);
+            itemInformation.SetDescription(itemImage, itemName, itemDescription);
             DeselectAllItems();
             listOfUIItems[itemIndex].Select();
         }
 
         private List<UIInventoryItem> UpdateInventoryStateBetweenScenes()
         {
-
-            var a = gameObject;
-
-            // gameObject.SetActive(true);
-
-
-            if(contentPanel == null)
+            if(!contentPanel)
             {
                 contentPanel = GameObject.Find("Content").GetComponent<RectTransform>();
             }
@@ -196,11 +185,9 @@ namespace App.Scripts.MixedScenes.Inventory.UI
                 }
             }
 
-
-            // gameObject.SetActive(false);
-
             return listOfUIItems;
         }
+        
         public void ResetAllItems()
         {
            
