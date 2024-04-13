@@ -12,11 +12,11 @@ public class PlayerCurrentWeapon
 
    private bool _isMeleeWeapon;
    
-   public void Initialize(WeaponItemSO currentWeapon, CurrentWeaponsSO currentWeaponsSO)
+   public void Initialize( CurrentWeaponsSO currentWeaponsSO)
    {
       CurrentMeleeAndRangeWeaponsSO = currentWeaponsSO;
-      CurrentPlayerWeapon = currentWeapon;
-      SwitchWeaponBetweenRangeAndMelee.Instance.OnPlayerSwapWeapon += SetCurrentPlayerWeapon;
+      
+      WeaponSwitcher.Instance.OnPlayerSwapWeapon += SetCurrentPlayerWeapon;
    }
 
    private void SetCurrentPlayerWeapon(bool isMeleeWeapon)

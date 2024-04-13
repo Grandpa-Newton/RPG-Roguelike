@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 3737094189174202808}
   - component: {fileID: 3388378415229987931}
   - component: {fileID: 6302572677310333315}
+  - component: {fileID: 6226358802151246990}
   m_Layer: 5
   m_Name: RangeWeaponUI
   m_TagString: Untagged
@@ -454,6 +455,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!225 &6226358802151246990
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010310703652118791}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1011897375719323200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,7 +1289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636fefd3fb5d5be459403dba911a33c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 7174528645306170034}
   title: {fileID: 1285531607160947909}
   description: {fileID: 6440091243599784173}
 --- !u!1 &3262893900619584735
@@ -1858,6 +1870,7 @@ GameObject:
   - component: {fileID: 6493433838661993628}
   - component: {fileID: 321026787663190187}
   - component: {fileID: 8875606050817459972}
+  - component: {fileID: 7841319108658737767}
   m_Layer: 5
   m_Name: MeleeWeaponUI
   m_TagString: Untagged
@@ -1943,6 +1956,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!225 &7841319108658737767
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3967440002552469818}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3972121092198534782
 GameObject:
   m_ObjectHideFlags: 0
@@ -3434,7 +3459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 3016576447189816458, guid: 55933eaf26531b148a56a3ae56eb537e, type: 3}
   contentPanel: {fileID: 4866610027142390746}
-  itemDescription: {fileID: 7534429735056831711}
+  itemInformation: {fileID: 7534429735056831711}
   mouseFollower: {fileID: 7816412321863322242}
   actionPanel: {fileID: 7665491589408818706}
 --- !u!114 &8669408180607510577

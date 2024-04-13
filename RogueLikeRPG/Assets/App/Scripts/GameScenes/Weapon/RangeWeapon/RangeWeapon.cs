@@ -76,7 +76,7 @@ namespace App.Scripts.GameScenes.Weapon.RangeWeapon
 
             _rangeWeaponSO = rangeWeapon;
 
-            SwitchWeaponBetweenRangeAndMelee.Instance.PlayerHandsVisible(true);
+            WeaponSwitcher.Instance.PlayerHandsVisible(true);
             _spriteRenderer.sprite = _rangeWeaponSO.ItemImage;
             _audioSource.PlayOneShot(_rangeWeaponSO.weaponEquipSound);
         }

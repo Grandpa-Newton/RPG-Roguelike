@@ -1,32 +1,31 @@
+using System;
 using UnityEngine;
 
 namespace App.Scripts.GameScenes.Player.Components
 {
     public class PlayerAnimator
     {
-        private PlayerController _playerController;
-        private PlayerMovement _playerMovement;
+        private static PlayerAnimator _instance;
+        public static PlayerAnimator Instance => _instance ??= new PlayerAnimator();
 
         private Animator _animator;
-
-        public delegate void RollingAction(bool isRolling);
-
-        public static event RollingAction OnPlayerRolling;
-
+        
         private bool _isWalking;
         private bool _isRolling;
+        
         private static readonly int Horizontal = Animator.StringToHash("Horizontal");
         private static readonly int Vertical = Animator.StringToHash("Vertical");
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
         private static readonly int IsRolling = Animator.StringToHash("IsRolling");
         private static readonly int IsDead = Animator.StringToHash("IsDead");
 
-        public PlayerAnimator( Animator animator, PlayerMovement playerMovement)
+        public event Action<bool> OnPlayerRolling;
+        
+        public void Initialize( Animator animator)
         {
             _animator = animator;
-            _playerMovement = playerMovement;
-            _playerMovement.OnPlayerMovement += Player_OnPlayerMovement;
-            _playerMovement.OnPlayerMouseMovement += Player_OnPlayerMouseMovement;
+            PlayerMovement.Instance.OnPlayerMovement += Player_OnPlayerMovement;
+            PlayerMovement.Instance.OnPlayerMouseMovement += Player_OnPlayerMouseMovement;
             PlayerHealth.Instance.OnPlayerDie += Player_OnPlayerDie;
         }
 
@@ -35,18 +34,16 @@ namespace App.Scripts.GameScenes.Player.Components
             _animator.SetTrigger(IsDead);
         }
 
-
         private void Player_OnPlayerMovement(Vector2 movementInputVector, Vector2 worldMouseVectorPosition)
         {
             if (Input.GetKeyDown(KeyCode.Space) && _isWalking)
             {
-                SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsDisable();
+                WeaponSwitcher.Instance.WeaponAndHandsDisable();
                 _isRolling = true;
                 _animator.SetBool(IsRolling, _isRolling);
-                OnPlayerRolling?.Invoke(_isRolling);
-
                 _animator.SetFloat(Horizontal, movementInputVector.x);
                 _animator.SetFloat(Vertical, movementInputVector.y);
+                OnPlayerRolling?.Invoke(_isRolling);
             }
 
             if (!_isRolling)
@@ -85,15 +82,15 @@ namespace App.Scripts.GameScenes.Player.Components
         
             _isRolling = false;
             _animator.SetBool(IsRolling, _isRolling);
-            SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsEnable();
+            WeaponSwitcher.Instance.WeaponAndHandsEnable();
             OnPlayerRolling?.Invoke(_isRolling);
         
         }
 
         public void Dispose()
         {
-            _playerMovement.OnPlayerMovement -= Player_OnPlayerMovement;
-            _playerMovement.OnPlayerMouseMovement -= Player_OnPlayerMouseMovement;
+            PlayerMovement.Instance.OnPlayerMovement -= Player_OnPlayerMovement;
+            PlayerMovement.Instance.OnPlayerMouseMovement -= Player_OnPlayerMouseMovement;
         }
     }
 }

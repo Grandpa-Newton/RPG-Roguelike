@@ -1,3 +1,5 @@
+using App.Scripts.GameScenes.Weapon;
+using App.Scripts.GameScenes.Weapon.MeleeWeapon;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,72 +9,37 @@ namespace App.Scripts.GameScenes.Player.UI
     public class PlayerCurrentWeaponUI
     {
         private static PlayerCurrentWeaponUI _instance;
+        public static PlayerCurrentWeaponUI Instance => _instance ??= new PlayerCurrentWeaponUI();
 
-        public static PlayerCurrentWeaponUI Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new PlayerCurrentWeaponUI();
-                }
-
-                return _instance;
-            }
-        }
-
-        private Image _meleeWeaponUI;
-        private Image _meleeBackgroundImage;
+        private CanvasGroup _meleeWeaponUI;
+        private CanvasGroup _rangeWeaponUI;
         private Image _meleeWeaponIcon;
-        private Image _rangeWeaponUI;
-        private Image _rangeBackgroundImage;
         private Image _rangeWeaponIcon;
 
-        public void Initialize(Image meleeWeaponUI, Image meleeBackgroundImage, Image meleeWeaponIcon,
-            Image rangeWeaponUI, Image rangeBackgroundImage, Image rangeWeaponIcon)
+        public void Initialize(CanvasGroup meleeWeaponUI, CanvasGroup rangeWeaponUI, Image meleeWeaponIcon, Image rangeWeaponIcon)
         {
             _meleeWeaponUI = meleeWeaponUI;
-            _meleeBackgroundImage = meleeBackgroundImage;
-            _meleeWeaponIcon = meleeWeaponIcon;
             _rangeWeaponUI = rangeWeaponUI;
-            _rangeBackgroundImage = rangeBackgroundImage;
+            _meleeWeaponIcon = meleeWeaponIcon;
             _rangeWeaponIcon = rangeWeaponIcon;
         }
-
-        public void IncreaseMeleeWeaponScale()
+        public void AdjustWeaponScale(WeaponItemSO weaponItemSO)
         {
-            _meleeWeaponUI.transform.DOScale(1.2f, 0.5f);
-            _meleeWeaponUI.DOFade(1f, 0.5f);
-            _meleeBackgroundImage.DOFade(1f, 0.5f);
-            _meleeWeaponIcon.DOFade(1f, 0.5f);
+            bool isMeleeWeapon = weaponItemSO is MeleeWeaponSO;
+            CanvasGroup selectedWeaponUI = isMeleeWeapon ? _meleeWeaponUI : _rangeWeaponUI;
+            CanvasGroup deselectedWeaponUI = isMeleeWeapon ? _rangeWeaponUI : _meleeWeaponUI;
 
-            _rangeWeaponUI.transform.DOScale(0.8f, 0.5f);
-            _rangeWeaponUI.DOFade(0.5f, 0.5f);
-            _rangeBackgroundImage.DOFade(0.5f, 0.5f);
-            _rangeWeaponIcon.DOFade(0.5f, 0.5f);
+            selectedWeaponUI.transform.DOScale(1.2f, 0.5f);
+            selectedWeaponUI.DOFade(1f, 0.5f);
+            deselectedWeaponUI.transform.DOScale(0.8f, 0.5f);
+            deselectedWeaponUI.DOFade(0.5f, 0.5f);
         }
 
-        public void IncreaseRangeWeaponScale()
+        public void SetWeaponIcon(WeaponItemSO weaponItemSO)
         {
-            _meleeWeaponUI.transform.DOScale(0.8f, 0.5f);
-            _meleeWeaponUI.DOFade(0.5f, 0.5f);
-            _meleeBackgroundImage.DOFade(0.5f, 0.5f);
-            _meleeWeaponIcon.DOFade(0.5f, 0.5f);
-
-            _rangeWeaponUI.transform.DOScale(1.2f, 0.5f);
-            _rangeWeaponUI.DOFade(1f, 0.5f);
-            _rangeBackgroundImage.DOFade(1f, 0.5f);
-            _rangeWeaponIcon.DOFade(1f, 0.5f);
-        }
-
-        public void SetMeleeWeaponIcon(Sprite meleeSprite)
-        {
-            _meleeWeaponIcon.sprite = meleeSprite;
-        }
-
-        public void SetRangeWeaponIcon(Sprite rangeSprite)
-        {
-            _rangeWeaponIcon.sprite = rangeSprite;
+            bool isMeleeWeapon = weaponItemSO is MeleeWeaponSO;
+            Image weaponIcon = isMeleeWeapon ? _meleeWeaponIcon : _rangeWeaponIcon;
+            weaponIcon.sprite = weaponItemSO.ItemImage;
         }
     }
 }

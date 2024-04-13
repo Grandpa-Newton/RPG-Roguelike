@@ -8,7 +8,7 @@ namespace App.Scripts.GameScenes.Player.Interfaces
         public bool isRolling { get; }
         
         public void Move();
-        public void Roll(bool isRoll);
+        public void MakeRoll(bool isRoll);
         
     }
 }

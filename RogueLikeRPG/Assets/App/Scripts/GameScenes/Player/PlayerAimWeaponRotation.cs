@@ -4,10 +4,13 @@ namespace App.Scripts.GameScenes.Player
 {
     public class PlayerAimWeaponRotation
     {
+        private static PlayerAimWeaponRotation _instance;
+        public static PlayerAimWeaponRotation Instance => _instance ??= new PlayerAimWeaponRotation();
+        
         private PlayerInputActions _playerInputActions;
         private Transform _aimTransform;
 
-        public PlayerAimWeaponRotation(PlayerInputActions playerInputActions, Transform aimTransform)
+        public void Initialize(PlayerInputActions playerInputActions, Transform aimTransform)
         {
             _playerInputActions = playerInputActions;
             _aimTransform = aimTransform;
@@ -15,7 +18,6 @@ namespace App.Scripts.GameScenes.Player
     
         public void HandsRotationAroundAim(Transform playerTransform)
         {
-        
             Vector3 mousePosition = GetMouseWorldPosition(_playerInputActions);
 
             Vector3 aimDirection = (mousePosition - playerTransform.position).normalized;

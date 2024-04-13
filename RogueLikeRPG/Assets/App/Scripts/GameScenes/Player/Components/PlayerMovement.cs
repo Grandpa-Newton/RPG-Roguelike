@@ -7,6 +7,10 @@ namespace App.Scripts.GameScenes.Player.Components
 {
     public class PlayerMovement : IMove
     {
+        private static PlayerMovement _instance;
+
+        public static PlayerMovement Instance => _instance ??= new PlayerMovement();
+        
         private Rigidbody2D _rigidbody2D;
         private PlayerInputActions _playerInputActions;
         private Camera _camera;
@@ -16,7 +20,7 @@ namespace App.Scripts.GameScenes.Player.Components
         private Vector2 _rollDirection;
         private Vector2 _mouseDirection;
         private Vector2 _mouseWorldPosition;
-        private Vector2 _previousMousePos;
+        private Vector2 _previousMousePosition;
 
         public event Action<Vector2, Vector2> OnPlayerMovement;
         public event Action<Vector2, Vector2> OnPlayerMouseMovement;
@@ -30,12 +34,12 @@ namespace App.Scripts.GameScenes.Player.Components
         public bool isMoving { get; private set; }
         public bool isRolling { get; private set; }
 
-        public PlayerMovement(Rigidbody2D rigidbody2D, PlayerInputActions playerInputActions, Camera camera)
+        public void Initialize(Rigidbody2D rigidbody2D, PlayerInputActions playerInputActions, Camera camera)
         {
             _rigidbody2D = rigidbody2D;
             _playerInputActions = playerInputActions;
             _camera = camera;
-            PlayerAnimator.OnPlayerRolling += Roll;
+            PlayerAnimator.Instance.OnPlayerRolling += MakeRoll;
         }
 
         public void SetVirtualCamera(CinemachineVirtualCamera virtualCamera, Transform followTarget)
@@ -77,7 +81,7 @@ namespace App.Scripts.GameScenes.Player.Components
             }
         }
 
-        public void Roll(bool isRoll)
+        public void MakeRoll(bool isRoll)
         {
             isRolling = isRoll;
 
@@ -96,10 +100,10 @@ namespace App.Scripts.GameScenes.Player.Components
 
         private void UpdatePlayerSpriteState(Vector2 moveDirection, Vector2 mouseWorldPosition)
         {
-            if (mouseWorldPosition != _previousMousePos)
+            if (mouseWorldPosition != _previousMousePosition)
             {
                 OnPlayerMouseMovement?.Invoke(moveDirection, mouseWorldPosition);
-                _previousMousePos = mouseWorldPosition;
+                _previousMousePosition = mouseWorldPosition;
             }
 
             if (moveDirection.magnitude < MinimalMagnitudeToMove || moveDirection != Vector2.zero)
@@ -138,7 +142,7 @@ namespace App.Scripts.GameScenes.Player.Components
 
         public void Dispose()
         {
-            PlayerAnimator.OnPlayerRolling -= Roll;
+            PlayerAnimator.Instance.OnPlayerRolling -= MakeRoll;
         }
     }
 }

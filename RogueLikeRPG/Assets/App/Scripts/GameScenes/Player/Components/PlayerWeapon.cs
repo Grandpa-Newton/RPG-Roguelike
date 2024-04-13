@@ -48,8 +48,8 @@ namespace App.Scripts.GameScenes.Player.Components
             
             PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon = (MeleeWeaponSO)weaponItemSO;
             MeleeWeaponTrigger.Instance.SetMeleeWeaponSO(PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon);
-            PlayerCurrentWeaponUI.Instance.IncreaseMeleeWeaponScale();
-            PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(weaponItemSO.ItemImage);
+            PlayerCurrentWeaponUI.Instance.AdjustWeaponScale(weaponItemSO);
+            PlayerCurrentWeaponUI.Instance.SetWeaponIcon(weaponItemSO);
             _itemCurrentState = new List<ItemParameter>(itemState); 
             ModifyParameters();
         }
@@ -61,8 +61,8 @@ namespace App.Scripts.GameScenes.Player.Components
             }
             
             PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedRangeWeapon = (RangeWeaponSO)weaponItemSO;
-            PlayerCurrentWeaponUI.Instance.IncreaseRangeWeaponScale();
-            PlayerCurrentWeaponUI.Instance.SetRangeWeaponIcon(weaponItemSO.ItemImage);
+            PlayerCurrentWeaponUI.Instance.AdjustWeaponScale(weaponItemSO);
+            PlayerCurrentWeaponUI.Instance.SetWeaponIcon(weaponItemSO);
             _itemCurrentState = new List<ItemParameter>(itemState); 
             ModifyParameters();
         }

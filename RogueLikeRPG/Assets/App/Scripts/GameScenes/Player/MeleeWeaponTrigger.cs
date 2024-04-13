@@ -1,41 +1,36 @@
+using System;
 using App.Scripts.DungeonScene.Enemy;
 using App.Scripts.GameScenes.Weapon.MeleeWeapon;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.GameScenes.Player
 {
     public class MeleeWeaponTrigger : MonoBehaviour
     {
-        private static MeleeWeaponTrigger _instance;
+        public static MeleeWeaponTrigger Instance { get; private set; }
 
-        public static MeleeWeaponTrigger Instance
+        [SerializeField] private MeleeWeaponSO meleeWeaponSO;
+
+        private void Awake()
         {
-            get
+            if (!Instance)
             {
-                if (_instance == null)
-                {
-                    _instance = new MeleeWeaponTrigger();
-                }
-
-                return _instance;
+                Instance = this;
             }
         }
-        [SerializeField] private MeleeWeaponSO _meleeWeaponSO;
 
-        public void Initialize(MeleeWeaponSO meleeWeaponSO)
+        public void SetMeleeWeaponSO(MeleeWeaponSO weaponSO)
         {
-            _meleeWeaponSO = meleeWeaponSO;
+            meleeWeaponSO = weaponSO;
         }
-        public void SetMeleeWeaponSO(MeleeWeaponSO meleeWeaponSO)
-        {
-            _meleeWeaponSO = meleeWeaponSO;
-        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.TryGetComponent(out Enemy enemy))
             {
                 Debug.Log("EnemyFound");
-                enemy.TakeDamage(_meleeWeaponSO.damage);
+                enemy.TakeDamage(meleeWeaponSO.damage);
             }
         }
     }

@@ -75,7 +75,7 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
 
             _meleeWeaponSO = (MeleeWeaponSO)meleeWeaponSo;
             MeleeWeaponTrigger.Instance.SetMeleeWeaponSO(_meleeWeaponSO);
-            SwitchWeaponBetweenRangeAndMelee.Instance.PlayerHandsVisible(true);
+            WeaponSwitcher.Instance.PlayerHandsVisible(true);
             _spriteRenderer.sprite = _meleeWeaponSO.ItemImage;
         }
     }
