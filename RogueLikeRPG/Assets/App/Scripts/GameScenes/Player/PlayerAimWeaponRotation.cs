@@ -14,9 +14,10 @@ namespace App.Scripts.GameScenes.Player
         {
             _playerInputActions = playerInputActions;
             _aimTransform = aimTransform;
+            PlayerController.Instance.OnPlayerHandsRotation += HandsRotationAroundAim;
         }
     
-        public void HandsRotationAroundAim(Transform playerTransform)
+        private void HandsRotationAroundAim(Transform playerTransform)
         {
             Vector3 mousePosition = GetMouseWorldPosition(_playerInputActions);
 
@@ -49,6 +50,12 @@ namespace App.Scripts.GameScenes.Player
         {
             Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
             return worldPosition;
+        }
+
+        public void Dispose()
+        {
+            PlayerController.Instance.OnPlayerHandsRotation -= HandsRotationAroundAim;
+
         }
     }
 }

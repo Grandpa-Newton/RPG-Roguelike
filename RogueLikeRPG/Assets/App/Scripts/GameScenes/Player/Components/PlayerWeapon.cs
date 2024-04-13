@@ -11,29 +11,14 @@ namespace App.Scripts.GameScenes.Player.Components
     public class PlayerWeapon
     {
         private static PlayerWeapon _instance;
-
-        public static PlayerWeapon Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new PlayerWeapon();
-                }
-
-                return _instance;
-            }
-        }
+        public static PlayerWeapon Instance => _instance ??= new PlayerWeapon();
         
-        
-        private CurrentWeaponsSO _currentWeaponsSO;
         private InventorySO _inventorySO;
         
         private List<ItemParameter> _parametersToModify;
         private List<ItemParameter> _itemCurrentState;
 
-        public void Initialize(InventorySO inventorySO, 
-            List<ItemParameter> parametersToModify, List<ItemParameter> itemCurrentState)
+        public void Initialize(InventorySO inventorySO, List<ItemParameter> parametersToModify, List<ItemParameter> itemCurrentState)
         {
             _inventorySO = inventorySO;
             _parametersToModify = parametersToModify;

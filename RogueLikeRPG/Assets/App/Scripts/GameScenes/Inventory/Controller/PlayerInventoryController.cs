@@ -7,6 +7,7 @@ using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.MixedScenes.Inventory.UI;
 using UnityEngine;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.GameScenes.Player;
 using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.GameScenes.Player.EditableValues;
 using App.Scripts.TraderScene;
@@ -22,7 +23,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         private bool _isTrading;
         
         private bool _isOpen;
-        public void ShowOrHideInventory()
+        private void ShowOrHideInventory()
         {
             if (!Input.GetKeyDown(KeyCode.Tab)) return;
             if (_isTrading) return; 
@@ -51,6 +52,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             _inventoryUI.OnItemActionRequested += HandleItemActionRequested;
             TraderAndPlayerInventoriesUpdater.Instance.OnPlayerTrading += OnPlayerTrading;
             TraderAndPlayerInventoriesUpdater.Instance.OnInventoryOpen += OnInventoryOpen;
+            PlayerController.Instance.OnPlayerShowOrHideInventory += ShowOrHideInventory;
             
             foreach (var item in _inventoryData.GetCurrentInventoryState())
             {
@@ -160,6 +162,12 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                 if (_inventoryData.GetItemAt(itemIndex).IsEmpty)
                     _inventoryUI.ResetSelection();
             }
+        }
+
+        public new void Dispose()
+        {
+            _inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
+            PlayerController.Instance.OnPlayerShowOrHideInventory -= ShowOrHideInventory;
         }
     }
 }

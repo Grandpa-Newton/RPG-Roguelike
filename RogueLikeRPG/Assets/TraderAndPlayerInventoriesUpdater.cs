@@ -101,6 +101,5 @@ public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
     private void OnDestroy()
     {
         TraderInventoryController.Instance.Dispose();
-        PlayerInventoryController.Instance.Dispose();
     }
 }

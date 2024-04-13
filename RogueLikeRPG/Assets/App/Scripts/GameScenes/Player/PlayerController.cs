@@ -21,6 +21,8 @@ namespace App.Scripts.GameScenes.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        public static PlayerController Instance { get; private set; }
+        
         private Camera _camera;
         private Rigidbody2D _rigidbody2D;
         private PlayerInputActions _playerInputActions;
@@ -44,20 +46,18 @@ namespace App.Scripts.GameScenes.Player
         [SerializeField] private List<ItemParameter> parametersToModify;
         [SerializeField] private List<ItemParameter> itemCurrentState;
 
-        [Title("Audio Sources")] [SerializeField]
-        private AudioSource meleeWeaponAudioSource;
-
+        [Title("Audio Sources")] 
+        [SerializeField] private AudioSource meleeWeaponAudioSource;
         [SerializeField] private AudioSource rangeWeaponAudioSource;
 
-        [Title("Weapons Sprite Renderer Component")] [SerializeField]
-        private SpriteRenderer meleeWeaponSpriteRenderer;
-
+        [Title("Weapons Sprite Renderer Component")]
+        [SerializeField] private SpriteRenderer meleeWeaponSpriteRenderer;
         [SerializeField] private SpriteRenderer rangeWeaponSpriteRenderer;
 
         [Title("Current Weapon UI")] 
         [SerializeField] private CanvasGroup meleeWeaponUI; 
-        [SerializeField] private Image meleeWeaponIcon;
         [SerializeField] private CanvasGroup rangeWeaponUI;
+        [SerializeField] private Image meleeWeaponIcon;
         [SerializeField] private Image rangeWeaponIcon;
 
         [Title("Bullet Components")] 
@@ -71,9 +71,15 @@ namespace App.Scripts.GameScenes.Player
         [SerializeField] private AudioClip inventoryOpenClip;
         [SerializeField] private AudioSource inventoryAudioSource;
 
+        public event Action<Transform> OnPlayerHandsRotation;
+        public event Action OnPlayerSwapWeapon;
+        public event Action OnPlayerShowOrHideInventory;
+        public event Action OnPlayerHandleCombat;
+        public event Action OnPlayerUpdatePlayerState;
 
         private void Awake()
         {
+            Instance = this;
             InitializeUnityComponents();
             InitializePlayerComponents();
             InitializeWeaponComponents();
@@ -119,11 +125,11 @@ namespace App.Scripts.GameScenes.Player
        
         private void Update()
         {
-            PlayerStateChanger.Instance.SetPlayerState();
-            PlayerAimWeaponRotation.Instance.HandsRotationAroundAim(transform);
-            WeaponSwitcher.Instance.SwapWeapon();
-            PlayerInventoryController.Instance.ShowOrHideInventory();
-            PlayerCombat.Instance.HandleCombat();
+            OnPlayerUpdatePlayerState?.Invoke();
+            OnPlayerHandsRotation?.Invoke(transform);
+            OnPlayerSwapWeapon?.Invoke();
+            OnPlayerShowOrHideInventory?.Invoke();
+            OnPlayerHandleCombat?.Invoke();
         }
         private void FixedUpdate()
         {
@@ -136,6 +142,7 @@ namespace App.Scripts.GameScenes.Player
             PlayerAnimator.Instance.Dispose();
             PlayerStateChanger.Instance.Dispose();
             PlayerCombat.Instance.Dispose();
+            PlayerAimWeaponRotation.Instance.Dispose();
             WeaponSwitcher.Instance.Dispose();
             PlayerInventoryController.Instance.Dispose();
         }

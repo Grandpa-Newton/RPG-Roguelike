@@ -88,7 +88,7 @@ public class AbstractInventoryController
         _inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
     }
     
-    private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
+    protected void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
     {
         _inventoryUI.ResetAllItems();
         UpdateInventoryItems();

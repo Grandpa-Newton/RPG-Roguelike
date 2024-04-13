@@ -32,6 +32,7 @@ namespace App.Scripts.GameScenes.Player
             _rangeWeapon = rangeWeapon;
             _hands = hands;
             PlayerAnimator.Instance.OnPlayerRolling += SetRollState;
+            PlayerController.Instance.OnPlayerSwapWeapon += SwapWeapon;
         }
 
         private void SetRollState(bool isRolling)
@@ -79,7 +80,7 @@ namespace App.Scripts.GameScenes.Player
             }
         }
 
-        public void SwapWeapon()
+        private void SwapWeapon()
         {
             MeleeWeaponSO meleeWeaponSO =
                 PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon;
@@ -169,6 +170,7 @@ namespace App.Scripts.GameScenes.Player
         public void Dispose()
         {
             PlayerAnimator.Instance.OnPlayerRolling -= SetRollState;
+            PlayerController.Instance.OnPlayerSwapWeapon -= SwapWeapon;
         }
     }
 }

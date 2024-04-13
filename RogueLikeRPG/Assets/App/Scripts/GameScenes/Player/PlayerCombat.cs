@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using App.Scripts.GameScenes.Player;
 using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.GameScenes.Weapon.Bullet;
 using App.Scripts.GameScenes.Weapon.MeleeWeapon;
 using App.Scripts.GameScenes.Weapon.RangeWeapon;
-using UnityEngine;
 
 public class PlayerCombat
 {
@@ -18,13 +16,14 @@ public class PlayerCombat
    {
       _bulletFactory = bulletFactory;
       PlayerAnimator.Instance.OnPlayerRolling += GetPlayerRollState;
+      PlayerController.Instance.OnPlayerHandleCombat += HandleCombat;
    }
    private void GetPlayerRollState(bool isRolling)
    {
       _isRolling = isRolling;
    }
    
-   public void HandleCombat()
+   private void HandleCombat()
    {
       if (_isRolling) return;
 
@@ -41,5 +40,7 @@ public class PlayerCombat
    public void Dispose()
    {
       PlayerAnimator.Instance.OnPlayerRolling -= GetPlayerRollState;
+      PlayerController.Instance.OnPlayerHandleCombat -= HandleCombat;
+      
    }
 }

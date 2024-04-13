@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.GameScenes.Player;
 using App.Scripts.GameScenes.Player.Components;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ public class PlayerStateChanger
         _playerInputActions = playerInputActions;
         _playerState = PlayerState.Idle;
         PlayerAnimator.Instance.OnPlayerRolling += GetPlayerRollState;
+        PlayerController.Instance.OnPlayerUpdatePlayerState += UpdatePlayerState;
     }
     
     private void GetPlayerRollState(bool isRolling)
@@ -50,7 +52,7 @@ public class PlayerStateChanger
         }
     }
 
-    public void SetPlayerState()
+    private void UpdatePlayerState()
     {
         Vector2 playerMovementVector = _playerInputActions.Player.Movement.ReadValue<Vector2>();
 
@@ -76,6 +78,7 @@ public class PlayerStateChanger
     public void Dispose()
     {
         PlayerAnimator.Instance.OnPlayerRolling -= GetPlayerRollState;
+        PlayerController.Instance.OnPlayerUpdatePlayerState -= UpdatePlayerState;
     }
 }
 
