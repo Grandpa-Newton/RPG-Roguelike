@@ -15,24 +15,24 @@ namespace App.Scripts.TraderScene
 
         protected override void PrepareUI()
         {
-            _inventoryUI.Show();
-            _inventoryUI.Hide();
-            _inventoryUI.InitializeInventoryUI(_inventoryData.Size);
-            _inventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
-            _inventoryUI.OnItemActionRequested += HandleItemActionRequested;
+            InventoryUI.Show();
+            InventoryUI.Hide();
+            InventoryUI.InitializeInventoryUI(InventoryData.Size);
+            InventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
+            InventoryUI.OnItemActionRequested += HandleItemActionRequested;
         }
 
         protected override void HandleItemActionRequested(int itemIndex)
         {
-            InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
+            InventoryItem inventoryItem = InventoryData.GetItemAt(itemIndex);
             if (inventoryItem.IsEmpty)
                 return;
 
             IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
             if (destroyableItem != null)
             {
-                _inventoryUI.ShowItemAction(itemIndex);
-                _inventoryUI.AddAction("Buy", () => BuyItem(inventoryItem, itemIndex));
+                InventoryUI.ShowItemAction(itemIndex);
+                InventoryUI.AddAction("Buy", () => BuyItem(inventoryItem, itemIndex));
             }
 
         }
@@ -44,13 +44,13 @@ namespace App.Scripts.TraderScene
                 IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
                 if (destroyableItem != null)
                 {
-                    _inventoryData.RemoveItem(itemIndex, 1);
+                    InventoryData.RemoveItem(itemIndex, 1);
                 }
 
                 //audioSource.PlayOneShot(itemAction.itemActionSound);
                 //audioSource.PlayOneShot(dropClip); // тут мб другой звук
-                if (_inventoryData.GetItemAt(itemIndex).IsEmpty)
-                    _inventoryUI.ResetSelection();
+                if (InventoryData.GetItemAt(itemIndex).IsEmpty)
+                    InventoryUI.ResetSelection();
             }
         }
 
@@ -85,16 +85,16 @@ namespace App.Scripts.TraderScene
 
         private void HandleDescriptionRequest(int itemIndex)
         {
-            InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
+            InventoryItem inventoryItem = InventoryData.GetItemAt(itemIndex);
             if (inventoryItem.IsEmpty)
             {
-                _inventoryUI.ResetSelection();
+                InventoryUI.ResetSelection();
                 return;
             }
 
             ItemSO item = inventoryItem.item;
             string description = PrepareDescription(inventoryItem);
-            _inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.itemName, description);
+            InventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.itemName, description);
         }
 
         private string PrepareDescription(InventoryItem inventoryItem)

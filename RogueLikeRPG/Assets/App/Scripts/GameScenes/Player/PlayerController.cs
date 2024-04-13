@@ -79,7 +79,7 @@ namespace App.Scripts.GameScenes.Player
 
         private void Awake()
         {
-            Instance = this;
+            if (!Instance) Instance = this;
             InitializeUnityComponents();
             InitializePlayerComponents();
             InitializeWeaponComponents();
@@ -104,6 +104,7 @@ namespace App.Scripts.GameScenes.Player
             PlayerHealth.Instance.Initialize(healthCharacteristicSO);
             PlayerMovement.Instance.Initialize(_rigidbody2D, _playerInputActions, _camera);
             PlayerAnimator.Instance.Initialize(playerAnimator);
+            PlayerInventoryController.Instance.Initialize(uiInventoryPage,inventorySO,inventoryItems,inventoryOpenClip,inventoryAudioSource);
             PlayerStateChanger.Instance.Initialize(_playerInputActions);
             PlayerCombat.Instance.Initialize(bulletFactory);
         }
@@ -128,7 +129,11 @@ namespace App.Scripts.GameScenes.Player
             OnPlayerUpdatePlayerState?.Invoke();
             OnPlayerHandsRotation?.Invoke(transform);
             OnPlayerSwapWeapon?.Invoke();
-            OnPlayerShowOrHideInventory?.Invoke();
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                Debug.Log("Tab!");
+                OnPlayerShowOrHideInventory?.Invoke();
+            }
             OnPlayerHandleCombat?.Invoke();
         }
         private void FixedUpdate()

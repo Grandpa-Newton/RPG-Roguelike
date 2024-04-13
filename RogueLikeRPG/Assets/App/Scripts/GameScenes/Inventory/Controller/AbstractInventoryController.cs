@@ -7,22 +7,22 @@ using UnityEngine;
 
 public class AbstractInventoryController
 {
-    protected UIInventoryPage _inventoryUI;
-    protected InventorySO _inventoryData;
+    protected UIInventoryPage InventoryUI;
+    protected InventorySO InventoryData;
 
-    protected List<InventoryItem> _initialItems = new();
+    protected List<InventoryItem> InitialItems = new();
     
-    protected AudioClip _dropClip;
-    protected AudioSource _audioSource;
+    protected AudioClip DropClip;
+    protected AudioSource AudioSource;
     
     public void Initialize(UIInventoryPage inventoryPage,InventorySO inventoryData, List<InventoryItem> initialItems,
         AudioClip dropClip, AudioSource audioSource)
     {
-        _inventoryUI = inventoryPage;
-        _inventoryData = inventoryData;
-        _initialItems = initialItems;
-        _dropClip = dropClip;
-        _audioSource = audioSource;
+        InventoryUI = inventoryPage;
+        InventoryData = inventoryData;
+        InitialItems = initialItems;
+        DropClip = dropClip;
+        AudioSource = audioSource;
         
         PrepareUI();
         PrepareInventoryData();
@@ -31,48 +31,48 @@ public class AbstractInventoryController
 
     private void UpdateInventoryItems()
     {
-        foreach (var item in _inventoryData.GetCurrentInventoryState())
+        foreach (var item in InventoryData.GetCurrentInventoryState())
         {
-            _inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
+            InventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
         }   
     }
     protected virtual void PrepareUI()
     {
-        _inventoryUI.Show();
-        _inventoryUI.Hide();
-        _inventoryUI.InitializeInventoryUI(_inventoryData.Size);
-        _inventoryUI.OnDescriptionRequested += HandleDescriptionRequest; 
-        _inventoryUI.OnSwapItems += HandleSwapItems; //!!!
-        _inventoryUI.OnStartDragging += HandleDragging; //!!!
-        _inventoryUI.OnItemActionRequested += HandleItemActionRequested;
+        InventoryUI.Show();
+        InventoryUI.Hide();
+        InventoryUI.InitializeInventoryUI(InventoryData.Size);
+        InventoryUI.OnDescriptionRequested += HandleDescriptionRequest; 
+        InventoryUI.OnSwapItems += HandleSwapItems; //!!!
+        InventoryUI.OnStartDragging += HandleDragging; //!!!
+        InventoryUI.OnItemActionRequested += HandleItemActionRequested;
     }
     private void PrepareInventoryData()
     {
-        _inventoryData.OnInventoryUpdated += UpdateInventoryUI;
+        InventoryData.OnInventoryUpdated += UpdateInventoryUI;
     }
     
     protected void HandleDescriptionRequest(int itemIndex)
     {
-        InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
+        InventoryItem inventoryItem = InventoryData.GetItemAt(itemIndex);
         if (inventoryItem.IsEmpty)
         {
-            _inventoryUI.ResetSelection();
+            InventoryUI.ResetSelection();
             return;
         }
 
         ItemSO item = inventoryItem.item;
-        _inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.itemName, item.description);
+        InventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.itemName, item.description);
     }
     protected void HandleSwapItems(int itemIndex1, int itemIndex2)
     {
-        _inventoryData.SwapItems(itemIndex1, itemIndex2);
+        InventoryData.SwapItems(itemIndex1, itemIndex2);
     }
     protected void HandleDragging(int itemIndex)
     {
-        InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
+        InventoryItem inventoryItem = InventoryData.GetItemAt(itemIndex);
         if (inventoryItem.IsEmpty)
             return;
-        _inventoryUI.CreateDraggedItem(inventoryItem.item.ItemImage, inventoryItem.quantity);
+        InventoryUI.CreateDraggedItem(inventoryItem.item.ItemImage, inventoryItem.quantity);
     }
     protected virtual void HandleItemActionRequested(int itemIndex)
     {
@@ -80,17 +80,17 @@ public class AbstractInventoryController
     }
     public bool TryAddItem(ItemSO item)
     {
-        int reminder = _inventoryData.AddItem(item, 1); 
+        int reminder = InventoryData.AddItem(item, 1); 
         return reminder == 0;
     }
     public void Dispose()
     {
-        _inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
+        InventoryData.OnInventoryUpdated -= UpdateInventoryUI;
     }
     
     protected void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
     {
-        _inventoryUI.ResetAllItems();
+        InventoryUI.ResetAllItems();
         UpdateInventoryItems();
     }
 }

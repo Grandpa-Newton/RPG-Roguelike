@@ -32,8 +32,6 @@ public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
         Instance = this;
         TraderInventoryController.Instance.Initialize(traderInventoryUI, traderInventoryData, initialItems, dropClip,
             audioSource);
-        PlayerInventoryController.Instance.Initialize(playerInventoryUI, playerInventoryData, initialItems, dropClip,
-            audioSource);
     }
     
     private void Update()

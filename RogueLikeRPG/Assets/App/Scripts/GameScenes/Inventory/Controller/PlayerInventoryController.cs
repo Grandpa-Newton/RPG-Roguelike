@@ -25,16 +25,17 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         private bool _isOpen;
         private void ShowOrHideInventory()
         {
-            if (!Input.GetKeyDown(KeyCode.Tab)) return;
+            //if (!Input.GetKeyDown(KeyCode.Tab)) return;
             if (_isTrading) return; 
 
             if (!_isOpen)
             {
-                _inventoryUI.Show();
+                Debug.Log("Shoooooooooooooooooooooooooow!");
+                InventoryUI.Show();
             }
             else
             {
-                _inventoryUI.Hide();
+                InventoryUI.Hide();
             }
             _isOpen = !_isOpen; 
         }
@@ -43,20 +44,20 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         
         protected override void PrepareUI()
         {
-            _inventoryUI.Show();
-            _inventoryUI.Hide();
-            _inventoryUI.InitializeInventoryUI(_inventoryData.Size);
-            _inventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
-            _inventoryUI.OnSwapItems += HandleSwapItems;
-            _inventoryUI.OnStartDragging += HandleDragging;
-            _inventoryUI.OnItemActionRequested += HandleItemActionRequested;
+            InventoryUI.Show();
+            InventoryUI.Hide();
+            InventoryUI.InitializeInventoryUI(InventoryData.Size);
+            InventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
+            InventoryUI.OnSwapItems += HandleSwapItems;
+            InventoryUI.OnStartDragging += HandleDragging;
+            InventoryUI.OnItemActionRequested += HandleItemActionRequested;
             TraderAndPlayerInventoriesUpdater.Instance.OnPlayerTrading += OnPlayerTrading;
             TraderAndPlayerInventoriesUpdater.Instance.OnInventoryOpen += OnInventoryOpen;
             PlayerController.Instance.OnPlayerShowOrHideInventory += ShowOrHideInventory;
-            
-            foreach (var item in _inventoryData.GetCurrentInventoryState())
+            Debug.Log("We in PlayerInventoryController not in Abstract");
+            foreach (var item in InventoryData.GetCurrentInventoryState())
             {
-                _inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
+                InventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
             }
         }
 
@@ -72,26 +73,26 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
 
         protected override void HandleItemActionRequested(int itemIndex)
         {
-            InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
+            InventoryItem inventoryItem = InventoryData.GetItemAt(itemIndex);
             if (inventoryItem.IsEmpty)
                 return;
 
             IItemAction itemAction = inventoryItem.item as IItemAction;
             if (itemAction != null)
             {
-                _inventoryUI.ShowItemAction(itemIndex);
-                _inventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
+                InventoryUI.ShowItemAction(itemIndex);
+                InventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
             }
 
             IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
             if (destroyableItem != null)
             {
-                _inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
+                InventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
             }
 
             if (_isTrading)
             {
-                _inventoryUI.AddAction("Sell", () => SellItem(inventoryItem, itemIndex));
+                InventoryUI.AddAction("Sell", () => SellItem(inventoryItem, itemIndex));
             }
         }
         private void SellItem(InventoryItem inventoryItem, int itemIndex)
@@ -101,18 +102,18 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
                 IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
                 if (destroyableItem != null)
                 {
-                    _inventoryData.RemoveItem(itemIndex, 1);
+                    InventoryData.RemoveItem(itemIndex, 1);
                 }
 
-                if (_inventoryData.GetItemAt(itemIndex).IsEmpty)
-                    _inventoryUI.ResetSelection();
+                if (InventoryData.GetItemAt(itemIndex).IsEmpty)
+                    InventoryUI.ResetSelection();
             }
         }
         private void DropItem(int itemIndex, int quantity)
         {
-            _inventoryData.RemoveItem(itemIndex, quantity);
-            _inventoryUI.ResetSelection();
-            _audioSource.PlayOneShot(_dropClip);
+            InventoryData.RemoveItem(itemIndex, quantity);
+            InventoryUI.ResetSelection();
+            AudioSource.PlayOneShot(DropClip);
         }
         private bool TrySellItem(InventoryItem inventoryItem)
         {
@@ -144,29 +145,29 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
         }
         private void PerformAction(int itemIndex)
         {
-            InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
+            InventoryItem inventoryItem = InventoryData.GetItemAt(itemIndex);
             if (inventoryItem.IsEmpty)
                 return;
 
             IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
             if (destroyableItem != null)
             {
-                _inventoryData.RemoveItem(itemIndex, 1);
+                InventoryData.RemoveItem(itemIndex, 1);
             }
 
             IItemAction itemAction = inventoryItem.item as IItemAction;
             if (itemAction != null)
             {
                 itemAction.PerformAction(null, inventoryItem.itemState);
-                _inventoryUI.ResetSelection();
-                if (_inventoryData.GetItemAt(itemIndex).IsEmpty)
-                    _inventoryUI.ResetSelection();
+                InventoryUI.ResetSelection();
+                if (InventoryData.GetItemAt(itemIndex).IsEmpty)
+                    InventoryUI.ResetSelection();
             }
         }
 
         public new void Dispose()
         {
-            _inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
+            InventoryData.OnInventoryUpdated -= UpdateInventoryUI;
             PlayerController.Instance.OnPlayerShowOrHideInventory -= ShowOrHideInventory;
         }
     }
