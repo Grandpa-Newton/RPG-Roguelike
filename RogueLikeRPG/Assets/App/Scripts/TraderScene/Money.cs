@@ -6,7 +6,7 @@ namespace App.Scripts.TraderScene
 {
     public abstract class Money
     {
-        protected ChangeableValueSO _currentMoney;
+        protected ChangeableValueSO currentMoney;
         public abstract void Initialize(ChangeableValueSO currentMoney);
         public abstract void AddMoney(int moneyBoost);
         public abstract bool CanAffordReduceMoney(int reducingMoney);

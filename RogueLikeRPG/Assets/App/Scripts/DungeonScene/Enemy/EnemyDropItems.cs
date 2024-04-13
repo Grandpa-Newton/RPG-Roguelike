@@ -8,12 +8,12 @@ using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class DropItems : MonoBehaviour
+public class EnemyDropItems : MonoBehaviour
 {
    [SerializeField] private EnemyContentSO enemyContent;
    [SerializeField] private ItemPickable coin;
    private Enemy _enemy;
-   private WeaponRarityStarsUI weaponRarityStarsUI;
+   private WeaponRarityStarsUI _weaponRarityStarsUI;
 
    private void Awake()
    {
@@ -61,8 +61,8 @@ public class DropItems : MonoBehaviour
       WeaponItemSO weapon = enemyContent.weapons[randomIndex];
 
       ItemPickable spawnedItem = Instantiate(weapon.weaponPickablePrefab, transform.position, Quaternion.identity);
-      weaponRarityStarsUI = spawnedItem.GetComponent<WeaponRarityStarsUI>();
-      weaponRarityStarsUI.SetActiveWeaponStarsByRarity(weapon);
+      _weaponRarityStarsUI = spawnedItem.GetComponent<WeaponRarityStarsUI>();
+      _weaponRarityStarsUI.SetActiveWeaponStarsByRarity(weapon);
       spawnedItem.InitializeWeapon(weapon);
       spawnedItem.transform.DOMove(transform.position + new Vector3(0,0.5f,0), 0.5f);
    }

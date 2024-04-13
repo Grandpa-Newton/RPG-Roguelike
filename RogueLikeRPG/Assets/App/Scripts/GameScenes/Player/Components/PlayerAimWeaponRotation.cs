@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace App.Scripts.GameScenes.Player
+namespace App.Scripts.GameScenes.Player.Components
 {
     public class PlayerAimWeaponRotation
     {

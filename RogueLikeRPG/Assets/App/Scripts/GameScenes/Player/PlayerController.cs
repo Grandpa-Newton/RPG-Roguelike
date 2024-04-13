@@ -113,14 +113,14 @@ namespace App.Scripts.GameScenes.Player
             PlayerCurrentWeaponUI.Instance.Initialize(meleeWeaponUI, rangeWeaponUI,meleeWeaponIcon,rangeWeaponIcon);
             PlayerWeapon.Instance.Initialize(inventorySO, parametersToModify, itemCurrentState);
             PlayerAimWeaponRotation.Instance.Initialize(_playerInputActions, aimTransform);
-            WeaponSwitcher.Instance.Initialize(meleeWeapon, rangeWeapon, hands);
+            PlayerWeaponSwitcher.Instance.Initialize(meleeWeapon, rangeWeapon, hands);
             PlayerCurrentWeapon.Instance.Initialize(currentWeaponsSO);
             
             MeleeWeapon.Instance.Initialize(_playerInputActions, meleeWeaponSpriteRenderer, aimAnimator,
                 meleeWeaponAudioSource);
             RangeWeapon.Instance.Initialize(bulletPrefab, _playerInputActions, rangeWeaponSpriteRenderer, aimTransform,
                 rangeWeaponAudioSource);
-            WeaponSwitcher.Instance.CheckAvailableWeapons();
+            PlayerWeaponSwitcher.Instance.CheckAvailableWeapons();
         }
        
         private void Update()
@@ -143,7 +143,7 @@ namespace App.Scripts.GameScenes.Player
             PlayerStateChanger.Instance.Dispose();
             PlayerCombat.Instance.Dispose();
             PlayerAimWeaponRotation.Instance.Dispose();
-            WeaponSwitcher.Instance.Dispose();
+            PlayerWeaponSwitcher.Instance.Dispose();
             PlayerInventoryController.Instance.Dispose();
         }
     }

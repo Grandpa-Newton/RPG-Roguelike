@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.GameScenes.Player;
+using App.Scripts.GameScenes.Player.Components;
 using UnityEngine;
 
 public class SafelyZoneWithoutWeapon : MonoBehaviour
@@ -18,7 +19,7 @@ public class SafelyZoneWithoutWeapon : MonoBehaviour
             Debug.Log("Player found");
         }
         
-        WeaponSwitcher.Instance.WeaponAndHandsDisable();
+        PlayerWeaponSwitcher.Instance.WeaponAndHandsDisable();
     }
     
     

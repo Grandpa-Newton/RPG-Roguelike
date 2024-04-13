@@ -1,16 +1,15 @@
 using System;
-using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.GameScenes.Player.UI;
 using App.Scripts.GameScenes.Weapon.MeleeWeapon;
 using App.Scripts.GameScenes.Weapon.RangeWeapon;
 using UnityEngine;
 
-namespace App.Scripts.GameScenes.Player
+namespace App.Scripts.GameScenes.Player.Components
 {
-    public class WeaponSwitcher
+    public class PlayerWeaponSwitcher
     {
-        private static WeaponSwitcher _instance;
-        public static WeaponSwitcher Instance => _instance ??= new WeaponSwitcher();
+        private static PlayerWeaponSwitcher _instance;
+        public static PlayerWeaponSwitcher Instance => _instance ??= new PlayerWeaponSwitcher();
 
         private const float SwapReloadTime = 0.5f;
         private Transform _meleeWeapon;

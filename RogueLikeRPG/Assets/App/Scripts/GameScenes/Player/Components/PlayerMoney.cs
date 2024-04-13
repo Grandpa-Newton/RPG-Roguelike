@@ -11,17 +11,17 @@ namespace App.Scripts.GameScenes.Player.Components
 
         public override void Initialize(ChangeableValueSO currentMoney)
         {
-            _currentMoney = currentMoney;
+            base.currentMoney = currentMoney;
         }
         public override void AddMoney(int moneyBoost)
         {
-            _currentMoney.CurrentValue += moneyBoost;
+            currentMoney.CurrentValue += moneyBoost;
         }
 
         public override bool CanAffordReduceMoney(int reducingMoney)
         {
 
-            if (_currentMoney.CurrentValue >= reducingMoney)
+            if (currentMoney.CurrentValue >= reducingMoney)
             {
                 return true;
             }
@@ -34,9 +34,9 @@ namespace App.Scripts.GameScenes.Player.Components
 
         public override bool TryReduceMoney(int reducingMoney)
         {
-            if(_currentMoney.CurrentValue >= reducingMoney)
+            if(currentMoney.CurrentValue >= reducingMoney)
             {
-                _currentMoney.CurrentValue -= reducingMoney;
+                currentMoney.CurrentValue -= reducingMoney;
                 return true;
             }
             else

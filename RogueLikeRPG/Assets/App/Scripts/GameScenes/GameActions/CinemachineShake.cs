@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using App.Scripts.GameScenes.Weapon;
 using Cinemachine;
 using UnityEngine;

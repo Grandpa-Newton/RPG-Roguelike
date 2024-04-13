@@ -30,7 +30,7 @@ namespace App.Scripts.GameScenes.Weapon.RangeWeapon
         public override bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
             PlayerCurrentWeapon.Instance.SetPlayerCurrentWeapon(this);
-            WeaponSwitcher.Instance.SetActiveRangeWeapon();
+            PlayerWeaponSwitcher.Instance.SetActiveRangeWeapon();
             PlayerWeapon.Instance.SetRangeWeapon(this,itemState ?? DefaultParametersList);
             RangeWeapon.Instance.SetWeapon(this);
             return false;

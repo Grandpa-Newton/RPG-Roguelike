@@ -1,5 +1,6 @@
 using App.Scripts.DungeonScene.Items;
 using App.Scripts.GameScenes.Player;
+using App.Scripts.GameScenes.Player.Components;
 using UnityEngine;
 
 namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
@@ -75,7 +76,7 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
 
             _meleeWeaponSO = (MeleeWeaponSO)meleeWeaponSo;
             MeleeWeaponTrigger.Instance.SetMeleeWeaponSO(_meleeWeaponSO);
-            WeaponSwitcher.Instance.PlayerHandsVisible(true);
+            PlayerWeaponSwitcher.Instance.PlayerHandsVisible(true);
             _spriteRenderer.sprite = _meleeWeaponSO.ItemImage;
         }
     }

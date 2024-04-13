@@ -1,4 +1,5 @@
 using App.Scripts.GameScenes.Player;
+using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.GameScenes.Weapon;
 
 public class PlayerCurrentWeapon 
@@ -16,7 +17,7 @@ public class PlayerCurrentWeapon
    {
       CurrentMeleeAndRangeWeaponsSO = currentWeaponsSO;
       
-      WeaponSwitcher.Instance.OnPlayerSwapWeapon += SetCurrentPlayerWeapon;
+      PlayerWeaponSwitcher.Instance.OnPlayerSwapWeapon += SetCurrentPlayerWeapon;
    }
 
    private void SetCurrentPlayerWeapon(bool isMeleeWeapon)
