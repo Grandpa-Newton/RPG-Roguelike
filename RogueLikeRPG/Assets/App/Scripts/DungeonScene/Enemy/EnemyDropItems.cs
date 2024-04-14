@@ -23,22 +23,18 @@ public class EnemyDropItems : MonoBehaviour
    
    private void SpawnItems_OnEnemyDie()
    {
-      Debug.Log("StartCoroutine");
       StartCoroutine(SpawnObjects());
       SpawnWeapon();
    }
 
    private IEnumerator SpawnObjects()
    {
-      Debug.Log("ContinueCoroutine");
       int coinsToSpawn = Random.Range(enemyContent.coinsToSpawn.x, enemyContent.coinsToSpawn.y);
-         Debug.Log(coinsToSpawn);
       
       for (int i = 0; i < coinsToSpawn; i++)
       {
          yield return StartCoroutine(WaitToSpawnNextCoin());
          ItemPickable spawnedCoin = Instantiate(coin, transform.position, Quaternion.identity);
-         Debug.Log(spawnedCoin);
          spawnedCoin.InitializeItem();
 
          float angle = Random.Range(0, 360);
@@ -68,7 +64,6 @@ public class EnemyDropItems : MonoBehaviour
    }
    IEnumerator WaitToSpawnNextCoin()
    {
-      Debug.Log(enemyContent.timeToSpawnNextCoin);
       yield return new WaitForSeconds(enemyContent.timeToSpawnNextCoin);
    }
 }

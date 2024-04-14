@@ -37,6 +37,10 @@ namespace App.Scripts.GameScenes.Weapon
       {
          CurrentPlayerWeapon = currentPlayerWeapon;
       }
-   
+
+      public void Dispose()
+      {
+         PlayerWeaponSwitcher.Instance.OnSwapWeapon -= SetCurrentWeapon;
+      }
    }
 }

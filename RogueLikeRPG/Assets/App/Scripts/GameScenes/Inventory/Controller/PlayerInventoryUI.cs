@@ -18,24 +18,6 @@ namespace App.Scripts.GameScenes.Inventory.Controller
 
         private bool _isOpen;
 
-        private void ShowOrHideInventory()
-        {
-            //if (!Input.GetKeyDown(KeyCode.Tab)) return;
-            if (_isTrading) return;
-
-            if (!_isOpen)
-            {
-                Debug.Log("Shoooooooooooooooooooooooooow!");
-                InventoryUI.Show();
-            }
-            else
-            {
-                InventoryUI.Hide();
-            }
-
-            _isOpen = !_isOpen;
-        }
-
         protected override void PrepareUI()
         {
             InventoryUI.InitializeInventoryUI(InventoryData.Size);
@@ -49,6 +31,19 @@ namespace App.Scripts.GameScenes.Inventory.Controller
             TraderAndPlayerInventoriesUpdater.Instance.OnPlayerTrading += OnPlayerTrading;
             TraderAndPlayerInventoriesUpdater.Instance.OnInventoryOpen += OnInventoryOpen;
             PlayerController.Instance.OnPlayerShowOrHideInventory += ShowOrHideInventory;
+        }
+        
+        private void ShowOrHideInventory()
+        {
+            //if (!Input.GetKeyDown(KeyCode.Tab)) return;
+            if (_isTrading) return;
+
+            if (!_isOpen)
+                InventoryUI.Show();
+            else
+                InventoryUI.Hide();
+
+            _isOpen = !_isOpen;
         }
 
         private void OnInventoryOpen(bool isOpen)

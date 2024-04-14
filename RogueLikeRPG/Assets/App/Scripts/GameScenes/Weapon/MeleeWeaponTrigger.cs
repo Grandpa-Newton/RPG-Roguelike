@@ -34,7 +34,6 @@ namespace App.Scripts.GameScenes.Player
         {
             if (other.gameObject.TryGetComponent(out Enemy enemy))
             {
-                Debug.Log("EnemyFound");
                 enemy.TakeDamage(meleeWeaponSO.damage);
             }
         }

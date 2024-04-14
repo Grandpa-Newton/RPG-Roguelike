@@ -49,14 +49,12 @@ namespace App.Scripts.GameScenes.Player.Components
 
             if (!meleeWeaponSO && !rangeWeaponSO)
             {
-                Debug.Log("WARNING!!!");
                 PlayerHandsVisible(false);
                 return;
             }
 
             if (meleeWeaponSO)
             {
-                Debug.Log("NE MELEE WARNING!!!");
                 _isMeleeWeapon = true;
                 OnSwapWeapon?.Invoke(_isMeleeWeapon);
                 PlayerCurrentWeaponUI.Instance.SetWeaponIcon(meleeWeaponSO);
@@ -69,11 +67,9 @@ namespace App.Scripts.GameScenes.Player.Components
 
             if (rangeWeaponSO)
             {
-                    Debug.Log("NE RANGE WARNING!!!");
                 PlayerCurrentWeaponUI.Instance.SetWeaponIcon(rangeWeaponSO);
                 if (!meleeWeaponSO)
                 {
-
                     _isMeleeWeapon = false;
                     OnSwapWeapon?.Invoke(_isMeleeWeapon);
                     PlayerHandsVisible(true);

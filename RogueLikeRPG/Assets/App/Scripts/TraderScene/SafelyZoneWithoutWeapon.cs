@@ -21,7 +21,7 @@ public class SafelyZoneWithoutWeapon : MonoBehaviour
             Debug.Log("Player found");
         }
         
-        PlayerWeaponSwitcher.Instance.WeaponAndHandsVisibility(_isHandsActive);
+        //  PlayerWeaponSwitcher.Instance.WeaponAndHandsVisibility(_isHandsActive);
     }
     
     

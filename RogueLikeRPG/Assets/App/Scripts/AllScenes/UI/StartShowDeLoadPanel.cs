@@ -18,7 +18,6 @@ namespace App.Scripts.AllScenes.UI
         public void InstanceOnInteractPressed(string sceneToLoad)
         {
             MapInputManager.Instance.OnInteractPressed -= InstanceOnInteractPressed;
-            Debug.Log("BABIZYANA");
             gameObject.SetActive(true);
             _animator.SetTrigger("StartAnim");
             StartCoroutine(ExitAfterAnimation(sceneToLoad));

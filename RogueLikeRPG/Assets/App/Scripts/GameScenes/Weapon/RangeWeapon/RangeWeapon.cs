@@ -76,9 +76,9 @@ namespace App.Scripts.GameScenes.Weapon.RangeWeapon
             }
 
             _rangeWeaponSO = rangeWeapon;
-
             PlayerWeaponSwitcher.Instance.PlayerHandsVisible(true);
             _spriteRenderer.sprite = _rangeWeaponSO.ItemImage;
+
             _audioSource.PlayOneShot(_rangeWeaponSO.weaponEquipSound);
         }
     }

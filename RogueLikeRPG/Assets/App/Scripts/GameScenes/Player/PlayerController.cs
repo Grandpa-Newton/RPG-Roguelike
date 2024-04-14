@@ -123,7 +123,6 @@ namespace App.Scripts.GameScenes.Player
             OnPlayerSwapWeapon?.Invoke();
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                Debug.Log("Tab!");
                 OnPlayerShowOrHideInventory?.Invoke();
             }
             OnPlayerHandleCombat?.Invoke();

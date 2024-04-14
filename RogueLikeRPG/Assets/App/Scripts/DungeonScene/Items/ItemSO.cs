@@ -71,8 +71,6 @@ namespace App.Scripts.DungeonScene.Items
             }
 
             reminder = itemSellCost - (double)Math.Truncate(itemSellCost);
-            Debug.Log(reminder);
-            Debug.Log(reminder > 0.95);
             ItemSellCost = reminder > 0.95 ? (int)(itemSellCost + 1) : (int)itemSellCost;
         }
 
