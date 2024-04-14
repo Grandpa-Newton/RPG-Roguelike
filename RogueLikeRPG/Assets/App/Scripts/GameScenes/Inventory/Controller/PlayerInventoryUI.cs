@@ -1,28 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using App.Scripts.AllScenes.Interfaces;
-using App.Scripts.MixedScenes.Inventory.Model;
-using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
-using App.Scripts.MixedScenes.Inventory.UI;
-using UnityEngine;
-using App.Scripts.DungeonScene.Items;
 using App.Scripts.GameScenes.Player;
 using App.Scripts.GameScenes.Player.Components;
-using App.Scripts.GameScenes.Player.EditableValues;
+using App.Scripts.MixedScenes.Inventory.Model;
+using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.TraderScene;
-using Sirenix.OdinInspector;
+using UnityEngine;
 
-namespace App.Scripts.MixedScenes.Inventory.Controller
+namespace App.Scripts.GameScenes.Inventory.Controller
 {
-    public class PlayerInventoryController : AbstractInventoryController
+    public class PlayerInventoryUI : AbstractInventoryUI
     {
-        private static PlayerInventoryController _instance;
-        public static PlayerInventoryController Instance => _instance ??= new PlayerInventoryController();
+        private static PlayerInventoryUI _instance;
+        public static PlayerInventoryUI Instance => _instance ??= new PlayerInventoryUI();
         
         private bool _isTrading;
         
         private bool _isOpen;
+        
         private void ShowOrHideInventory()
         {
             //if (!Input.GetKeyDown(KeyCode.Tab)) return;
@@ -39,13 +32,9 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             }
             _isOpen = !_isOpen; 
         }
-
-
         
         protected override void PrepareUI()
         {
-            InventoryUI.Show();
-            InventoryUI.Hide();
             InventoryUI.InitializeInventoryUI(InventoryData.Size);
             InventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
             InventoryUI.OnSwapItems += HandleSwapItems;
@@ -125,7 +114,7 @@ namespace App.Scripts.MixedScenes.Inventory.Controller
             if (TraderMoney.Instance.CanAffordReduceMoney(itemSO.ItemSellCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Trader can afford it");
-                if (TraderInventoryController.Instance.TryAddItem(itemSO)) // сюда нужно будет количество передавать
+                if (TraderInventoryUI.Instance.TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
                     TraderMoney.Instance.TryReduceMoney(itemSO.ItemSellCost);
                     PlayerMoney.Instance.AddMoney(itemSO.ItemSellCost);

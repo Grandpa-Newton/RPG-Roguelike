@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+using App.Scripts.GameScenes.Inventory.Controller;
 using App.Scripts.GameScenes.Player;
+using App.Scripts.GameScenes.Player.EditableValues;
+using App.Scripts.GameScenes.Player.UI;
 using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.UI;
 using App.Scripts.TraderScene;
+using TMPro;
 using UnityEngine;
 
 public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
@@ -21,6 +25,9 @@ public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
 
     [SerializeField] private Canvas interactHelper;
 
+    [SerializeField] private TMP_Text currentMoneyTextField;
+    [SerializeField] private ChangeableValueSO traderMoneySO;
+    
     private bool _isStartTrading;
     private bool _isInteracting;
     
@@ -30,8 +37,9 @@ public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        TraderInventoryController.Instance.Initialize(traderInventoryUI, traderInventoryData, initialItems, dropClip,
+        TraderInventoryUI.Instance.Initialize(traderInventoryUI, traderInventoryData, initialItems, dropClip,
             audioSource);
+        MoneyUIFactory.Create(currentMoneyTextField, traderMoneySO);
     }
     
     private void Update()
@@ -98,6 +106,6 @@ public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
 
     private void OnDestroy()
     {
-        TraderInventoryController.Instance.Dispose();
+        TraderInventoryUI.Instance.Dispose();
     }
 }

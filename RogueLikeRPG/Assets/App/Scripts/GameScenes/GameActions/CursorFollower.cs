@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class CursorFollower : MonoBehaviour
+namespace App.Scripts.GameScenes.GameActions
 {
-    void Awake()
+    public class CursorFollower : MonoBehaviour
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
-    }
+        void Awake()
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+        }
 
-    void LateUpdate()
-    {
-        Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        gameObject.transform.position = cursorPos;
+        void LateUpdate()
+        {
+            Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            gameObject.transform.position = cursorPos;
+        }
     }
 }

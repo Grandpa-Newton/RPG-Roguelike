@@ -1,14 +1,17 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class MoneyCollector : MonoBehaviour
+namespace App.Scripts.GameScenes.GameActions
 {
-    [SerializeField] private LayerMask layerMask;
-    private void OnTriggerStay2D(Collider2D other)
+    public class MoneyCollector : MonoBehaviour
     {
-        if ((layerMask.value & (1 << other.gameObject.layer)) != 0)
+        [SerializeField] private LayerMask layerMask;
+        private void OnTriggerStay2D(Collider2D other)
         {
-            other.gameObject.transform.DOMove(transform.position, 1f);
+            if ((layerMask.value & (1 << other.gameObject.layer)) != 0)
+            {
+                other.gameObject.transform.DOMove(transform.position, 1f);
+            }
         }
     }
 }

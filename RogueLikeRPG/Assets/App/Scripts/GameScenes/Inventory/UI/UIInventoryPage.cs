@@ -14,12 +14,12 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 
         [FormerlySerializedAs("itemDescription")] [SerializeField] private UIInventoryDescription itemInformation;
         [SerializeField] private MouseFollower mouseFollower;
+        [SerializeField] private CanvasGroup canvasGroup;
 
         private List<UIInventoryItem> listOfUIItems = new List<UIInventoryItem>();
 
         private int currantlyDraggedItemIndex = -1;
 
-        private CanvasGroup _canvasGroup;
 
         public event Action<int> OnDescriptionRequested;
         public event Action<int> OnItemActionRequested;
@@ -37,7 +37,7 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 
         private void Start()
         {
-            _canvasGroup = GetComponent<CanvasGroup>();
+            canvasGroup = GetComponent<CanvasGroup>();
         }
 
         public void InitializeInventoryUI(int inventorySize)
@@ -150,13 +150,13 @@ namespace App.Scripts.MixedScenes.Inventory.UI
 
         public void Show()
         {
-            _canvasGroup.DOFade(1, 0.5f);
+            canvasGroup.DOFade(1, 0.5f);
             ResetSelection();
         }
         public void Hide()
         {
             actionPanel.Toggle(false);
-            _canvasGroup.DOFade(0, 0.5f);
+            canvasGroup.DOFade(0, 0.5f);
             ResetDraggedItem();
         }
 

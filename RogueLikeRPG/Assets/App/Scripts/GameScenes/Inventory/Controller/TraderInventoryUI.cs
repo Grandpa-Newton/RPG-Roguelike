@@ -1,22 +1,19 @@
 using System.Text;
 using App.Scripts.DungeonScene.Items;
 using App.Scripts.GameScenes.Player.Components;
-using App.Scripts.MixedScenes.Inventory.Controller;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using UnityEngine;
 
-namespace App.Scripts.TraderScene
+namespace App.Scripts.GameScenes.Inventory.Controller
 {
-    public class TraderInventoryController : AbstractInventoryController
+    public class TraderInventoryUI : AbstractInventoryUI
     {
-        private static TraderInventoryController _instance;
-        public static TraderInventoryController Instance => _instance ??= new TraderInventoryController();
+        private static TraderInventoryUI _instance;
+        public static TraderInventoryUI Instance => _instance ??= new TraderInventoryUI();
 
         protected override void PrepareUI()
         {
-            InventoryUI.Show();
-            InventoryUI.Hide();
             InventoryUI.InitializeInventoryUI(InventoryData.Size);
             InventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
             InventoryUI.OnItemActionRequested += HandleItemActionRequested;
@@ -64,7 +61,7 @@ namespace App.Scripts.TraderScene
             if (PlayerMoney.Instance.CanAffordReduceMoney(itemSO.ItemBuyCost)) // тут тоже, наверное, нужно количество
             {
                 Debug.Log("Player can afford it");
-                if (PlayerInventoryController.Instance.TryAddItem(itemSO)) // сюда нужно будет количество передавать
+                if (PlayerInventoryUI.Instance.TryAddItem(itemSO)) // сюда нужно будет количество передавать
                 {
                     PlayerMoney.Instance.TryReduceMoney(itemSO.ItemBuyCost);
                     TraderMoney.Instance.AddMoney(itemSO.ItemBuyCost);

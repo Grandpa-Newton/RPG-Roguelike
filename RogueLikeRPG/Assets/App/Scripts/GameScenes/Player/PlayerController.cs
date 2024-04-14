@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.GameScenes.Inventory.Controller;
 using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.GameScenes.Player.EditableValues;
 using App.Scripts.GameScenes.Player.UI;
@@ -14,7 +15,6 @@ using App.Scripts.MixedScenes.Inventory.UI;
 using Cinemachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace App.Scripts.GameScenes.Player
@@ -54,22 +54,12 @@ namespace App.Scripts.GameScenes.Player
         [SerializeField] private SpriteRenderer meleeWeaponSpriteRenderer;
         [SerializeField] private SpriteRenderer rangeWeaponSpriteRenderer;
 
-        [Title("Current Weapon UI")] 
-        [SerializeField] private CanvasGroup meleeWeaponUI; 
-        [SerializeField] private CanvasGroup rangeWeaponUI;
-        [SerializeField] private Image meleeWeaponIcon;
-        [SerializeField] private Image rangeWeaponIcon;
-
         [Title("Bullet Components")] 
         [SerializeField] private Bullet bulletPrefab;
         [SerializeField] private BulletFactory bulletFactory;
         
         [Title("Inventory")] 
-        [SerializeField] private UIInventoryPage uiInventoryPage;
         [SerializeField] private InventorySO inventorySO;
-        [SerializeField] private List<InventoryItem> inventoryItems;
-        [SerializeField] private AudioClip inventoryOpenClip;
-        [SerializeField] private AudioSource inventoryAudioSource;
 
         public event Action<Transform> OnPlayerHandsRotation;
         public event Action OnPlayerSwapWeapon;
@@ -104,19 +94,22 @@ namespace App.Scripts.GameScenes.Player
             PlayerHealth.Instance.Initialize(healthCharacteristicSO);
             PlayerMovement.Instance.Initialize(_rigidbody2D, _playerInputActions, _camera);
             PlayerAnimator.Instance.Initialize(playerAnimator);
-            PlayerInventoryController.Instance.Initialize(uiInventoryPage,inventorySO,inventoryItems,inventoryOpenClip,inventoryAudioSource);
+            
+            PlayerUIInitializer.Instance.InitializeUIComponents();
+            
+            //PlayerInventoryController.Instance.Initialize(uiInventoryPage,inventorySO,inventoryItems,inventoryOpenClip,inventoryAudioSource);
             PlayerStateChanger.Instance.Initialize(_playerInputActions);
             PlayerCombat.Instance.Initialize(bulletFactory);
         }
 
         private void InitializeWeaponComponents()
         {
-            PlayerCurrentWeaponUI.Instance.Initialize(meleeWeaponUI, rangeWeaponUI,meleeWeaponIcon,rangeWeaponIcon);
+            //PlayerCurrentWeaponUI.Instance.Initialize(meleeWeaponUI, rangeWeaponUI,meleeWeaponIcon,rangeWeaponIcon);
             PlayerWeapon.Instance.Initialize(inventorySO, parametersToModify, itemCurrentState);
             PlayerAimWeaponRotation.Instance.Initialize(_playerInputActions, aimTransform);
+            
             PlayerWeaponSwitcher.Instance.Initialize(meleeWeapon, rangeWeapon, hands);
             PlayerCurrentWeapon.Instance.Initialize(currentWeaponsSO);
-            
             MeleeWeapon.Instance.Initialize(_playerInputActions, meleeWeaponSpriteRenderer, aimAnimator,
                 meleeWeaponAudioSource);
             RangeWeapon.Instance.Initialize(bulletPrefab, _playerInputActions, rangeWeaponSpriteRenderer, aimTransform,
@@ -149,7 +142,7 @@ namespace App.Scripts.GameScenes.Player
             PlayerCombat.Instance.Dispose();
             PlayerAimWeaponRotation.Instance.Dispose();
             PlayerWeaponSwitcher.Instance.Dispose();
-            PlayerInventoryController.Instance.Dispose();
+            PlayerInventoryUI.Instance.Dispose();
         }
     }
 }
