@@ -38,8 +38,8 @@ namespace App.Scripts.GameScenes.Player.UI
         public void SetWeaponIcon(WeaponItemSO weaponItemSO)
         {
             bool isMeleeWeapon = weaponItemSO is MeleeWeaponSO;
-            Image weaponIcon = isMeleeWeapon ? _meleeWeaponIcon : _rangeWeaponIcon;
-            weaponIcon.sprite = weaponItemSO.ItemImage;
+
+            (isMeleeWeapon ? _meleeWeaponIcon : _rangeWeaponIcon).sprite = weaponItemSO.ItemImage;
         }
     }
 }

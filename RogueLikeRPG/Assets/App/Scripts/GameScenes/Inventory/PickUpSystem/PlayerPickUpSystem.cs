@@ -1,4 +1,5 @@
 using System;
+using App.Scripts.GameScenes.Inventory.Model;
 using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.PickUpSystem;

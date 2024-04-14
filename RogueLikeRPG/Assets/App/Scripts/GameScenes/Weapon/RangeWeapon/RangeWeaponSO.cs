@@ -11,8 +11,6 @@ namespace App.Scripts.GameScenes.Weapon.RangeWeapon
     [CreateAssetMenu(fileName = "RangeWeapon_", menuName = "Weapons/Range Weapon")]
     public class RangeWeaponSO : WeaponItemSO
     {
-        private PlayerWeapon _playerWeapon;
-        
         [VerticalGroup("WeaponStats")]
         [Range(1, 50)]public uint magSize;
         [VerticalGroup("WeaponStats")]
@@ -22,15 +20,10 @@ namespace App.Scripts.GameScenes.Weapon.RangeWeapon
         [VerticalGroup("BulletStats")]
         public float bulletSpeed;
 
-        public void Initialize(PlayerWeapon playerWeapon)
-        {
-            _playerWeapon = playerWeapon;
-        }
-
         public override bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
             PlayerCurrentWeapon.Instance.SetPlayerCurrentWeapon(this);
-            PlayerWeaponSwitcher.Instance.SetActiveRangeWeapon();
+            PlayerWeaponSwitcher.Instance.SetActiveWeapon(false);
             PlayerWeapon.Instance.SetRangeWeapon(this,itemState ?? DefaultParametersList);
             RangeWeapon.Instance.SetWeapon(this);
             return false;

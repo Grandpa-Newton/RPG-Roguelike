@@ -8,17 +8,22 @@ namespace App.Scripts.GameScenes.Player
 {
     public class MeleeWeaponTrigger : MonoBehaviour
     {
-        public static MeleeWeaponTrigger Instance { get; private set; }
+        private static MeleeWeaponTrigger _instance;
+        public static MeleeWeaponTrigger Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = FindObjectOfType<MeleeWeaponTrigger>();
+                }
+                return _instance;
+            }
+        }
 
         [SerializeField] private MeleeWeaponSO meleeWeaponSO;
 
-        private void Awake()
-        {
-            if (!Instance)
-            {
-                Instance = this;
-            }
-        }
+        
 
         public void SetMeleeWeaponSO(MeleeWeaponSO weaponSO)
         {

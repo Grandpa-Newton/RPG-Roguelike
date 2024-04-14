@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using App.Scripts.GameScenes.Player.EditableValues;
 using App.Scripts.GameScenes.Player.UI;
 using TMPro;
-using UnityEngine;
 
 public class MoneyUIFactory
 {

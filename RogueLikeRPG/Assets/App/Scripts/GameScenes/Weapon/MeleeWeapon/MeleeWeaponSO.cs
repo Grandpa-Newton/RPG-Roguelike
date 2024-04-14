@@ -12,7 +12,7 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
         public override bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
             PlayerCurrentWeapon.Instance.SetPlayerCurrentWeapon(this);
-            PlayerWeaponSwitcher.Instance.SetActiveMeleeWeapon();
+            PlayerWeaponSwitcher.Instance.SetActiveWeapon(true);
 
             PlayerWeapon.Instance.SetMeleeWeapon(this, itemState ?? DefaultParametersList);
             MeleeWeapon.Instance.SetWeapon(this);

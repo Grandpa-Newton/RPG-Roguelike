@@ -4,7 +4,7 @@ using System.Linq;
 using App.Scripts.DungeonScene.Items;
 using UnityEngine;
 
-namespace App.Scripts.MixedScenes.Inventory.Model
+namespace App.Scripts.GameScenes.Inventory.Model
 {
     [CreateAssetMenu(fileName = "Inventory_", menuName = "InventorySO")]
     public class InventorySO : ScriptableObject
@@ -12,7 +12,7 @@ namespace App.Scripts.MixedScenes.Inventory.Model
         [SerializeField] public List<InventoryItem> inventoryItems;
 
         public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
-        [field: SerializeField] public int Size { get; private set; } = 10;
+        [field: SerializeField] public int Size { get; private set; }
 
         public int AddItem(ItemSO item, int quantity, List<ItemParameter> itemState = null)
         {
@@ -38,7 +38,7 @@ namespace App.Scripts.MixedScenes.Inventory.Model
             {
                 item = item,
                 quantity = quantity,
-                itemState =  new List<ItemParameter>(itemState == null ? item.DefaultParametersList : itemState)
+                itemState =  new List<ItemParameter>(itemState ?? item.DefaultParametersList)
             };
 
             for (int i = 0; i < inventoryItems.Count; i++)

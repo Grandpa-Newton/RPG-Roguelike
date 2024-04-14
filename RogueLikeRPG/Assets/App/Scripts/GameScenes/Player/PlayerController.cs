@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using App.Scripts.DungeonScene.Items;
 using App.Scripts.GameScenes.Inventory.Controller;
+using App.Scripts.GameScenes.Inventory.Model;
 using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.GameScenes.Player.EditableValues;
 using App.Scripts.GameScenes.Player.UI;
@@ -97,14 +98,12 @@ namespace App.Scripts.GameScenes.Player
             
             PlayerUIInitializer.Instance.InitializeUIComponents();
             
-            //PlayerInventoryController.Instance.Initialize(uiInventoryPage,inventorySO,inventoryItems,inventoryOpenClip,inventoryAudioSource);
             PlayerStateChanger.Instance.Initialize(_playerInputActions);
             PlayerCombat.Instance.Initialize(bulletFactory);
         }
 
         private void InitializeWeaponComponents()
         {
-            //PlayerCurrentWeaponUI.Instance.Initialize(meleeWeaponUI, rangeWeaponUI,meleeWeaponIcon,rangeWeaponIcon);
             PlayerWeapon.Instance.Initialize(inventorySO, parametersToModify, itemCurrentState);
             PlayerAimWeaponRotation.Instance.Initialize(_playerInputActions, aimTransform);
             

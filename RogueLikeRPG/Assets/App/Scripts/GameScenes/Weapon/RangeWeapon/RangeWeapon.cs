@@ -1,6 +1,5 @@
 using App.Scripts.DungeonScene.Items;
 using App.Scripts.GameScenes.GameActions;
-using App.Scripts.GameScenes.Player;
 using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.GameScenes.Weapon.Bullet;
 using UnityEngine;

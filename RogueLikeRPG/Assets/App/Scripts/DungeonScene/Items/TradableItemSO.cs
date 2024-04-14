@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.DungeonScene.Items;
 using App.Scripts.GameScenes.Inventory.Controller;
+using App.Scripts.GameScenes.Inventory.Model.ItemParameters;
 using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.TraderScene;

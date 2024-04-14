@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.GameScenes.Inventory.Model;
 using App.Scripts.GameScenes.Player.UI;
 using App.Scripts.GameScenes.Weapon;
 using App.Scripts.GameScenes.Weapon.MeleeWeapon;

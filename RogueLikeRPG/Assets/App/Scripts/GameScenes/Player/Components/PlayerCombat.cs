@@ -1,3 +1,4 @@
+using App.Scripts.GameScenes.Weapon;
 using App.Scripts.GameScenes.Weapon.Bullet;
 using App.Scripts.GameScenes.Weapon.MeleeWeapon;
 using App.Scripts.GameScenes.Weapon.RangeWeapon;

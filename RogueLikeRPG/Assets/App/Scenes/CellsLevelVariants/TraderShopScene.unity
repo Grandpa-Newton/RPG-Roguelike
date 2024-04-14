@@ -926,8 +926,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.6005001, y: 0.39915013, z: 0}
-    m_Extent: {x: 8.5999, y: 5.9001503, z: 0}
+    m_Center: {x: -0.6003001, y: 0.3999498, z: 0}
+    m_Extent: {x: 8.6001005, y: 5.9004498, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.86
@@ -4538,6 +4538,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d7ed8ac3b2063148bd493b3e4a41c28, type: 3}
+--- !u!114 &997434759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8088037843391964989, guid: a4bf3d7a14dc3f24c8dba0d96d05e828, type: 3}
+  m_PrefabInstance: {fileID: 1868234884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1090431580
 GameObject:
   m_ObjectHideFlags: 0
@@ -22299,6 +22310,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 847607441074949602, guid: e985d175563a1a64e884744a17e546be, type: 3}
+      propertyPath: traderMoneySO
+      value: 
+      objectReference: {fileID: 11400000, guid: bfcbc4c011e134f468ac774949a796c7, type: 2}
+    - target: {fileID: 847607441074949602, guid: e985d175563a1a64e884744a17e546be, type: 3}
       propertyPath: playerInventoryUI
       value: 
       objectReference: {fileID: 5962031705458270121}
@@ -22306,6 +22321,10 @@ PrefabInstance:
       propertyPath: traderInventoryUI
       value: 
       objectReference: {fileID: 2047229515}
+    - target: {fileID: 847607441074949602, guid: e985d175563a1a64e884744a17e546be, type: 3}
+      propertyPath: currentMoneyTextField
+      value: 
+      objectReference: {fileID: 997434759}
     - target: {fileID: 5239777785492891647, guid: e985d175563a1a64e884744a17e546be, type: 3}
       propertyPath: m_Name
       value: Trader

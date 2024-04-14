@@ -4,7 +4,7 @@ using App.Scripts.DungeonScene.Items;
 using App.Scripts.MixedScenes.Inventory.Model.StatsModifiers;
 using UnityEngine;
 
-namespace App.Scripts.MixedScenes.Inventory.Model.ItemParameters
+namespace App.Scripts.GameScenes.Inventory.Model.ItemParameters
 {
     [CreateAssetMenu]
     public class EdibleItemSO : ItemSO, IDestroyableItem, IItemAction

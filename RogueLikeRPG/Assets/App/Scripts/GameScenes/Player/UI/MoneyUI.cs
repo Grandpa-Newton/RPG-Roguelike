@@ -5,8 +5,8 @@ namespace App.Scripts.GameScenes.Player.UI
 {
     public class MoneyUI
     {
-        private TMP_Text _currentMoneyTextField;
-        private ChangeableValueSO _playerMoneySO; 
+        private readonly TMP_Text _currentMoneyTextField;
+        private readonly ChangeableValueSO _playerMoneySO; 
         
         public MoneyUI(TMP_Text currentMoney, ChangeableValueSO playerMoneySO)
         {

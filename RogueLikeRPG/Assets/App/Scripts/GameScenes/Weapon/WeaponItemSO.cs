@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.GameScenes.Inventory.Model.ItemParameters;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.MixedScenes.PickUpSystem;
 using Sirenix.OdinInspector;

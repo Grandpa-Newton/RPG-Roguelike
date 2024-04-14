@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.GameScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.UI;
 using UnityEngine;
@@ -26,7 +27,6 @@ namespace App.Scripts.GameScenes.Inventory.Controller
             AudioSource = audioSource;
         
             PrepareUI();
-            PrepareInventoryData();
             UpdateInventoryItems();
         }
 
@@ -37,19 +37,12 @@ namespace App.Scripts.GameScenes.Inventory.Controller
                 InventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
             }   
         }
+
         protected virtual void PrepareUI()
         {
-            InventoryUI.InitializeInventoryUI(InventoryData.Size);
-            InventoryUI.OnDescriptionRequested += HandleDescriptionRequest; 
-            InventoryUI.OnSwapItems += HandleSwapItems; //!!!
-            InventoryUI.OnStartDragging += HandleDragging; //!!!
-            InventoryUI.OnItemActionRequested += HandleItemActionRequested;
+            Debug.LogError("Abstract Inventory UI was Invoked");
         }
-        private void PrepareInventoryData()
-        {
-            InventoryData.OnInventoryUpdated += UpdateInventoryUI;
-        }
-    
+        
         protected void HandleDescriptionRequest(int itemIndex)
         {
             InventoryItem inventoryItem = InventoryData.GetItemAt(itemIndex);
@@ -73,18 +66,11 @@ namespace App.Scripts.GameScenes.Inventory.Controller
                 return;
             InventoryUI.CreateDraggedItem(inventoryItem.item.ItemImage, inventoryItem.quantity);
         }
-        protected virtual void HandleItemActionRequested(int itemIndex)
-        {
-            Debug.LogError("Abstract HandleItemActionRequested run");
-        }
+
         public bool TryAddItem(ItemSO item)
         {
             int reminder = InventoryData.AddItem(item, 1); 
             return reminder == 0;
-        }
-        public void Dispose()
-        {
-            InventoryData.OnInventoryUpdated -= UpdateInventoryUI;
         }
     
         protected void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)

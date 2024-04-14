@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using App.Scripts.GameScenes.Inventory.Controller;
+using App.Scripts.GameScenes.Inventory.Model;
 using App.Scripts.GameScenes.Player.EditableValues;
 using App.Scripts.GameScenes.Player.UI;
 using App.Scripts.MixedScenes.Inventory.Model;
@@ -7,7 +8,6 @@ using App.Scripts.MixedScenes.Inventory.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace App.Scripts.GameScenes.Player
@@ -27,16 +27,17 @@ namespace App.Scripts.GameScenes.Player
             }
         }
 
-        [Title("Inventory")] [SerializeField] private UIInventoryPage uiInventoryPage;
+        [Title("Inventory")] 
+        [SerializeField] private UIInventoryPage uiInventoryPage;
         [SerializeField] private InventorySO inventorySO;
         [SerializeField] private List<InventoryItem> inventoryItems;
         [SerializeField] private AudioClip inventoryOpenClip;
         [SerializeField] private AudioSource inventoryAudioSource;
 
-        [Title("Current Weapon UI")] [SerializeField]
-        private CanvasGroup meleeWeaponUI;
-
+        [Title("Current Weapon UI")] 
+        [SerializeField] private CanvasGroup meleeWeaponUI;
         [SerializeField] private CanvasGroup rangeWeaponUI;
+
         [SerializeField] private Image meleeWeaponIcon;
         [SerializeField] private Image rangeWeaponIcon;
         

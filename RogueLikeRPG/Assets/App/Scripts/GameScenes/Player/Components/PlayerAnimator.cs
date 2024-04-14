@@ -38,8 +38,8 @@ namespace App.Scripts.GameScenes.Player.Components
         {
             if (Input.GetKeyDown(KeyCode.Space) && _isWalking)
             {
-                PlayerWeaponSwitcher.Instance.WeaponAndHandsDisable();
                 _isRolling = true;
+                PlayerWeaponSwitcher.Instance.WeaponAndHandsVisibility(!_isRolling);
                 _animator.SetBool(IsRolling, _isRolling);
                 _animator.SetFloat(Horizontal, movementInputVector.x);
                 _animator.SetFloat(Vertical, movementInputVector.y);
@@ -82,7 +82,7 @@ namespace App.Scripts.GameScenes.Player.Components
         
             _isRolling = false;
             _animator.SetBool(IsRolling, _isRolling);
-            PlayerWeaponSwitcher.Instance.WeaponAndHandsEnable();
+            PlayerWeaponSwitcher.Instance.WeaponAndHandsVisibility(!_isRolling);
             OnPlayerRolling?.Invoke(_isRolling);
         
         }
