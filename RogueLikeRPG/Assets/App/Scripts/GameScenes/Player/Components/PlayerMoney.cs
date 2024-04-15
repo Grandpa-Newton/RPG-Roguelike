@@ -1,5 +1,4 @@
 using App.Scripts.GameScenes.Player.EditableValues;
-using App.Scripts.MixedScenes;
 using App.Scripts.TraderScene;
 using UnityEngine;
 
@@ -12,17 +11,17 @@ namespace App.Scripts.GameScenes.Player.Components
 
         public override void Initialize(ChangeableValueSO currentMoney)
         {
-            _currentMoney = currentMoney;
+            CurrentMoney = currentMoney;
         }
         public override void AddMoney(int moneyBoost)
         {
-            _currentMoney.CurrentValue += moneyBoost;
+            CurrentMoney.CurrentValue += moneyBoost;
         }
 
         public override bool CanAffordReduceMoney(int reducingMoney)
         {
 
-            if (_currentMoney.CurrentValue >= reducingMoney)
+            if (CurrentMoney.CurrentValue >= reducingMoney)
             {
                 return true;
             }
@@ -35,9 +34,9 @@ namespace App.Scripts.GameScenes.Player.Components
 
         public override bool TryReduceMoney(int reducingMoney)
         {
-            if(_currentMoney.CurrentValue >= reducingMoney)
+            if(CurrentMoney.CurrentValue >= reducingMoney)
             {
-                _currentMoney.CurrentValue -= reducingMoney;
+                CurrentMoney.CurrentValue -= reducingMoney;
                 return true;
             }
             else

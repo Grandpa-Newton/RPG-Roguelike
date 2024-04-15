@@ -3,6 +3,7 @@
   <component name="Encoding" addBOMForNewFiles="with BOM under Windows, with no BOM otherwise">
     <file url="file://$PROJECT_DIR$/Assets/App/Scripts/DungeonScene/GenerationsScripts/RandomTilemapGenerator.cs" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/Assets/App/Scripts/DungeonScene/Items/TradableItemSO.cs" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/Assets/App/Scripts/GameScenes/Inventory/Controller/PlayerInventoryUI.cs" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/Assets/App/Scripts/MapScene/Cells/BossCell.cs" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/Assets/App/Scripts/MapScene/Cells/CellSO.cs" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/Assets/App/Scripts/TraderScene/Money.cs" charset="windows-1251" />

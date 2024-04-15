@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.GameScenes.Inventory.Model;
 using App.Scripts.GameScenes.Player.UI;
 using App.Scripts.GameScenes.Weapon;
 using App.Scripts.GameScenes.Weapon.MeleeWeapon;
@@ -11,29 +12,14 @@ namespace App.Scripts.GameScenes.Player.Components
     public class PlayerWeapon
     {
         private static PlayerWeapon _instance;
-
-        public static PlayerWeapon Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new PlayerWeapon();
-                }
-
-                return _instance;
-            }
-        }
+        public static PlayerWeapon Instance => _instance ??= new PlayerWeapon();
         
-        
-        private CurrentWeaponsSO _currentWeaponsSO;
         private InventorySO _inventorySO;
         
         private List<ItemParameter> _parametersToModify;
         private List<ItemParameter> _itemCurrentState;
 
-        public void Initialize(InventorySO inventorySO, 
-            List<ItemParameter> parametersToModify, List<ItemParameter> itemCurrentState)
+        public void Initialize(InventorySO inventorySO, List<ItemParameter> parametersToModify, List<ItemParameter> itemCurrentState)
         {
             _inventorySO = inventorySO;
             _parametersToModify = parametersToModify;
@@ -48,8 +34,8 @@ namespace App.Scripts.GameScenes.Player.Components
             
             PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon = (MeleeWeaponSO)weaponItemSO;
             MeleeWeaponTrigger.Instance.SetMeleeWeaponSO(PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon);
-            PlayerCurrentWeaponUI.Instance.IncreaseMeleeWeaponScale();
-            PlayerCurrentWeaponUI.Instance.SetMeleeWeaponIcon(weaponItemSO.ItemImage);
+            PlayerCurrentWeaponUI.Instance.AdjustWeaponScale(weaponItemSO);
+            PlayerCurrentWeaponUI.Instance.SetWeaponIcon(weaponItemSO);
             _itemCurrentState = new List<ItemParameter>(itemState); 
             ModifyParameters();
         }
@@ -61,8 +47,8 @@ namespace App.Scripts.GameScenes.Player.Components
             }
             
             PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedRangeWeapon = (RangeWeaponSO)weaponItemSO;
-            PlayerCurrentWeaponUI.Instance.IncreaseRangeWeaponScale();
-            PlayerCurrentWeaponUI.Instance.SetRangeWeaponIcon(weaponItemSO.ItemImage);
+            PlayerCurrentWeaponUI.Instance.AdjustWeaponScale(weaponItemSO);
+            PlayerCurrentWeaponUI.Instance.SetWeaponIcon(weaponItemSO);
             _itemCurrentState = new List<ItemParameter>(itemState); 
             ModifyParameters();
         }

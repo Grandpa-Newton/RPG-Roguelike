@@ -6,10 +6,18 @@ using UnityEngine.Rendering.Universal;
 
 namespace App.Scripts.MixedScenes.PickUpSystem
 {
+   public enum ItemType
+   {
+      Coin,
+      Food,
+      Weapon
+      
+   }
    public class ItemPickable : MonoBehaviour
    {
       [field: SerializeField] public ItemSO InventoryItem { get; private set; }
       [field: SerializeField] public int Quantity { get; set; } = 1;
+      [field: SerializeField] public ItemType ItemType { get; private set; }
       [SerializeField] private AudioClip audioSourceOnPick; 
       private AudioSource _audioSource;
       [SerializeField] private float duration = 0.3f;
@@ -42,7 +50,6 @@ namespace App.Scripts.MixedScenes.PickUpSystem
          light2D.pointLightInnerRadius = this.InventoryItem.itemLight.pointLightInnerRadius;
          light2D.pointLightOuterRadius = this.InventoryItem.itemLight.pointLightOuterRadius;
          light2D.falloffIntensity = this.InventoryItem.itemLight.falloffIntensity;
-         Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
          GetComponent<SpriteRenderer>().sprite = this.InventoryItem.ItemImage;
       }
 

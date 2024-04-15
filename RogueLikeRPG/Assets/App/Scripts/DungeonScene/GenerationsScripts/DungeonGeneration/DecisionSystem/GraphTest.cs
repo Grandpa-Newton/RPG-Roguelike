@@ -18,10 +18,6 @@ namespace App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.Decision
             graphReady = false;
             graph = new Graph(floorPositions);
             dijkstraResult = DijkstraAlgorithm.Dijkstra(graph, playerPosition);
-            /*foreach (var value in dijkstraResult.Values) 
-        {
-            Debug.Log(value);
-        }*/
             highestValue = dijkstraResult.Values.Max();
             graphReady = true;
         }

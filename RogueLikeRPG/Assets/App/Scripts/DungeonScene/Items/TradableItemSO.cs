@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.GameScenes.Inventory.Controller;
+using App.Scripts.GameScenes.Inventory.Model.ItemParameters;
 using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.TraderScene;
@@ -27,7 +29,7 @@ public class TradableItemSO : ItemSO, IDestroyableItem, IItemAction
         if (PlayerMoney.Instance.CanAffordReduceMoney(Cost)) // тут тоже, наверное, нужно количество
         {
             Debug.Log("Player can afford it");
-            if (character.GetComponent<InventoryController>().TryAddItem(ItemSO)) // сюда нужно будет количество передавать
+            if (character.GetComponent<PlayerInventoryUI>().TryAddItem(ItemSO)) // сюда нужно будет количество передавать
             {
                 PlayerMoney.Instance.TryReduceMoney(Cost);
                 return true;

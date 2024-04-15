@@ -8,17 +8,18 @@ namespace App.Scripts.MixedScenes.Inventory.UI
     {
         [SerializeField] private GameObject buttonPrefab;
 
-        public void AddButton(string name, Action onClickAction)
+        public void AddButton(string buttonName, Action onClickAction)
         {
             GameObject button = Instantiate(buttonPrefab, transform);
             button.GetComponent<Button>().onClick.AddListener(() => onClickAction());
-            button.GetComponentInChildren<TMPro.TMP_Text>().text = name;
+            button.GetComponentInChildren<TMPro.TMP_Text>().text = buttonName;
         }
 
         internal void Toggle(bool val)
         {
-            if (val == true)
+            if (val)
                 RemoveOldButtons();
+            
             gameObject.SetActive(val);
         }
 

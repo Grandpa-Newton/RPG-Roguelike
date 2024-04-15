@@ -1,10 +1,9 @@
-using System;
+using App.Scripts.GameScenes.Inventory.Model;
 using App.Scripts.GameScenes.Player.Components;
-using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.PickUpSystem;
 using UnityEngine;
 
-namespace App.Scripts.MixedScenes.Player.Controller
+namespace App.Scripts.GameScenes.Inventory.PickUpSystem
 {
     public class PlayerPickUpSystem : MonoBehaviour
     {
@@ -14,7 +13,7 @@ namespace App.Scripts.MixedScenes.Player.Controller
             ItemPickable item = other.GetComponent<ItemPickable>();
             if (item != null)
             {
-                if(other.GetComponent<Coin>() != null)
+                if(item.ItemType == ItemType.Coin)
                 {
                     PlayerMoney.Instance.AddMoney(1);
                     item.DestroyItem();

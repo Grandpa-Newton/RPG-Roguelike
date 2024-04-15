@@ -4,7 +4,7 @@ using System.Linq;
 using App.Scripts.DungeonScene.Items;
 using UnityEngine;
 
-namespace App.Scripts.MixedScenes.Inventory.Model
+namespace App.Scripts.GameScenes.Inventory.Model
 {
     [CreateAssetMenu(fileName = "Inventory_", menuName = "InventorySO")]
     public class InventorySO : ScriptableObject
@@ -12,45 +12,7 @@ namespace App.Scripts.MixedScenes.Inventory.Model
         [SerializeField] public List<InventoryItem> inventoryItems;
 
         public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
-        [field: SerializeField] public int Size { get; private set; } = 10;
-        /*public void Load() {
-            if (File.Exists(Application.persistentDataPath + "/savefile.json")) {
-                string json = File.ReadAllText(Application.persistentDataPath + "/savefile.json");
-                var serializableObject = JsonUtility.FromJson<SerializableInventorySO>(json);
-
-                // Преобразуем данные обратно в наши типы Unity
-                this.inventoryItems = new List<InventoryItem>();
-                foreach (var item in serializableObject.InventoryItems) {
-                    this.inventoryItems.Add(new InventoryItem {
-                        // Здесь вы можете добавить код для преобразования SerializableInventoryItem обратно в InventoryItem
-                    });
-                }
-                this.Size = serializableObject.Size;
-            }
-        }*/
-        /*public void Save() {
-            // Создаем новый список сериализуемых объектов
-            var serializableItems = new List<SerializableInventoryItem>();
-            foreach (var item in inventoryItems) {
-                serializableItems.Add(new SerializableInventoryItem {
-                    // Здесь вы можете добавить код для преобразования InventoryItem в SerializableInventoryItem
-                });
-            }
-
-            string json = JsonUtility.ToJson(new SerializableInventorySO {
-                InventoryItems = serializableItems,
-                Size = this.Size
-            });
-            File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
-        }*/
-        public void Initialize()
-        {
-            inventoryItems = new List<InventoryItem>();
-            for (int i = 0; i < Size; i++)
-            {
-                inventoryItems.Add(InventoryItem.GetEmptyItem());
-            }
-        }
+        [field: SerializeField] public int Size { get; private set; }
 
         public int AddItem(ItemSO item, int quantity, List<ItemParameter> itemState = null)
         {
@@ -76,7 +38,7 @@ namespace App.Scripts.MixedScenes.Inventory.Model
             {
                 item = item,
                 quantity = quantity,
-                itemState =  new List<ItemParameter>(itemState == null ? item.DefaultParametersList : itemState)
+                itemState =  new List<ItemParameter>(itemState ?? item.DefaultParametersList)
             };
 
             for (int i = 0; i < inventoryItems.Count; i++)
@@ -131,11 +93,6 @@ namespace App.Scripts.MixedScenes.Inventory.Model
             }
 
             return quantity;
-        }
-
-        public void AddItem(InventoryItem item)
-        {
-            AddItem(item.item, item.quantity);
         }
 
         public Dictionary<int, InventoryItem> GetCurrentInventoryState()
@@ -218,13 +175,4 @@ namespace App.Scripts.MixedScenes.Inventory.Model
             
         };
     }
-    /*[System.Serializable]
-    public class SerializableInventorySO {
-        public List<SerializableInventoryItem> InventoryItems;
-        public int Size;
-    }
-
-    [System.Serializable]
-    public class SerializableInventoryItem {
-    }*/
 }

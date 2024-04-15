@@ -2,23 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.GameScenes.Player;
+using App.Scripts.GameScenes.Player.Components;
 using UnityEngine;
 
 public class SafelyZoneWithoutWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject playerWeapon;
 
-    private GameObject player;
+    private GameObject _player;
 
+    private bool _isHandsActive;
+    
     private void Start()
     {
-        player = GameObject.Find("Player");
-        if (player)
+        _player = GameObject.Find("Player");
+        if (_player)
         {
             Debug.Log("Player found");
         }
         
-        SwitchWeaponBetweenRangeAndMelee.Instance.WeaponAndHandsDisable();
+        //  PlayerWeaponSwitcher.Instance.WeaponAndHandsVisibility(_isHandsActive);
     }
     
     

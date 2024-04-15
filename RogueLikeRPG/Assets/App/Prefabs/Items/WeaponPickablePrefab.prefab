@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 0}
   <Quantity>k__BackingField: 1
+  <ItemType>k__BackingField: 2
   audioSourceOnPick: {fileID: 8300000, guid: 0408076eef6ebf94daf503167c201811, type: 3}
   duration: 0.3
 --- !u!114 &8376610039518682410

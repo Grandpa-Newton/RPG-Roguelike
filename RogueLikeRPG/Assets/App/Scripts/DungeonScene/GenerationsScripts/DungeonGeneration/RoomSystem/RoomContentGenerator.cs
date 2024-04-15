@@ -48,7 +48,6 @@ public class RoomContentGenerator : MonoBehaviour
         {
             foreach (Transform item in itemParent)
             {
-                Debug.Log(item.name + " was destroyed");
                 Destroy(item.gameObject);
             }
         }

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4306722505127858314, guid: 8b80df64c2e1c724eaad32edea644bea, type: 3}
+  playerUI: {fileID: 2146677103516738786, guid: ee42371c043a91c4db05ace9a92b960d, type: 3}
   itemData:
   - minQuantity: 5
     maxQuantity: 10

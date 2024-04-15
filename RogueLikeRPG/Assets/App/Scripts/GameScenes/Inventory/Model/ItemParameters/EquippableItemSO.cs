@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.DungeonScene.Items;
+using App.Scripts.GameScenes.Inventory.Model.ItemParameters;
 using UnityEngine;
 
 namespace App.Scripts.MixedScenes.Inventory.Model.ItemParameters

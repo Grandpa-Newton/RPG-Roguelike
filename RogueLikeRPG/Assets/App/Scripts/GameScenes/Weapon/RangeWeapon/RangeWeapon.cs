@@ -1,5 +1,6 @@
 using App.Scripts.DungeonScene.Items;
-using App.Scripts.GameScenes.Player;
+using App.Scripts.GameScenes.GameActions;
+using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.GameScenes.Weapon.Bullet;
 using UnityEngine;
 
@@ -75,9 +76,9 @@ namespace App.Scripts.GameScenes.Weapon.RangeWeapon
             }
 
             _rangeWeaponSO = rangeWeapon;
-
-            SwitchWeaponBetweenRangeAndMelee.Instance.PlayerHandsVisible(true);
+            PlayerWeaponSwitcher.Instance.PlayerHandsVisible(true);
             _spriteRenderer.sprite = _rangeWeaponSO.ItemImage;
+
             _audioSource.PlayOneShot(_rangeWeaponSO.weaponEquipSound);
         }
     }
