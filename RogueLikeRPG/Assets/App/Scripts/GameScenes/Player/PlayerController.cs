@@ -96,8 +96,6 @@ namespace App.Scripts.GameScenes.Player
             PlayerMovement.Instance.Initialize(_rigidbody2D, _playerInputActions, _camera);
             PlayerAnimator.Instance.Initialize(playerAnimator);
             
-            PlayerUIInitializer.Instance.InitializeUIComponents();
-            
             PlayerStateChanger.Instance.Initialize(_playerInputActions);
             PlayerCombat.Instance.Initialize(bulletFactory);
         }

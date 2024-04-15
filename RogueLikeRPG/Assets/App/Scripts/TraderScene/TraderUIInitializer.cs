@@ -40,7 +40,7 @@ namespace App.Scripts.TraderScene
             InitializeUIComponents();
         }
     
-        private void InitializeUIComponents()
+        public void InitializeUIComponents()
         {
             TraderInventoryUI.Instance.Initialize(traderInventoryUI, traderInventoryData, initialItems, dropClip, audioSource);
             MoneyUIFactory.Create(currentMoneyTextField, traderMoneySO);

@@ -926,8 +926,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.60024977, y: 0.39980006, z: 0}
-    m_Extent: {x: 8.60055, y: 5.9002, z: 0}
+    m_Center: {x: -0.59994984, y: 0.39945006, z: 0}
+    m_Extent: {x: 8.60025, y: 5.89985, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.86
@@ -21843,6 +21843,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8767006613761474561, guid: e985d175563a1a64e884744a17e546be, type: 3}
+      propertyPath: traderMoneySO
+      value: 
+      objectReference: {fileID: 11400000, guid: bfcbc4c011e134f468ac774949a796c7, type: 2}
+    - target: {fileID: 8767006613761474561, guid: e985d175563a1a64e884744a17e546be, type: 3}
+      propertyPath: traderInventoryData
+      value: 
+      objectReference: {fileID: 11400000, guid: f9479697f44226d4eae5718e5f4f6daa, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

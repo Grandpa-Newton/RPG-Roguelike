@@ -1,9 +1,9 @@
 using System;
+using App.Scripts.AllScenes;
 using App.Scripts.GameScenes.Inventory.Controller;
 using App.Scripts.GameScenes.Player;
 using App.Scripts.MixedScenes.Inventory.UI;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.TraderScene
 {
@@ -26,13 +26,11 @@ namespace App.Scripts.TraderScene
         private void Awake()
         {
             Instance = this;
-            SpawnPlayer.Instance.OnPlayerComponentsSpawn += FindUIInventoriesPages;
+            SpawnObjectsManager.Instance.OnPlayerComponentsSpawn += FindUIInventoriesPages;
         }
 
         private void FindUIInventoriesPages()
         {
-            Debug.Log(GameObject.Find("PlayerUI"));
-            Debug.Log(GameObject.Find("PlayerUI/PlayerInventory"));
             uiPlayerInventoryPage = GameObject.Find("PlayerUI(Clone)/PlayerInventory").GetComponent<UIInventoryPage>();
             uiTraderInventoryPage = GameObject.Find("TraderUI(Clone)/TraderInventory").GetComponent<UIInventoryPage>();
         }

@@ -44,13 +44,13 @@ namespace App.Scripts.GameScenes.Player
         [Title("Inventory Money UI")]
         [SerializeField] private TMP_Text currentMoneyTextField;
         [SerializeField] private ChangeableValueSO playerMoneySO;
-        
+
         private void Awake()
         {
-            //InitializeUIComponents();
+            InitializeUIComponents();
         }
 
-        public void InitializeUIComponents()
+        private void InitializeUIComponents()
         {
             PlayerInventoryUI.Instance.Initialize(uiInventoryPage, inventorySO, inventoryItems, inventoryOpenClip, inventoryAudioSource);
             PlayerCurrentWeaponUI.Instance.Initialize(meleeWeaponUI, rangeWeaponUI, meleeWeaponIcon, rangeWeaponIcon);

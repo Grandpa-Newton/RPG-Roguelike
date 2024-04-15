@@ -144,14 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c330b28dd92c44f927808a497f44c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traderInventoryUI: {fileID: 0}
-  playerInventoryUI: {fileID: 0}
-  traderInventoryData: {fileID: 11400000, guid: f9479697f44226d4eae5718e5f4f6daa, type: 2}
-  playerInventoryData: {fileID: 11400000, guid: f37c1c10a167764469f0bb4cb1b8b5b2, type: 2}
-  initialItems: []
-  dropClip: {fileID: 8300000, guid: c66a4a1db6099e34ca14a09e09c6ec26, type: 3}
-  audioSource: {fileID: 0}
   interactHelper: {fileID: 2858208603862459880}
+  uiPlayerInventoryPage: {fileID: 0}
+  uiTraderInventoryPage: {fileID: 0}
 --- !u!1001 &3813507463342125526
 PrefabInstance:
   m_ObjectHideFlags: 0
