@@ -8,6 +8,7 @@ namespace App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.RoomSyst
     public class PlayerRoom : RoomGenerator
     {
         public GameObject player;
+        public GameObject playerUI;
 
         public List<ItemPlacementData> itemData;
 
@@ -28,6 +29,8 @@ namespace App.Scripts.DungeonScene.GenerationsScripts.DungeonGeneration.RoomSyst
 
             Vector2Int playerSpawnPoint = roomCenter;
 
+            GameObject playerUIObject 
+                = prefabPlacer.CreateObject(playerUI, playerSpawnPoint + new Vector2(0.5f, 0.5f));
             GameObject playerObject 
                 = prefabPlacer.CreateObject(player, playerSpawnPoint + new Vector2(0.5f, 0.5f));
  

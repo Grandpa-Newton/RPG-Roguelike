@@ -6,6 +6,7 @@ using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.Model.ItemParameters;
 using App.Scripts.TraderScene;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace App.Scripts.GameScenes.Inventory.Controller
 {
@@ -27,9 +28,13 @@ namespace App.Scripts.GameScenes.Inventory.Controller
             InventoryUI.OnItemActionRequested += HandleItemActionRequested;
 
             InventoryData.OnInventoryUpdated += UpdateInventoryUI;
-            
-            //TradingSystem.Instance.OnPlayerTrading += OnPlayerTrading;
-            //TradingSystem.Instance.OnInventoryOpen += OnInventoryOpen;
+            if (SceneManager.GetActiveScene().name == "TraderShopScene")
+            {
+                //Затычка конкретная конечно)
+                Debug.Log("Trader Scene subscribed on events");
+                TradingSystem.Instance.OnPlayerTrading += OnPlayerTrading;
+                TradingSystem.Instance.OnInventoryOpen += OnInventoryOpen;
+            }
             //PlayerController.Instance.OnPlayerShowOrHideInventory += ShowOrHideInventory;
         }
 
@@ -38,6 +43,7 @@ namespace App.Scripts.GameScenes.Inventory.Controller
             TradingSystem.Instance.OnPlayerTrading += OnPlayerTrading;
             TradingSystem.Instance.OnInventoryOpen += OnInventoryOpen;
         }
+
         public void ShowOrHideInventory()
         {
             //if (!Input.GetKeyDown(KeyCode.Tab)) return;

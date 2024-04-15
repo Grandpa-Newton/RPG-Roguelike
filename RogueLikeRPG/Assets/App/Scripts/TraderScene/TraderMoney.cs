@@ -12,17 +12,17 @@ public class TraderMoney : Money
     
     public override void Initialize(ChangeableValueSO currentMoney)
     {
-        base.currentMoney = currentMoney;
+        base.CurrentMoney = currentMoney;
     }
     public override void AddMoney(int moneyBoost)
     {
-        currentMoney.CurrentValue += moneyBoost;
+        CurrentMoney.CurrentValue += moneyBoost;
     }
 
     public override bool CanAffordReduceMoney(int reducingMoney)
     {
 
-        if (currentMoney.CurrentValue >= reducingMoney)
+        if (CurrentMoney.CurrentValue >= reducingMoney)
         {
             return true;
         }
@@ -35,9 +35,9 @@ public class TraderMoney : Money
 
     public override bool TryReduceMoney(int reducingMoney)
     {
-        if(currentMoney.CurrentValue >= reducingMoney)
+        if(CurrentMoney.CurrentValue >= reducingMoney)
         {
-            currentMoney.CurrentValue -= reducingMoney;
+            CurrentMoney.CurrentValue -= reducingMoney;
             return true;
         }
         else
