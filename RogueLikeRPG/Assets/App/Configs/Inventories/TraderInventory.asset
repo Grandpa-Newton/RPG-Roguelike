@@ -12,5 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08071d3b948375b479a007b6a0edb240, type: 3}
   m_Name: TraderInventory
   m_EditorClassIdentifier: 
-  inventoryItems: []
+  inventoryItems:
+  - quantity: 5
+    item: {fileID: 11400000, guid: 4e3c1e44673a8c74dbcafa6adc0fc4c5, type: 2}
+    itemState: []
+  - quantity: 1
+    item: {fileID: 11400000, guid: 46b6e0fcf21e257489ead109c7fff2f4, type: 2}
+    itemState: []
+  - quantity: 1
+    item: {fileID: 11400000, guid: 9bb95734ed411d24ea3426002081577d, type: 2}
+    itemState: []
+  - quantity: 1
+    item: {fileID: 11400000, guid: 46b6e0fcf21e257489ead109c7fff2f4, type: 2}
+    itemState: []
+  - quantity: 5
+    item: {fileID: 11400000, guid: 4e3c1e44673a8c74dbcafa6adc0fc4c5, type: 2}
+    itemState: []
+  - quantity: 1
+    item: {fileID: 11400000, guid: 9bb95734ed411d24ea3426002081577d, type: 2}
+    itemState: []
+  - quantity: 3
+    item: {fileID: 11400000, guid: 4e3c1e44673a8c74dbcafa6adc0fc4c5, type: 2}
+    itemState: []
+  - quantity: 1
+    item: {fileID: 11400000, guid: 46b6e0fcf21e257489ead109c7fff2f4, type: 2}
+    itemState: []
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
   <Size>k__BackingField: 9

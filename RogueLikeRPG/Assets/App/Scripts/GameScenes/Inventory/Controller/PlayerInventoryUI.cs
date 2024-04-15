@@ -28,12 +28,12 @@ namespace App.Scripts.GameScenes.Inventory.Controller
 
             InventoryData.OnInventoryUpdated += UpdateInventoryUI;
 
-            TraderAndPlayerInventoriesUpdater.Instance.OnPlayerTrading += OnPlayerTrading;
-            TraderAndPlayerInventoriesUpdater.Instance.OnInventoryOpen += OnInventoryOpen;
-            PlayerController.Instance.OnPlayerShowOrHideInventory += ShowOrHideInventory;
+            TradingSystem.Instance.OnPlayerTrading += OnPlayerTrading;
+            TradingSystem.Instance.OnInventoryOpen += OnInventoryOpen;
+            //PlayerController.Instance.OnPlayerShowOrHideInventory += ShowOrHideInventory;
         }
         
-        private void ShowOrHideInventory()
+        public void ShowOrHideInventory()
         {
             //if (!Input.GetKeyDown(KeyCode.Tab)) return;
             if (_isTrading) return;
@@ -153,8 +153,8 @@ namespace App.Scripts.GameScenes.Inventory.Controller
             InventoryUI.OnStartDragging -= HandleDragging;
             InventoryUI.OnItemActionRequested -= HandleItemActionRequested;
 
-            TraderAndPlayerInventoriesUpdater.Instance.OnPlayerTrading -= OnPlayerTrading;
-            TraderAndPlayerInventoriesUpdater.Instance.OnInventoryOpen -= OnInventoryOpen;
+            TradingSystem.Instance.OnPlayerTrading -= OnPlayerTrading;
+            TradingSystem.Instance.OnInventoryOpen -= OnInventoryOpen;
             PlayerController.Instance.OnPlayerShowOrHideInventory -= ShowOrHideInventory;
         }
     }

@@ -123,7 +123,8 @@ namespace App.Scripts.GameScenes.Player
             OnPlayerSwapWeapon?.Invoke();
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                OnPlayerShowOrHideInventory?.Invoke();
+                PlayerInventoryUI.Instance.ShowOrHideInventory();
+                //OnPlayerShowOrHideInventory?.Invoke();
             }
             OnPlayerHandleCombat?.Invoke();
         }

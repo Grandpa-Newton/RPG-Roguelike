@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using App.Scripts.GameScenes.Inventory.Controller;
 using App.Scripts.GameScenes.Inventory.Model;
 using App.Scripts.GameScenes.Player.EditableValues;
 using App.Scripts.GameScenes.Player.UI;
-using App.Scripts.MixedScenes.Inventory.Model;
 using App.Scripts.MixedScenes.Inventory.UI;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -43,8 +43,13 @@ namespace App.Scripts.GameScenes.Player
         
         [Title("Inventory Money UI")]
         [SerializeField] private TMP_Text currentMoneyTextField;
-        [SerializeField] private ChangeableValueSO playerMoneySO; 
+        [SerializeField] private ChangeableValueSO playerMoneySO;
         
+        private void Awake()
+        {
+            //InitializeUIComponents();
+        }
+
         public void InitializeUIComponents()
         {
             PlayerInventoryUI.Instance.Initialize(uiInventoryPage, inventorySO, inventoryItems, inventoryOpenClip, inventoryAudioSource);

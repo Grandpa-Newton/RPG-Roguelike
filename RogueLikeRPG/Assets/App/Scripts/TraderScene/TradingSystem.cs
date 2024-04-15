@@ -1,46 +1,43 @@
 using System;
-using System.Collections.Generic;
 using App.Scripts.GameScenes.Inventory.Controller;
-using App.Scripts.GameScenes.Inventory.Model;
 using App.Scripts.GameScenes.Player;
-using App.Scripts.GameScenes.Player.EditableValues;
 using App.Scripts.MixedScenes.Inventory.UI;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.TraderScene
 {
-    public class TraderAndPlayerInventoriesUpdater : MonoBehaviour
+    public class TradingSystem : MonoBehaviour
     {
-        public static TraderAndPlayerInventoriesUpdater Instance { get; private set; }
-
-        [SerializeField] private UIInventoryPage traderInventoryUI;
-        [SerializeField] private UIInventoryPage playerInventoryUI;
-        [SerializeField] private InventorySO traderInventoryData;
-        [SerializeField] private InventorySO playerInventoryData;
-        [SerializeField] private List<InventoryItem> initialItems;
-        [SerializeField] private AudioClip dropClip;
-        [SerializeField] private AudioSource audioSource;
+        public static TradingSystem Instance { get; private set; }
 
         [SerializeField] private Canvas interactHelper;
-
-        [SerializeField] private TMP_Text currentMoneyTextField;
-        [SerializeField] private ChangeableValueSO traderMoneySO;
     
         private bool _isStartTrading;
         private bool _isInteracting;
-    
+
+        [SerializeField] private UIInventoryPage uiPlayerInventoryPage;
+        [SerializeField] private UIInventoryPage uiTraderInventoryPage;
+        
+        
         public event Action<bool> OnPlayerTrading;
         public event Action<bool> OnInventoryOpen;
 
         private void Awake()
         {
             Instance = this;
-            TraderInventoryUI.Instance.Initialize(traderInventoryUI, traderInventoryData, initialItems, dropClip,
-                audioSource);
-            MoneyUIFactory.Create(currentMoneyTextField, traderMoneySO);
+            SpawnPlayer.Instance.OnPlayerComponentsSpawn += FindUIInventoriesPages;
         }
-    
+
+        private void FindUIInventoriesPages()
+        {
+            Debug.Log(GameObject.Find("PlayerUI"));
+            Debug.Log(GameObject.Find("PlayerUI/PlayerInventory"));
+            uiPlayerInventoryPage = GameObject.Find("PlayerUI(Clone)/PlayerInventory").GetComponent<UIInventoryPage>();
+            uiTraderInventoryPage = GameObject.Find("TraderUI(Clone)/TraderInventory").GetComponent<UIInventoryPage>();
+        }
+
+
         private void Update()
         {
             TradingProcess();
@@ -84,8 +81,8 @@ namespace App.Scripts.TraderScene
             _isStartTrading = true;
             interactHelper.gameObject.SetActive(false);
 
-            traderInventoryUI.Show();
-            playerInventoryUI.Show();
+            uiTraderInventoryPage.Show();
+            uiPlayerInventoryPage.Show();
 
             OnInventoryOpen?.Invoke(true);
             OnPlayerTrading?.Invoke(true);
@@ -96,8 +93,8 @@ namespace App.Scripts.TraderScene
             _isStartTrading = false;
             _isInteracting = false;
         
-            traderInventoryUI.Hide();
-            playerInventoryUI.Hide();
+            uiTraderInventoryPage.Hide();
+            uiPlayerInventoryPage.Hide();
 
             OnPlayerTrading?.Invoke(false);
             OnInventoryOpen?.Invoke(false);

@@ -669,10 +669,9 @@ GameObject:
   m_Component:
   - component: {fileID: 516608359742621028}
   - component: {fileID: 7767718261466815304}
+  - component: {fileID: 5229064222320116248}
   - component: {fileID: 6276145709058812199}
   - component: {fileID: 1412538698097721430}
-  - component: {fileID: 5917678328204681865}
-  - component: {fileID: 4453588542097487554}
   m_Layer: 5
   m_Name: TraderUI
   m_TagString: Untagged
@@ -725,6 +724,25 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &5229064222320116248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2568252092870758961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82eddac932ec0284892f9f9c0195aa2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traderInventoryUI: {fileID: 4865116664345250987}
+  traderInventoryData: {fileID: 11400000, guid: f9479697f44226d4eae5718e5f4f6daa, type: 2}
+  initialItems: []
+  dropClip: {fileID: 8300000, guid: c29f6e23c986e1d4eb3a9b6e8c9476d9, type: 3}
+  audioSource: {fileID: 0}
+  currentMoneyTextField: {fileID: 8088037843391964989}
+  traderMoneySO: {fileID: 11400000, guid: bfcbc4c011e134f468ac774949a796c7, type: 2}
 --- !u!114 &6276145709058812199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,36 +783,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 8191
---- !u!114 &5917678328204681865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2568252092870758961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27c064196b7aaaa4a9cc745c36a074a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 3016576447189816458, guid: 55933eaf26531b148a56a3ae56eb537e, type: 3}
-  contentPanel: {fileID: 4078263813484208812}
-  itemInformation: {fileID: 2814910491827032925}
-  mouseFollower: {fileID: 4939598592948276803}
-  canvasGroup: {fileID: 0}
-  actionPanel: {fileID: 5235839522710335384}
---- !u!225 &4453588542097487554
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2568252092870758961}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &2609634644265262432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,6 +1008,8 @@ GameObject:
   - component: {fileID: 4941956676116765960}
   - component: {fileID: 3006164295511679772}
   - component: {fileID: 7472685553313293292}
+  - component: {fileID: 4865116664345250987}
+  - component: {fileID: 7268431635090352402}
   m_Layer: 5
   m_Name: TraderInventory
   m_TagString: Untagged
@@ -1112,6 +1102,36 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4865116664345250987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058459016031645500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c064196b7aaaa4a9cc745c36a074a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 3016576447189816458, guid: 55933eaf26531b148a56a3ae56eb537e, type: 3}
+  contentPanel: {fileID: 4078263813484208812}
+  itemInformation: {fileID: 2814910491827032925}
+  mouseFollower: {fileID: 4939598592948276803}
+  canvasGroup: {fileID: 7268431635090352402}
+  actionPanel: {fileID: 5235839522710335384}
+--- !u!225 &7268431635090352402
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058459016031645500}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3358298746091818009
 GameObject:
   m_ObjectHideFlags: 0
