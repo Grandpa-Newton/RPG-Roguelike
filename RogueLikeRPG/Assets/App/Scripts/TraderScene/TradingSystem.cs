@@ -32,7 +32,7 @@ namespace App.Scripts.TraderScene
         private void FindUIInventoriesPages()
         {
             uiPlayerInventoryPage = GameObject.Find("PlayerUI(Clone)/PlayerInventory").GetComponent<UIInventoryPage>();
-            uiTraderInventoryPage = GameObject.Find("TraderUI(Clone)/TraderInventory").GetComponent<UIInventoryPage>();
+            uiTraderInventoryPage = GameObject.Find("TraderUI/TraderInventory").GetComponent<UIInventoryPage>();
         }
 
 

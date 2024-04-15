@@ -10,6 +10,7 @@ namespace App.Scripts.MixedScenes.PickUpSystem
    {
       Coin,
       Food,
+      Weapon
       
    }
    public class ItemPickable : MonoBehaviour
