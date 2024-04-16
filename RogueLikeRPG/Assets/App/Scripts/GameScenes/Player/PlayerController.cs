@@ -5,18 +5,13 @@ using App.Scripts.GameScenes.Inventory.Controller;
 using App.Scripts.GameScenes.Inventory.Model;
 using App.Scripts.GameScenes.Player.Components;
 using App.Scripts.GameScenes.Player.EditableValues;
-using App.Scripts.GameScenes.Player.UI;
 using App.Scripts.GameScenes.Weapon;
 using App.Scripts.GameScenes.Weapon.Bullet;
 using App.Scripts.GameScenes.Weapon.MeleeWeapon;
 using App.Scripts.GameScenes.Weapon.RangeWeapon;
-using App.Scripts.MixedScenes.Inventory.Controller;
-using App.Scripts.MixedScenes.Inventory.Model;
-using App.Scripts.MixedScenes.Inventory.UI;
 using Cinemachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace App.Scripts.GameScenes.Player
 {

@@ -163,9 +163,11 @@ namespace App.Scripts.GameScenes.Inventory.Controller
             InventoryUI.OnSwapItems -= HandleSwapItems;
             InventoryUI.OnStartDragging -= HandleDragging;
             InventoryUI.OnItemActionRequested -= HandleItemActionRequested;
-
-            TradingSystem.Instance.OnPlayerTrading -= OnPlayerTrading;
-            TradingSystem.Instance.OnInventoryOpen -= OnInventoryOpen;
+            if (SceneManager.GetActiveScene().name == "TraderShopScene")
+            {
+                TradingSystem.Instance.OnPlayerTrading -= OnPlayerTrading;
+                TradingSystem.Instance.OnInventoryOpen -= OnInventoryOpen;
+            }
             //PlayerController.Instance.OnPlayerShowOrHideInventory -= ShowOrHideInventory;
         }
     }
