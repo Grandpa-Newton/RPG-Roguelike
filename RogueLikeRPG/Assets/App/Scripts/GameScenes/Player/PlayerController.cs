@@ -29,6 +29,7 @@ namespace App.Scripts.GameScenes.Player
 
         [Title("Player Transforms")] 
         [SerializeField] private Transform aimTransform;
+        [SerializeField] private Transform circleOrigin;
         [SerializeField] private Transform meleeWeapon;
         [SerializeField] private Transform rangeWeapon;
         [SerializeField] private Transform[] hands;
@@ -102,7 +103,7 @@ namespace App.Scripts.GameScenes.Player
             
             PlayerWeaponSwitcher.Instance.Initialize(meleeWeapon, rangeWeapon, hands);
             PlayerCurrentWeapon.Instance.Initialize(currentWeaponsSO);
-            MeleeWeapon.Instance.Initialize(_playerInputActions, meleeWeaponSpriteRenderer, aimAnimator,
+            MeleeWeapon.Instance.Initialize(circleOrigin, _playerInputActions, meleeWeaponSpriteRenderer, aimAnimator,
                 meleeWeaponAudioSource);
             RangeWeapon.Instance.Initialize(bulletPrefab, _playerInputActions, rangeWeaponSpriteRenderer, aimTransform,
                 rangeWeaponAudioSource);

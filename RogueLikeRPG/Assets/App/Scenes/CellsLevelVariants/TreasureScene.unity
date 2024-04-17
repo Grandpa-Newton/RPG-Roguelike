@@ -176,7 +176,7 @@ Transform:
   m_GameObject: {fileID: 35422927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.52, y: -3.52, z: 0}
+  m_LocalPosition: {x: -3.15, y: -1.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -255,6 +255,12 @@ MonoBehaviour:
   speed: 0
   knockbackDuration: 0
   knockbackPower: 0
+  OnHitWithReference:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathWithReference:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!70 &35422934
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -316,7 +322,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &43374702
 GameObject:
   m_ObjectHideFlags: 0
@@ -5345,7 +5351,7 @@ Transform:
   m_GameObject: {fileID: 1102030353}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.458, y: -3.541, z: -0.0017913642}
+  m_LocalPosition: {x: -2.99, y: -4.3, z: -0.0017913642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5438,6 +5444,12 @@ MonoBehaviour:
   speed: 5
   knockbackDuration: 5
   knockbackPower: 5
+  OnHitWithReference:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathWithReference:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!195 &1102030360
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5535,7 +5547,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1001 &1184590228
 PrefabInstance:
   m_ObjectHideFlags: 0

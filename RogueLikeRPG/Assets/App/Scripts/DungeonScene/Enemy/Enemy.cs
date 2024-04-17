@@ -8,6 +8,7 @@ using App.Scripts.MixedScenes.Player;
 using App.Scripts.MixedScenes.Player.Control;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace App.Scripts.DungeonScene.Enemy
@@ -30,6 +31,10 @@ namespace App.Scripts.DungeonScene.Enemy
         [SerializeField] private float knockbackDuration;
         [SerializeField] private float knockbackPower;
 
+        public  UnityEvent<GameObject> OnHitWithReference;
+        public  UnityEvent<GameObject> OnDeathWithReference;
+        
+        
         public event Action OnEnemyDie;
         
         private void Start()
@@ -37,16 +42,20 @@ namespace App.Scripts.DungeonScene.Enemy
             InitializeStatsFromSO();
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, GameObject damageSender)
         {
+            
             health -= damage;
-            if (health <= 0)
+            if (health > 0)
             {
-                OnEnemyDie?.Invoke();
+                OnHitWithReference?.Invoke(damageSender);
+            }
+            else 
+            {
+                OnDeathWithReference?.Invoke(damageSender);
                 enemyGFX.GetComponent<SpriteRenderer>().enabled = false;
                 GetComponent<CapsuleCollider2D>().enabled = false;
-                
-                //Destroy(gameObject);
+                OnEnemyDie?.Invoke();
             }
         }
     

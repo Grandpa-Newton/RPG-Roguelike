@@ -1,3 +1,5 @@
+using System;
+using App.Scripts.DungeonScene.Enemy;
 using App.Scripts.DungeonScene.Items;
 using App.Scripts.GameScenes.Player;
 using App.Scripts.GameScenes.Player.Components;
@@ -16,22 +18,28 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
         private SpriteRenderer _spriteRenderer;
         private PlayerInputActions _playerInputActions;
 
+        private Transform _circleOrigin;
+        private float _radius = 0.55f;
+
         private Vector2 _currentPointPosition;
         private Vector2 _defaultPosition;
 
         private float _attackTimer;
         private bool _isAttacking;
 
-        private static readonly int Shoot = Animator.StringToHash("Shoot");
+        private static readonly int Shoot = Animator.StringToHash("Attack");
         private static readonly int Idle = Animator.StringToHash("Idle");
 
-        public void Initialize(PlayerInputActions playerInputActions, SpriteRenderer spriteRenderer, Animator animator,AudioSource audioSource)
+        public event Action<bool> OnPlayerAttack;
+
+        public void Initialize(Transform circleOrigin, PlayerInputActions playerInputActions,
+            SpriteRenderer spriteRenderer, Animator animator, AudioSource audioSource)
         {
+            _circleOrigin = circleOrigin;
             _playerInputActions = playerInputActions;
             _spriteRenderer = spriteRenderer;
             _animator = animator;
             _audioSource = audioSource;
-            
             TryEquipMeleeWeapon();
         }
 
@@ -51,10 +59,12 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
             }
 
             _attackTimer += Time.deltaTime;
+            // Debug.Log(_attackTimer + " sec.");
             if (_playerInputActions.Player.Attack.IsPressed() && !_isAttacking)
             {
                 Debug.Log("Bonk@!");
                 _isAttacking = true;
+                OnPlayerAttack?.Invoke(_isAttacking);
                 _animator.SetTrigger(Shoot);
                 _attackTimer = 0;
             }
@@ -62,7 +72,8 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
             if (_isAttacking && _attackTimer > _meleeWeaponSO.attackRate)
             {
                 _isAttacking = false;
-                _animator.SetTrigger(Idle);
+                OnPlayerAttack?.Invoke(_isAttacking);
+                // _animator.SetTrigger(Idle);
             }
         }
 
@@ -80,13 +91,13 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
                 Debug.LogError("ItemSO is not a RangeWeaponSO");
                 return;
             }
-            
+
             _meleeWeaponSO = meleeWeapon;
             PlayerWeaponSwitcher.Instance.PlayerHandsVisible(true);
             _spriteRenderer.sprite = _meleeWeaponSO.ItemImage;
-            
+
             MeleeWeaponTrigger.Instance.SetMeleeWeaponSO(_meleeWeaponSO);
-            
+
             _audioSource.PlayOneShot(_meleeWeaponSO.weaponEquipSound);
         }
     }

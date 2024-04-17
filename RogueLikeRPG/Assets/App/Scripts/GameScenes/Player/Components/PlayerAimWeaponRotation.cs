@@ -1,3 +1,4 @@
+using App.Scripts.GameScenes.Weapon.MeleeWeapon;
 using UnityEngine;
 
 namespace App.Scripts.GameScenes.Player.Components
@@ -10,15 +11,25 @@ namespace App.Scripts.GameScenes.Player.Components
         private PlayerInputActions _playerInputActions;
         private Transform _aimTransform;
 
+        private bool _isAttacking;
+        
         public void Initialize(PlayerInputActions playerInputActions, Transform aimTransform)
         {
             _playerInputActions = playerInputActions;
             _aimTransform = aimTransform;
             PlayerController.Instance.OnPlayerHandsRotation += HandsRotationAroundAim;
+            MeleeWeapon.Instance.OnPlayerAttack += GetPlayerAttackInfo;
         }
-    
+
+        private void GetPlayerAttackInfo(bool isAttacking)
+        {
+            _isAttacking = isAttacking;
+        }
+
         private void HandsRotationAroundAim(Transform playerTransform)
         {
+            if (_isAttacking)
+                return;
             Vector3 mousePosition = GetMouseWorldPosition(_playerInputActions);
 
             Vector3 aimDirection = (mousePosition - playerTransform.position).normalized;

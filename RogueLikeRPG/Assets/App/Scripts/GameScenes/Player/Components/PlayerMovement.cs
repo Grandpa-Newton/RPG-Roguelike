@@ -1,5 +1,6 @@
 using System;
 using App.Scripts.GameScenes.Player.Interfaces;
+using App.Scripts.GameScenes.Weapon.MeleeWeapon;
 using Cinemachine;
 using UnityEngine;
 
@@ -34,12 +35,20 @@ namespace App.Scripts.GameScenes.Player.Components
         public bool isMoving { get; private set; }
         public bool isRolling { get; private set; }
 
+        private bool _isAttacking;
+
         public void Initialize(Rigidbody2D rigidbody2D, PlayerInputActions playerInputActions, Camera camera)
         {
             _rigidbody2D = rigidbody2D;
             _playerInputActions = playerInputActions;
             _camera = camera;
             PlayerAnimator.Instance.OnPlayerRolling += MakeRoll;
+            MeleeWeapon.Instance.OnPlayerAttack += GetPlayerAttackInfo;
+        }
+
+        private void GetPlayerAttackInfo(bool isAttacking)
+        {
+            _isAttacking = isAttacking;
         }
 
         public void SetVirtualCamera(CinemachineVirtualCamera virtualCamera, Transform followTarget)
@@ -100,6 +109,9 @@ namespace App.Scripts.GameScenes.Player.Components
 
         private void UpdatePlayerSpriteState(Vector2 moveDirection, Vector2 mouseWorldPosition)
         {
+            if (_isAttacking)
+                return;
+            
             if (mouseWorldPosition != _previousMousePosition)
             {
                 OnPlayerMouseMovement?.Invoke(moveDirection, mouseWorldPosition);
