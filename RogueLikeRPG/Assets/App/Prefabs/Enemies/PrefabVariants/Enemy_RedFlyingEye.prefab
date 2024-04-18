@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1711130823351968867, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
       propertyPath: m_AgentTypeID
-      value: -334000983
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1711130823351968867, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
       propertyPath: m_AngularSpeed

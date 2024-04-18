@@ -34,6 +34,8 @@ namespace App.Scripts.DungeonScene.Enemy
 
             if (_player != null && _navMeshAgent.isOnNavMesh)
             {
+                Debug.Log(_navMeshAgent.isOnNavMesh + "- на навмеше?");
+                Debug.Log(  _player + "- игрок?");
                 if (_navMeshAgent.remainingDistance < distanceToPlayer)
                 {
                     Vector3 direction = _navMeshAgent.velocity.normalized;
