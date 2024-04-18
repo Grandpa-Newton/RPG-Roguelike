@@ -20,33 +20,23 @@ namespace App.Scripts.DungeonScene.Enemy
         [SerializeField] private SpriteRenderer enemyGFX;
         [SerializeField] private EnemySO enemySo;
         [SerializeField] private LayerMask hittable;
-        [SerializeField] private NavMeshAgent navMeshAgent;
-        private Vector2 _moveDirection;
-    
-
-        [SerializeField] private float health;
-        [SerializeField] private float speed;
-
-
-        [SerializeField] private float knockbackDuration;
-        [SerializeField] private float knockbackPower;
 
         public  UnityEvent<GameObject> OnHitWithReference;
         public  UnityEvent<GameObject> OnDeathWithReference;
-        
-        
-        public event Action OnEnemyDie;
-        
+
+        private float _health;
+
         private void Start()
         {
-            InitializeStatsFromSO();
+            _health = enemySo.health;
         }
+
+        public event Action OnEnemyDie;
 
         public void TakeDamage(float damage, GameObject damageSender)
         {
-            
-            health -= damage;
-            if (health > 0)
+            _health -= damage;
+            if (_health > 0)
             {
                 OnHitWithReference?.Invoke(damageSender);
             }
@@ -69,15 +59,6 @@ namespace App.Scripts.DungeonScene.Enemy
                     PlayerHealth.Instance.ReduceHealth(enemySo.damage);
                 }
             }
-        }
-
- 
-
-        private void InitializeStatsFromSO()
-        {
-            health = enemySo.health;
-            navMeshAgent.speed = enemySo.speed;
-            //speed = enemySO.speed;
         }
     }
 }

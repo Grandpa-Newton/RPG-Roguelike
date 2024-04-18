@@ -199,7 +199,7 @@ namespace App.Scripts.MixedScenes.Player.Control
             {
                 OnDeselectCells?.Invoke();
 
-                BaseCell[] cells = UnityEngine.Object.FindObjectsOfType<BaseCell>();
+                BaseCell[] cells = FindObjectsOfType<BaseCell>();
 
                 BaseCell currentCell = cells.Where(c => c.CellId == MapLoader.CurrentCellId).FirstOrDefault(); // получение текущей клетки
 

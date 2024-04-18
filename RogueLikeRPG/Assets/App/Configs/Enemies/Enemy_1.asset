@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7034ea11ad3dfce40943f677054ac65f, type: 3}
   m_Name: Enemy_1
   m_EditorClassIdentifier: 
-  name: "\u041F\u0443\u0437\u0430\u043D\u0447\u0438\u043A"
-  health: 10
+  enemyName: 
+  health: 14
   speed: 2
   damage: 5
   enemySprite: {fileID: -818659787113659478, guid: a0d3fbbc155eb404a87f827b40a48dfe, type: 3}
