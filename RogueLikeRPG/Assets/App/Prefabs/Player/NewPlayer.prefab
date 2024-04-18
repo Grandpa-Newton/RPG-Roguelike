@@ -384,6 +384,7 @@ MonoBehaviour:
   _meleeWeaponSO: {fileID: 0}
   _circleOrigin: {fileID: 1832839121650208015}
   _radius: 0.55
+  player: {fileID: 4306722505127858314}
 --- !u!1 &2081912538424911597
 GameObject:
   m_ObjectHideFlags: 0
