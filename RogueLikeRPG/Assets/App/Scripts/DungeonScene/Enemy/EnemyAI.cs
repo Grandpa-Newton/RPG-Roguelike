@@ -9,40 +9,47 @@ namespace App.Scripts.DungeonScene.Enemy
     public class EnemyAI : MonoBehaviour
     {
         [SerializeField] private float distanceToPlayer;
-        private PlayerController player;
-        private NavMeshAgent _agent;
+        [SerializeField] private EnemySO enemySo;
+        private NavMeshAgent _navMeshAgent;
+        private PlayerController _player;
+      
+
+        
         public event Action<Vector2> OnEnemyMovement;
         void Start()
         {
-            _agent = GetComponent<NavMeshAgent>();
-            _agent.updateRotation = false;
-            _agent.updateUpAxis = false;
-            player = FindObjectOfType<PlayerController>();
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+            _navMeshAgent.updateRotation = false;
+            _navMeshAgent.updateUpAxis = false;
+            InitializeStatsFromSO();
+            _player = FindObjectOfType<PlayerController>();
         }
 
         void Update()
         { 
-            if (!player)
+            if (!_player)
             {
-                player = FindObjectOfType<PlayerController>();
+                _player = FindObjectOfType<PlayerController>();
             }
 
-            if (player != null && _agent.isOnNavMesh)
+            if (_player != null && _navMeshAgent.isOnNavMesh)
             {
-                //_agent.SetDestination(player.transform.position);
-                if (_agent.remainingDistance < distanceToPlayer)
+                if (_navMeshAgent.remainingDistance < distanceToPlayer)
                 {
-                    Vector3 direction = _agent.velocity.normalized;
+                    Vector3 direction = _navMeshAgent.velocity.normalized;
                     OnEnemyMovement?.Invoke(new Vector2(direction.x, direction.z));
-                    _agent.SetDestination(player.transform.position);
+                    _navMeshAgent.SetDestination(_player.transform.position);
                 }
                 else
                 {
                     OnEnemyMovement?.Invoke(new Vector2(0, 0));
-                    _agent.ResetPath();
+                    _navMeshAgent.ResetPath();
                 }
             }
         }
-
+        private void InitializeStatsFromSO()
+        {
+            _navMeshAgent.speed = enemySo.speed;
+        }
     }
 }

@@ -184,7 +184,7 @@ public class MapLoader : MonoBehaviour
 
     public void UpdateInfo()
     {
-        BaseCell[] cells = UnityEngine.Object.FindObjectsOfType<BaseCell>();
+        BaseCell[] cells = FindObjectsOfType<BaseCell>();
 
         GameObject currentCell = null;
 
