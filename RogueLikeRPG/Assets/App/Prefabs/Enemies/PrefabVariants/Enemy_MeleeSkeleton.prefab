@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_MeleeSkeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 359117035414507840, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 1711130823351968867, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
       propertyPath: m_Speed
       value: 0

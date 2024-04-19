@@ -59,7 +59,7 @@ namespace App.Scripts.GameScenes.Weapon.Bullet
                 IDamageable damageable = other.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    damageable.TakeDamage(_rangeWeaponSo.damage,null);
+                    damageable.TakeDamage(_rangeWeaponSo.damage,gameObject);
                     Destroy(gameObject);
                 }
                 else

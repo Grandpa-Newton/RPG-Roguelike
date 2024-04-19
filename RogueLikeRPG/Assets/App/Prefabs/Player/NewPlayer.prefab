@@ -381,9 +381,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdd3dba811082447813aca54f367d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meleeWeaponSO: {fileID: 0}
-  _circleOrigin: {fileID: 1832839121650208015}
-  _radius: 0.55
+  meleeWeaponSO: {fileID: 0}
+  circleOrigin: {fileID: 1832839121650208015}
+  radius: 0.55
   player: {fileID: 4306722505127858314}
 --- !u!1 &2081912538424911597
 GameObject:

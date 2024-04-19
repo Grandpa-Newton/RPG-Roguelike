@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_BlueFiringSkull
       objectReference: {fileID: 0}
+    - target: {fileID: 359117035414507840, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2365036352135453701, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
       propertyPath: m_Color.b
       value: 1

@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_RedFlyingEye
       objectReference: {fileID: 0}
+    - target: {fileID: 359117035414507840, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 1711130823351968867, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
       propertyPath: m_Speed
       value: 0
@@ -148,22 +152,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7821041708900547367, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
-      propertyPath: enemySo
-      value: 
-      objectReference: {fileID: 11400000, guid: fffc18ed88bc71b4bb7e0f44a3ae4bc1, type: 2}
-    - target: {fileID: 7821041708900547367, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
-      propertyPath: enemyGFX
-      value: 
-      objectReference: {fileID: 215413170970221196}
-    - target: {fileID: 7821041708900547367, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
-      propertyPath: hittable.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 7821041708900547367, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
-      propertyPath: characteristicValueSO
-      value: 
-      objectReference: {fileID: 11400000, guid: dd62f7a15583b8949a3067318c811486, type: 2}
     - target: {fileID: 9158991804135046086, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
       propertyPath: m_Size.x
       value: 2
@@ -180,6 +168,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9158991804135046086, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 9221721785756293153, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
       propertyPath: m_Controller
       value: 
@@ -189,8 +181,3 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
---- !u!212 &215413170970221196 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 9158991804135046086, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
-  m_PrefabInstance: {fileID: 9071951314588541258}
-  m_PrefabAsset: {fileID: 0}

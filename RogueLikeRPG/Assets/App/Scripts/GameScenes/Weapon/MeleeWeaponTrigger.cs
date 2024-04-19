@@ -1,9 +1,7 @@
-using System;
 using App.Scripts.DungeonScene.Enemy;
 using App.Scripts.GameScenes.Weapon;
 using App.Scripts.GameScenes.Weapon.MeleeWeapon;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.GameScenes.Player
 {
@@ -24,36 +22,36 @@ namespace App.Scripts.GameScenes.Player
             }
         }
 
-        [SerializeField] private MeleeWeaponSO _meleeWeaponSO;
-        [SerializeField] private Transform _circleOrigin;
-        [SerializeField] private float _radius = 0.55f;
+        [SerializeField] private MeleeWeaponSO meleeWeaponSO;
+        [SerializeField] private Transform circleOrigin;
+        [SerializeField] private float radius;
         [SerializeField] private GameObject player;
 
 
         public void DetectColliders()
         {
-            _meleeWeaponSO = PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon;
-            foreach (Collider2D enemyCollider in Physics2D.OverlapCircleAll(_circleOrigin.position, _radius))
+            meleeWeaponSO = PlayerCurrentWeapon.Instance.CurrentMeleeAndRangeWeaponsSO.EquippedMeleeWeapon;
+            foreach (Collider2D enemyCollider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
             {
                 if (enemyCollider.gameObject.TryGetComponent(out Enemy enemy))
                 {
                     Debug.Log(enemyCollider.name);
-                    enemy.TakeDamage(_meleeWeaponSO.damage,player);
-                    Debug.Log(_meleeWeaponSO.damage + "dmg");
+                    enemy.TakeDamage(meleeWeaponSO.damage,player);
+                    Debug.Log(meleeWeaponSO.damage + "dmg");
                 }
             }
         }
 
         public void SetMeleeWeaponSO(MeleeWeaponSO weaponSO)
         {
-            _meleeWeaponSO = weaponSO;
+            meleeWeaponSO = weaponSO;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.TryGetComponent(out Enemy enemy))
             {
-                enemy.TakeDamage(_meleeWeaponSO.damage,player);
+                enemy.TakeDamage(meleeWeaponSO.damage,player);
             }
         }
     }

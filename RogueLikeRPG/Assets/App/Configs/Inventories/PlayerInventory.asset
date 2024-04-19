@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryItems:
   - quantity: 1
-    item: {fileID: 11400000, guid: 78756698a331de7439b3d0d7619cc86b, type: 2}
-    itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 9bb95734ed411d24ea3426002081577d, type: 2}
-    itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 9bb95734ed411d24ea3426002081577d, type: 2}
-    itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 9bb95734ed411d24ea3426002081577d, type: 2}
-    itemState: []
-  - quantity: 1
     item: {fileID: 11400000, guid: a55532500365e19428014c7c188d684e, type: 2}
     itemState: []
-  - quantity: 43
+  - quantity: 1
+    item: {fileID: 11400000, guid: 9bb95734ed411d24ea3426002081577d, type: 2}
+    itemState: []
+  - quantity: 1
+    item: {fileID: 11400000, guid: 9bb95734ed411d24ea3426002081577d, type: 2}
+    itemState: []
+  - quantity: 1
+    item: {fileID: 11400000, guid: 9bb95734ed411d24ea3426002081577d, type: 2}
+    itemState: []
+  - quantity: 1
+    item: {fileID: 11400000, guid: 46b6e0fcf21e257489ead109c7fff2f4, type: 2}
+    itemState: []
+  - quantity: 41
     item: {fileID: 11400000, guid: 4e3c1e44673a8c74dbcafa6adc0fc4c5, type: 2}
     itemState: []
   <Size>k__BackingField: 6

@@ -20,27 +20,28 @@ namespace App.Scripts.DungeonScene.Enemy
         [SerializeField] private SpriteRenderer enemyGFX;
         [SerializeField] private EnemySO enemySo;
         [SerializeField] private LayerMask hittable;
-
-        public  UnityEvent<GameObject> OnHitWithReference;
-        public  UnityEvent<GameObject> OnDeathWithReference;
+        
+        public UnityEvent<GameObject> OnHitWithReference;
+        public UnityEvent<GameObject> OnDeathWithReference;
 
         private float _health;
+        public event Action OnKnockBackEffect;
 
         private void Start()
         {
             _health = enemySo.health;
         }
-
         public event Action OnEnemyDie;
-
+        
         public void TakeDamage(float damage, GameObject damageSender)
         {
             _health -= damage;
             if (_health > 0)
             {
                 OnHitWithReference?.Invoke(damageSender);
+                OnKnockBackEffect?.Invoke();
             }
-            else 
+            else
             {
                 OnDeathWithReference?.Invoke(damageSender);
                 enemyGFX.GetComponent<SpriteRenderer>().enabled = false;
@@ -48,7 +49,6 @@ namespace App.Scripts.DungeonScene.Enemy
                 OnEnemyDie?.Invoke();
             }
         }
-    
 
         private void OnCollisionEnter2D(Collision2D other)
         {

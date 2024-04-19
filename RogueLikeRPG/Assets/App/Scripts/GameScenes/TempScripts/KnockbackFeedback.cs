@@ -20,6 +20,12 @@ public class KnockbackFeedback : MonoBehaviour
 
    public void PlayFeedBack(GameObject sender)
    {
+      if (sender == null)
+      {
+         Debug.LogError("Sender is null");
+         return;
+      }
+      
       StopAllCoroutines();
       OnBegin?.Invoke();
 
