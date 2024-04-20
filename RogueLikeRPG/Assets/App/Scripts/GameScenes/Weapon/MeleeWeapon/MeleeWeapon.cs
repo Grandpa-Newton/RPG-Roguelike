@@ -26,6 +26,7 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
 
         private float _attackTimer;
         private bool _isAttacking;
+        private bool _canRotate;
 
         private static readonly int Shoot = Animator.StringToHash("Attack");
         private static readonly int Idle = Animator.StringToHash("Idle");
@@ -59,12 +60,13 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
             }
 
             _attackTimer += Time.deltaTime;
-            // Debug.Log(_attackTimer + " sec.");
+            
             if (_playerInputActions.Player.Attack.IsPressed() && !_isAttacking)
             {
                 Debug.Log("Bonk@!");
                 _isAttacking = true;
-                OnPlayerAttack?.Invoke(_isAttacking);
+                _canRotate = false;
+                OnPlayerAttack?.Invoke(_canRotate);
                 _animator.SetTrigger(Shoot);
                 _attackTimer = 0;
             }
@@ -72,8 +74,13 @@ namespace App.Scripts.GameScenes.Weapon.MeleeWeapon
             if (_isAttacking && _attackTimer > _meleeWeaponSO.attackRate)
             {
                 _isAttacking = false;
-                OnPlayerAttack?.Invoke(_isAttacking);
                 // _animator.SetTrigger(Idle);
+            }
+
+            if (_attackTimer > 0.1f)
+            {
+                _canRotate = true;
+                OnPlayerAttack?.Invoke(_canRotate);
             }
         }
 

@@ -11,24 +11,24 @@ namespace App.Scripts.GameScenes.Player.Components
         private PlayerInputActions _playerInputActions;
         private Transform _aimTransform;
 
-        private bool _isAttacking;
+        private bool _canRotate;
         
         public void Initialize(PlayerInputActions playerInputActions, Transform aimTransform)
         {
             _playerInputActions = playerInputActions;
             _aimTransform = aimTransform;
             PlayerController.Instance.OnPlayerHandsRotation += HandsRotationAroundAim;
-            MeleeWeapon.Instance.OnPlayerAttack += GetPlayerAttackInfo;
+            MeleeWeapon.Instance.OnPlayerAttack += GetPlayerRotationInfo;
         }
 
-        private void GetPlayerAttackInfo(bool isAttacking)
+        private void GetPlayerRotationInfo(bool canRotate)
         {
-            _isAttacking = isAttacking;
+            _canRotate = canRotate;
         }
 
         private void HandsRotationAroundAim(Transform playerTransform)
         {
-            if (_isAttacking)
+            if (!_canRotate)
                 return;
             Vector3 mousePosition = GetMouseWorldPosition(_playerInputActions);
 

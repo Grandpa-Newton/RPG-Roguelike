@@ -35,7 +35,7 @@ namespace App.Scripts.GameScenes.Player.Components
         public bool isMoving { get; private set; }
         public bool isRolling { get; private set; }
 
-        private bool _isAttacking;
+        private bool _canRotate;
 
         public void Initialize(Rigidbody2D rigidbody2D, PlayerInputActions playerInputActions, Camera camera)
         {
@@ -43,12 +43,12 @@ namespace App.Scripts.GameScenes.Player.Components
             _playerInputActions = playerInputActions;
             _camera = camera;
             PlayerAnimator.Instance.OnPlayerRolling += MakeRoll;
-            MeleeWeapon.Instance.OnPlayerAttack += GetPlayerAttackInfo;
+            MeleeWeapon.Instance.OnPlayerAttack += GetPlayerRotationInfo;
         }
 
-        private void GetPlayerAttackInfo(bool isAttacking)
+        private void GetPlayerRotationInfo(bool canRotate)
         {
-            _isAttacking = isAttacking;
+            _canRotate = canRotate;
         }
 
         public void SetVirtualCamera(CinemachineVirtualCamera virtualCamera, Transform followTarget)
@@ -109,7 +109,7 @@ namespace App.Scripts.GameScenes.Player.Components
 
         private void UpdatePlayerSpriteState(Vector2 moveDirection, Vector2 mouseWorldPosition)
         {
-            if (_isAttacking)
+            if (!_canRotate)
                 return;
             
             if (mouseWorldPosition != _previousMousePosition)
