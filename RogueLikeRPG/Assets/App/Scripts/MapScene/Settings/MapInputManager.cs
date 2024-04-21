@@ -17,7 +17,6 @@ public class MapInputManager : MonoBehaviour
     {
         if(!Instance)
         {
-
             Instance = this;
         }
         else
@@ -82,5 +81,17 @@ public class MapInputManager : MonoBehaviour
     private void SelectCell_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnInteractPressed?.Invoke(_sceneToLoad); // мб тут проверка на empty
+    }
+
+    private void OnDisable()
+    {
+        MapPlayerController.Instance.OnDeselectCells -= Instance_OnDeselectCells;
+        MapPlayerController.Instance.OnStartingSelectCell -= Instance_OnSelectingCell;
+        MapPlayerController.Instance.OnSelectingCell -= Instance_OnSelectingCell1;
+        
+        
+        PlayerInputActions.Map.GetCells.performed -= GetCells_performed;
+        PlayerInputActions.Map.ConfirmCell.performed -= ConfirmCell_performed;
+        PlayerInputActions.Map.Interact.performed -= SelectCell_performed;
     }
 }

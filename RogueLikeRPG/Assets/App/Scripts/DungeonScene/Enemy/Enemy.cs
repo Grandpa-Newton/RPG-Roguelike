@@ -29,6 +29,7 @@ namespace App.Scripts.DungeonScene.Enemy
 
         private void Start()
         {
+            transform.eulerAngles = new Vector3(0f, 0f, 0f);
             _health = enemySo.health;
         }
         public event Action OnEnemyDie;

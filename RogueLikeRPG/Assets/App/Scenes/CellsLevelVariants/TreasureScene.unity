@@ -309,6 +309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_RedFlyingEye
       objectReference: {fileID: 0}
+    - target: {fileID: 8727374289660833802, guid: bc4567bf730d8244591c8a8609c85314, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2363,6 +2367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_MeleeSkeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 118083796403770469, guid: 8f6b21acd28246744b6ff0dc787ecbb5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7470319620693656645, guid: 8f6b21acd28246744b6ff0dc787ecbb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.95
@@ -2572,6 +2580,10 @@ PrefabInstance:
     - target: {fileID: 6189781313662050246, guid: a05475ff12b00764f8b5e9aed6a5f196, type: 3}
       propertyPath: m_Name
       value: Enemy_Stump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189781313662050246, guid: a05475ff12b00764f8b5e9aed6a5f196, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5196,6 +5208,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_OldMag
       objectReference: {fileID: 0}
+    - target: {fileID: 7554869459718150712, guid: a39cd59d7cac0a64391f2f41937585fe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5581,6 +5597,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_BlueFiringSkull
       objectReference: {fileID: 0}
+    - target: {fileID: 3170281161605993698, guid: 5c7bf9133ec3e8b45b1e6387d5c0e35d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5618088118294971586, guid: 5c7bf9133ec3e8b45b1e6387d5c0e35d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.25
@@ -5730,6 +5750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Biba
       objectReference: {fileID: 0}
+    - target: {fileID: 960299405475247437, guid: febcf47229aec044c81c6ab58b7ab06f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 982734629054851625, guid: febcf47229aec044c81c6ab58b7ab06f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.56
@@ -5856,6 +5880,10 @@ PrefabInstance:
     - target: {fileID: 359117035414507840, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
       propertyPath: m_Name
       value: AbstractEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 359117035414507840, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7130248798938300768, guid: ed8059feaad573c4b80b9339e2be4297, type: 3}
       propertyPath: m_LocalPosition.x

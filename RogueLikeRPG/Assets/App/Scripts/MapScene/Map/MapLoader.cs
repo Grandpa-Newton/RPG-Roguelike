@@ -2,21 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using App.Scripts;
 using App.Scripts.DungeonScene.GenerationsScripts;
 using App.Scripts.MapScene.Camera;
 using App.Scripts.MapScene.Cells;
 using UnityEngine;
-
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
+using Object = System.Object;
 
 public class MapLoader : MonoBehaviour
 {
-    [HideInInspector]
-    public List<GameObject> ActiveCells = new List<GameObject>();
+    [HideInInspector] public List<GameObject> ActiveCells = new List<GameObject>();
 
-    [SerializeField]
-    private List<SerializedDictionaryItem<CellSO, int>> CellTypesFrequencySerializedDictionary = new List<SerializedDictionaryItem<CellSO, int>>();
+    [SerializeField] private List<SerializedDictionaryItem<CellSO, int>> CellTypesFrequencySerializedDictionary =
+        new List<SerializedDictionaryItem<CellSO, int>>();
 
     private Dictionary<CellSO, int> _cellTypesFrequencies = new Dictionary<CellSO, int>();
 
@@ -27,19 +27,19 @@ public class MapLoader : MonoBehaviour
 
     public static string CurrentCellId;
 
-    private static bool WasSpawned = false;
+    public static bool WasSpawned = false;
 
     public static List<string> PassedCellsIds = new List<string>(); // список с пройденными клетками (по Id)
 
-    [SerializeField]
-    private Transform _spawnCell; // клетка для первого спавна
+    [SerializeField] private Transform _spawnCell; // клетка для первого спавна
 
     public Transform Player;
 
-    [SerializeField]
-    private RandomTilemapGenerator _randomTilemapGenerator;
+    [SerializeField] private RandomTilemapGenerator _randomTilemapGenerator;
 
     public static MapLoader Instance = null;
+
+    [SerializeField] private GameVictoryEnder _gameVictoryEnded;
 
     //public LoadTransition StartPanelLoadTransition;
 
@@ -56,20 +56,30 @@ public class MapLoader : MonoBehaviour
         }
 
         //StartPanelLoadTransition.gameObject.SetActive(true);
-
-        
     }
+
     private void Start()
     {
-
-        if (string.IsNullOrEmpty(CurrentCellId)) // если клетка для спавна не задана, то берётся та, которая указывается в _spawnCell
+        if (string.IsNullOrEmpty(
+                CurrentCellId)) // если клетка для спавна не задана, то берётся та, которая указывается в _spawnCell
         {
             CurrentCellId = _spawnCell.GetComponent<BaseCell>().CellId;
+        }
+        else
+        {
+            var bossCell = UnityEngine.Object.FindObjectOfType<BossCell>();
+
+            if (CurrentCellId == bossCell.CellId)
+            {
+                _gameVictoryEnded.EndGame();
+            }
+            
         }
         if (!WasSpawned)
         {
             GenerateCellsType();
-            _tilesIndexes = _randomTilemapGenerator.Generate(); // запоминаю индексы (которые были рандомно сгенерированы) тайлов
+            _tilesIndexes =
+                _randomTilemapGenerator.Generate(); // запоминаю индексы (которые были рандомно сгенерированы) тайлов
         }
         else
         {
@@ -89,7 +99,6 @@ public class MapLoader : MonoBehaviour
 
     private void GenerateCellsType()
     {
-
         // _cellTypesFrequencies = ConvertToDictinary<CellSO, int>(CellTypesFrequencySerializedDictionary);
 
         // int currentFrequency = 0;
@@ -133,7 +142,6 @@ public class MapLoader : MonoBehaviour
 
         foreach (var item in cells)
         {
-
             System.Random random = new System.Random();
 
             int randomNumber = random.Next(0, item.PossibleCellData.Count);
@@ -149,8 +157,6 @@ public class MapLoader : MonoBehaviour
 
     private void ApplyGeneratedTypes()
     {
-
-
         NormalCell[] cells = UnityEngine.Object.FindObjectsOfType<NormalCell>(); // все клетки без стартовой
 
         foreach (var cell in cells)
@@ -194,7 +200,6 @@ public class MapLoader : MonoBehaviour
         }
 
         Debug.LogError("Current Cell Id = " + CurrentCellId);*/
-
 
 
         currentCell = cells.Where(c => c.CellId == CurrentCellId).FirstOrDefault().gameObject;
@@ -248,9 +253,10 @@ public class MapLoader : MonoBehaviour
     }
 
 
-
     [Serializable]
-    public class SerializedDictionaryItem<T, K> // отдельный класс для того, чтобы сделать dictionary (словарь), который отображается в Inspector'е
+    public class
+        SerializedDictionaryItem<T,
+            K> // отдельный класс для того, чтобы сделать dictionary (словарь), который отображается в Inspector'е
     {
         public T Key;
         public K Value;
