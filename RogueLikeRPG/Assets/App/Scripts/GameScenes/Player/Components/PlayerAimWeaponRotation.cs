@@ -28,7 +28,7 @@ namespace App.Scripts.GameScenes.Player.Components
 
         private void HandsRotationAroundAim(Transform playerTransform)
         {
-            if (!_canRotate)
+            if (_canRotate)
                 return;
             Vector3 mousePosition = GetMouseWorldPosition(_playerInputActions);
 

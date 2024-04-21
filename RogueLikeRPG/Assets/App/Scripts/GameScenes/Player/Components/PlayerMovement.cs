@@ -109,7 +109,7 @@ namespace App.Scripts.GameScenes.Player.Components
 
         private void UpdatePlayerSpriteState(Vector2 moveDirection, Vector2 mouseWorldPosition)
         {
-            if (!_canRotate)
+            if (_canRotate)
                 return;
             
             if (mouseWorldPosition != _previousMousePosition)
