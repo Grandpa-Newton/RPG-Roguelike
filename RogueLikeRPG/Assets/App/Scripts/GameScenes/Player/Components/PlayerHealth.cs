@@ -24,6 +24,11 @@ namespace App.Scripts.GameScenes.Player.Components
         {
             this.playerHealth = health;
         }
+
+        public static void Create()
+        {
+            _instance = new PlayerHealth();
+        }
         
         public void IncreaseHealth(int healthToIncrease)
         {
